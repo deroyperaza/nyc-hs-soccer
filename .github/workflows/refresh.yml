@@ -1,0 +1,52 @@
+name: Refresh PSAL scores
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "discover or fetch"
+        default: "fetch"
+      season:
+        description: "PSAL season (2027 = fall 2026)"
+        default: "2027"
+  schedule:
+    # every hour from 4pm to 11pm New York time (games finish late afternoon)
+    - cron: "0 20-23,0-3 * * *"
+
+concurrency:
+  group: psal-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install --quiet requests
+
+      - name: Pull from PSAL and rebuild
+        run: |
+          python3 tools/psal_refresh.py \
+            --mode "${{ github.event.inputs.mode || 'fetch' }}" \
+            --season "${{ github.event.inputs.season || '2027' }}"
+
+      - name: Commit if the data actually changed
+        run: |
+          git config user.name "psal-refresh"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No change -- nothing to publish."
+          else
+            git diff --cached --stat
+            git commit -q -m "Refresh PSAL data $(date -u +'%Y-%m-%d %H:%MZ')"
+            git push
+            echo "Pushed. Netlify will redeploy."
+          fi
