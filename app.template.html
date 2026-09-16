@@ -6,8 +6,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NYC HS Soccer">
-<link rel="apple-touch-icon" sizes="180x180" href="/icon.png?v=2">
-<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/icon.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=2">
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png?v=2">
 <link rel="icon" type="image/png" sizes="180x180" href="/icon.png?v=2">
@@ -23,6 +23,7 @@
     --win:#12795A; --loss:#A23B22; --tie:#8A6A16; --chip:#EDF1F8;
     --shadow:0 1px 2px rgba(20,28,43,.06), 0 6px 18px rgba(20,28,43,.06);
     --sel-bg:#293955; --sel-fg:#FFFFFF;
+    --fav-bg:rgba(240,116,47,.10); --fav-line:#F0742F;
     --radius:14px; --nav-h:62px; color-scheme:light;
   }
   @media (prefers-color-scheme: dark){
@@ -33,6 +34,7 @@
       --win:#3FBE92; --loss:#E58363; --tie:#D6AE4E; --chip:#1B2840;
       --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 22px rgba(0,0,0,.35);
       --sel-bg:#FFFFFF; --sel-fg:#0B1320;
+      --fav-bg:rgba(250,138,78,.16); --fav-line:#FA8A4E;
       color-scheme:dark;
     }
   }
@@ -123,7 +125,7 @@
   .games{display:flex; flex-direction:column}
   .games .game + .game{border-top:1px solid var(--line-soft)}
   .game{display:grid; grid-template-columns:1fr auto; gap:4px 12px; padding:11px 13px; width:100%; text-align:left; align-items:center}
-  .game.pin{background:rgba(234,99,33,.055)}
+  .game.pin{background:var(--fav-bg); box-shadow:inset 3px 0 0 var(--fav-line)}
   .side{display:flex; align-items:center; gap:8px; min-width:0}
   .side .nm{font-family:"Archivo",sans-serif; font-weight:600; font-size:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
   .side .ha{font-size:10px; font-weight:600; letter-spacing:.08em; color:var(--muted); border:1px solid var(--line); border-radius:4px; padding:0 4px; flex:none}
@@ -171,7 +173,9 @@
   .standtbl .tm span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
   .standtbl .pos{font-family:"Archivo",sans-serif; font-size:11px; font-weight:700; color:var(--muted); min-width:16px; flex:none; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums}
   .standtbl .pts{font-family:"Archivo",sans-serif; font-weight:700}
-  .standtbl tr.isfav td{background:rgba(234,99,33,.07)}
+  .standtbl tr.isfav td{background:var(--fav-bg)}
+  .standtbl tr.isfav td:first-child{box-shadow:inset 3px 0 0 var(--fav-line)}
+  .standtbl tr.isfav .tm span:last-child{font-weight:700; color:var(--text)}
   .standtbl tr.isfav .pos{color:var(--orange)}
   .standtbl tr.gold .pos{color:#B8860B}
 
@@ -187,7 +191,7 @@
   .trow .nm{display:block; font-family:"Archivo",sans-serif; font-weight:600; font-size:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
   .trow .sub{display:block; font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
   .trow .rec{font-family:"Archivo",sans-serif; font-weight:700; font-size:13px; color:var(--text-2); font-variant-numeric:tabular-nums}
-  .trow.pin{background:rgba(234,99,33,.055)}
+  .trow.pin{background:var(--fav-bg); box-shadow:inset 3px 0 0 var(--fav-line)}
   .boro{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
   .boro + .boro{margin-top:10px}
   .boro summary{
@@ -235,7 +239,7 @@
   .iconbtn svg{width:17px; height:17px}
   .resline{display:flex; align-items:center; gap:9px; padding:10px 13px; border-top:1px solid var(--line-soft); width:100%; text-align:left}
   .resline:first-child{border-top:none}
-  .resline.pin{background:rgba(234,99,33,.055)}
+  .resline.pin{background:var(--fav-bg); box-shadow:inset 3px 0 0 var(--fav-line)}
   .resline .wl{font-family:"Archivo",sans-serif; font-weight:800; font-size:12px; width:19px; height:19px; display:grid; place-items:center; border-radius:5px; flex:none; color:#fff; background:var(--muted)}
   .resline .wl.W{background:var(--win)} .resline .wl.L{background:var(--loss)} .resline .wl.T{background:var(--tie)}
   .resline .op{flex:1; min-width:0; display:flex; flex-direction:column}
@@ -292,7 +296,8 @@
   .final .side .nm{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:14.5px}
   .final .side.win .nm{font-family:"Archivo",sans-serif; font-weight:700}
   .final .side:not(.win) .nm{color:var(--muted)}
-  .final .side .nm.pin{color:var(--orange)}
+  .final .side .nm.pin{color:var(--orange); font-weight:700}
+  .final:has(.nm.pin){background:var(--fav-bg); box-shadow:inset 3px 0 0 var(--fav-line)}
   .final .side .sc{font-family:"Archivo",sans-serif; font-weight:700; font-variant-numeric:tabular-nums; font-size:14px; flex:none}
   .final .side:not(.win) .sc{color:var(--muted)}
   .final .medal{width:9px; height:9px; border-radius:50%; flex:none}
