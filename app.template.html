@@ -22,6 +22,7 @@
     --text:#141C2B; --text-2:#36435A; --muted:#5B6880;
     --win:#12795A; --loss:#A23B22; --tie:#8A6A16; --chip:#EDF1F8;
     --shadow:0 1px 2px rgba(20,28,43,.06), 0 6px 18px rgba(20,28,43,.06);
+    --sel-bg:#293955; --sel-fg:#FFFFFF;
     --radius:14px; --nav-h:62px; color-scheme:light;
   }
   @media (prefers-color-scheme: dark){
@@ -31,6 +32,7 @@
       --text:#E9EEF7; --text-2:#C2CCDE; --muted:#8494AE;
       --win:#3FBE92; --loss:#E58363; --tie:#D6AE4E; --chip:#1B2840;
       --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 22px rgba(0,0,0,.35);
+      --sel-bg:#FFFFFF; --sel-fg:#0B1320;
       color-scheme:dark;
     }
   }
@@ -109,8 +111,8 @@
   .daybtn .dnum{font-family:"Archivo",sans-serif; font-weight:700; font-size:17px}
   .daybtn .dot{width:4px; height:4px; border-radius:50%; background:var(--orange); opacity:0}
   .daybtn.has .dot{opacity:1}
-  .daybtn[aria-pressed="true"]{background:#fff; border-color:var(--line); color:var(--text); box-shadow:var(--shadow)}
-  .daybtn[aria-pressed="true"] .dow{color:var(--text-2)}
+  .daybtn[aria-pressed="true"]{background:var(--sel-bg); border-color:var(--sel-bg); color:var(--sel-fg); box-shadow:var(--shadow)}
+  .daybtn[aria-pressed="true"] .dow{color:var(--sel-fg); opacity:.66}
 
   /* ---------- game cards ---------- */
   .group{display:flex; flex-direction:column; gap:0}
@@ -146,7 +148,7 @@
   /* ---------- tables / standings ---------- */
   .chips{display:flex; gap:7px; flex-wrap:wrap}
   .chips button{padding:6px 12px; border-radius:999px; border:1px solid transparent; background:var(--surface-2); font-family:"Archivo",sans-serif; font-size:12.5px; font-weight:600; letter-spacing:.03em; color:var(--text-2)}
-  .chips button[aria-pressed="true"]{background:#fff; border-color:var(--line); color:var(--text); font-weight:700; box-shadow:var(--shadow)}
+  .chips button[aria-pressed="true"]{background:var(--sel-bg); border-color:var(--sel-bg); color:var(--sel-fg); font-weight:700; box-shadow:var(--shadow)}
   .chips.scroll{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; padding:1px 0 3px}
   .chips.scroll::-webkit-scrollbar{display:none}
   .chips.scroll button{flex:none; white-space:nowrap}
@@ -219,7 +221,7 @@
   .sheetyears{margin-top:-2px}
   .sheetyears .flabel{width:52px}
   .sheetseg button{color:var(--text-2); font-size:12.5px; background:transparent; border:1px solid transparent}
-  .sheetseg button[aria-pressed="true"]{background:#fff; color:var(--text); border-color:var(--line); font-weight:700; box-shadow:var(--shadow)}
+  .sheetseg button[aria-pressed="true"]{background:var(--sel-bg); color:var(--sel-fg); border-color:var(--sel-bg); font-weight:700; box-shadow:var(--shadow)}
   .sheetseg button.off{color:var(--muted); opacity:.6}
   .statrow{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
   .stat{background:var(--surface); border:1px solid var(--line-soft); border-radius:12px; padding:11px 12px; box-shadow:var(--shadow)}
