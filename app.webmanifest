@@ -1,0 +1,41 @@
+{
+ "name": "NYC High School Soccer",
+ "short_name": "NYC HS Soccer",
+ "start_url": "/",
+ "scope": "/",
+ "display": "standalone",
+ "background_color": "#293955",
+ "theme_color": "#293955",
+ "icons": [
+  {
+   "src": "/tile-120.png",
+   "sizes": "120x120",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/tile-152.png",
+   "sizes": "152x152",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/tile-180.png",
+   "sizes": "180x180",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/tile-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/tile-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}
