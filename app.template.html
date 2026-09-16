@@ -104,13 +104,13 @@
     box-shadow:0 1px 0 var(--line-soft);
   }
   .rail::-webkit-scrollbar{display:none}
-  .daybtn{flex:none; min-width:60px; padding:8px 10px; border-radius:12px; background:var(--surface); border:1px solid var(--line); display:flex; flex-direction:column; align-items:center; gap:1px}
+  .daybtn{flex:none; min-width:60px; padding:8px 10px; border-radius:12px; background:var(--surface-2); border:1px solid transparent; display:flex; flex-direction:column; align-items:center; gap:1px; color:var(--text-2)}
   .daybtn .dow{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
   .daybtn .dnum{font-family:"Archivo",sans-serif; font-weight:700; font-size:17px}
   .daybtn .dot{width:4px; height:4px; border-radius:50%; background:var(--orange); opacity:0}
   .daybtn.has .dot{opacity:1}
-  .daybtn[aria-pressed="true"]{background:var(--navy); border-color:var(--navy); color:#fff}
-  .daybtn[aria-pressed="true"] .dow{color:#B7C6DD}
+  .daybtn[aria-pressed="true"]{background:#fff; border-color:var(--line); color:var(--text); box-shadow:var(--shadow)}
+  .daybtn[aria-pressed="true"] .dow{color:var(--text-2)}
 
   /* ---------- game cards ---------- */
   .group{display:flex; flex-direction:column; gap:0}
@@ -145,8 +145,8 @@
 
   /* ---------- tables / standings ---------- */
   .chips{display:flex; gap:7px; flex-wrap:wrap}
-  .chips button{padding:6px 12px; border-radius:999px; border:1px solid var(--line); background:var(--surface); font-family:"Archivo",sans-serif; font-size:12.5px; font-weight:600; letter-spacing:.03em; color:var(--text-2)}
-  .chips button[aria-pressed="true"]{background:var(--navy); border-color:var(--navy); color:#fff}
+  .chips button{padding:6px 12px; border-radius:999px; border:1px solid transparent; background:var(--surface-2); font-family:"Archivo",sans-serif; font-size:12.5px; font-weight:600; letter-spacing:.03em; color:var(--text-2)}
+  .chips button[aria-pressed="true"]{background:#fff; border-color:var(--line); color:var(--text); font-weight:700; box-shadow:var(--shadow)}
   .chips.scroll{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; padding:1px 0 3px}
   .chips.scroll::-webkit-scrollbar{display:none}
   .chips.scroll button{flex:none; white-space:nowrap}
