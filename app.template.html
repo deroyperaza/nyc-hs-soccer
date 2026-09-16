@@ -223,6 +223,10 @@
   .sheetseg button{color:var(--text-2); font-size:12.5px; background:transparent; border:1px solid transparent}
   .sheetseg button[aria-pressed="true"]{background:var(--sel-bg); color:var(--sel-fg); border-color:var(--sel-bg); font-weight:700; box-shadow:var(--shadow)}
   .sheetseg button.off{color:var(--muted); opacity:.6}
+  /* selected pills always take the paired foreground, even over inline color */
+  .seg button[aria-pressed="true"], .chips button[aria-pressed="true"],
+  .daybtn[aria-pressed="true"]{color:var(--sel-fg) !important}
+  .topbar .seg button[aria-pressed="true"]{color:var(--navy-deep) !important}
   .statrow{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
   .stat{background:var(--surface); border:1px solid var(--line-soft); border-radius:12px; padding:11px 12px; box-shadow:var(--shadow)}
   .stat .k{font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--muted); font-weight:600}
@@ -920,10 +924,10 @@
   /* ---------- view: history (champions + rankings) ---------- */
   function renderHistory(){
     var v = el("view-history");
-    var head = '<div class="seg" style="background:var(--surface-2); padding:4px; border-radius:11px">' +
-      '<button id="hsub-champs" aria-pressed="' + (S.hsub === "champs") + '" style="color:var(--text-2)">Champions</button>' +
-      '<button id="hsub-rank" aria-pressed="' + (S.hsub === "rank") + '" style="color:var(--text-2)">Rankings</button>' +
-      '<button id="hsub-leaders" aria-pressed="' + (S.hsub === "leaders") + '" style="color:var(--text-2)">Leaders</button></div>';
+    var head = '<div class="seg sheetseg" role="group" aria-label="History section">' +
+      '<button id="hsub-champs" aria-pressed="' + (S.hsub === "champs") + '">Champions</button>' +
+      '<button id="hsub-rank" aria-pressed="' + (S.hsub === "rank") + '">Rankings</button>' +
+      '<button id="hsub-leaders" aria-pressed="' + (S.hsub === "leaders") + '">Leaders</button></div>';
     if(S.hsub === "leaders"){ v.innerHTML = head + leadersHTML(); return; }
     if(S.histState !== "ok"){
       v.innerHTML = head + '<div class="card"><div class="' + (S.histState === "error" ? "empty" : "loading") + '">' +
