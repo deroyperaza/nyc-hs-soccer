@@ -1,0 +1,1583 @@
+<meta charset="utf-8">
+<title>NYC High School Soccer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#293955">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NYC Soccer">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --navy:#293955; --navy-deep:#1B2740; --orange:#F0742F; --blue:#4C6FC4;
+    --bg:#F1F4F9; --surface:#FFFFFF; --surface-2:#E8EDF5; --line:#D8E0EC; --line-soft:#E7ECF4;
+    --text:#141C2B; --text-2:#36435A; --muted:#5B6880;
+    --win:#12795A; --loss:#A23B22; --tie:#8A6A16; --chip:#EDF1F8;
+    --shadow:0 1px 2px rgba(20,28,43,.06), 0 6px 18px rgba(20,28,43,.06);
+    --radius:14px; --nav-h:62px; color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --navy:#16223A; --navy-deep:#0B1320; --orange:#FA8A4E; --blue:#7A9BE8;
+      --bg:#0C1320; --surface:#141E31; --surface-2:#1B2840; --line:#25344E; --line-soft:#1F2C44;
+      --text:#E9EEF7; --text-2:#C2CCDE; --muted:#8494AE;
+      --win:#3FBE92; --loss:#E58363; --tie:#D6AE4E; --chip:#1B2840;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 22px rgba(0,0,0,.35);
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --navy:#16223A; --navy-deep:#0B1320; --orange:#FA8A4E; --blue:#7A9BE8;
+    --bg:#0C1320; --surface:#141E31; --surface-2:#1B2840; --line:#25344E; --line-soft:#1F2C44;
+    --text:#E9EEF7; --text-2:#C2CCDE; --muted:#8494AE;
+    --win:#3FBE92; --loss:#E58363; --tie:#D6AE4E; --chip:#1B2840;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 22px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size:15px; line-height:1.45; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:"Archivo", system-ui, sans-serif; margin:0; text-wrap:balance}
+  button{font:inherit; color:inherit; background:none; border:none; cursor:pointer}
+  :focus-visible{outline:2px solid var(--orange); outline-offset:2px; border-radius:6px}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ---------- header ---------- */
+  .topbar{position:sticky; top:env(safe-area-inset-top, 0px); z-index:30; background:var(--navy); color:#fff; box-shadow:0 1px 0 rgba(0,0,0,.18)}
+  .topbar-inner{max-width:760px; margin:0 auto; padding:10px 16px 12px; display:flex; flex-direction:column; gap:10px}
+  .brandrow{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; row-gap:5px}
+  .brand{display:flex; align-items:center; gap:8px; min-width:0}
+  .brand .logo{flex:none; width:24px; height:24px; display:block}
+  .brand .logo svg{width:24px; height:24px; display:block}
+  .brand .mark{
+    font-family:"Archivo", sans-serif; font-weight:800; font-size:17px;
+    letter-spacing:-.022em; text-transform:none; white-space:nowrap;
+  }
+  .brand .mark em{font-style:normal; color:var(--orange)}
+  .brand .season{
+    display:flex; align-items:center; gap:5px; padding:3px 9px; border-radius:999px; flex:none;
+    background:rgba(255,255,255,.12); color:#E4EBF6; border:none;
+    font-family:"Archivo",sans-serif; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .brand .season .caret{width:0; height:0; border-left:3.5px solid transparent; border-right:3.5px solid transparent; border-top:4px solid currentColor; opacity:.8}
+  .brand .season.past{background:var(--orange); color:#fff}
+  .stamp{display:flex; align-items:center; gap:6px; font-size:11.5px; color:#A9BAD6; letter-spacing:.02em; flex:none; margin-left:auto}
+  @media (max-width:520px){
+    .brand{flex:1 1 100%}
+    .brand .mark{font-size:16px}
+    .stamp{flex:1 1 100%; justify-content:flex-start; margin-left:0}
+  }
+  .pulse{width:7px; height:7px; border-radius:50%; background:var(--orange); flex:none}
+  @media (prefers-reduced-motion:no-preference){ .live .pulse{animation:blink 2.6s ease-in-out infinite} }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+  .seg{display:flex; background:rgba(255,255,255,.1); border-radius:10px; padding:3px; gap:3px}
+  .seg button{flex:1; padding:7px 10px; border-radius:8px; color:#CBD7EA; font-family:"Archivo",sans-serif; font-weight:600; font-size:13px; letter-spacing:.06em; text-transform:uppercase}
+  .seg button[aria-pressed="true"]{background:#fff; color:var(--navy-deep)}
+
+  /* ---------- shell ---------- */
+  main{max-width:760px; margin:0 auto; padding:14px 16px calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 26px)}
+  .view{display:flex; flex-direction:column; gap:14px}
+  .view[hidden], [hidden]{display:none !important}
+  .eyebrow{font-family:"Archivo",sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
+  .sectionhead{display:flex; align-items:baseline; justify-content:space-between; gap:10px}
+  .loading{padding:26px 16px; text-align:center; color:var(--muted); font-size:14px}
+
+  /* ---------- date rail ---------- */
+  .rail{display:flex; gap:7px; overflow-x:auto; padding:2px 0 4px; scrollbar-width:none}
+  .rail::-webkit-scrollbar{display:none}
+  .daybtn{flex:none; min-width:60px; padding:8px 10px; border-radius:12px; background:var(--surface); border:1px solid var(--line); display:flex; flex-direction:column; align-items:center; gap:1px}
+  .daybtn .dow{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+  .daybtn .dnum{font-family:"Archivo",sans-serif; font-weight:700; font-size:17px}
+  .daybtn .dot{width:4px; height:4px; border-radius:50%; background:var(--orange); opacity:0}
+  .daybtn.has .dot{opacity:1}
+  .daybtn[aria-pressed="true"]{background:var(--navy); border-color:var(--navy); color:#fff}
+  .daybtn[aria-pressed="true"] .dow{color:#B7C6DD}
+
+  /* ---------- game cards ---------- */
+  .group{display:flex; flex-direction:column; gap:0}
+  .grouphead{display:flex; align-items:center; gap:8px; padding:14px 2px 7px}
+  .grouphead h3{font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--text-2)}
+  .grouphead .rule{flex:1; height:1px; background:var(--line)}
+  .card{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--radius); box-shadow:var(--shadow)}
+  .games{display:flex; flex-direction:column}
+  .games .game + .game{border-top:1px solid var(--line-soft)}
+  .game{display:grid; grid-template-columns:1fr auto; gap:4px 12px; padding:11px 13px; width:100%; text-align:left; align-items:center}
+  .game.pin{background:rgba(234,99,33,.055)}
+  .side{display:flex; align-items:center; gap:8px; min-width:0}
+  .side .nm{font-family:"Archivo",sans-serif; font-weight:600; font-size:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .side .ha{font-size:10px; font-weight:600; letter-spacing:.08em; color:var(--muted); border:1px solid var(--line); border-radius:4px; padding:0 4px; flex:none}
+  .side.win .nm{color:var(--text)}
+  .side.lose .nm{color:var(--muted); font-weight:500}
+  .sc{font-family:"Archivo",sans-serif; font-weight:800; font-size:19px; text-align:right; font-variant-numeric:tabular-nums; color:var(--muted)}
+  .sc.win{color:var(--text)}
+  .gmeta{grid-column:1 / -1; display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:3px; font-size:12px; color:var(--muted)}
+  .gmeta .venue{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0}
+  .chip{font-family:"Archivo",sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; padding:2px 7px; border-radius:999px; background:var(--chip); color:var(--text-2)}
+  .chip.time{background:transparent; border:1px solid var(--line); color:var(--text-2)}
+  .chip.final{background:var(--navy); color:#fff}
+  .chip.ppd{background:rgba(214,174,78,.18); color:var(--tie)}
+  .chip.ff{background:rgba(162,59,34,.14); color:var(--loss)}
+  .chip.fav{background:rgba(234,99,33,.14); color:var(--orange)}
+  .chip.po{background:rgba(76,111,196,.16); color:var(--blue)}
+  .chip.cls{background:rgba(41,57,85,.1); color:var(--text-2)}
+  .star{flex:none; width:30px; height:30px; display:grid; place-items:center; border-radius:8px; color:var(--muted)}
+  .star[aria-pressed="true"]{color:var(--orange)}
+  .star svg{width:17px; height:17px}
+
+  /* ---------- tables / standings ---------- */
+  .chips{display:flex; gap:7px; flex-wrap:wrap}
+  .chips button{padding:6px 12px; border-radius:999px; border:1px solid var(--line); background:var(--surface); font-family:"Archivo",sans-serif; font-size:12.5px; font-weight:600; letter-spacing:.03em; color:var(--text-2)}
+  .chips button[aria-pressed="true"]{background:var(--navy); border-color:var(--navy); color:#fff}
+  .chips.scroll{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; padding:1px 0 3px}
+  .chips.scroll::-webkit-scrollbar{display:none}
+  .chips.scroll button{flex:none; white-space:nowrap}
+  .filters{display:flex; flex-direction:column; gap:9px}
+  .filterrow{display:flex; align-items:center; gap:9px; min-width:0}
+  .flabel{font-family:"Archivo",sans-serif; font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); width:58px; flex:none}
+  .clearbtn{padding:6px 13px; border-radius:999px; border:1px solid var(--line); background:var(--surface); font-family:"Archivo",sans-serif; font-size:12.5px; font-weight:600; color:var(--text-2)}
+  table{width:100%; border-collapse:collapse}
+  .standtbl{padding:6px 4px 8px}
+  .standtbl table{table-layout:fixed; width:100%}
+  .standtbl th:first-child, .standtbl td:first-child{width:auto; max-width:0; overflow:hidden}
+  .standtbl th:not(:first-child), .standtbl td:not(:first-child){width:38px; padding-left:3px; padding-right:5px}
+  .standtbl th.w, .standtbl td.w{width:46px}
+  .standtbl th{font-family:"Archivo",sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); text-align:right; padding:6px 8px}
+  .standtbl th:first-child{text-align:left; padding-left:12px}
+  .standtbl td{padding:7px 8px; text-align:right; font-variant-numeric:tabular-nums; border-top:1px solid var(--line-soft)}
+  .standtbl td:first-child{text-align:left; padding-left:12px}
+  .standtbl tbody tr:first-child td{border-top:none}
+  .standtbl .tm{display:flex; align-items:center; gap:7px; min-width:0}
+  .standtbl .tm span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .standtbl .pos{font-family:"Archivo",sans-serif; font-size:11px; font-weight:700; color:var(--muted); min-width:16px; flex:none; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums}
+  .standtbl .pts{font-family:"Archivo",sans-serif; font-weight:700}
+  .standtbl tr.isfav td{background:rgba(234,99,33,.07)}
+  .standtbl tr.isfav .pos{color:var(--orange)}
+  .standtbl tr.gold .pos{color:#B8860B}
+
+  /* ---------- teams ---------- */
+  .search{display:flex; align-items:center; gap:9px; padding:10px 13px; background:var(--surface); border:1px solid var(--line); border-radius:12px}
+  .search input{flex:1; border:none; background:none; font:inherit; color:var(--text); min-width:0}
+  .search input:focus{outline:none}
+  .search svg{width:16px; height:16px; color:var(--muted); flex:none}
+  .tlist{display:flex; flex-direction:column}
+  .trow{display:flex; align-items:center; gap:10px; padding:11px 13px; width:100%; text-align:left; border-top:1px solid var(--line-soft)}
+  .tlist .trow:first-child{border-top:none}
+  .trow .info{flex:1; min-width:0; display:flex; flex-direction:column}
+  .trow .nm{display:block; font-family:"Archivo",sans-serif; font-weight:600; font-size:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .trow .sub{display:block; font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .trow .rec{font-family:"Archivo",sans-serif; font-weight:700; font-size:13px; color:var(--text-2); font-variant-numeric:tabular-nums}
+  .trow.pin{background:rgba(234,99,33,.055)}
+
+  /* ---------- sheets ---------- */
+  .sheet{position:fixed; inset:0; z-index:60; display:flex; flex-direction:column; background:var(--bg)}
+  .sheet[hidden]{display:none}
+  .sheet.two{z-index:70}
+  .sheethead{background:var(--navy); color:#fff; padding:calc(12px + env(safe-area-inset-top, 0px)) 16px 16px}
+  .sheethead .row{display:flex; align-items:center; justify-content:space-between; gap:10px; max-width:760px; margin:0 auto}
+  .sheethead h2{font-size:20px; font-weight:700; line-height:1.2}
+  .sheethead .sub{font-size:12.5px; color:#AEBED6; margin-top:3px}
+  .sheetbody{flex:1; overflow-y:auto; padding:14px 16px calc(24px + env(safe-area-inset-bottom, 0px))}
+  .sheetbody-inner{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:14px}
+  .sheetseg{background:var(--surface-2); padding:4px; border-radius:11px}
+  .sheetyears{margin-top:-2px}
+  .sheetyears .flabel{width:52px}
+  .sheetseg button{color:var(--text-2); font-size:12.5px}
+  .sheetseg button[aria-pressed="true"]{background:var(--surface); color:var(--text); box-shadow:var(--shadow)}
+  .statrow{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+  .stat{background:var(--surface); border:1px solid var(--line-soft); border-radius:12px; padding:11px 12px; box-shadow:var(--shadow)}
+  .stat .k{font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--muted); font-weight:600}
+  .stat .v{font-family:"Archivo",sans-serif; font-weight:800; font-size:21px; font-variant-numeric:tabular-nums; margin-top:2px}
+  .iconbtn{width:34px; height:34px; display:grid; place-items:center; border-radius:9px; background:rgba(255,255,255,.12); color:#fff; flex:none}
+  .iconbtn svg{width:17px; height:17px}
+  .resline{display:flex; align-items:center; gap:9px; padding:10px 13px; border-top:1px solid var(--line-soft); width:100%; text-align:left}
+  .resline:first-child{border-top:none}
+  .resline.pin{background:rgba(234,99,33,.055)}
+  .resline .wl{font-family:"Archivo",sans-serif; font-weight:800; font-size:12px; width:19px; height:19px; display:grid; place-items:center; border-radius:5px; flex:none; color:#fff; background:var(--muted)}
+  .resline .wl.W{background:var(--win)} .resline .wl.L{background:var(--loss)} .resline .wl.T{background:var(--tie)}
+  .resline .op{flex:1; min-width:0; display:flex; flex-direction:column}
+  .resline .op .nm{display:block; font-weight:600; font-size:14.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .resline .op .dt{display:block; font-size:12px; color:var(--muted)}
+  .resline .rs{font-family:"Archivo",sans-serif; font-weight:700; font-variant-numeric:tabular-nums; font-size:14.5px}
+
+  /* ---------- history chart ---------- */
+  .chartcard{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--radius); box-shadow:var(--shadow); padding:11px 13px 9px}
+  .chartcard .head{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:6px}
+  .chartcard .head h3{font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--text-2)}
+  .chartcard .head .legend{font-size:11.5px; color:var(--muted)}
+  .chartbox{width:100%; height:104px}
+  .chart{display:block; touch-action:pan-y; max-width:100%}
+  .chart .grid{stroke:var(--line-soft); stroke-width:1}
+  .chart .axis{fill:var(--muted); font-size:11px; font-family:"Barlow",sans-serif}
+  .chart .ln{fill:none; stroke:var(--orange); stroke-width:2; stroke-linejoin:round; stroke-linecap:round}
+  .chart .pt{fill:var(--surface); stroke:var(--orange); stroke-width:1.8}
+  .chart .pt.sel{fill:var(--orange)}
+  .chart .ln.live{stroke-dasharray:4 3; opacity:.85}
+  .chartcard .legend .live{color:var(--orange)}
+  .chart .hit{fill:transparent; cursor:pointer}
+  .chartnote{font-size:12px; color:var(--muted); margin-top:2px; min-height:17px}
+  .chartcard .head h3{white-space:nowrap}
+
+  /* ---------- box score ---------- */
+  .boxwrap{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+  .boxhead{padding:11px 13px 7px; display:flex; align-items:baseline; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line-soft)}
+  .boxhead h3{font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--text-2)}
+  .boxhead .sub{font-size:12px; color:var(--muted)}
+  .plist{display:flex; flex-direction:column}
+  .prow{display:flex; align-items:center; gap:10px; padding:8px 13px; border-top:1px solid var(--line-soft); font-size:14px}
+  .prow:first-child{border-top:none}
+  .prow .pn{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .prow .pv{font-family:"Archivo",sans-serif; font-weight:700; font-variant-numeric:tabular-nums; color:var(--text-2); font-size:13px; white-space:nowrap}
+  .prow .pv em{font-style:normal; color:var(--muted); font-weight:600; font-size:11.5px; letter-spacing:.04em}
+  .halftbl th, .halftbl td{padding:6px 8px; text-align:center; font-variant-numeric:tabular-nums}
+  .halftbl th{font-family:"Archivo",sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+  .halftbl td{border-top:1px solid var(--line-soft)}
+  .halftbl th:first-child, .halftbl td:first-child{text-align:left; padding-left:13px; width:100%}
+  .halftbl td.tot{font-family:"Archivo",sans-serif; font-weight:800}
+  .kv{display:flex; flex-direction:column; gap:7px; padding:11px 13px}
+  .kv .r{display:flex; gap:10px; font-size:13.5px}
+  .kv .r .k{color:var(--muted); width:86px; flex:none; font-size:12px; letter-spacing:.04em; text-transform:uppercase; font-family:"Archivo",sans-serif; font-weight:600}
+  .kv .r .v{flex:1; min-width:0}
+
+  .final{display:flex; align-items:center; gap:11px; padding:10px 13px; border-top:1px solid var(--line-soft)}
+  .card .final:first-child{border-top:none}
+  .final .lvl{font-family:"Archivo",sans-serif; font-weight:800; font-size:12px; letter-spacing:.06em; color:var(--text-2);
+    background:var(--chip); border-radius:6px; padding:3px 7px; flex:none; min-width:30px; text-align:center}
+  .final .lvl .tag2{display:block; font-size:8.5px; font-weight:700; letter-spacing:.08em; color:var(--muted); margin-top:1px}
+  .final .pair{flex:1; min-width:0; display:flex; flex-direction:column; gap:3px}
+  .final .side{display:flex; align-items:center; gap:7px; min-width:0; width:100%; text-align:left; padding:0}
+  .final .side .nm{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:14.5px}
+  .final .side.win .nm{font-family:"Archivo",sans-serif; font-weight:700}
+  .final .side:not(.win) .nm{color:var(--muted)}
+  .final .side .nm.pin{color:var(--orange)}
+  .final .side .sc{font-family:"Archivo",sans-serif; font-weight:700; font-variant-numeric:tabular-nums; font-size:14px; flex:none}
+  .final .side:not(.win) .sc{color:var(--muted)}
+  .final .medal{width:9px; height:9px; border-radius:50%; flex:none}
+  .final .medal.gold{background:#E3B341; box-shadow:inset 0 0 0 1.4px #A87C15}
+  .final .medal.silver{background:#C3CBD6; box-shadow:inset 0 0 0 1.4px #8A96A6}
+  .final .when{font-size:11.5px; color:var(--muted); flex:none; white-space:nowrap}
+
+  .method{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--radius); box-shadow:var(--shadow); margin-top:2px}
+  .method summary{list-style:none; cursor:pointer; padding:12px 14px; font-family:"Archivo",sans-serif; font-weight:600; font-size:13.5px; color:var(--blue); display:flex; align-items:center; gap:7px}
+  .method summary::-webkit-details-marker{display:none}
+  .method summary::after{content:""; width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid currentColor; opacity:.7; transition:transform .15s}
+  .method[open] summary::after{transform:rotate(180deg)}
+  .method .mbody{padding:0 14px 12px; font-size:13px; color:var(--text-2); line-height:1.55}
+  .method .mbody p{margin:0 0 9px}
+  .method .mbody p:last-child{margin-bottom:0}
+  .method .mbody b{color:var(--text)}
+
+  /* ---------- misc ---------- */
+  .note{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:8px}
+  .note h3{font-size:16px; font-weight:700}
+  .note p{margin:0; color:var(--text-2); font-size:14px}
+  .note a{color:var(--blue)}
+  .empty{padding:26px 16px; text-align:center; color:var(--muted); font-size:14px}
+  footer{padding:18px 2px 4px; color:var(--muted); font-size:12px; text-align:center; line-height:1.6}
+  footer a{color:var(--muted)}
+  .seasonmenu{position:fixed; inset:0; z-index:80; background:rgba(10,16,28,.5); display:flex; align-items:flex-end; justify-content:center}
+  .seasonmenu[hidden]{display:none}
+  .seasonmenu .panel{background:var(--surface); width:100%; max-width:760px; border-radius:16px 16px 0 0; max-height:74vh; display:flex; flex-direction:column; padding-bottom:env(safe-area-inset-bottom, 0px)}
+  .seasonmenu .ph{padding:14px 16px 10px; border-bottom:1px solid var(--line-soft); display:flex; align-items:center; justify-content:space-between}
+  .seasonmenu .ph h3{font-size:15px; font-weight:700}
+  .seasonmenu .list{overflow-y:auto; display:flex; flex-direction:column}
+  .seasonmenu .list button{padding:12px 16px; text-align:left; border-top:1px solid var(--line-soft); display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:15px}
+  .seasonmenu .list button[aria-pressed="true"]{color:var(--orange); font-weight:600}
+  .seasonmenu .list .tag{font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); font-family:"Archivo",sans-serif; font-weight:700}
+
+  /* ---------- bottom nav ---------- */
+  .nav{position:fixed; left:0; right:0; bottom:0; z-index:40; background:var(--surface); border-top:1px solid var(--line); padding-bottom:env(safe-area-inset-bottom, 0px)}
+  .nav-inner{max-width:760px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr)}
+  .nav button{height:var(--nav-h); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; color:var(--muted); font-family:"Archivo",sans-serif; font-size:10px; font-weight:600; letter-spacing:.05em; text-transform:uppercase}
+  .nav button svg{width:20px; height:20px}
+  .nav button[aria-pressed="true"]{color:var(--orange)}
+</style>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brandrow">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false">
+          <circle cx="20" cy="20" r="18" fill="var(--orange)"></circle>
+          <polygon points="20,11.42 28.16,17.35 25.04,26.94 14.96,26.94 11.84,17.35" fill="var(--navy)"></polygon>
+        </svg></span>
+        <span class="mark">NYC <em>High School Soccer</em></span>
+        <button class="season" id="seasonbtn" aria-label="Switch season"><span id="seasonlabel">Fall 2026</span><span class="caret"></span></button>
+      </div>
+      <div class="stamp" id="stamp"><span class="pulse"></span><span id="stamptext">Loading…</span></div>
+    </div>
+    <div class="seg" role="group" aria-label="Choose boys or girls varsity">
+      <button id="sport-0" aria-pressed="true">Boys Varsity</button>
+      <button id="sport-1" aria-pressed="false">Girls Varsity</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="view" id="view-scores"></section>
+  <section class="view" id="view-standings" hidden></section>
+  <section class="view" id="view-teams" hidden></section>
+  <section class="view" id="view-playoffs" hidden></section>
+  <section class="view" id="view-history" hidden></section>
+  <footer>
+    Data from the PSAL league feed · <a href="https://www.psal.org/" target="_blank" rel="noopener">psal.org</a><br>
+    Unofficial. PSAL posts the official record.
+  </footer>
+</main>
+
+<nav class="nav" aria-label="Sections">
+  <div class="nav-inner">
+    <button id="tab-scores" aria-pressed="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path><circle cx="12" cy="12" r="3.2"></circle></svg>
+      Scores
+    </button>
+    <button id="tab-standings" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>
+      Standings
+    </button>
+    <button id="tab-teams" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1.5A3.5 3.5 0 0 0 13.5 15h-5A3.5 3.5 0 0 0 5 18.5V20"></path><circle cx="11" cy="8" r="3.2"></circle><path d="M19 11.5a3 3 0 1 0-2.5-5"></path></svg>
+      Teams
+    </button>
+    <button id="tab-playoffs" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h10M8 5v4a4 4 0 0 0 8 0V5M12 13v4M9 21h6M5 6H3v2a3 3 0 0 0 3 3M19 6h2v2a3 3 0 0 1-3 3"></path></svg>
+      Playoffs
+    </button>
+    <button id="tab-history" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-8 4 5"></path><path d="M3 21h18"></path></svg>
+      History
+    </button>
+  </div>
+</nav>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-label="Team detail">
+  <div class="sheethead">
+    <div class="row">
+      <button class="iconbtn" id="sheet-close" aria-label="Back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+      <div style="flex:1; min-width:0">
+        <h2 id="sheet-name">Team</h2>
+        <div class="sub" id="sheet-sub"></div>
+      </div>
+      <button class="iconbtn" id="sheet-fav" aria-pressed="false" aria-label="Follow this team">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.7l5.8-.8z"></path></svg>
+      </button>
+    </div>
+  </div>
+  <div class="sheetbody"><div class="sheetbody-inner" id="sheet-body"></div></div>
+</div>
+
+<div class="sheet two" id="gsheet" hidden role="dialog" aria-modal="true" aria-label="Game detail">
+  <div class="sheethead">
+    <div class="row">
+      <button class="iconbtn" id="gsheet-close" aria-label="Back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+      <div style="flex:1; min-width:0">
+        <h2 id="gsheet-name">Game</h2>
+        <div class="sub" id="gsheet-sub"></div>
+      </div>
+    </div>
+  </div>
+  <div class="sheetbody"><div class="sheetbody-inner" id="gsheet-body"></div></div>
+</div>
+
+<div class="seasonmenu" id="seasonmenu" hidden>
+  <div class="panel">
+    <div class="ph"><h3>Season</h3><button class="clearbtn" id="seasonmenu-close">Close</button></div>
+    <div class="list" id="seasonmenu-list"></div>
+  </div>
+</div>
+
+<script id="psal-data" type="application/json">__PSAL_DATA__</script>
+<script>
+(function(){
+  "use strict";
+  var BOOT = JSON.parse(document.getElementById("psal-data").textContent);
+  var META = BOOT.meta;
+  var PIN = "03300";                     /* Beacon High School: always listed first */
+  var CLASS_ORDER = ["3A","2A","1A"];          /* current PSAL ladder; older seasons used 1A > B > C/D */
+  var TIER_W = [1, 0.88, 0.76, 0.68];
+  var BORO_ORDER = ["Manhattan","Brooklyn III","Brooklyn II","Brooklyn I"];
+  var ROUNDS = ["Opening Round","Round of 32","Round of 16","Quarterfinals","Semifinals","Final"];
+
+  var S = {
+    sp: 0, view: "scores", seasonId: null, season: null, rankSort: "r", methodOpen: false,
+    lbStat: "g", lbTier: "all", aggCache: {},
+    date: null, boro: "", div: "", query: "", hsub: "champs", rankYear: "all",
+    favs: new Set(), cache: {}, hist: null, histState: "idle", openTeamKey: null, openGameKey: null
+  };
+
+  /* ---------- helpers ---------- */
+  function esc(s){
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function el(id){ return document.getElementById(id); }
+  function todayInt(){
+    var d = new Date();
+    return d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
+  }
+  function dparts(d){
+    d = String(d);
+    return {y:+d.slice(0,4), m:+d.slice(4,6), d:+d.slice(6,8)};
+  }
+  function fmtDate(d){
+    var p = dparts(d), dt = new Date(p.y, p.m-1, p.d);
+    return dt.toLocaleDateString(undefined, {weekday:"short", month:"short", day:"numeric"});
+  }
+  function fmtDateLong(d){
+    var p = dparts(d), dt = new Date(p.y, p.m-1, p.d);
+    return dt.toLocaleDateString(undefined, {weekday:"long", month:"long", day:"numeric", year:"numeric"});
+  }
+  function fmtTime(t){
+    t = String(t || "").trim();
+    if(!t) return "";
+    return t.replace(/^0/, "").replace(/\s+/g, " ");
+  }
+  function classOf(div){
+    var m = /^\s*(\d[A-D]|[A-D])\b/.exec(div || "");
+    return m ? m[1] : "";
+  }
+  function boroOf(div){
+    var p = String(div || "").split("--");
+    return p.length > 1 ? p[1].trim() : "";
+  }
+  function divLabel(d){ return String(d == null ? "" : d).replace(/\s*--\s*/, " · "); }
+  function divShort(d){ return String(d == null ? "" : d).replace(/\s*--\s*/, " "); }
+  function tierOf(div){
+    if(S.season && S.season.tier && S.season.tier[div] != null) return S.season.tier[div];
+    var i = CLASS_ORDER.indexOf(classOf(div));
+    return i === -1 ? 3 : i;
+  }
+  function classRank(div){ return tierOf(div); }
+  function boroRank(div){
+    var i = BORO_ORDER.indexOf(boroOf(div));
+    return i === -1 ? BORO_ORDER.length : i;
+  }
+  function cmpDiv(a, b){
+    return (classRank(a) - classRank(b)) || (boroRank(a) - boroRank(b)) ||
+           String(a).localeCompare(String(b));
+  }
+  function pct(w, l, t){
+    var n = w + l + t;
+    return n ? (w + t/2) / n : 0;
+  }
+  function pct3(v){ return v.toFixed(3).replace(/^0/, ""); }
+  /* level + playoff aware season rating (0..1) */
+  var LEVELW = {"3A":1, "2A":0.88, "1A":0.76};
+  var PO_SCORE = [0, 0.20, 0.30, 0.45, 0.60, 0.80, 1.00];
+  var PO_LABEL = ["", "Made playoffs", "Round of 16", "Quarterfinals", "Semifinals", "Lost final", "Won title"];
+  function seasonRating(r){
+    var w = r[1], l = r[2], t = r[3], pts = r[4], cls = r[5] || "", res = r[7] || 0;
+    var n = w + l + t;
+    if(!n) return 0;
+    var ptsPct = Math.min(1, pts / (3 * n));
+    var lw = (r[8] != null) ? (TIER_W[r[8]] || 0.68) : (LEVELW[cls] || 0.8);
+    return lw * (0.75 * ptsPct + 0.25 * (PO_SCORE[res] || 0));
+  }
+
+  /* ---------- season handling ---------- */
+  function parseSeason(o){
+    var tm = {};
+    o.T.forEach(function(t){
+      var div = t[3] >= 0 ? o.D[t[3]] : "";
+      tm[t[0] + ":" + t[1]] = {sp:t[0], code:t[1], name:t[2], short:(t[4] || t[2]), div:div, cls:classOf(div), boro:boroOf(div)};
+    });
+    var byDate = {}, rec = {}, stand = [], tier = {};
+    (o.D || []).forEach(function(d, i){ tier[d] = (o.TI && o.TI[i] != null) ? o.TI[i] : 3; });
+    o.G.forEach(function(g){ (byDate[g[2]] = byDate[g[2]] || []).push(g); });
+    o.S.forEach(function(s){
+      stand.push({sp:s[0], div:o.D[s[1]], rows:s[2]});
+      s[2].forEach(function(r){ rec[s[0] + ":" + r[0]] = r; });
+    });
+    stand.sort(function(a, b){ return (a.sp - b.sp) || cmpDiv(a.div, b.div); });
+    return {
+      raw:o, id:o.id, label:o.label, teams:tm, byDate:byDate, rec:rec, stand:stand, tier:tier,
+      dates:Object.keys(byDate).map(Number).sort(function(a,b){return a-b;})
+    };
+  }
+  function pickDate(ps, sp){
+    var t = todayInt(), withGames = ps.dates.filter(function(d){
+      return (ps.byDate[d] || []).some(function(g){ return g[0] === sp; });
+    });
+    if(!withGames.length) return ps.dates.length ? ps.dates[ps.dates.length-1] : null;
+    for(var i=0;i<withGames.length;i++){ if(withGames[i] >= t) return withGames[i]; }
+    return withGames[withGames.length-1];
+  }
+  function seasonMeta(id){
+    for(var i=0;i<META.seasons.length;i++) if(META.seasons[i].id === id) return META.seasons[i];
+    return {id:id, label:id, cur:false};
+  }
+  function isCurrent(){ return seasonMeta(S.seasonId).cur; }
+
+  function loadSeason(id, done){
+    if(S.cache[id]){ applySeason(S.cache[id]); if(done) done(); return; }
+    S.season = null; S.seasonId = id; render();
+    fetch(META.path + "s" + id + ".json", {cache:"force-cache"})
+      .then(function(r){ if(!r.ok) throw new Error("http " + r.status); return r.json(); })
+      .then(function(o){ S.cache[id] = parseSeason(o); applySeason(S.cache[id]); if(done) done(); })
+      .catch(function(){ S.season = "error"; render(); });
+  }
+  function applySeason(ps){
+    S.season = ps; S.seasonId = ps.id;
+    S.boro = ""; S.div = ""; S.query = ""; S.openTeamKey = null;
+    S.date = pickDate(ps, S.sp);
+    el("seasonlabel").textContent = ps.label;
+    el("seasonbtn").classList.toggle("past", !isCurrent());
+    setStamp();
+    render();
+  }
+
+  /* ---------- history (all seasons) ---------- */
+  function needHistory(after){
+    if(S.histState === "ok"){ if(after) after(); return; }
+    if(S.histState === "loading") return;
+    S.histState = "loading"; render();
+    fetch(META.path + "history.json", {cache:"force-cache"})
+      .then(function(r){ if(!r.ok) throw new Error("http"); return r.json(); })
+      .then(function(o){ S.hist = o; S.histState = "ok"; if(after) after(); render(); })
+      .catch(function(){ S.histState = "error"; render(); });
+  }
+
+  /* ---------- game helpers ---------- */
+  function g_sp(g){ return g[0]; }
+  function gkey(g){ return g[0] + ":" + g[1]; }
+  function reasonOf(g){ var i = g[8]; return i >= 0 ? (S.season.raw.RS[i] || "") : ""; }
+  function locOf(g){ var i = g[9]; return i >= 0 ? (S.season.raw.L[i] || "") : ""; }
+  function hasScore(g){ return g[6] != null && g[7] != null; }
+  function status(g){
+    var r = reasonOf(g);
+    if(/forfeit/i.test(r) || g[6] === 999 || g[7] === 999) return "ff";
+    if(/postpon/i.test(r)) return "ppd";
+    if(/suspend/i.test(r)) return "sus";
+    if(hasScore(g)) return "final";
+    return "sched";
+  }
+  function teamOf(sp, code){
+    return S.season.teams[sp + ":" + code] || {sp:sp, code:code, name:"School " + code, short:"School " + code, div:"", cls:"", boro:""};
+  }
+  function resultFor(g, code){
+    if(!hasScore(g)) return null;
+    var home = g[4] === code;
+    var gf = home ? g[6] : g[7], ga = home ? g[7] : g[6];
+    if(gf === 999) return {wl:"W", gf:"W", ga:"", ff:true};
+    if(ga === 999) return {wl:"L", gf:"L", ga:"", ff:true};
+    return {wl: gf > ga ? "W" : (gf < ga ? "L" : "T"), gf:gf, ga:ga, ff:false};
+  }
+  function involvesPin(g){ return g[4] === PIN || g[5] === PIN; }
+  function sortGames(list){
+    return list.slice().sort(function(a, b){
+      var pa = involvesPin(a) ? 0 : 1, pb = involvesPin(b) ? 0 : 1;
+      if(pa !== pb) return pa - pb;
+      if(a[2] !== b[2]) return a[2] - b[2];
+      var da = cmpDiv(teamOf(a[0], a[4]).div, teamOf(b[0], b[4]).div);
+      if(da) return da;
+      return String(a[3]).localeCompare(String(b[3]));
+    });
+  }
+  function roundLabel(g){
+    if(g[10] !== 1) return "";
+    var i = g[11];
+    return i >= 0 && i < ROUNDS.length ? ROUNDS[i] : "Playoffs";
+  }
+  function detailOf(g){ return S.season.raw.X[gkey(g)] || null; }
+  function bracketOf(g){
+    var BR = S.season.raw.BR || [], bi = (g.length > 12) ? g[12] : -1;
+    return (bi >= 0 && bi < BR.length) ? BR[bi] : null;
+  }
+  function bracketLabel(g){
+    var br = bracketOf(g);
+    if(br && br[0]) return br[0];
+    return teamOf(g[0], g[4]).cls || teamOf(g[0], g[5]).cls || "";
+  }
+  function boxRowsFor(g, code){
+    var d = detailOf(g);
+    if(!d || !d[4] || !d[4].length) return 0;
+    var n = 0;
+    for(var i=0;i<d[4].length;i++){ if(d[4][i][0] === code) n++; }
+    return n;
+  }
+
+  /* ---------- favorites ---------- */
+  function loadFavs(){
+    try{
+      var raw = localStorage.getItem("psal.favs");
+      if(raw) JSON.parse(raw).forEach(function(k){ S.favs.add(k); });
+    }catch(e){}
+  }
+  function saveFavs(){
+    try{ localStorage.setItem("psal.favs", JSON.stringify(Array.from(S.favs))); }catch(e){}
+  }
+  function toggleFav(key){
+    if(S.favs.has(key)) S.favs.delete(key); else S.favs.add(key);
+    saveFavs(); render();
+    if(S.openTeamKey) openTeam(S.openTeamKey);
+  }
+  function isFavGame(g){
+    return S.favs.has(g[0] + ":" + g[4]) || S.favs.has(g[0] + ":" + g[5]);
+  }
+
+  /* ---------- game row ---------- */
+  function sideHTML(g, home){
+    var code = home ? g[4] : g[5], t = teamOf(g[0], code);
+    var st = status(g), r = hasScore(g) ? resultFor(g, code) : null;
+    var cls = "side";
+    if(r && !r.ff){ cls += r.wl === "W" ? " win" : (r.wl === "L" ? " lose" : ""); }
+    var sc = "";
+    if(hasScore(g)){
+      if(g[6] === 999 || g[7] === 999) sc = (r && r.wl === "W") ? "W" : "L";
+      else sc = home ? g[6] : g[7];
+    }
+    var scCls = "sc" + (r && r.wl === "W" ? " win" : "");
+    return '<div class="' + cls + '"><span class="ha">' + (home ? "H" : "A") + '</span>' +
+           '<span class="nm">' + esc(t.short) + '</span></div>' +
+           '<div class="' + scCls + '">' + (sc === "" ? "" : esc(sc)) + '</div>';
+  }
+  function gameHTML(g, opts){
+    opts = opts || {};
+    var st = status(g), chips = [];
+    if(st === "final") chips.push('<span class="chip final">Final</span>');
+    else if(st === "ppd") chips.push('<span class="chip ppd">Postponed</span>');
+    else if(st === "ff") chips.push('<span class="chip ff">Forfeit</span>');
+    else if(st === "sus") chips.push('<span class="chip ppd">Suspended</span>');
+    else if(g[3]) chips.push('<span class="chip time">' + esc(fmtTime(g[3])) + '</span>');
+    if(g[10] === 1){
+      var rl = roundLabel(g), cls = bracketLabel(g);
+      chips.push('<span class="chip po">' + esc(((cls ? cls + " " : "") + rl).trim() || "Playoffs") + '</span>');
+    } else if(g[10] === 2){
+      chips.push('<span class="chip cls">Non-league</span>');
+    }
+    if(isFavGame(g)) chips.push('<span class="chip fav">Following</span>');
+    if(opts.date) chips.push('<span class="chip time">' + esc(fmtDate(g[2])) + '</span>');
+    var meta = chips.join("");
+    var venue = locOf(g);
+    if(venue && !opts.noVenue) meta += '<span class="venue">' + esc(venue) + '</span>';
+    return '<button class="game' + (involvesPin(g) ? " pin" : "") + '" data-game="' + esc(gkey(g)) + '">' +
+      sideHTML(g, true) + sideHTML(g, false) +
+      '<div class="gmeta">' + meta + '</div></button>';
+  }
+
+  /* ---------- view: scores ---------- */
+  function renderScores(){
+    var v = el("view-scores"), ps = S.season;
+    var all = ps.raw.G.filter(function(g){ return g[0] === S.sp; });
+    var boros = {}, divs = {};
+    all.forEach(function(g){
+      var t = teamOf(g[0], g[4]);
+      if(t.boro) boros[t.boro] = 1;
+      if(t.div) divs[t.div] = 1;
+    });
+    var dayGames = (ps.byDate[S.date] || []).filter(function(g){ return g[0] === S.sp; });
+    var shown = dayGames.filter(function(g){
+      if(S.boro){
+        var th = teamOf(g[0], g[4]), ta = teamOf(g[0], g[5]);
+        if(th.boro !== S.boro && ta.boro !== S.boro) return false;
+      }
+      if(S.div){
+        var th2 = teamOf(g[0], g[4]), ta2 = teamOf(g[0], g[5]);
+        if(th2.div !== S.div && ta2.div !== S.div) return false;
+      }
+      return true;
+    });
+    var favGames = shown.filter(isFavGame);
+    var rest = shown.filter(function(g){ return !isFavGame(g); });
+
+    var railDates = ps.dates.slice();
+    var html = '<div class="rail" id="rail">' + railDates.map(function(d){
+      var p = dparts(d), dt = new Date(p.y, p.m-1, p.d);
+      var n = (ps.byDate[d] || []).filter(function(g){ return g[0] === S.sp; }).length;
+      return '<button class="daybtn' + (n ? " has" : "") + '" data-date="' + d + '" aria-pressed="' + (d === S.date) + '">' +
+        '<span class="dow">' + dt.toLocaleDateString(undefined, {weekday:"short"}) + '</span>' +
+        '<span class="dnum">' + p.d + '</span><span class="dot"></span></button>';
+    }).join("") + '</div>';
+
+    var boroList = Object.keys(boros).sort();
+    var divList = Object.keys(divs).filter(function(d){
+      return !S.boro || boroOf(d) === S.boro;
+    }).sort(cmpDiv);
+    html += '<div class="filters">' +
+      '<div class="filterrow"><span class="flabel">Borough</span><div class="chips scroll">' +
+        '<button data-boro="" aria-pressed="' + (S.boro === "") + '">All</button>' +
+        boroList.map(function(b){
+          return '<button data-boro="' + esc(b) + '" aria-pressed="' + (S.boro === b) + '">' + esc(b) + '</button>';
+        }).join("") + '</div></div>' +
+      '<div class="filterrow"><span class="flabel">Division</span><div class="chips scroll">' +
+        '<button data-div="" aria-pressed="' + (S.div === "") + '">All</button>' +
+        divList.map(function(d){
+          return '<button data-div="' + esc(d) + '" aria-pressed="' + (S.div === d) + '">' + esc(divShort(d)) + '</button>';
+        }).join("") + '</div></div>' +
+      ((S.boro || S.div) ? '<div class="filterrow"><span class="flabel"></span><button class="clearbtn" id="clearf">Clear filters</button></div>' : "") +
+      '</div>';
+
+    html += '<div class="sectionhead"><span class="eyebrow">' + esc(S.date ? fmtDateLong(S.date) : "Schedule") + '</span>' +
+      '<span class="eyebrow">' + shown.length + ' of ' + dayGames.length + ' games</span></div>';
+
+    if(favGames.length){
+      html += '<div class="group"><div class="grouphead"><h3>Following</h3><div class="rule"></div></div>' +
+        '<div class="card"><div class="games">' + sortGames(favGames).map(function(g){ return gameHTML(g); }).join("") + '</div></div></div>';
+    }
+    if(rest.length){
+      html += '<div class="card"><div class="games">' + sortGames(rest).map(function(g){ return gameHTML(g); }).join("") + '</div></div>';
+    } else if(!favGames.length){
+      html += '<div class="card"><div class="empty">No games' + (S.boro || S.div ? " match these filters" : " on this date") + '.</div></div>';
+    }
+    v.innerHTML = html;
+    var railEl = el("rail");
+    if(railEl){
+      var sel = railEl.querySelector('[aria-pressed="true"]');
+      if(sel) railEl.scrollLeft = Math.max(0, sel.offsetLeft - railEl.clientWidth/2 + sel.clientWidth/2);
+    }
+  }
+
+  /* ---------- view: standings ---------- */
+  function renderStandings(){
+    var v = el("view-standings"), ps = S.season;
+    var groups = ps.stand.filter(function(s){ return s.sp === S.sp && s.rows.length; });
+    if(!groups.length){ v.innerHTML = '<div class="card"><div class="empty">No standings posted for this season yet.</div></div>'; return; }
+    v.innerHTML = '<div class="sectionhead"><span class="eyebrow">' + esc(ps.label) + ' standings</span>' +
+        '<span class="eyebrow">' + groups.length + ' divisions</span></div>' +
+      groups.map(function(s){
+        var rows = s.rows.slice().sort(function(a, b){
+          return (b[4] - a[4]) || (b[1] - a[1]) || (a[2] - b[2]);
+        });
+        return '<div class="group"><div class="grouphead"><h3>' + esc(divLabel(s.div)) + '</h3><div class="rule"></div></div>' +
+          '<div class="card"><div class="standtbl"><table><thead><tr>' +
+          '<th>Team</th><th>W</th><th>L</th><th>T</th><th>Pts</th></tr></thead><tbody>' +
+          rows.map(function(r, i){
+            var key = s.sp + ":" + r[0], t = teamOf(s.sp, r[0]);
+            var cls = [];
+            if(S.favs.has(key) || r[0] === PIN) cls.push("isfav");
+            if(i < 2) cls.push("gold");
+            return '<tr class="' + cls.join(" ") + '"><td><button class="tm" data-team="' + esc(key) + '">' +
+              '<span class="pos">' + (i+1) + '</span><span>' + esc(t.short) + '</span></button></td>' +
+              '<td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td class="pts">' + r[4] + '</td></tr>';
+          }).join("") + '</tbody></table></div></div></div>';
+      }).join("");
+  }
+
+  /* ---------- view: teams ---------- */
+  function renderTeams(){
+    var v = el("view-teams"), ps = S.season;
+    var list = Object.keys(ps.teams).map(function(k){ return ps.teams[k]; })
+      .filter(function(t){ return t.sp === S.sp; });
+    var q = S.query.trim().toLowerCase();
+    if(q) list = list.filter(function(t){ return t.name.toLowerCase().indexOf(q) > -1 || (t.div||"").toLowerCase().indexOf(q) > -1; });
+    list.sort(function(a, b){
+      if((a.code === PIN) !== (b.code === PIN)) return a.code === PIN ? -1 : 1;
+      return cmpDiv(a.div, b.div) || a.name.localeCompare(b.name);
+    });
+    v.innerHTML = '<div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.4-3.4"></path></svg>' +
+        '<input id="tsearch" type="search" placeholder="Search schools or divisions" value="' + esc(S.query) + '" autocomplete="off"></div>' +
+      '<div class="card"><div class="tlist">' + (list.length ? list.map(function(t){
+        var r = ps.rec[t.sp + ":" + t.code];
+        var rec = r ? (r[1] + "-" + r[2] + (r[3] ? "-" + r[3] : "")) : "";
+        return '<button class="trow' + (t.code === PIN ? " pin" : "") + '" data-team="' + esc(t.sp + ":" + t.code) + '">' +
+          '<span class="info"><span class="nm">' + esc(t.short) + '</span>' +
+          '<span class="sub">' + esc(divLabel(t.div) || "No division listed") + '</span></span>' +
+          '<span class="rec">' + esc(rec) + '</span></button>';
+      }).join("") : '<div class="empty">No schools match that search.</div>') + '</div></div>';
+  }
+
+  /* ---------- view: playoffs ---------- */
+  function renderPlayoffs(){
+    var v = el("view-playoffs"), ps = S.season;
+    var po = ps.raw.G.filter(function(g){ return g[0] === S.sp && g[10] === 1; });
+    if(!po.length){
+      v.innerHTML = '<div class="note"><h3>No playoff games yet</h3>' +
+        '<p>Playoff brackets appear here once PSAL posts postseason games for ' + esc(ps.label) + '.</p></div>';
+      return;
+    }
+    var byCls = {}, brTier = {};
+    po.forEach(function(g){
+      var bi = (g.length > 12) ? g[12] : -1;
+      var br = bracketOf(g);
+      var key = bi >= 0 ? ((br && br[0] ? br[0] : "Playoffs") + "#" + bi) : "Other playoff games";
+      if(brTier[key] == null) brTier[key] = (bi >= 0 && br) ? br[1] : 9;
+      (byCls[key] = byCls[key] || []).push(g);
+    });
+    var order = Object.keys(byCls).sort(function(a, b){
+      return (brTier[a] - brTier[b]) || a.localeCompare(b);
+    });
+    v.innerHTML = '<div class="sectionhead"><span class="eyebrow">' + esc(ps.label) + ' playoffs</span>' +
+        '<span class="eyebrow">' + po.length + ' games</span></div>' +
+      order.map(function(c){
+        var gs = byCls[c].slice().sort(function(a, b){ return (a[2] - b[2]) || (a[11] - b[11]); });
+        var byRound = {};
+        gs.forEach(function(g){ (byRound[g[11]] = byRound[g[11]] || []).push(g); });
+        var keys = Object.keys(byRound).map(Number).sort(function(a, b){ return a - b; });
+        var label = c.split("#")[0];
+        return '<div class="group"><div class="grouphead"><h3>' + esc(label) + '</h3><div class="rule"></div></div>' +
+          keys.map(function(ri){
+            var label = ri >= 0 && ri < ROUNDS.length ? ROUNDS[ri] : "Playoffs";
+            return '<div class="sectionhead" style="padding:8px 2px 4px"><span class="eyebrow">' + esc(label) + '</span>' +
+              '<span class="eyebrow">' + esc(fmtDate(byRound[ri][0][2])) + '</span></div>' +
+              '<div class="card"><div class="games">' +
+              sortGames(byRound[ri]).map(function(g){ return gameHTML(g, {noVenue:ri === 5 ? false : true}); }).join("") +
+              '</div></div>';
+          }).join("") + '</div>';
+      }).join("");
+  }
+
+  /* ---------- view: history (champions + rankings) ---------- */
+  function renderHistory(){
+    var v = el("view-history");
+    var head = '<div class="seg" style="background:var(--surface-2); padding:4px; border-radius:11px">' +
+      '<button id="hsub-champs" aria-pressed="' + (S.hsub === "champs") + '" style="color:var(--text-2)">Champions</button>' +
+      '<button id="hsub-rank" aria-pressed="' + (S.hsub === "rank") + '" style="color:var(--text-2)">Rankings</button>' +
+      '<button id="hsub-leaders" aria-pressed="' + (S.hsub === "leaders") + '" style="color:var(--text-2)">Leaders</button></div>';
+    if(S.hsub === "leaders"){ v.innerHTML = head + leadersHTML(); return; }
+    if(S.histState !== "ok"){
+      v.innerHTML = head + '<div class="card"><div class="' + (S.histState === "error" ? "empty" : "loading") + '">' +
+        (S.histState === "error" ? "Couldn't load the season archive." : "Loading every season…") + '</div></div>';
+      needHistory();
+      return;
+    }
+    v.innerHTML = head + (S.hsub === "champs" ? champsHTML() : rankHTML());
+  }
+  function champsHTML(){
+    var F = S.hist.finals || {};
+    var years = META.seasons.map(function(m){ return m.id; })
+      .filter(function(y){ return F[y]; })
+      .sort(function(a, b){ return b - a; });
+    var total = years.reduce(function(acc, y){ return acc + ((F[y][S.sp] || []).length); }, 0);
+    var out = '<div class="sectionhead"><span class="eyebrow">City champions &amp; runners-up</span>' +
+      '<span class="eyebrow">' + total + ' finals</span></div>';
+    out += years.map(function(y){
+      var rows = (F[y][S.sp] || []).slice();
+      var head = '<div class="grouphead"><h3>' + esc(seasonMeta(y).label || y) + '</h3><div class="rule"></div></div>';
+      if(!rows.length){
+        return '<div class="group">' + head +
+          '<div class="card"><div class="empty" style="padding:14px 13px;text-align:left">' +
+          (seasonMeta(y).cur ? "Playoffs haven\'t been played yet." : "PSAL has no championship games on record for this season.") +
+          '</div></div></div>';
+      }
+      return '<div class="group">' + head + '<div class="card">' + rows.map(function(r){
+        var cls = r[0], w = r[2], wn = r[3], ws = r[4], l = r[5], ln = r[6], ls = r[7], d = r[8], alt = r[10];
+        return '<div class="final">' +
+          '<div class="lvl' + (alt ? " alt" : "") + '">' + esc(cls) + (alt ? '<span class="tag2">2nd</span>' : "") + '</div>' +
+          '<div class="pair">' +
+            '<button class="side win" data-hteam="' + esc(S.sp + ":" + w) + '">' +
+              '<span class="medal gold"></span><span class="nm' + (w === PIN ? " pin" : "") + '">' + esc(wn) + '</span>' +
+              '<span class="sc">' + ws + '</span></button>' +
+            '<button class="side" data-hteam="' + esc(S.sp + ":" + l) + '">' +
+              '<span class="medal silver"></span><span class="nm' + (l === PIN ? " pin" : "") + '">' + esc(ln) + '</span>' +
+              '<span class="sc">' + ls + '</span></button>' +
+          '</div>' +
+          '<div class="when">' + esc(fmtDate(d)) + '</div>' +
+        '</div>';
+      }).join("") + '</div></div>';
+    }).join("");
+    out += '<div style="font-size:12px;color:var(--muted);padding:6px 2px 0">Levels are shown as PSAL named them that season: ' +
+      'the top flight was <b>1A</b> (with B, and later D, beneath it) through 2024, and became <b>3A</b> from 2025. ' +
+      'A few seasons ran two separate brackets at the same level; the earlier one is tagged <b>2nd</b>.</div>';
+    return out;
+  }
+  function rankRows(){
+    var T = S.hist.teams, out = [];
+    Object.keys(T).forEach(function(k){
+      var sp = +k.split(":")[0];
+      if(sp !== S.sp) return;
+      var e = T[k], w = 0, l = 0, t = 0, n = 0, titles = 0, finals = 0, rsum = 0, gsum = 0, cls = {};
+      e.s.forEach(function(r){
+        if(S.rankYear !== "all" && r[0] !== +S.rankYear) return;
+        var g = r[1] + r[2] + r[3];
+        if(!g) return;
+        w += r[1]; l += r[2]; t += r[3]; n++;
+        gsum += g; rsum += seasonRating(r) * g;
+        if(r[5]) cls[r[5]] = (cls[r[5]] || 0) + 1;
+        if((r[7] || 0) === 6) titles++;
+        if((r[7] || 0) >= 5) finals++;
+      });
+      if(!gsum) return;
+      var topCls = Object.keys(cls).sort(function(a, b){ return cls[b] - cls[a]; })[0] || "";
+      out.push({key:k, name:(e.sn || e.n), w:w, l:l, t:t, n:n, cls:topCls,
+                p:pct(w, l, t), r:rsum / gsum, titles:titles, finals:finals});
+    });
+    var maxG = 0;
+    out.forEach(function(r){ maxG = Math.max(maxG, r.w + r.l + r.t); });
+    var min = S.rankYear === "all" ? 40 : Math.max(1, Math.min(6, Math.floor(maxG / 2)));
+    out = out.filter(function(r){ return (r.w + r.l + r.t) >= min; });
+    var key = S.rankSort || "r";
+    out.sort(function(a, b){
+      if(key === "titles") return (b.titles - a.titles) || (b.finals - a.finals) || (b.r - a.r);
+      if(key === "p") return (b.p - a.p) || (b.w - a.w);
+      return (b.r - a.r) || (b.p - a.p);
+    });
+    return out;
+  }
+  function rankHTML(){
+    var years = META.seasons.map(function(m){ return m.id; }).sort(function(a, b){ return b - a; });
+    var chips = '<div class="filterrow"><span class="flabel">Season</span><div class="chips scroll">' +
+      '<button data-ry="all" aria-pressed="' + (S.rankYear === "all") + '">All time</button>' +
+      years.map(function(y){
+        return '<button data-ry="' + y + '" aria-pressed="' + (S.rankYear === y) + '">' + esc((seasonMeta(y).label || y).replace("Fall ", "")) + '</button>';
+      }).join("") + '</div></div>';
+    var sortKey = S.rankSort || "r";
+    chips += '<div class="filterrow"><span class="flabel">Rank by</span><div class="chips">' +
+      [["r","Rating"],["p","Win %"],["titles","Titles"]].map(function(o){
+        return '<button data-rs="' + o[0] + '" aria-pressed="' + (sortKey === o[0]) + '">' + o[1] + '</button>';
+      }).join("") + '</div></div>';
+    var rows = rankRows();
+    var body = rows.length ? '<div class="card"><div class="standtbl"><table><thead><tr>' +
+      '<th>School</th>' + (S.rankYear === "all" ? '' : '<th>Lvl</th>') + '<th>W</th><th>L</th><th class="w">' + (sortKey === "p" ? "Win%" : "Rating") + '</th>' +
+      (S.rankYear === "all" ? '<th>Yrs</th>' : '') + '<th>Ttl</th></tr></thead><tbody>' +
+      rows.slice(0, 150).map(function(r, i){
+        var pin = r.key.split(":")[1] === PIN;
+        return '<tr class="' + (pin || S.favs.has(r.key) ? "isfav" : "") + '"><td><button class="tm" data-hteam="' + esc(r.key) + '">' +
+          '<span class="pos">' + (i+1) + '</span><span>' + esc(r.name) + '</span></button></td>' +
+          (S.rankYear === "all" ? '' : '<td>' + esc(r.cls) + '</td>') + '<td>' + r.w + '</td><td>' + r.l + '</td>' +
+          '<td class="pts w">' + pct3(sortKey === "p" ? r.p : r.r) + '</td>' +
+          (S.rankYear === "all" ? '<td>' + r.n + '</td>' : '') +
+          '<td>' + (r.titles || "") + '</td></tr>';
+      }).join("") + '</tbody></table></div></div>' +
+      methodHTML() :
+      '<div class="card"><div class="empty">Not enough games on record for this season.</div></div>';
+    return '<div class="filters">' + chips + '</div>' +
+      '<div class="sectionhead"><span class="eyebrow">' + (S.rankYear === "all" ? "All-time ranking" : esc(seasonMeta(S.rankYear).label || S.rankYear)) + '</span>' +
+      '<span class="eyebrow">' + (sortKey === "titles" ? "by titles" : (sortKey === "p" ? "by win percentage" : "by rating")) + '</span></div>' + body;
+  }
+
+  /* ---------- history chart ---------- */
+  function methodHTML(){
+    var inprog = S.rankYear !== "all" && seasonMeta(S.rankYear).cur;
+    return '<details class="method"' + (S.methodOpen ? " open" : "") + ' id="method">' +
+      '<summary>How the rating is calculated</summary>' +
+      '<div class="mbody">' +
+      '<p><b>Season rating</b> = level weight &times; (0.75 &times; league points% + 0.25 &times; playoff score). ' +
+      'It runs 0 to 1, so .800 is a strong season in the top flight and a perfect record two tiers down lands near .760.</p>' +
+      '<p><b>League points%</b> is PSAL\'s own table: 3 points for a win, 1 for a tie, divided by 3 &times; games played. Only league games count \u2014 playoff results enter through the next term.</p>' +
+      '<p><b>Playoff score</b>: missed the playoffs 0 \u00b7 qualified .20 \u00b7 round of 16 .30 \u00b7 quarterfinals .45 \u00b7 semifinals .60 \u00b7 lost the final .80 \u00b7 <b>won the title 1.00</b>.</p>' +
+      '<p><b>Level weight</b>: top flight &times;1.00, second tier &times;0.88, third &times;0.76, anything below &times;0.68. PSAL renamed its ladder in 2025 \u2014 1A was the <i>top</i> division through 2024 and is the <i>bottom</i> one now \u2014 so the app reads each season\'s own ladder rather than the label. That is also why the all-time table leaves the level column out.</p>' +
+      '<p><b>All-time</b> is the average of a school\'s season ratings, weighted by games played, across every season in the archive. Titles counts championships won.</p>' +
+      '<p><b>Who appears</b>: 40 games minimum all-time; for a single season, half the leader\'s games played, capped at six.</p>' +
+      '<p><b>Forfeits</b> count exactly as PSAL records them \u2014 a forfeit win is a win.' +
+      (inprog ? ' This season is still in progress, and PSAL books forfeited fixtures as losses in advance, so a school that withdrew shows a full slate of losses on day one.' : '') + '</p>' +
+      '<p><b>Win %</b> = (wins + half of ties) &divide; games played. It ignores level and playoffs entirely \u2014 useful as a sanity check against the rating.</p>' +
+      '</div></details>';
+  }
+
+  /* ---------- citywide leaders ---------- */
+  var LB_STATS = [["g","Goals","G"],["a","Assists","A"],["p","Points","Pts"],["sh","Shots","Sh"],["sv","Saves","Sv"]];
+  function seasonAgg(sp){
+    var key = S.seasonId + ":" + sp;
+    if(S.aggCache[key]) return S.aggCache[key];
+    var ps = S.season, P = ps.raw.P, map = {}, list = [];
+    ps.raw.G.forEach(function(g){
+      if(g[0] !== sp) return;
+      var d = ps.raw.X[gkey(g)];
+      if(!d || !d[4] || !d[4].length) return;
+      d[4].forEach(function(r){
+        var nm = P[r[1]] || "";
+        if(!nm) return;
+        var k = r[0] + "|" + nm, e = map[k];
+        if(!e){ e = map[k] = {n:nm, code:r[0], gp:0, g:0, a:0, sv:0, ga:0, sh:0}; list.push(e); }
+        e.gp++; e.g += r[2]; e.a += r[3]; e.sv += r[4]; e.sh += r[5]; e.ga += r[6];
+      });
+    });
+    list.forEach(function(e){ e.p = e.g + e.a; });
+    S.aggCache[key] = list;
+    return list;
+  }
+  function leadersHTML(){
+    if(!S.season || S.season === "error"){
+      return '<div class="card"><div class="' + (S.season === "error" ? "empty" : "loading") + '">' +
+        (S.season === "error" ? "Couldn't load that season." : "Loading season\u2026") + '</div></div>';
+    }
+    var ps = S.season;
+    var years = META.seasons.map(function(m){ return m.id; });
+    var chips = '<div class="filterrow"><span class="flabel">Season</span><div class="chips scroll">' +
+      years.map(function(y){
+        return '<button data-lby="' + y + '" aria-pressed="' + (y === S.seasonId) + '">' +
+          esc((seasonMeta(y).label || y).replace("Fall ", "")) + '</button>';
+      }).join("") + '</div></div>';
+    /* levels present this season, ordered by tier */
+    var tiers = {};
+    Object.keys(ps.teams).forEach(function(k){
+      var t = ps.teams[k];
+      if(t.sp === S.sp && t.cls) tiers[t.cls] = tierOf(t.div);
+    });
+    var levels = Object.keys(tiers).sort(function(a, b){ return tiers[a] - tiers[b]; });
+    chips += '<div class="filterrow"><span class="flabel">Level</span><div class="chips scroll">' +
+      '<button data-lbt="all" aria-pressed="' + (S.lbTier === "all") + '">All</button>' +
+      levels.map(function(c){
+        return '<button data-lbt="' + esc(c) + '" aria-pressed="' + (S.lbTier === c) + '">' + esc(c) + '</button>';
+      }).join("") + '</div></div>';
+    chips += '<div class="filterrow"><span class="flabel">Stat</span><div class="chips">' +
+      LB_STATS.map(function(o){
+        return '<button data-lbs="' + o[0] + '" aria-pressed="' + (S.lbStat === o[0]) + '">' + o[1] + '</button>';
+      }).join("") + '</div></div>';
+
+    var stat = S.lbStat, rows = seasonAgg(S.sp).filter(function(e){
+      if(!e[stat]) return false;
+      if(S.lbTier === "all") return true;
+      var t = ps.teams[S.sp + ":" + e.code];
+      return t && t.cls === S.lbTier;
+    });
+    rows.sort(function(x, y){
+      return (y[stat] - x[stat]) || (y.g - x.g) || (y.a - x.a) || x.n.localeCompare(y.n);
+    });
+    var meta_ = LB_STATS.filter(function(o){ return o[0] === stat; })[0] || ["", "", ""];
+    var label = meta_[1], abbr = meta_[2];
+    var body = rows.length ? '<div class="card"><div class="standtbl"><table><thead><tr>' +
+      '<th>Player</th><th>GP</th><th class="w">' + esc(abbr) + '</th></tr></thead><tbody>' +
+      rows.slice(0, 100).map(function(r, i){
+        var t = ps.teams[S.sp + ":" + r.code];
+        var pin = r.code === PIN;
+        return '<tr class="' + (pin ? "isfav" : "") + '"><td><button class="tm" data-team="' + esc(S.sp + ":" + r.code) + '" style="text-align:left">' +
+          '<span class="pos">' + (i+1) + '</span><span>' + esc(titleCase(r.n)) +
+          '<br><span style="font-size:11.5px;color:var(--muted)">' + esc(t ? t.short : r.code) + (t && t.cls ? " \u00b7 " + esc(t.cls) : "") + '</span>' +
+          '</span></button></td>' +
+          '<td>' + r.gp + '</td><td class="pts w">' + r[stat] + '</td></tr>';
+      }).join("") + '</tbody></table></div></div>' :
+      '<div class="card"><div class="empty">No ' + esc(label.toLowerCase()) + ' recorded yet this season.</div></div>';
+    return '<div class="filters">' + chips + '</div>' +
+      '<div class="sectionhead"><span class="eyebrow">' + esc(ps.label) + ' \u00b7 ' + esc(label) + '</span>' +
+      '<span class="eyebrow">' + (S.lbTier === "all" ? "all levels" : esc(S.lbTier)) + '</span></div>' + body +
+      '<div style="font-size:12px;color:var(--muted);padding:6px 2px 0">Totals come from the box scores coaches file with PSAL, so a school that never files stats shows no players here. GP counts games with a stat line, not appearances.</div>';
+  }
+
+  function chartHTML(key){
+    var e = S.hist && S.hist.teams[key];
+    if(!e || !e.s.length) return "";
+    var pts = e.s.slice().sort(function(a, b){ return a[0] - b[0]; }).map(function(r){
+      return {y:+r[0], label:(seasonMeta(String(r[0])).label || r[0]), w:r[1], l:r[2], t:r[3],
+              cls:r[5] || "", res:(r[7] || 0), p:pct(r[1], r[2], r[3]), v:seasonRating(r),
+              live:!!seasonMeta(String(r[0])).cur};
+    }).filter(function(p){ return (p.w + p.l + p.t) > 0; });
+    if(!pts.length) return "";
+    window.__chartPts = pts;
+    var n = pts.length;
+    var titles = pts.filter(function(p){ return p.res === 6; }).length;
+    var best = pts.slice().sort(function(a, b){ return b.v - a.v; })[0];
+    return '<div class="chartcard"><div class="head"><h3>Season by season</h3>' +
+      '<span class="legend">' + n + ' season' + (n === 1 ? "" : "s") +
+      (titles ? " \u00b7 " + titles + " title" + (titles === 1 ? "" : "s") : "") + '</span></div>' +
+      '<div class="chartbox" id="chartbox"></div>' +
+      '<div class="chartnote" id="chartnote">' + esc(noteFor(pts[n-1].live ? pts[n-1] : best)) + '</div></div>';
+  }
+  function drawChart(){
+    var box = el("chartbox"), pts = window.__chartPts;
+    if(!box || !pts || !pts.length) return;
+    var W = Math.max(240, Math.round(box.clientWidth || 340)), H = 104;
+    var PADL = 24, PADR = 8, PADT = 9, PADB = 17;
+    var n = pts.length, iw = W - PADL - PADR, ih = H - PADT - PADB;
+    function X(i){ return n === 1 ? PADL + iw/2 : PADL + iw * i/(n-1); }
+    function Y(v){ return PADT + ih * (1 - v); }
+    var liveIdx = -1;
+    pts.forEach(function(p, i){ if(p.live) liveIdx = i; });
+    var solidTo = (liveIdx === n - 1 && n > 1) ? n - 2 : n - 1;
+    var line = pts.slice(0, solidTo + 1).map(function(p, i){
+      return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(p.v).toFixed(1);
+    }).join(" ");
+    var tail = (solidTo < n - 1) ?
+      '<path class="ln live" d="M' + X(n-2).toFixed(1) + " " + Y(pts[n-2].v).toFixed(1) +
+      "L" + X(n-1).toFixed(1) + " " + Y(pts[n-1].v).toFixed(1) + '"></path>' : "";
+    var grid = [0, 0.5, 1].map(function(g){
+      return '<line class="grid" x1="' + PADL + '" x2="' + (W-PADR) + '" y1="' + Y(g).toFixed(1) + '" y2="' + Y(g).toFixed(1) + '"></line>' +
+        '<text class="axis" x="0" y="' + (Y(g)+3.5).toFixed(1) + '">' + (g === 1 ? "1.0" : (g === 0 ? "0" : ".5")) + '</text>';
+    }).join("");
+    var want = Math.max(2, Math.min(W < 330 ? 3 : 5, n)), idxs = [];
+    for(var k = 0; k < want; k++){
+      var ix = n === 1 ? 0 : Math.round(k * (n - 1) / (want - 1));
+      if(idxs.indexOf(ix) === -1) idxs.push(ix);
+    }
+    var ticks = idxs.map(function(ix){
+      var anchor = ix === 0 ? "start" : (ix === n - 1 ? "end" : "middle");
+      return '<text class="axis" text-anchor="' + anchor + '" x="' + X(ix).toFixed(1) + '" y="' + (H - 3) + '">' + (pts[ix].y - 1) + '</text>';
+    }).join("");
+    var dots = pts.map(function(p, i){
+      var gold = p.res === 6, silver = p.res === 5;
+      var style = gold ? ' style="fill:#E3B341;stroke:#A87C15;stroke-width:1.6"' :
+                  (silver ? ' style="fill:#C3CBD6;stroke:#8A96A6;stroke-width:1.6"' : '');
+      if(p.live) style = ' style="fill:var(--bg);stroke:var(--orange);stroke-width:1.6;stroke-dasharray:2.6 2"';
+      return '<circle class="pt" cx="' + X(i).toFixed(1) + '" cy="' + Y(p.v).toFixed(1) + '" r="' + (p.live ? 4.4 : ((gold || silver) ? 4.6 : 2.9)) + '"' +
+        style + '></circle>' +
+        '<circle class="hit" data-pt="' + i + '" cx="' + X(i).toFixed(1) + '" cy="' + Y(p.v).toFixed(1) + '" r="11"></circle>';
+    }).join("");
+    box.innerHTML = '<svg class="chart" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" id="teamchart">' +
+      grid + ticks + '<path class="ln" d="' + line + '"></path>' + tail + dots + '</svg>';
+  }
+  function noteFor(p){
+    return [p.label, p.cls, p.w + "-" + p.l + (p.t ? "-" + p.t : ""),
+            (PO_LABEL[p.res] || ""), "rating " + pct3(p.v),
+            (p.live ? "in progress" : "")]
+      .filter(Boolean).join(" · ");
+  }
+
+  function teamSegHTML(key){
+    var parts = key.split(":"), sp = +parts[0], code = parts[1];
+    function has(x){
+      var k = x + ":" + code;
+      if(S.season && S.season !== "error" && S.season.teams[k]) return true;
+      return !!(S.hist && S.hist.teams && S.hist.teams[k]);
+    }
+    var names = ["Boys Varsity", "Girls Varsity"];
+    return '<div class="seg sheetseg" role="group" aria-label="Boys or girls program">' +
+      [0, 1].map(function(x){
+        var on = x === sp, ok = has(x) || on;
+        return '<button ' + (ok ? 'data-tsp="' + x + ":" + esc(code) + '"' : 'disabled') +
+          ' aria-pressed="' + on + '"' + (ok ? '' : ' style="opacity:.42"') + '>' + names[x] + '</button>';
+      }).join("") + '</div>';
+  }
+
+  function teamYearsHTML(key){
+    var parts = key.split(":"), sp = +parts[0], code = parts[1];
+    var e = S.hist && S.hist.teams && S.hist.teams[key];
+    var ids = {};
+    if(e) e.s.forEach(function(r){ ids[String(r[0])] = 1; });
+    if(S.season && S.season !== "error" && S.season.teams[key]) ids[S.seasonId] = 1;
+    var list = META.seasons.map(function(m){ return m.id; }).filter(function(id){ return ids[id]; });
+    if(list.length < 2) return "";
+    return '<div class="filterrow sheetyears"><span class="flabel">Season</span><div class="chips scroll">' +
+      list.map(function(id){
+        return '<button data-tyr="' + esc(id + ":" + sp + ":" + code) + '" aria-pressed="' + (id === S.seasonId) + '">' +
+          esc((seasonMeta(id).label || id).replace("Fall ", "")) + '</button>';
+      }).join("") + '</div></div>';
+  }
+
+  function playerStats(sp, code){
+    var ps = S.season, P = ps.raw.P, agg = {}, order = [];
+    ps.raw.G.forEach(function(g){
+      if(g[0] !== sp || (g[4] !== code && g[5] !== code)) return;
+      var d = detailOf(g);
+      if(!d || !d[4] || !d[4].length) return;
+      d[4].forEach(function(r){
+        if(r[0] !== code) return;
+        var nm = P[r[1]] || "";
+        if(!nm) return;
+        var e = agg[nm];
+        if(!e){ e = agg[nm] = {n:nm, gp:0, g:0, a:0, sv:0, ga:0, sh:0}; order.push(e); }
+        e.gp++; e.g += r[2]; e.a += r[3]; e.sv += r[4]; e.sh += r[5]; e.ga += r[6];
+      });
+    });
+    return order;
+  }
+  function statsHTML(sp, code){
+    var rows = playerStats(sp, code);
+    if(!rows.length) return "";
+    var field = rows.filter(function(r){ return r.g || r.a || r.sh; })
+      .sort(function(x, y){ return (y.g - x.g) || (y.a - x.a) || (y.sh - x.sh) || x.n.localeCompare(y.n); });
+    var keepers = rows.filter(function(r){ return r.sv || r.ga; })
+      .sort(function(x, y){ return (y.sv - x.sv) || (x.ga - y.ga); });
+    if(!field.length && !keepers.length) return "";
+    var goals = field.reduce(function(a, r){ return a + r.g; }, 0);
+    var out = '<div><div class="grouphead"><h3>Player stats</h3><div class="rule"></div>' +
+      '<span class="eyebrow">' + goals + ' goal' + (goals === 1 ? "" : "s") + ' logged</span></div>';
+    if(field.length){
+      out += '<div class="card"><div class="standtbl"><table><thead><tr>' +
+        '<th>Player</th><th>GP</th><th>G</th><th>A</th><th>Sh</th></tr></thead><tbody>' +
+        field.map(function(r, i){
+          return '<tr><td><span class="tm"><span class="pos">' + (i+1) + '</span><span>' + esc(titleCase(r.n)) + '</span></span></td>' +
+            '<td>' + r.gp + '</td><td class="pts">' + (r.g || "") + '</td><td>' + (r.a || "") + '</td><td>' + (r.sh || "") + '</td></tr>';
+        }).join("") + '</tbody></table></div></div>';
+    }
+    if(keepers.length){
+      out += '<div class="grouphead" style="padding-top:10px"><h3 style="font-size:12px">Goalkeeping</h3><div class="rule"></div></div>' +
+        '<div class="card"><div class="standtbl"><table><thead><tr>' +
+        '<th>Player</th><th>GP</th><th>Sv</th><th>GA</th></tr></thead><tbody>' +
+        keepers.map(function(r){
+          return '<tr><td><span class="tm"><span>' + esc(titleCase(r.n)) + '</span></span></td>' +
+            '<td>' + r.gp + '</td><td class="pts">' + (r.sv || "") + '</td><td>' + (r.ga || "") + '</td></tr>';
+        }).join("") + '</tbody></table></div></div>';
+    }
+    return out + '</div>';
+  }
+
+  /* ---------- team sheet ---------- */
+  function openTeam(key){
+    var parts = key.split(":"), sp = +parts[0], code = parts[1];
+    S.openTeamKey = key;
+    var t = teamOf(sp, code), ps = S.season;
+    el("sheet-name").textContent = t.name;
+    el("sheet-sub").textContent = [divLabel(t.div), ps.label].filter(Boolean).join(" · ");
+    var fav = el("sheet-fav");
+    fav.setAttribute("aria-pressed", S.favs.has(key) ? "true" : "false");
+    fav.dataset.key = key;
+    fav.querySelector("svg").setAttribute("fill", S.favs.has(key) ? "currentColor" : "none");
+
+    var games = ps.raw.G.filter(function(g){ return g[0] === sp && (g[4] === code || g[5] === code); })
+      .sort(function(a, b){ return a[2] - b[2]; });
+    var today = todayInt();
+    var played = games.filter(function(g){ return hasScore(g) || g[2] < today; });
+    var upcoming = games.filter(function(g){ return !hasScore(g) && g[2] >= today; });
+    var w = 0, l = 0, tie = 0, gf = 0, ga = 0;
+    played.forEach(function(g){
+      var r = resultFor(g, code);
+      if(!r) return;
+      if(r.wl === "W") w++; else if(r.wl === "L") l++; else tie++;
+      if(!r.ff){ gf += r.gf; ga += r.ga; }
+    });
+    var rec = ps.rec[key];
+    var html = teamSegHTML(key) + teamYearsHTML(key);
+    html += S.histState === "ok" ? chartHTML(key) :
+      '<div class="chartcard"><div class="head"><h3>Season by season</h3></div>' +
+      '<div class="' + (S.histState === "error" ? "empty" : "loading") + '" style="padding:32px 8px">' +
+      (S.histState === "error" ? "History unavailable." : "Loading history…") + '</div></div>';
+    html += '<div class="statrow">' +
+      '<div class="stat"><div class="k">Record</div><div class="v">' + (rec ? rec[1] + "-" + rec[2] + (rec[3] ? "-" + rec[3] : "") : w + "-" + l + (tie ? "-" + tie : "")) + '</div></div>' +
+      '<div class="stat"><div class="k">Goals for</div><div class="v">' + gf + '</div></div>' +
+      '<div class="stat"><div class="k">Goals against</div><div class="v">' + ga + '</div></div></div>';
+    if(played.length){
+      var withScore = played.filter(hasScore);
+      var withStats = withScore.filter(function(g){ return boxRowsFor(g, code) > 0; });
+      var cover = withScore.length ?
+        '<span class="eyebrow" style="color:' + (withStats.length === withScore.length ? "var(--muted)" : "var(--orange)") + '">stats ' +
+          withStats.length + '/' + withScore.length + '</span>' : "";
+      html += '<div><div class="grouphead"><h3>Results</h3><div class="rule"></div>' + cover + '</div><div class="card">' +
+        played.map(function(g){ return resLine(g, code); }).join("") + '</div></div>';
+      if(withScore.length && withStats.length < withScore.length){
+        html += '<div style="font-size:12.5px;color:var(--muted);padding:0 2px">' +
+          (withScore.length - withStats.length) + ' of ' + withScore.length +
+          ' games have no player stats filed for this school on PSAL.</div>';
+      }
+    }
+    html += statsHTML(sp, code);
+    if(upcoming.length){
+      html += '<div><div class="grouphead"><h3>Upcoming</h3><div class="rule"></div></div>' +
+        '<div class="card"><div class="games">' + upcoming.map(function(g){ return gameHTML(g, {date:true}); }).join("") + '</div></div></div>';
+    }
+    if(!played.length && !upcoming.length) html += '<div class="card"><div class="empty">No games on the schedule.</div></div>';
+    el("sheet-body").innerHTML = html;
+    el("sheet").hidden = false;
+    document.body.style.overflow = "hidden";
+    drawChart();
+    if(S.histState !== "ok") needHistory(function(){ if(S.openTeamKey === key) openTeam(key); });
+  }
+  function resLine(g, code){
+    var r = resultFor(g, code);
+    var opp = teamOf(g[0], g[4] === code ? g[5] : g[4]);
+    var home = g[4] === code;
+    var right = r ? (r.ff ? r.gf : (r.gf + "–" + r.ga)) : "<span style='color:var(--muted);font-weight:600;font-size:12px'>No score posted</span>";
+    var sub = fmtDate(g[2]) + " · " + (home ? "Home" : "Away") + (locOf(g) ? " · " + locOf(g) : "");
+    if(hasScore(g) && !boxRowsFor(g, code)) sub = fmtDate(g[2]) + " · " + (home ? "Home" : "Away") + " · no stats filed";
+    if(g[10] === 1) sub = fmtDate(g[2]) + " · " + ((bracketLabel(g) ? bracketLabel(g) + " " : "") + roundLabel(g)).trim();
+    return '<button class="resline' + (opp.code === PIN ? " pin" : "") + '" data-game="' + esc(gkey(g)) + '">' +
+      '<span class="wl ' + (r ? r.wl : "") + '">' + (r ? r.wl : "·") + '</span>' +
+      '<span class="op"><span class="nm">' + esc(opp.short) + '</span><span class="dt">' + esc(sub) + '</span></span>' +
+      '<span class="rs">' + right + '</span></button>';
+  }
+  function closeSheet(){
+    el("sheet").hidden = true; S.openTeamKey = null;
+    if(el("gsheet").hidden) document.body.style.overflow = "";
+  }
+
+  /* ---------- game sheet ---------- */
+  function openGame(key){
+    var g = null, ps = S.season;
+    for(var i=0;i<ps.raw.G.length;i++){ if(gkey(ps.raw.G[i]) === key){ g = ps.raw.G[i]; break; } }
+    if(!g) return;
+    S.openGameKey = key;
+    var h = teamOf(g[0], g[4]), a = teamOf(g[0], g[5]);
+    var d = detailOf(g), st = status(g);
+    el("gsheet-name").textContent = h.name + " vs " + a.name;
+    var subBits = [fmtDateLong(g[2])];
+    if(g[3]) subBits.push(fmtTime(g[3]));
+    if(g[10] === 1) subBits.push(((bracketLabel(g) ? bracketLabel(g) + " " : "") + roundLabel(g)).trim());
+    else if(h.div) subBits.push(divShort(h.div));
+    el("gsheet-sub").textContent = subBits.join(" · ");
+
+    var html = "";
+    /* score line */
+    var hs = g[6], as = g[7], ff = (hs === 999 || as === 999);
+    var scoreTxt = hasScore(g) ? (ff ? "Forfeit" : hs + " – " + as) : "—";
+    var stChip = st === "final" ? '<span class="chip final">Final</span>' :
+                 st === "ppd" ? '<span class="chip ppd">Postponed</span>' :
+                 st === "ff" ? '<span class="chip ff">Forfeit</span>' :
+                 st === "sus" ? '<span class="chip ppd">Suspended</span>' :
+                 '<span class="chip time">' + esc(fmtTime(g[3]) || "Scheduled") + '</span>';
+    html += '<div class="boxwrap"><div class="kv" style="padding:14px 13px">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">' +
+      '<div style="min-width:0"><button data-gteam="' + esc(g[0] + ":" + g[4]) + '" style="text-align:left;display:block;font-family:Archivo,sans-serif;font-weight:700;font-size:16px' +
+        (hasScore(g) && !ff && hs > as ? "" : ";color:var(--muted)") + '">' + esc(h.name) +
+        ' <span style="font-size:11px;color:var(--muted)">HOME</span> <span style="color:var(--blue);font-size:12px">&rsaquo;</span></button>' +
+      '<button data-gteam="' + esc(g[0] + ":" + g[5]) + '" style="text-align:left;display:block;font-family:Archivo,sans-serif;font-weight:700;font-size:16px;margin-top:4px' +
+        (hasScore(g) && !ff && as > hs ? "" : ";color:var(--muted)") + '">' + esc(a.name) +
+        ' <span style="font-size:11px;color:var(--muted)">AWAY</span> <span style="color:var(--blue);font-size:12px">&rsaquo;</span></button></div>' +
+      '<div style="text-align:right;flex:none"><div style="font-family:Archivo,sans-serif;font-weight:800;font-size:26px;font-variant-numeric:tabular-nums">' +
+        esc(scoreTxt) + '</div><div style="margin-top:4px">' + stChip + '</div></div></div></div></div>';
+
+    /* halves */
+    if(d && (d[2].length || d[3].length)){
+      var ph = d[2], pa = d[3];
+      var cols = Math.max(ph.length, pa.length);
+      var names = ["1st", "2nd", "3rd", "4th", "OT", "OT2", "OT3"];
+      var used = [];
+      for(var c=0;c<cols;c++){
+        if((ph[c] || 0) !== 0 || (pa[c] || 0) !== 0 || c < 2) used.push(c);
+      }
+      if(used.length){
+        html += '<div class="boxwrap"><div class="boxhead"><h3>By half</h3></div>' +
+          '<table class="halftbl"><thead><tr><th></th>' +
+          used.map(function(c){ return '<th>' + names[c] + '</th>'; }).join("") + '<th>F</th></tr></thead><tbody>' +
+          [[h, ph, hs], [a, pa, as]].map(function(row){
+            return '<tr><td>' + esc(row[0].short) + '</td>' +
+              used.map(function(c){ var v = row[1][c]; return '<td>' + (v == null ? (hasScore(g) ? 0 : "–") : v) + '</td>'; }).join("") +
+              '<td class="tot">' + (row[2] == null ? "–" : (row[2] === 999 ? "W" : row[2])) + '</td></tr>';
+          }).join("") + '</tbody></table></div>';
+      }
+    }
+
+    /* box score */
+    if(d && d[4] && d[4].length){
+      var P = ps.raw.P;
+      var rows = d[4].map(function(b){
+        return {code:b[0], name:P[b[1]] || "", g:b[2], a:b[3], sv:b[4], sh:b[5], ga:b[6]};
+      });
+      [[h, g[4]], [a, g[5]]].forEach(function(side){
+        var team = side[0], code = side[1];
+        var mine = rows.filter(function(r){ return r.code === code; });
+        if(!mine.length){
+          html += '<div class="boxwrap"><button class="boxhead" data-gteam="' + esc(g[0] + ":" + code) + '" style="width:100%">' +
+            '<h3>' + esc(team.short) + ' <span style="color:var(--blue)">&rsaquo;</span></h3>' +
+            '<span class="sub">no player stats posted</span></button>' +
+            '<div class="empty" style="padding:14px 13px;text-align:left">PSAL has no box score entries for ' +
+            esc(team.short) + ' in this game — the other side\'s coach filed stats and theirs didn\'t.</div></div>';
+          return;
+        }
+        var scorers = mine.filter(function(r){ return r.g || r.a; })
+          .sort(function(x, y){ return (y.g - x.g) || (y.a - x.a) || x.name.localeCompare(y.name); });
+        var keepers = mine.filter(function(r){ return r.sv || r.ga; })
+          .sort(function(x, y){ return y.sv - x.sv; });
+        var shooters = mine.filter(function(r){ return r.sh && !r.g && !r.a; })
+          .sort(function(x, y){ return y.sh - x.sh; });
+        var tot = mine.reduce(function(acc, r){ return acc + r.g; }, 0);
+        html += '<div class="boxwrap"><button class="boxhead" data-gteam="' + esc(g[0] + ":" + code) + '" style="width:100%">' +
+          '<h3>' + esc(team.short) + ' <span style="color:var(--blue)">&rsaquo;</span></h3>' +
+          '<span class="sub">' + (tot ? tot + " goal" + (tot === 1 ? "" : "s") + " recorded" : "no scorers posted") + '</span></button>';
+        if(scorers.length){
+          html += '<div class="plist">' + scorers.map(function(r){
+            var bits = [];
+            if(r.g) bits.push('<em>G</em> ' + r.g);
+            if(r.a) bits.push('<em>A</em> ' + r.a);
+            if(r.sh) bits.push('<em>SH</em> ' + r.sh);
+            return '<div class="prow"><span class="pn">' + esc(titleCase(r.name)) + '</span>' +
+              '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
+          }).join("") + '</div>';
+        }
+        if(keepers.length){
+          html += '<div class="plist" style="border-top:1px solid var(--line-soft)">' + keepers.map(function(r){
+            var bits = [];
+            if(r.sv) bits.push('<em>SV</em> ' + r.sv);
+            if(r.ga) bits.push('<em>GA</em> ' + r.ga);
+            return '<div class="prow"><span class="pn">' + esc(titleCase(r.name)) + ' <span style="color:var(--muted);font-size:12px">GK</span></span>' +
+              '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
+          }).join("") + '</div>';
+        }
+        if(shooters.length){
+          html += '<div class="plist" style="border-top:1px solid var(--line-soft)">' + shooters.map(function(r){
+            return '<div class="prow"><span class="pn" style="color:var(--text-2)">' + esc(titleCase(r.name)) + '</span>' +
+              '<span class="pv"><em>SH</em> ' + r.sh + '</span></div>';
+          }).join("") + '</div>';
+        }
+        html += '</div>';
+      });
+    } else if(hasScore(g)){
+      html += '<div class="card"><div class="empty">PSAL didn\'t post a box score for this game.</div></div>';
+    }
+
+    /* details */
+    var det = [];
+    det.push(["Date", fmtDateLong(g[2]) + (g[3] ? " · " + fmtTime(g[3]) : "")]);
+    if(locOf(g)) det.push(["Venue", locOf(g)]);
+    if(d && d[0] >= 0 && ps.raw.AD[d[0]]) det.push(["Address", ps.raw.AD[d[0]].replace(/,\s*$/, "").replace(/,/g, ", ")]);
+    if(h.div) det.push(["Division", divLabel(h.div) + (a.div && a.div !== h.div ? " / " + divLabel(a.div) : "")]);
+    if(g[10] === 1) det.push(["Round", ((bracketLabel(g) ? bracketLabel(g) + " " : "") + roundLabel(g)).trim()]);
+    else if(g[10] === 2) det.push(["Type", "Non-league game"]);
+    if(reasonOf(g)) det.push(["Status", titleCase(reasonOf(g))]);
+    if(d && d[1] && d[1].length) det.push([d[1].length > 1 ? "Referees" : "Referee", d[1].map(function(i){ return ps.raw.R[i]; }).filter(Boolean).join(", ")]);
+    if(d && d[5] >= 0 && ps.raw.R[d[5]]) det.push(["Trainer", ps.raw.R[d[5]]]);
+    html += '<div class="boxwrap"><div class="boxhead"><h3>Game details</h3></div><div class="kv">' +
+      det.map(function(r){ return '<div class="r"><span class="k">' + esc(r[0]) + '</span><span class="v">' + esc(r[1]) + '</span></div>'; }).join("") +
+      '</div></div>';
+
+    el("gsheet-body").innerHTML = html;
+    el("gsheet").hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+  function titleCase(s){
+    s = String(s || "");
+    if(s !== s.toUpperCase()) return s;
+    return s.toLowerCase().replace(/(^|[\s\-'])([a-z])/g, function(m, a, b){ return a + b.toUpperCase(); });
+  }
+  function closeGame(){
+    el("gsheet").hidden = true; S.openGameKey = null;
+    if(el("sheet").hidden) document.body.style.overflow = "";
+  }
+
+  /* ---------- shell ---------- */
+  function render(){
+    ["scores","standings","teams","playoffs","history"].forEach(function(v){
+      el("view-" + v).hidden = v !== S.view;
+      el("tab-" + v).setAttribute("aria-pressed", v === S.view ? "true" : "false");
+    });
+    el("sport-0").setAttribute("aria-pressed", S.sp === 0 ? "true" : "false");
+    el("sport-1").setAttribute("aria-pressed", S.sp === 1 ? "true" : "false");
+    if(S.view === "history"){ renderHistory(); return; }
+    if(!S.season || S.season === "error"){
+      el("view-" + S.view).innerHTML = '<div class="card"><div class="' + (S.season === "error" ? "empty" : "loading") + '">' +
+        (S.season === "error" ? "Couldn't load that season." : "Loading season…") + '</div></div>';
+      return;
+    }
+    if(S.view === "scores") renderScores();
+    else if(S.view === "standings") renderStandings();
+    else if(S.view === "teams") renderTeams();
+    else if(S.view === "playoffs") renderPlayoffs();
+  }
+  function setStamp(){
+    var t = el("stamptext"), stamp = el("stamp");
+    if(!isCurrent()){
+      stamp.classList.remove("live");
+      t.textContent = (S.season && S.season.label ? S.season.label : "") + " archive";
+      return;
+    }
+    stamp.classList.add("live");
+    var d = new Date(META.updated);
+    t.textContent = isNaN(d) ? "Live" : "Updated " + d.toLocaleString(undefined, {month:"short", day:"numeric", hour:"numeric", minute:"2-digit"});
+  }
+  function openSeasonMenu(){
+    var list = el("seasonmenu-list");
+    list.innerHTML = META.seasons.map(function(s){
+      return '<button data-season="' + esc(s.id) + '" aria-pressed="' + (s.id === S.seasonId) + '">' +
+        '<span>' + esc(s.label) + '</span>' + (s.cur ? '<span class="tag">Current</span>' : "") + '</button>';
+    }).join("");
+    el("seasonmenu").hidden = false;
+  }
+
+  /* ---------- events ---------- */
+  document.addEventListener("click", function(ev){
+    var b = ev.target.closest ? ev.target.closest("button, circle[data-pt]") : null;
+    if(!b) return;
+    var id = b.id || "";
+    if(id.indexOf("tab-") === 0){ S.view = id.slice(4); render(); window.scrollTo(0, 0); return; }
+    if(id === "sport-0" || id === "sport-1"){
+      S.sp = +id.slice(-1); S.div = "";
+      if(S.season && S.season !== "error"){
+        var has = (S.season.byDate[S.date] || []).some(function(g){ return g[0] === S.sp; });
+        if(!has) S.date = pickDate(S.season, S.sp);
+      }
+      render(); return;
+    }
+    if(id === "seasonbtn"){ openSeasonMenu(); return; }
+    if(id === "seasonmenu-close"){ el("seasonmenu").hidden = true; return; }
+    if(id === "sheet-close"){ closeSheet(); return; }
+    if(id === "gsheet-close"){ closeGame(); return; }
+    if(id === "clearf"){ S.boro = ""; S.div = ""; render(); return; }
+    if(id === "sheet-fav"){ toggleFav(b.dataset.key); return; }
+    if(id === "hsub-champs"){ S.hsub = "champs"; render(); return; }
+    if(id === "hsub-rank"){ S.hsub = "rank"; render(); return; }
+    if(id === "hsub-leaders"){ S.hsub = "leaders"; render(); return; }
+    if(b.dataset.lbs){ S.lbStat = b.dataset.lbs; render(); return; }
+    if(b.dataset.lbt){ S.lbTier = b.dataset.lbt; render(); return; }
+    if(b.dataset.lby){
+      var ly = b.dataset.lby;
+      if(ly !== S.seasonId) loadSeason(ly, function(){ S.view = "history"; S.hsub = "leaders"; render(); });
+      return;
+    }
+    if(b.dataset.season){
+      el("seasonmenu").hidden = true;
+      if(b.dataset.season !== S.seasonId) loadSeason(b.dataset.season);
+      return;
+    }
+    if(b.dataset.date){ S.date = +b.dataset.date; render(); return; }
+    if(b.dataset.boro != null && b.hasAttribute("data-boro")){ S.boro = b.dataset.boro; S.div = ""; render(); return; }
+    if(b.dataset.div != null && b.hasAttribute("data-div")){ S.div = b.dataset.div; render(); return; }
+    if(b.dataset.ry){ S.rankYear = b.dataset.ry; render(); return; }
+    if(b.dataset.rs){ S.rankSort = b.dataset.rs; render(); return; }
+    if(b.dataset.tyr){
+      var bits = b.dataset.tyr.split(":"), yid = bits[0], ykey = bits[1] + ":" + bits[2];
+      if(yid === S.seasonId){ return; }
+      S.openTeamKey = ykey;
+      el("sheet-body").innerHTML = '<div class="card"><div class="loading">Loading ' +
+        esc(seasonMeta(yid).label || yid) + '\u2026</div></div>';
+      loadSeason(yid, function(){
+        if(S.season && S.season !== "error" && S.season.teams[ykey]) openTeam(ykey);
+        else openHistTeam(ykey);
+      });
+      return;
+    }
+    if(b.dataset.tsp){
+      var tk = b.dataset.tsp;
+      S.sp = +tk.split(":")[0];
+      if(S.season && S.season !== "error" && S.season.teams[tk]) openTeam(tk);
+      else openHistTeam(tk);
+      render();
+      return;
+    }
+    if(b.dataset.gteam){ closeGame(); openTeam(b.dataset.gteam); return; }
+    if(b.dataset.team){ openTeam(b.dataset.team); return; }
+    if(b.dataset.hteam){ openHistTeam(b.dataset.hteam); return; }
+    if(b.dataset.game){ openGame(b.dataset.game); return; }
+  });
+  document.addEventListener("click", function(ev){
+    var c = ev.target;
+    if(c && c.tagName === "circle" && c.getAttribute("data-pt") != null){
+      var i = +c.getAttribute("data-pt"), p = (window.__chartPts || [])[i];
+      var note = el("chartnote");
+      if(p && note) note.textContent = noteFor(p);
+      var svg = el("teamchart");
+      if(svg) Array.prototype.forEach.call(svg.querySelectorAll(".pt"), function(el2, j){ el2.classList.toggle("sel", j === i); });
+    }
+  }, true);
+  function openHistTeam(key){
+    var code = key.split(":")[1];
+    if(S.season && S.season.teams[key]){ openTeam(key); return; }
+    /* team not in the loaded season: show its history card only */
+    S.openTeamKey = key;
+    var e = S.hist && S.hist.teams[key];
+    el("sheet-name").textContent = e ? e.n : "School " + code;
+    el("sheet-sub").textContent = "All seasons on record";
+    el("sheet-fav").setAttribute("aria-pressed", S.favs.has(key) ? "true" : "false");
+    el("sheet-fav").dataset.key = key;
+    el("sheet-body").innerHTML = teamSegHTML(key) + teamYearsHTML(key) + chartHTML(key) + (e ? '<div class="card"><div class="standtbl"><table><thead><tr>' +
+      '<th>Season</th><th>W</th><th>L</th><th>T</th><th>Pts</th></tr></thead><tbody>' +
+      e.s.slice().sort(function(a, b){ return b[0] - a[0]; }).map(function(r){
+        return '<tr><td>' + esc(seasonMeta(String(r[0])).label || r[0]) + '</td><td>' + r[1] + '</td><td>' + r[2] +
+          '</td><td>' + r[3] + '</td><td class="pts">' + r[4] + '</td></tr>';
+      }).join("") + '</tbody></table></div></div>' : "");
+    el("sheet").hidden = false;
+    document.body.style.overflow = "hidden";
+    drawChart();
+  }
+  var __rsz;
+  window.addEventListener("resize", function(){
+    clearTimeout(__rsz);
+    __rsz = setTimeout(function(){ if(!el("sheet").hidden) drawChart(); }, 180);
+  });
+  document.addEventListener("toggle", function(ev){
+    if(ev.target && ev.target.id === "method") S.methodOpen = ev.target.open;
+  }, true);
+  document.addEventListener("input", function(ev){
+    if(ev.target && ev.target.id === "tsearch"){
+      S.query = ev.target.value;
+      renderTeams();
+      var i = el("tsearch");
+      if(i){ i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
+    }
+  });
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape"){
+      if(!el("gsheet").hidden) closeGame();
+      else if(!el("sheet").hidden) closeSheet();
+      else if(!el("seasonmenu").hidden) el("seasonmenu").hidden = true;
+    }
+  });
+  el("seasonmenu").addEventListener("click", function(ev){
+    if(ev.target === el("seasonmenu")) el("seasonmenu").hidden = true;
+  });
+
+  /* ---------- boot ---------- */
+  loadFavs();
+  S.cache[BOOT.season.id] = parseSeason(BOOT.season);
+  applySeason(S.cache[BOOT.season.id]);
+})();
+</script>
