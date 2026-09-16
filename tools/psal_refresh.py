@@ -140,8 +140,11 @@ def fetch_sport(spc, season):
             "st": (g.get("evstatus") or "").strip(),
             "ty": g.get("evtype") or "game",
         })
+        # School codes are 5 digits WITH leading zeros ("08269"), but the schedule
+        # returns them as ints, so str() alone drops the zero and the per-school
+        # lookup silently returns nothing for every Manhattan/Bronx school.
         for t in (g.get("hteamid"), g.get("ateamid")):
-            if t: schools.add(str(t))
+            if t: schools.add(str(t).zfill(5))
     print("  [%s] %d games, %d schools" % (spc, len(games), len(schools)), flush=True)
 
     # divisions + standings
@@ -179,7 +182,12 @@ def fetch_sport(spc, season):
             ]
             if has:
                 played.add(gid)
-    print("  [%s] %d games with a posted result" % (spc, len(played)), flush=True)
+    covered = len(flags)
+    if covered < len(games):
+        print("  [%s] WARNING: only %d/%d games covered by per-school pulls"
+              % (spc, covered, len(games)), flush=True)
+    print("  [%s] %d/%d games covered, %d with a posted result"
+          % (spc, covered, len(games), len(played)), flush=True)
 
     # per-game detail, only for games that actually have a result
     def one_detail(gid):
