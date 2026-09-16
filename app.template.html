@@ -186,6 +186,24 @@
   .trow .sub{display:block; font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
   .trow .rec{font-family:"Archivo",sans-serif; font-weight:700; font-size:13px; color:var(--text-2); font-variant-numeric:tabular-nums}
   .trow.pin{background:rgba(234,99,33,.055)}
+  .boro{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+  .boro + .boro{margin-top:10px}
+  .boro summary{
+    list-style:none; cursor:pointer; padding:13px 14px; display:flex; align-items:center; gap:10px;
+    font-family:"Archivo",sans-serif; font-weight:700; font-size:15px;
+  }
+  .boro summary::-webkit-details-marker{display:none}
+  .boro summary::after{
+    content:""; margin-left:auto; width:0; height:0; flex:none;
+    border-left:4.5px solid transparent; border-right:4.5px solid transparent;
+    border-top:6px solid var(--muted); transition:transform .15s;
+  }
+  .boro[open] summary::after{transform:rotate(180deg)}
+  .boro[open] summary{border-bottom:1px solid var(--line-soft)}
+  .boro .bcount{
+    font-family:"Archivo",sans-serif; font-size:11.5px; font-weight:700; color:var(--muted);
+    background:var(--chip); border-radius:999px; padding:2px 8px;
+  }
 
   /* ---------- sheets ---------- */
   .sheet{position:fixed; inset:0; z-index:60; display:flex; flex-direction:column; background:var(--bg)}
@@ -422,7 +440,7 @@
   var S = {
     sp: 0, view: "scores", seasonId: null, season: null, rankSort: "r", methodOpen: false,
     lbStat: "g", lbTier: "all", aggCache: {},
-    date: null, boro: "", div: "", query: "", hsub: "champs", rankYear: "all",
+    date: null, boro: "", div: "", query: "", hsub: "champs", rankYear: "all", openBoros: {},
     favs: new Set(), cache: {}, hist: null, histState: "idle", openTeamKey: null, openGameKey: null
   };
 
@@ -457,6 +475,19 @@
   function classOf(div){
     var m = /^\s*(\d[A-D]|[A-D])\b/.exec(div || "");
     return m ? m[1] : "";
+  }
+  /* NYC school codes start with the DOE district: 1-6 Manhattan, 7-12 Bronx,
+     13-23 + 32 Brooklyn, 24-30 Queens, 31 Staten Island */
+  var BOROS = ["Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island"];
+  function boroughOf(code){
+    var d = parseInt(String(code).slice(0, 2), 10);
+    if(!(d > 0)) return "";
+    if(d <= 6) return "Manhattan";
+    if(d <= 12) return "Bronx";
+    if(d <= 23 || d === 32) return "Brooklyn";
+    if(d <= 30) return "Queens";
+    if(d === 31) return "Staten Island";
+    return "";
   }
   function boroOf(div){
     var p = String(div || "").split("--");
@@ -498,7 +529,8 @@
     var tm = {};
     o.T.forEach(function(t){
       var div = t[3] >= 0 ? o.D[t[3]] : "";
-      tm[t[0] + ":" + t[1]] = {sp:t[0], code:t[1], name:t[2], short:(t[4] || t[2]), div:div, cls:classOf(div), boro:boroOf(div)};
+      tm[t[0] + ":" + t[1]] = {sp:t[0], code:t[1], name:t[2], short:(t[4] || t[2]), div:div,
+                               cls:classOf(div), region:boroOf(div), boro:boroughOf(t[1])};
     });
     var byDate = {}, rec = {}, stand = [], tier = {};
     (o.D || []).forEach(function(d, i){ tier[d] = (o.TI && o.TI[i] != null) ? o.TI[i] : 3; });
@@ -716,9 +748,13 @@
         '<span class="dnum">' + p.d + '</span><span class="dot"></span></button>';
     }).join("") + '</div>';
 
-    var boroList = Object.keys(boros).sort();
+    var boroList = BOROS.filter(function(b){ return boros[b]; });
     var divList = Object.keys(divs).filter(function(d){
-      return !S.boro || boroOf(d) === S.boro;
+      if(!S.boro) return true;
+      return Object.keys(ps.teams).some(function(k){
+        var t = ps.teams[k];
+        return t.sp === S.sp && t.div === d && t.boro === S.boro;
+      });
     }).sort(cmpDiv);
     html += '<div class="filters">' +
       '<div class="filterrow"><span class="flabel">Borough</span><div class="chips scroll">' +
@@ -784,25 +820,58 @@
   /* ---------- view: teams ---------- */
   function renderTeams(){
     var v = el("view-teams"), ps = S.season;
-    var list = Object.keys(ps.teams).map(function(k){ return ps.teams[k]; })
+    var all = Object.keys(ps.teams).map(function(k){ return ps.teams[k]; })
       .filter(function(t){ return t.sp === S.sp; });
     var q = S.query.trim().toLowerCase();
-    if(q) list = list.filter(function(t){ return t.name.toLowerCase().indexOf(q) > -1 || (t.div||"").toLowerCase().indexOf(q) > -1; });
-    list.sort(function(a, b){
-      var fa = S.favs.has(a.sp + ":" + a.code), fb = S.favs.has(b.sp + ":" + b.code);
-      if(fa !== fb) return fa ? -1 : 1;
-      return cmpDiv(a.div, b.div) || a.name.localeCompare(b.name);
+
+    function row(t){
+      var r = ps.rec[t.sp + ":" + t.code];
+      var rec = r ? (r[1] + "-" + r[2] + (r[3] ? "-" + r[3] : "")) : "";
+      return '<button class="trow' + (S.favs.has(t.sp + ":" + t.code) ? " pin" : "") + '" data-team="' + esc(t.sp + ":" + t.code) + '">' +
+        '<span class="info"><span class="nm">' + esc(t.short) + '</span>' +
+        '<span class="sub">' + esc(divLabel(t.div) || "No division listed") + '</span></span>' +
+        '<span class="rec">' + esc(rec) + '</span></button>';
+    }
+    function byName(a, b){ return a.short.localeCompare(b.short); }
+
+    var head = '<div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.4-3.4"></path></svg>' +
+      '<input id="tsearch" type="search" placeholder="Search schools or divisions" value="' + esc(S.query) + '" autocomplete="off"></div>';
+
+    /* searching flattens the list — you want the match, not the filing cabinet */
+    if(q){
+      var hits = all.filter(function(t){
+        return t.name.toLowerCase().indexOf(q) > -1 || t.short.toLowerCase().indexOf(q) > -1 ||
+               (t.div || "").toLowerCase().indexOf(q) > -1 || (t.boro || "").toLowerCase().indexOf(q) > -1;
+      }).sort(byName);
+      v.innerHTML = head + '<div class="card"><div class="tlist">' +
+        (hits.length ? hits.map(row).join("") : '<div class="empty">No schools match that search.</div>') +
+        '</div></div>';
+      return;
+    }
+
+    var html = head;
+    var faves = all.filter(function(t){ return S.favs.has(t.sp + ":" + t.code); }).sort(byName);
+    if(faves.length){
+      html += '<div><div class="grouphead"><h3>Following</h3><div class="rule"></div></div>' +
+        '<div class="card"><div class="tlist">' + faves.map(row).join("") + '</div></div></div>';
+    }
+
+    var groups = {};
+    all.forEach(function(t){
+      var b = t.boro || "Other";
+      (groups[b] = groups[b] || []).push(t);
     });
-    v.innerHTML = '<div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.4-3.4"></path></svg>' +
-        '<input id="tsearch" type="search" placeholder="Search schools or divisions" value="' + esc(S.query) + '" autocomplete="off"></div>' +
-      '<div class="card"><div class="tlist">' + (list.length ? list.map(function(t){
-        var r = ps.rec[t.sp + ":" + t.code];
-        var rec = r ? (r[1] + "-" + r[2] + (r[3] ? "-" + r[3] : "")) : "";
-        return '<button class="trow' + (S.favs.has(t.sp + ":" + t.code) ? " pin" : "") + '" data-team="' + esc(t.sp + ":" + t.code) + '">' +
-          '<span class="info"><span class="nm">' + esc(t.short) + '</span>' +
-          '<span class="sub">' + esc(divLabel(t.div) || "No division listed") + '</span></span>' +
-          '<span class="rec">' + esc(rec) + '</span></button>';
-      }).join("") : '<div class="empty">No schools match that search.</div>') + '</div></div>';
+    var order = BOROS.filter(function(b){ return groups[b]; });
+    if(groups["Other"]) order.push("Other");
+
+    html += order.map(function(b){
+      var teams = groups[b].slice().sort(byName);
+      var open = S.openBoros && S.openBoros[b];
+      return '<details class="boro"' + (open ? " open" : "") + ' data-boro-acc="' + esc(b) + '">' +
+        '<summary><span class="bname">' + esc(b) + '</span><span class="bcount">' + teams.length + '</span></summary>' +
+        '<div class="tlist">' + teams.map(row).join("") + '</div></details>';
+    }).join("");
+    v.innerHTML = html;
   }
 
   /* ---------- view: playoffs ---------- */
@@ -1582,7 +1651,10 @@
   });
   window.addEventListener("orientationchange", function(){ setTimeout(setHeaderHeight, 250); });
   document.addEventListener("toggle", function(ev){
-    if(ev.target && ev.target.id === "method") S.methodOpen = ev.target.open;
+    var t = ev.target;
+    if(!t) return;
+    if(t.id === "method") S.methodOpen = t.open;
+    if(t.dataset && t.dataset.boroAcc) S.openBoros[t.dataset.boroAcc] = t.open;
   }, true);
   document.addEventListener("input", function(ev){
     if(ev.target && ev.target.id === "tsearch"){
