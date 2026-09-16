@@ -80,14 +80,28 @@ def discover(s, season):
     leagues = call(s, "GetSportLeague", csports="'012'", season="'%s'" % season)
     show("GetSportLeague", leagues, 3)
     if leagues:
-        lg = leagues[0]
-        lid = lg.get("leagueid") or lg.get("LeagueID") or lg.get("id")
+        lid = leagues[0].get("lcode")
         show("getTeamStandings012_021 (league=%s)" % lid,
-             call(s, "getTeamStandings012_021", csports="'012'", season=season, league=lid), 3)
+             call(s, "getTeamStandings012_021", csports="'012'", season=season, league=lid), 4)
     hteam = sched[0].get("hteamid")
-    show("getTeamScheduleAny (a played game's home team)",
+    show("getTeamScheduleAny (current season)",
          call(s, "getTeamScheduleAny", csports="'012'", season=season,
-              schoolid="'%s'" % hteam, format="''"), 3)
+              schoolid="'%s'" % hteam, format="''"), 2)
+
+    # How is a DRAW encoded? cwinner is null for an unplayed game too, so a naive
+    # "cwinner is null => no result" rule would silently drop every tie.
+    # 2026 game 483598 was a real 4-4 draw for school 08269.
+    rows = call(s, "getTeamScheduleAny", csports="'012'", season=2026,
+                schoolid="'08269'", format="''") or []
+    draw = [r for r in rows if r.get("cid") == 483598]
+    show("A KNOWN 4-4 DRAW (2026 game 483598)", draw, 1)
+    played = [r for r in rows if r.get("cwinner")]
+    show("a decided game from the same school", played[:1], 1)
+    print("\n-- draw vs unplayed discriminator --")
+    for r in rows[:12]:
+        print("   cid=%s score=%s-%s winner=%r loser=%r reason=%r level=%r" % (
+            r.get("cid"), r.get("nfscoreh"), r.get("nfscorea"),
+            r.get("cwinner"), r.get("closer"), r.get("creason"), r.get("clevel")))
 
 
 def main():
