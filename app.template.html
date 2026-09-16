@@ -1368,16 +1368,22 @@
     S.openGameKey = key;
     var h = teamOf(g[0], g[4]), a = teamOf(g[0], g[5]);
     var d = detailOf(g), st = status(g);
-    el("gsheet-name").textContent = h.name + " vs " + a.name;
-    var subBits = [fmtDateLong(g[2])];
+    var gp = dparts(g[2]);
+    el("gsheet-name").textContent = new Date(gp.y, gp.m-1, gp.d)
+      .toLocaleDateString(undefined, {weekday:"long", month:"long", day:"numeric"});
+    var subBits = [];
     if(g[3]) subBits.push(fmtTime(g[3]));
     if(g[10] === 1) subBits.push(((bracketLabel(g) ? bracketLabel(g) + " " : "") + roundLabel(g)).trim());
     else if(h.div) subBits.push(divShort(h.div));
+    subBits.push(seasonMeta(S.seasonId).label || S.seasonId);
     el("gsheet-sub").textContent = subBits.join(" · ");
 
     var html = "";
     /* score line */
     var hs = g[6], as = g[7], ff = (hs === 999 || as === 999);
+    var decided = hasScore(g) && !ff && hs !== as;
+    var dimH = decided && hs < as ? ";color:var(--muted)" : "";
+    var dimA = decided && as < hs ? ";color:var(--muted)" : "";
     var scoreTxt = hasScore(g) ? (ff ? "Forfeit" : hs + " – " + as) : "—";
     var stChip = st === "final" ? '<span class="chip final">Final</span>' :
                  st === "ppd" ? '<span class="chip ppd">Postponed</span>' :
@@ -1387,10 +1393,10 @@
     html += '<div class="boxwrap"><div class="kv" style="padding:14px 13px">' +
       '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">' +
       '<div style="min-width:0"><button data-gteam="' + esc(g[0] + ":" + g[4]) + '" style="text-align:left;display:block;font-family:Archivo,sans-serif;font-weight:700;font-size:16px' +
-        (hasScore(g) && !ff && hs > as ? "" : ";color:var(--muted)") + '">' + esc(h.name) +
+        dimH + '">' + esc(h.name) +
         ' <span style="font-size:11px;color:var(--muted)">HOME</span> <span style="color:var(--blue);font-size:12px">&rsaquo;</span></button>' +
       '<button data-gteam="' + esc(g[0] + ":" + g[5]) + '" style="text-align:left;display:block;font-family:Archivo,sans-serif;font-weight:700;font-size:16px;margin-top:4px' +
-        (hasScore(g) && !ff && as > hs ? "" : ";color:var(--muted)") + '">' + esc(a.name) +
+        dimA + '">' + esc(a.name) +
         ' <span style="font-size:11px;color:var(--muted)">AWAY</span> <span style="color:var(--blue);font-size:12px">&rsaquo;</span></button></div>' +
       '<div style="text-align:right;flex:none"><div style="font-family:Archivo,sans-serif;font-weight:800;font-size:26px;font-variant-numeric:tabular-nums">' +
         esc(scoreTxt) + '</div><div style="margin-top:4px">' + stChip + '</div></div></div></div></div>';
