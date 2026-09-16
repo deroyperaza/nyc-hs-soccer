@@ -8,18 +8,6 @@
  "theme_color": "#293955",
  "icons": [
   {
-   "src": "/tile-120.png",
-   "sizes": "120x120",
-   "type": "image/png",
-   "purpose": "any"
-  },
-  {
-   "src": "/tile-152.png",
-   "sizes": "152x152",
-   "type": "image/png",
-   "purpose": "any"
-  },
-  {
    "src": "/tile-180.png",
    "sizes": "180x180",
    "type": "image/png",
