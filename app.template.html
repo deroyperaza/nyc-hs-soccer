@@ -94,7 +94,12 @@
   .loading{padding:26px 16px; text-align:center; color:var(--muted); font-size:14px}
 
   /* ---------- date rail ---------- */
-  .rail{display:flex; gap:7px; overflow-x:auto; padding:2px 0 4px; scrollbar-width:none}
+  .rail{
+    display:flex; gap:7px; overflow-x:auto; scrollbar-width:none;
+    position:sticky; top:var(--hdr, 0px); z-index:20;
+    background:var(--bg); padding:8px 16px 7px; margin:-8px -16px 0;
+    box-shadow:0 1px 0 var(--line-soft);
+  }
   .rail::-webkit-scrollbar{display:none}
   .daybtn{flex:none; min-width:60px; padding:8px 10px; border-radius:12px; background:var(--surface); border:1px solid var(--line); display:flex; flex-direction:column; align-items:center; gap:1px}
   .daybtn .dow{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
@@ -1436,6 +1441,12 @@
     else if(S.view === "teams") renderTeams();
     else if(S.view === "playoffs") renderPlayoffs();
   }
+  function setHeaderHeight(){
+    var bar = document.querySelector(".topbar");
+    if(!bar) return;
+    var h = Math.round(bar.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--hdr", h + "px");
+  }
   function setStamp(){
     var t = el("stamptext"), stamp = el("stamp");
     if(!isCurrent()){
@@ -1554,8 +1565,12 @@
   var __rsz;
   window.addEventListener("resize", function(){
     clearTimeout(__rsz);
-    __rsz = setTimeout(function(){ if(!el("sheet").hidden) drawChart(); }, 180);
+    __rsz = setTimeout(function(){
+      setHeaderHeight();
+      if(!el("sheet").hidden) drawChart();
+    }, 180);
   });
+  window.addEventListener("orientationchange", function(){ setTimeout(setHeaderHeight, 250); });
   document.addEventListener("toggle", function(ev){
     if(ev.target && ev.target.id === "method") S.methodOpen = ev.target.open;
   }, true);
@@ -1580,6 +1595,9 @@
 
   /* ---------- boot ---------- */
   loadFavs();
+  setHeaderHeight();
+  window.addEventListener("load", setHeaderHeight);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(setHeaderHeight);
   S.cache[BOOT.season.id] = parseSeason(BOOT.season);
   applySeason(S.cache[BOOT.season.id]);
 })();
