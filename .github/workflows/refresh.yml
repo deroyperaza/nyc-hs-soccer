@@ -12,6 +12,7 @@ on:
   schedule:
     # every hour from 4pm to 11pm New York time (games finish late afternoon)
     - cron: "0 20-23,0-3 * * *"
+    - cron: "0 12 * * *"
 
 concurrency:
   group: psal-refresh
