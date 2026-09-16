@@ -218,8 +218,9 @@
   .sheetseg{background:var(--surface-2); padding:4px; border-radius:11px}
   .sheetyears{margin-top:-2px}
   .sheetyears .flabel{width:52px}
-  .sheetseg button{color:var(--text-2); font-size:12.5px}
-  .sheetseg button[aria-pressed="true"]{background:var(--surface); color:var(--text); box-shadow:var(--shadow)}
+  .sheetseg button{color:var(--text-2); font-size:12.5px; background:transparent; border:1px solid transparent}
+  .sheetseg button[aria-pressed="true"]{background:#fff; color:var(--text); border-color:var(--line); font-weight:700; box-shadow:var(--shadow)}
+  .sheetseg button.off{color:var(--muted); opacity:.6}
   .statrow{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
   .stat{background:var(--surface); border:1px solid var(--line-soft); border-radius:12px; padding:11px 12px; box-shadow:var(--shadow)}
   .stat .k{font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--muted); font-weight:600}
@@ -1211,8 +1212,8 @@
     return '<div class="seg sheetseg" role="group" aria-label="Boys or girls program">' +
       [0, 1].map(function(x){
         var on = x === sp, ok = has(x) || on;
-        return '<button ' + (ok ? 'data-tsp="' + x + ":" + esc(code) + '"' : 'disabled') +
-          ' aria-pressed="' + on + '"' + (ok ? '' : ' style="opacity:.42"') + '>' + names[x] + '</button>';
+        return '<button ' + (ok ? 'data-tsp="' + x + ":" + esc(code) + '"' : 'disabled class="off"') +
+          ' aria-pressed="' + on + '">' + names[x] + '</button>';
       }).join("") + '</div>';
   }
 
