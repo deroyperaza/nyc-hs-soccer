@@ -54,10 +54,13 @@
   .num{font-variant-numeric:tabular-nums}
 
   /* ---------- header ---------- */
-  .topbar{position:sticky; top:env(safe-area-inset-top, 0px); z-index:30; background:var(--navy); color:#fff; box-shadow:0 1px 0 rgba(0,0,0,.18)}
-  .topbar-inner{max-width:760px; margin:0 auto; padding:10px 16px 12px; display:flex; flex-direction:column; gap:10px}
+  .topbar{position:sticky; top:0; z-index:30; background:var(--navy); color:#fff; box-shadow:0 1px 0 rgba(0,0,0,.18)}
+  .topbar-inner{
+    max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:10px;
+    padding:calc(10px + env(safe-area-inset-top, 0px)) 16px 12px;
+  }
   .brandrow{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; row-gap:5px}
-  .brand{display:flex; align-items:center; gap:8px; min-width:0}
+  .brand{display:flex; align-items:center; gap:8px; min-width:0; flex:1}
   .brand .logo{flex:none; width:24px; height:24px; display:block}
   .brand .logo svg{width:24px; height:24px; display:block}
   .brand .mark{
@@ -66,7 +69,7 @@
   }
   .brand .mark em{font-style:normal; color:var(--orange)}
   .brand .season{
-    display:flex; align-items:center; gap:5px; padding:3px 9px; border-radius:999px; flex:none;
+    display:flex; align-items:center; gap:5px; padding:3px 9px; border-radius:999px; flex:none; margin-left:auto;
     background:rgba(255,255,255,.12); color:#E4EBF6; border:none;
     font-family:"Archivo",sans-serif; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
   }
@@ -411,10 +414,9 @@
   "use strict";
   var BOOT = JSON.parse(document.getElementById("psal-data").textContent);
   var META = BOOT.meta;
-  var PIN = "03300";                     /* Beacon High School: always listed first */
+  /* divisions that a followed team plays in, recomputed whenever favourites or season change */
   var CLASS_ORDER = ["3A","2A","1A"];          /* current PSAL ladder; older seasons used 1A > B > C/D */
   var TIER_W = [1, 0.88, 0.76, 0.68];
-  var BORO_ORDER = ["Manhattan","Brooklyn III","Brooklyn II","Brooklyn I"];
   var ROUNDS = ["Opening Round","Round of 32","Round of 16","Quarterfinals","Semifinals","Final"];
 
   var S = {
@@ -468,13 +470,10 @@
     return i === -1 ? 3 : i;
   }
   function classRank(div){ return tierOf(div); }
-  function boroRank(div){
-    var i = BORO_ORDER.indexOf(boroOf(div));
-    return i === -1 ? BORO_ORDER.length : i;
-  }
   function cmpDiv(a, b){
-    return (classRank(a) - classRank(b)) || (boroRank(a) - boroRank(b)) ||
-           String(a).localeCompare(String(b));
+    var fd = S.favDivs || {};
+    var fa = fd[a] ? 0 : 1, fb = fd[b] ? 0 : 1;
+    return (fa - fb) || (classRank(a) - classRank(b)) || String(a).localeCompare(String(b));
   }
   function pct(w, l, t){
     var n = w + l + t;
@@ -582,10 +581,18 @@
     if(ga === 999) return {wl:"L", gf:"L", ga:"", ff:true};
     return {wl: gf > ga ? "W" : (gf < ga ? "L" : "T"), gf:gf, ga:ga, ff:false};
   }
-  function involvesPin(g){ return g[4] === PIN || g[5] === PIN; }
+  function favDivs(){
+    var out = {};
+    if(!S.season || S.season === "error") return out;
+    S.favs.forEach(function(k){
+      var t = S.season.teams[k];
+      if(t && t.sp === S.sp && t.div) out[t.div] = 1;
+    });
+    return out;
+  }
   function sortGames(list){
     return list.slice().sort(function(a, b){
-      var pa = involvesPin(a) ? 0 : 1, pb = involvesPin(b) ? 0 : 1;
+      var pa = isFavGame(a) ? 0 : 1, pb = isFavGame(b) ? 0 : 1;
       if(pa !== pb) return pa - pb;
       if(a[2] !== b[2]) return a[2] - b[2];
       var da = cmpDiv(teamOf(a[0], a[4]).div, teamOf(b[0], b[4]).div);
@@ -670,7 +677,7 @@
     var meta = chips.join("");
     var venue = locOf(g);
     if(venue && !opts.noVenue) meta += '<span class="venue">' + esc(venue) + '</span>';
-    return '<button class="game' + (involvesPin(g) ? " pin" : "") + '" data-game="' + esc(gkey(g)) + '">' +
+    return '<button class="game' + (isFavGame(g) ? " pin" : "") + '" data-game="' + esc(gkey(g)) + '">' +
       sideHTML(g, true) + sideHTML(g, false) +
       '<div class="gmeta">' + meta + '</div></button>';
   }
@@ -750,7 +757,8 @@
   /* ---------- view: standings ---------- */
   function renderStandings(){
     var v = el("view-standings"), ps = S.season;
-    var groups = ps.stand.filter(function(s){ return s.sp === S.sp && s.rows.length; });
+    var groups = ps.stand.filter(function(s){ return s.sp === S.sp && s.rows.length; })
+      .sort(function(a, b){ return cmpDiv(a.div, b.div); });
     if(!groups.length){ v.innerHTML = '<div class="card"><div class="empty">No standings posted for this season yet.</div></div>'; return; }
     v.innerHTML = '<div class="sectionhead"><span class="eyebrow">' + esc(ps.label) + ' standings</span>' +
         '<span class="eyebrow">' + groups.length + ' divisions</span></div>' +
@@ -764,7 +772,7 @@
           rows.map(function(r, i){
             var key = s.sp + ":" + r[0], t = teamOf(s.sp, r[0]);
             var cls = [];
-            if(S.favs.has(key) || r[0] === PIN) cls.push("isfav");
+            if(S.favs.has(key)) cls.push("isfav");
             if(i < 2) cls.push("gold");
             return '<tr class="' + cls.join(" ") + '"><td><button class="tm" data-team="' + esc(key) + '">' +
               '<span class="pos">' + (i+1) + '</span><span>' + esc(t.short) + '</span></button></td>' +
@@ -781,7 +789,8 @@
     var q = S.query.trim().toLowerCase();
     if(q) list = list.filter(function(t){ return t.name.toLowerCase().indexOf(q) > -1 || (t.div||"").toLowerCase().indexOf(q) > -1; });
     list.sort(function(a, b){
-      if((a.code === PIN) !== (b.code === PIN)) return a.code === PIN ? -1 : 1;
+      var fa = S.favs.has(a.sp + ":" + a.code), fb = S.favs.has(b.sp + ":" + b.code);
+      if(fa !== fb) return fa ? -1 : 1;
       return cmpDiv(a.div, b.div) || a.name.localeCompare(b.name);
     });
     v.innerHTML = '<div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.4-3.4"></path></svg>' +
@@ -789,7 +798,7 @@
       '<div class="card"><div class="tlist">' + (list.length ? list.map(function(t){
         var r = ps.rec[t.sp + ":" + t.code];
         var rec = r ? (r[1] + "-" + r[2] + (r[3] ? "-" + r[3] : "")) : "";
-        return '<button class="trow' + (t.code === PIN ? " pin" : "") + '" data-team="' + esc(t.sp + ":" + t.code) + '">' +
+        return '<button class="trow' + (S.favs.has(t.sp + ":" + t.code) ? " pin" : "") + '" data-team="' + esc(t.sp + ":" + t.code) + '">' +
           '<span class="info"><span class="nm">' + esc(t.short) + '</span>' +
           '<span class="sub">' + esc(divLabel(t.div) || "No division listed") + '</span></span>' +
           '<span class="rec">' + esc(rec) + '</span></button>';
@@ -875,10 +884,10 @@
           '<div class="lvl' + (alt ? " alt" : "") + '">' + esc(cls) + (alt ? '<span class="tag2">2nd</span>' : "") + '</div>' +
           '<div class="pair">' +
             '<button class="side win" data-hteam="' + esc(S.sp + ":" + w) + '">' +
-              '<span class="medal gold"></span><span class="nm' + (w === PIN ? " pin" : "") + '">' + esc(wn) + '</span>' +
+              '<span class="medal gold"></span><span class="nm' + (S.favs.has(S.sp + ":" + w) ? " pin" : "") + '">' + esc(wn) + '</span>' +
               '<span class="sc">' + ws + '</span></button>' +
             '<button class="side" data-hteam="' + esc(S.sp + ":" + l) + '">' +
-              '<span class="medal silver"></span><span class="nm' + (l === PIN ? " pin" : "") + '">' + esc(ln) + '</span>' +
+              '<span class="medal silver"></span><span class="nm' + (S.favs.has(S.sp + ":" + l) ? " pin" : "") + '">' + esc(ln) + '</span>' +
               '<span class="sc">' + ls + '</span></button>' +
           '</div>' +
           '<div class="when">' + esc(fmtDate(d)) + '</div>' +
@@ -940,7 +949,7 @@
       '<th>School</th>' + (S.rankYear === "all" ? '' : '<th>Lvl</th>') + '<th>W</th><th>L</th><th class="w">' + (sortKey === "p" ? "Win%" : "Rating") + '</th>' +
       (S.rankYear === "all" ? '<th>Yrs</th>' : '') + '<th>Ttl</th></tr></thead><tbody>' +
       rows.slice(0, 150).map(function(r, i){
-        var pin = r.key.split(":")[1] === PIN;
+        var pin = S.favs.has(r.key);
         return '<tr class="' + (pin || S.favs.has(r.key) ? "isfav" : "") + '"><td><button class="tm" data-hteam="' + esc(r.key) + '">' +
           '<span class="pos">' + (i+1) + '</span><span>' + esc(r.name) + '</span></button></td>' +
           (S.rankYear === "all" ? '' : '<td>' + esc(r.cls) + '</td>') + '<td>' + r.w + '</td><td>' + r.l + '</td>' +
@@ -1040,7 +1049,7 @@
       '<th>Player</th><th>GP</th><th class="w">' + esc(abbr) + '</th></tr></thead><tbody>' +
       rows.slice(0, 100).map(function(r, i){
         var t = ps.teams[S.sp + ":" + r.code];
-        var pin = r.code === PIN;
+        var pin = S.favs.has(S.sp + ":" + r.code);
         return '<tr class="' + (pin ? "isfav" : "") + '"><td><button class="tm" data-team="' + esc(S.sp + ":" + r.code) + '" style="text-align:left">' +
           '<span class="pos">' + (i+1) + '</span><span>' + esc(titleCase(r.n)) +
           '<br><span style="font-size:11.5px;color:var(--muted)">' + esc(t ? t.short : r.code) + (t && t.cls ? " \u00b7 " + esc(t.cls) : "") + '</span>' +
@@ -1269,7 +1278,7 @@
     var sub = fmtDate(g[2]) + " · " + (home ? "Home" : "Away") + (locOf(g) ? " · " + locOf(g) : "");
     if(hasScore(g) && !boxRowsFor(g, code)) sub = fmtDate(g[2]) + " · " + (home ? "Home" : "Away") + " · no stats filed";
     if(g[10] === 1) sub = fmtDate(g[2]) + " · " + ((bracketLabel(g) ? bracketLabel(g) + " " : "") + roundLabel(g)).trim();
-    return '<button class="resline' + (opp.code === PIN ? " pin" : "") + '" data-game="' + esc(gkey(g)) + '">' +
+    return '<button class="resline' + (S.favs.has(opp.sp + ":" + opp.code) ? " pin" : "") + '" data-game="' + esc(gkey(g)) + '">' +
       '<span class="wl ' + (r ? r.wl : "") + '">' + (r ? r.wl : "·") + '</span>' +
       '<span class="op"><span class="nm">' + esc(opp.short) + '</span><span class="dt">' + esc(sub) + '</span></span>' +
       '<span class="rs">' + right + '</span></button>';
@@ -1424,6 +1433,7 @@
 
   /* ---------- shell ---------- */
   function render(){
+    S.favDivs = favDivs();
     ["scores","standings","teams","playoffs","history"].forEach(function(v){
       el("view-" + v).hidden = v !== S.view;
       el("tab-" + v).setAttribute("aria-pressed", v === S.view ? "true" : "false");
