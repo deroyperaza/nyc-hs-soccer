@@ -4,8 +4,8 @@ import json, os, glob, re, datetime, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from shorten import shorten
 
-RAW = '/mnt/user-data/uploads/Downloads'
-OUT = '/home/claude/psal/out/data'
+RAW = os.environ.get('PSAL_RAW', '/mnt/user-data/uploads/Downloads')
+OUT = os.environ.get('PSAL_OUT', '/home/claude/psal/out/data')
 SPORTS = {'012': 0, '021': 1}
 
 def dnum(s):

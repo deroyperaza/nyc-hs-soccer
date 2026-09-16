@@ -2,10 +2,12 @@
 """Build the NYC High School Soccer page + history.json from converted season files."""
 import json, os, glob, datetime, sys
 
-BASE = '/home/claude/psal'
-DATA = os.path.join(BASE, 'out', 'data')
-TPL  = os.path.join(BASE, 'app.template.html')
-PAGE = os.path.join(BASE, 'out', 'index.html')
+BASE = os.environ.get('PSAL_BASE', '/home/claude/psal')
+# In CI the repo keeps data/ and index.html at the top level, so each path is
+# overridable rather than assuming the local out/ layout.
+DATA = os.environ.get('PSAL_OUT',  os.path.join(BASE, 'out', 'data'))
+TPL  = os.environ.get('PSAL_TPL',  os.path.join(BASE, 'app.template.html'))
+PAGE = os.environ.get('PSAL_PAGE', os.path.join(BASE, 'out', 'index.html'))
 
 def load_all():
     out = {}
