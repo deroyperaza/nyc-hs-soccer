@@ -1014,7 +1014,11 @@
         if(S.rankYear !== "all" && r[0] !== +S.rankYear) return;
         var g = r[1] + r[2] + r[3];
         if(!g) return;
-        w += r[1]; l += r[2]; t += r[3]; n++;
+        /* The W-L-T shown is every game: PSAL's league table plus the playoff
+           run, which is tracked separately in the archive. Without the playoff
+           half a dynasty looks as though it never lost. The rating is unaffected
+           -- it reads league points and playoff round as separate terms. */
+        w += r[1] + (r[9] || 0); l += r[2] + (r[10] || 0); t += r[3] + (r[11] || 0); n++;
         gsum += g; rsum += seasonRating(r) * g;
         if(r[5]) cls[r[5]] = (cls[r[5]] || 0) + 1;
         if((r[7] || 0) === 6) titles++;
@@ -1085,7 +1089,7 @@
       '<p><b>Forfeits</b> count exactly as PSAL records them \u2014 a forfeit win is a win.' +
       (inprog ? ' This season is still in progress, and PSAL books forfeited fixtures as losses in advance, so a school that withdrew shows a full slate of losses on day one.' : '') + '</p>' +
       '<p><b>Win %</b> = (wins + half of ties) &divide; games played. It ignores level and playoffs entirely \u2014 useful as a sanity check against the rating.</p>' +
-      '<p><b>W-L-T</b> is every game on record for the school in the period shown, ties included \u2014 a drawn game is worth a point in the table and half a win in Win %.</p>' +
+      '<p><b>W-L-T</b> is every game on record \u2014 league fixtures <i>and</i> playoff games \u2014 with ties included. PSAL\'s own standings count league play only, so a school that goes deep every year looks almost unbeaten until the playoff games are added back in. Win % uses the same full record, counting a tie as half a win.</p>' +
       '</div></details>';
   }
 

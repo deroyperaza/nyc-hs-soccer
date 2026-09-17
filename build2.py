@@ -27,6 +27,7 @@ def build(updated=None, current=None):
         D = o['D']
         # ---- playoff performance per team for this season ----
         po_wins, po_best, po_title = {}, {}, set()
+        po_loss, po_tie = {}, {}
         for g in o['G']:
             if g[10] != 1 or g[6] is None or g[7] is None:
                 continue
@@ -35,9 +36,13 @@ def build(updated=None, current=None):
             for k in (hk, ak):
                 po_best[k] = max(po_best.get(k, -1), ri)
             if g[6] == g[7]:
+                # drawn playoff ties are rare but real in the archive
+                for k in (hk, ak):
+                    po_tie[k] = po_tie.get(k, 0) + 1
                 continue
-            win = hk if g[6] > g[7] else ak
+            win, lose = (hk, ak) if g[6] > g[7] else (ak, hk)
             po_wins[win] = po_wins.get(win, 0) + 1
+            po_loss[lose] = po_loss.get(lose, 0) + 1
             if ri == 5:
                 po_title.add(win)
         champs[sid] = {'0': [], '1': []}
@@ -66,7 +71,8 @@ def build(updated=None, current=None):
                 elif best == 3: res = 3
                 elif best == 2: res = 2
                 elif best >= 0: res = 1
-                e['s'].append([int(sid), r[1], r[2], r[3], r[4], cls, po_wins.get(k, 0), res, tier])
+                e['s'].append([int(sid), r[1], r[2], r[3], r[4], cls, po_wins.get(k, 0), res, tier,
+                               po_wins.get(k, 0), po_loss.get(k, 0), po_tie.get(k, 0)])
                 if name_by.get(k):
                     e['n'] = name_by[k]
                     e['sn'] = short_by.get(k, e['n'])
