@@ -193,6 +193,14 @@ def build(updated=None, current=None):
     with open(os.path.join(DATA, 'slugs.json'), 'w') as f:
         json.dump(slugs, f, separators=(',', ':'))
 
+    # a few KB the edge function reads to title a school page for link
+    # previews, so it never has to parse the whole embedded payload
+    by_slug = {}
+    for code, sl in slugs.items():
+        by_slug[sl] = global_short.get(code, code)
+    with open(os.path.join(DATA, 'titles.json'), 'w') as f:
+        json.dump({'schools': by_slug}, f, separators=(',', ':'))
+
     hist = {'teams': teams, 'finals': finals, 'titles': titles}
     with open(os.path.join(DATA, 'history.json'), 'w') as f:
         json.dump(hist, f, separators=(',', ':'))

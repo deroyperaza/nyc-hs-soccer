@@ -32,3 +32,13 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Link previews: rewrite <title> and add Open Graph tags for the routes that
+# name something specific. Everything else falls through untouched.
+[[edge_functions]]
+  function = "unfurl"
+  path = "/player/*"
+
+[[edge_functions]]
+  function = "unfurl"
+  path = "/school/*"
