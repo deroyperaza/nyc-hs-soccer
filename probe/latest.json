@@ -1,0 +1,6652 @@
+{
+ "raw": [
+  {
+   "cid": 1399410,
+   "sport": "012",
+   "GetPlayerDetails": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "22527",
+     "cfname": "GEORGII                                           ",
+     "clname": "BUTLITSKII                                        ",
+     "cposition": "Defender",
+     "cfeet": null,
+     "cinches": null,
+     "cweight": null,
+     "cclass": "10",
+     "cuniform": "6 ",
+     "cid": 1399410,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "James Madison High School",
+     "season": "2027",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    }
+   ],
+   "GetPlayerSport": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerSports_Result"
+     },
+     "cid": "012",
+     "fullname": "SOCCER BOYS VARSITY",
+     "position": "Defender",
+     "uniform": "6 ",
+     "cschool": "22527"
+    }
+   ]
+  },
+  {
+   "cid": 1399411,
+   "sport": "012",
+   "GetPlayerDetails": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "22527",
+     "cfname": "AYDEN                                             ",
+     "clname": "CEVIKCE                                           ",
+     "cposition": "Midfield,Forward",
+     "cfeet": null,
+     "cinches": null,
+     "cweight": null,
+     "cclass": "09",
+     "cuniform": "14",
+     "cid": 1399411,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "James Madison High School",
+     "season": "2027",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    }
+   ],
+   "GetPlayerSport": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerSports_Result"
+     },
+     "cid": "012",
+     "fullname": "SOCCER BOYS VARSITY",
+     "position": "Midfield,Forward",
+     "uniform": "14",
+     "cschool": "22527"
+    }
+   ]
+  },
+  {
+   "cid": 1399412,
+   "sport": "012",
+   "GetPlayerDetails": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "22527",
+     "cfname": "BRANDON                                           ",
+     "clname": "MENA                                              ",
+     "cposition": "Goalkeeper",
+     "cfeet": null,
+     "cinches": null,
+     "cweight": null,
+     "cclass": "11",
+     "cuniform": "0 ",
+     "cid": 1399412,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "James Madison High School",
+     "season": "2027",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    },
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "22527",
+     "cfname": "BRANDON                                           ",
+     "clname": "MENA                                              ",
+     "cposition": "gk                       ",
+     "cfeet": " ",
+     "cinches": "  ",
+     "cweight": "   ",
+     "cclass": "10",
+     "cuniform": "1 ",
+     "cid": 1330480,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "James Madison High School",
+     "season": "2026",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    },
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "22527",
+     "cfname": "BRANDON                                           ",
+     "clname": "MENA                                              ",
+     "cposition": "Gk                       ",
+     "cfeet": " ",
+     "cinches": "  ",
+     "cweight": "   ",
+     "cclass": "09",
+     "cuniform": "0 ",
+     "cid": 1272131,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "James Madison High School",
+     "season": "2025",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    }
+   ],
+   "GetPlayerSport": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerSports_Result"
+     },
+     "cid": "036",
+     "fullname": "LACROSSE BOYS VARSITY",
+     "position": "Goalie                   ",
+     "uniform": "32",
+     "cschool": "22527"
+    },
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerSports_Result"
+     },
+     "cid": "012",
+     "fullname": "SOCCER BOYS VARSITY",
+     "position": "Goalkeeper",
+     "uniform": "0 ",
+     "cschool": "22527"
+    }
+   ]
+  },
+  {
+   "cid": 1399435,
+   "sport": "012",
+   "GetPlayerDetails": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "31501",
+     "cfname": "JHONNATHAN                                        ",
+     "clname": "AYALA                                             ",
+     "cposition": "Defender",
+     "cfeet": null,
+     "cinches": null,
+     "cweight": null,
+     "cclass": "11",
+     "cuniform": "4 ",
+     "cid": 1399435,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "Curtis High School",
+     "season": "2027",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    },
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "31501",
+     "cfname": "JHONNATHAN                                        ",
+     "clname": "AYALA                                             ",
+     "cposition": "                         ",
+     "cfeet": " ",
+     "cinches": "  ",
+     "cweight": "   ",
+     "cclass": "10",
+     "cuniform": "26",
+     "cid": 1331170,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "Curtis High School",
+     "season": "2026",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    }
+   ],
+   "GetPlayerSport": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerSports_Result"
+     },
+     "cid": "012",
+     "fullname": "SOCCER BOYS VARSITY",
+     "position": "Defender",
+     "uniform": "4 ",
+     "cschool": "31501"
+    }
+   ]
+  },
+  {
+   "cid": 1399436,
+   "sport": "012",
+   "GetPlayerDetails": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "31501",
+     "cfname": "JOSHUA                                            ",
+     "clname": "CEDENO                                            ",
+     "cposition": "Midfield",
+     "cfeet": null,
+     "cinches": null,
+     "cweight": null,
+     "cclass": "12",
+     "cuniform": "10",
+     "cid": 1399436,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "Curtis High School",
+     "season": "2027",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    },
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "31501",
+     "cfname": "JOSHUA                                            ",
+     "clname": "CEDENO                                            ",
+     "cposition": "                         ",
+     "cfeet": " ",
+     "cinches": "  ",
+     "cweight": "   ",
+     "cclass": "11",
+     "cuniform": "10",
+     "cid": 1331172,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "Curtis High School",
+     "season": "2026",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    },
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "31501",
+     "cfname": "JOSHUA                                            ",
+     "clname": "CEDENO                                            ",
+     "cposition": "midfielder               ",
+     "cfeet": " ",
+     "cinches": "  ",
+     "cweight": "   ",
+     "cclass": "10",
+     "cuniform": "24",
+     "cid": 1261378,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "Curtis High School",
+     "season": "2025",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    },
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "31501",
+     "cfname": "JOSHUA                                            ",
+     "clname": "CEDENO                                            ",
+     "cposition": "                         ",
+     "cfeet": " ",
+     "cinches": "  ",
+     "cweight": "   ",
+     "cclass": "09",
+     "cuniform": "21",
+     "cid": 1193872,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "Curtis High School",
+     "season": "2024",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    }
+   ],
+   "GetPlayerSport": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerSports_Result"
+     },
+     "cid": "012",
+     "fullname": "SOCCER BOYS VARSITY",
+     "position": "Midfield",
+     "uniform": "10",
+     "cschool": "31501"
+    },
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerSports_Result"
+     },
+     "cid": "014",
+     "fullname": "TENNIS BOYS VARSITY",
+     "position": "                         ",
+     "uniform": "  ",
+     "cschool": "31501"
+    }
+   ]
+  },
+  {
+   "cid": 1399437,
+   "sport": "012",
+   "GetPlayerDetails": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "31501",
+     "cfname": "EFEHI                                             ",
+     "clname": "EMODE                                             ",
+     "cposition": "Defender",
+     "cfeet": null,
+     "cinches": null,
+     "cweight": null,
+     "cclass": "11",
+     "cuniform": "11",
+     "cid": 1399437,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "Curtis High School",
+     "season": "2027",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    },
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerProfile_Result1"
+     },
+     "cschool": "31501",
+     "cfname": "EFEHI                                             ",
+     "clname": "EMODE                                             ",
+     "cposition": "                         ",
+     "cfeet": " ",
+     "cinches": "  ",
+     "cweight": "   ",
+     "cclass": "10",
+     "cuniform": "19",
+     "cid": 1331173,
+     "athletic": "",
+     "scholastic": "",
+     "community": "",
+     "coachquote": "",
+     "colplan": "",
+     "newname": "Curtis High School",
+     "season": "2026",
+     "sfullname": "SOCCER BOYS VARSITY",
+     "csport": "012",
+     "img_id": null
+    }
+   ],
+   "GetPlayerSport": [
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerSports_Result"
+     },
+     "cid": "011",
+     "fullname": "HANDBALL BOYS VARSITY",
+     "position": "SUB                      ",
+     "uniform": "  ",
+     "cschool": "31501"
+    },
+    {
+     "__metadata": {
+      "type": "SportDisplayModel.GetPlayerSports_Result"
+     },
+     "cid": "012",
+     "fullname": "SOCCER BOYS VARSITY",
+     "position": "Defender",
+     "uniform": "11",
+     "cschool": "31501"
+    }
+   ]
+  }
+ ],
+ "coverage": {
+  "2002": {
+   "n": 12,
+   "uniform": 4,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 8
+  },
+  "2003": {
+   "n": 12,
+   "uniform": 7,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 10
+  },
+  "2004": {
+   "n": 12,
+   "uniform": 9,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 10
+  },
+  "2005": {
+   "n": 12,
+   "uniform": 6,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 9
+  },
+  "2006": {
+   "n": 12,
+   "uniform": 11,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 9
+  },
+  "2007": {
+   "n": 12,
+   "uniform": 6,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 8
+  },
+  "2008": {
+   "n": 12,
+   "uniform": 11,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 11
+  },
+  "2009": {
+   "n": 12,
+   "uniform": 7,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 11
+  },
+  "2010": {
+   "n": 12,
+   "uniform": 7,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 12
+  },
+  "2011": {
+   "n": 12,
+   "uniform": 9,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 11
+  },
+  "2012": {
+   "n": 12,
+   "uniform": 9,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 10
+  },
+  "2013": {
+   "n": 12,
+   "uniform": 10,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 10
+  },
+  "2014": {
+   "n": 12,
+   "uniform": 9,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 10
+  },
+  "2015": {
+   "n": 12,
+   "uniform": 7,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 9
+  },
+  "2016": {
+   "n": 12,
+   "uniform": 11,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 9
+  },
+  "2017": {
+   "n": 12,
+   "uniform": 12,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 9
+  },
+  "2018": {
+   "n": 12,
+   "uniform": 9,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 11
+  },
+  "2019": {
+   "n": 12,
+   "uniform": 11,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 11
+  },
+  "2020": {
+   "n": 12,
+   "uniform": 10,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 9
+  },
+  "2021": {
+   "n": 12,
+   "uniform": 8,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 12
+  },
+  "2022": {
+   "n": 12,
+   "uniform": 7,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 11
+  },
+  "2023": {
+   "n": 12,
+   "uniform": 11,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 9
+  },
+  "2024": {
+   "n": 12,
+   "uniform": 10,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 10
+  },
+  "2025": {
+   "n": 12,
+   "uniform": 8,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 9
+  },
+  "2026": {
+   "n": 12,
+   "uniform": 9,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 10
+  },
+  "2027": {
+   "n": 12,
+   "uniform": 11,
+   "cclass": 12,
+   "empty": 0,
+   "multi": 10
+  }
+ },
+ "sampled": [
+  {
+   "season": "2002",
+   "sport": "021",
+   "cid": 81049,
+   "rows": 2,
+   "seasons_linked": [
+    "2002",
+    "2003"
+   ],
+   "cids_linked": [
+    81049,
+    91422
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "06577",
+   "name": "HASSATO DOUKOURE"
+  },
+  {
+   "season": "2002",
+   "sport": "021",
+   "cid": 381415,
+   "rows": 2,
+   "seasons_linked": [
+    "2001",
+    "2002"
+   ],
+   "cids_linked": [
+    367390,
+    381415
+   ],
+   "uniform": "9 ",
+   "cclass": "12",
+   "school": "22527",
+   "name": "SEMONE MORRIS"
+  },
+  {
+   "season": "2002",
+   "sport": "021",
+   "cid": 121571,
+   "rows": 3,
+   "seasons_linked": [
+    "2001",
+    "2002",
+    "2003"
+   ],
+   "cids_linked": [
+    117948,
+    121571,
+    123033
+   ],
+   "uniform": "17",
+   "cclass": "12",
+   "school": "03300",
+   "name": "NORA NEUSTADT"
+  },
+  {
+   "season": "2002",
+   "sport": "021",
+   "cid": 81000,
+   "rows": 2,
+   "seasons_linked": [
+    "2002",
+    "2003"
+   ],
+   "cids_linked": [
+    81000,
+    91611
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "06577",
+   "name": "SUSANA AVILES"
+  },
+  {
+   "season": "2002",
+   "sport": "021",
+   "cid": 213701,
+   "rows": 2,
+   "seasons_linked": [
+    "2002",
+    "2003"
+   ],
+   "cids_linked": [
+    213701,
+    230297
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "13507",
+   "name": "NARINE GALOYAN"
+  },
+  {
+   "season": "2002",
+   "sport": "021",
+   "cid": 476330,
+   "rows": 4,
+   "seasons_linked": [
+    "2001",
+    "2002",
+    "2003",
+    "2004"
+   ],
+   "cids_linked": [
+    476010,
+    476330,
+    476585,
+    479336
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "24750",
+   "name": "VANESSA ALMONTE"
+  },
+  {
+   "season": "2002",
+   "sport": "012",
+   "cid": 299140,
+   "rows": 1,
+   "seasons_linked": [
+    "2002"
+   ],
+   "cids_linked": [
+    299140
+   ],
+   "uniform": "  ",
+   "cclass": "09",
+   "school": "11507",
+   "name": "ALRICK THOMAS"
+  },
+  {
+   "season": "2002",
+   "sport": "012",
+   "cid": 295711,
+   "rows": 1,
+   "seasons_linked": [
+    "2002"
+   ],
+   "cids_linked": [
+    295711
+   ],
+   "uniform": "7 ",
+   "cclass": "10",
+   "school": "19543",
+   "name": "STANLEY ESPINAL"
+  },
+  {
+   "season": "2002",
+   "sport": "021",
+   "cid": 213905,
+   "rows": 2,
+   "seasons_linked": [
+    "2001",
+    "2002"
+   ],
+   "cids_linked": [
+    198645,
+    213905
+   ],
+   "uniform": "7 ",
+   "cclass": "12",
+   "school": "13507",
+   "name": "ANGELA WORKOFF"
+  },
+  {
+   "season": "2002",
+   "sport": "021",
+   "cid": 136633,
+   "rows": 1,
+   "seasons_linked": [
+    "2002"
+   ],
+   "cids_linked": [
+    136633
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "02816",
+   "name": "KATE SCHWED"
+  },
+  {
+   "season": "2002",
+   "sport": "021",
+   "cid": 582177,
+   "rows": 1,
+   "seasons_linked": [
+    "2002"
+   ],
+   "cids_linked": [
+    582177
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "31505",
+   "name": "AMINA ATTOH"
+  },
+  {
+   "season": "2002",
+   "sport": "021",
+   "cid": 543738,
+   "rows": 2,
+   "seasons_linked": [
+    "2002",
+    "2003"
+   ],
+   "cids_linked": [
+    543738,
+    549676
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "25509",
+   "name": "NATALIE BRAVO"
+  },
+  {
+   "season": "2003",
+   "sport": "021",
+   "cid": 651490,
+   "rows": 3,
+   "seasons_linked": [
+    "2003",
+    "2004",
+    "2005"
+   ],
+   "cids_linked": [
+    651490,
+    667072,
+    677176
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "31501",
+   "name": "TABITHA TURCHIO"
+  },
+  {
+   "season": "2003",
+   "sport": "012",
+   "cid": 278396,
+   "rows": 2,
+   "seasons_linked": [
+    "2002",
+    "2003"
+   ],
+   "cids_linked": [
+    267858,
+    278396
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "18563",
+   "name": "DARRON KENNEDY"
+  },
+  {
+   "season": "2003",
+   "sport": "012",
+   "cid": 122420,
+   "rows": 4,
+   "seasons_linked": [
+    "2003",
+    "2004",
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    122420,
+    126347,
+    133558,
+    141234
+   ],
+   "uniform": "19",
+   "cclass": "12",
+   "school": "03300",
+   "name": "LUCAS NEUSTADT"
+  },
+  {
+   "season": "2003",
+   "sport": "012",
+   "cid": 638417,
+   "rows": 3,
+   "seasons_linked": [
+    "2003",
+    "2004",
+    "2005"
+   ],
+   "cids_linked": [
+    638417,
+    646207,
+    661613
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "27519",
+   "name": "LEE NG DUPRES"
+  },
+  {
+   "season": "2003",
+   "sport": "012",
+   "cid": 416870,
+   "rows": 4,
+   "seasons_linked": [
+    "2003",
+    "2004",
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    251739,
+    416870,
+    424825,
+    434211
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "19551",
+   "name": "MUSTAFI RAHMAN"
+  },
+  {
+   "season": "2003",
+   "sport": "012",
+   "cid": 193655,
+   "rows": 4,
+   "seasons_linked": [
+    "2003",
+    "2004",
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    66503,
+    85204,
+    101910,
+    193655
+   ],
+   "uniform": "9 ",
+   "cclass": "12",
+   "school": "10501",
+   "name": "VALERIY MATSIBORCHUK"
+  },
+  {
+   "season": "2003",
+   "sport": "012",
+   "cid": 122315,
+   "rows": 1,
+   "seasons_linked": [
+    "2003"
+   ],
+   "cids_linked": [
+    122315
+   ],
+   "uniform": "24",
+   "cclass": "09",
+   "school": "03300",
+   "name": "LUCAS ABOLAFIA"
+  },
+  {
+   "season": "2003",
+   "sport": "021",
+   "cid": 122923,
+   "rows": 3,
+   "seasons_linked": [
+    "2002",
+    "2003",
+    "2004"
+   ],
+   "cids_linked": [
+    121544,
+    122923,
+    127988
+   ],
+   "uniform": "18",
+   "cclass": "11",
+   "school": "03300",
+   "name": "OLIVIA MARDWIG"
+  },
+  {
+   "season": "2003",
+   "sport": "021",
+   "cid": 698804,
+   "rows": 3,
+   "seasons_linked": [
+    "2001",
+    "2002",
+    "2003"
+   ],
+   "cids_linked": [
+    663245,
+    668929,
+    698804
+   ],
+   "uniform": "4 ",
+   "cclass": "12",
+   "school": "31511",
+   "name": "KAITLIN BELLO"
+  },
+  {
+   "season": "2003",
+   "sport": "021",
+   "cid": 491952,
+   "rows": 1,
+   "seasons_linked": [
+    "2003"
+   ],
+   "cids_linked": [
+    491952
+   ],
+   "uniform": "25",
+   "cclass": "09",
+   "school": "22533",
+   "name": "PAMELA COHEN"
+  },
+  {
+   "season": "2003",
+   "sport": "021",
+   "cid": 376503,
+   "rows": 3,
+   "seasons_linked": [
+    "2002",
+    "2003",
+    "2004"
+   ],
+   "cids_linked": [
+    367574,
+    376503,
+    387429
+   ],
+   "uniform": "12",
+   "cclass": "12",
+   "school": "22541",
+   "name": "KATHERI PLUMMER"
+  },
+  {
+   "season": "2003",
+   "sport": "012",
+   "cid": 59013,
+   "rows": 2,
+   "seasons_linked": [
+    "2002",
+    "2003"
+   ],
+   "cids_linked": [
+    53729,
+    59013
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "02465",
+   "name": "YANNICK JAMES"
+  },
+  {
+   "season": "2004",
+   "sport": "021",
+   "cid": 291518,
+   "rows": 2,
+   "seasons_linked": [
+    "2003",
+    "2004"
+   ],
+   "cids_linked": [
+    279381,
+    291518
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "18563",
+   "name": "FLORENT GREEN"
+  },
+  {
+   "season": "2004",
+   "sport": "012",
+   "cid": 577919,
+   "rows": 1,
+   "seasons_linked": [
+    "2004"
+   ],
+   "cids_linked": [
+    577919
+   ],
+   "uniform": "14",
+   "cclass": "09",
+   "school": "30533",
+   "name": "RICHARD GUAMAN"
+  },
+  {
+   "season": "2004",
+   "sport": "012",
+   "cid": 646371,
+   "rows": 4,
+   "seasons_linked": [
+    "2004",
+    "2005",
+    "2006",
+    "2007"
+   ],
+   "cids_linked": [
+    446218,
+    461308,
+    646371,
+    661582
+   ],
+   "uniform": "23",
+   "cclass": "12",
+   "school": "27519",
+   "name": "FERNAND RUBALLO"
+  },
+  {
+   "season": "2004",
+   "sport": "021",
+   "cid": 455417,
+   "rows": 3,
+   "seasons_linked": [
+    "2004",
+    "2006",
+    "2007"
+   ],
+   "cids_linked": [
+    455417,
+    460510,
+    470429
+   ],
+   "uniform": "11",
+   "cclass": "12",
+   "school": "24527",
+   "name": "KAREN LLANOS"
+  },
+  {
+   "season": "2004",
+   "sport": "021",
+   "cid": 580255,
+   "rows": 1,
+   "seasons_linked": [
+    "2004"
+   ],
+   "cids_linked": [
+    580255
+   ],
+   "uniform": "23",
+   "cclass": "12",
+   "school": "30533",
+   "name": "ELZBIET DUMA"
+  },
+  {
+   "season": "2004",
+   "sport": "021",
+   "cid": 369772,
+   "rows": 2,
+   "seasons_linked": [
+    "2003",
+    "2004"
+   ],
+   "cids_linked": [
+    364331,
+    369772
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "18511",
+   "name": "JHENELL MITCHELL"
+  },
+  {
+   "season": "2004",
+   "sport": "021",
+   "cid": 437076,
+   "rows": 2,
+   "seasons_linked": [
+    "2003",
+    "2004"
+   ],
+   "cids_linked": [
+    433019,
+    437076
+   ],
+   "uniform": "6 ",
+   "cclass": "12",
+   "school": "22350",
+   "name": "SHADAY ELLIS"
+  },
+  {
+   "season": "2004",
+   "sport": "012",
+   "cid": 240771,
+   "rows": 4,
+   "seasons_linked": [
+    "2002",
+    "2003",
+    "2004",
+    "2005"
+   ],
+   "cids_linked": [
+    209900,
+    228030,
+    240771,
+    259408
+   ],
+   "uniform": "5 ",
+   "cclass": "12",
+   "school": "13507",
+   "name": "GEORGE MCCUMISKEY"
+  },
+  {
+   "season": "2004",
+   "sport": "021",
+   "cid": 379270,
+   "rows": 2,
+   "seasons_linked": [
+    "2004",
+    "2005"
+   ],
+   "cids_linked": [
+    379270,
+    391572
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "18539",
+   "name": "YANNIC LOUIS"
+  },
+  {
+   "season": "2004",
+   "sport": "012",
+   "cid": 27009,
+   "rows": 3,
+   "seasons_linked": [
+    "2002",
+    "2003",
+    "2004"
+   ],
+   "cids_linked": [
+    24908,
+    26161,
+    27009
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "03548",
+   "name": "IBRAHIM FADIGA"
+  },
+  {
+   "season": "2004",
+   "sport": "021",
+   "cid": 105185,
+   "rows": 3,
+   "seasons_linked": [
+    "2004",
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    105185,
+    116331,
+    130199
+   ],
+   "uniform": "72",
+   "cclass": "12",
+   "school": "06577",
+   "name": "SHERICA THOMAS"
+  },
+  {
+   "season": "2004",
+   "sport": "012",
+   "cid": 84206,
+   "rows": 2,
+   "seasons_linked": [
+    "2003",
+    "2004"
+   ],
+   "cids_linked": [
+    81007,
+    84206
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "02875",
+   "name": "NANA DANSO"
+  },
+  {
+   "season": "2005",
+   "sport": "012",
+   "cid": 77856,
+   "rows": 3,
+   "seasons_linked": [
+    "2003",
+    "2004",
+    "2005"
+   ],
+   "cids_linked": [
+    63021,
+    69122,
+    77856
+   ],
+   "uniform": "6 ",
+   "cclass": "12",
+   "school": "02380",
+   "name": "JOSHUA PENA"
+  },
+  {
+   "season": "2005",
+   "sport": "012",
+   "cid": 53701,
+   "rows": 1,
+   "seasons_linked": [
+    "2005"
+   ],
+   "cids_linked": [
+    53701
+   ],
+   "uniform": "21",
+   "cclass": "10",
+   "school": "02519",
+   "name": "STANISL NIKOLOV"
+  },
+  {
+   "season": "2005",
+   "sport": "012",
+   "cid": 295281,
+   "rows": 2,
+   "seasons_linked": [
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    295281,
+    300118
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "14553",
+   "name": "JASON PARRIS"
+  },
+  {
+   "season": "2005",
+   "sport": "021",
+   "cid": 694429,
+   "rows": 2,
+   "seasons_linked": [
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    694429,
+    697792
+   ],
+   "uniform": "4 ",
+   "cclass": "10",
+   "school": "31507",
+   "name": "JESSICA SORANNO"
+  },
+  {
+   "season": "2005",
+   "sport": "012",
+   "cid": 345717,
+   "rows": 3,
+   "seasons_linked": [
+    "2004",
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    344690,
+    345717,
+    346847
+   ],
+   "uniform": "2 ",
+   "cclass": "12",
+   "school": "13566",
+   "name": "MOHAMED SAKO"
+  },
+  {
+   "season": "2005",
+   "sport": "021",
+   "cid": 155379,
+   "rows": 1,
+   "seasons_linked": [
+    "2005"
+   ],
+   "cids_linked": [
+    155379
+   ],
+   "uniform": "  ",
+   "cclass": "09",
+   "school": "08527",
+   "name": "KAREN ROCHEZ"
+  },
+  {
+   "season": "2005",
+   "sport": "012",
+   "cid": 34799,
+   "rows": 3,
+   "seasons_linked": [
+    "2004",
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    32250,
+    34799,
+    36876
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "02531",
+   "name": "LUIS RUIZ QUINTER"
+  },
+  {
+   "season": "2005",
+   "sport": "021",
+   "cid": 528269,
+   "rows": 4,
+   "seasons_linked": [
+    "2003",
+    "2004",
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    504002,
+    514166,
+    528269,
+    534379
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "27507",
+   "name": "FAYON MALCOLM"
+  },
+  {
+   "season": "2005",
+   "sport": "012",
+   "cid": 596112,
+   "rows": 2,
+   "seasons_linked": [
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    596112,
+    602815
+   ],
+   "uniform": "22",
+   "cclass": "12",
+   "school": "27521",
+   "name": "EDWIN LOPEZ"
+  },
+  {
+   "season": "2005",
+   "sport": "012",
+   "cid": 439654,
+   "rows": 1,
+   "seasons_linked": [
+    "2005"
+   ],
+   "cids_linked": [
+    439654
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "22350",
+   "name": "JOE CEPEDA"
+  },
+  {
+   "season": "2005",
+   "sport": "012",
+   "cid": 573997,
+   "rows": 3,
+   "seasons_linked": [
+    "2003",
+    "2004",
+    "2005"
+   ],
+   "cids_linked": [
+    560983,
+    573997,
+    702657
+   ],
+   "uniform": "11",
+   "cclass": "12",
+   "school": "31503",
+   "name": "KOSTAS BESSAS"
+  },
+  {
+   "season": "2005",
+   "sport": "021",
+   "cid": 136836,
+   "rows": 4,
+   "seasons_linked": [
+    "2003",
+    "2004",
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    134638,
+    135974,
+    136836,
+    137444
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "05469",
+   "name": "SONTELL WEAVER"
+  },
+  {
+   "season": "2006",
+   "sport": "021",
+   "cid": 558634,
+   "rows": 1,
+   "seasons_linked": [
+    "2006"
+   ],
+   "cids_linked": [
+    558634
+   ],
+   "uniform": "24",
+   "cclass": "12",
+   "school": "27529",
+   "name": "SIMPLE BINDRA"
+  },
+  {
+   "season": "2006",
+   "sport": "012",
+   "cid": 222776,
+   "rows": 4,
+   "seasons_linked": [
+    "2005",
+    "2006",
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    205867,
+    222776,
+    237110,
+    252790
+   ],
+   "uniform": "1 ",
+   "cclass": "12",
+   "school": "08524",
+   "name": "SHELDON PARKINSON"
+  },
+  {
+   "season": "2006",
+   "sport": "012",
+   "cid": 655151,
+   "rows": 4,
+   "seasons_linked": [
+    "2005",
+    "2006",
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    648883,
+    655151,
+    663538,
+    667371
+   ],
+   "uniform": "8 ",
+   "cclass": "12",
+   "school": "31470",
+   "name": "MATTHEW CARTUSCIELLO"
+  },
+  {
+   "season": "2006",
+   "sport": "012",
+   "cid": 297258,
+   "rows": 4,
+   "seasons_linked": [
+    "2003",
+    "2004",
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    284408,
+    289172,
+    293245,
+    297258
+   ],
+   "uniform": "12",
+   "cclass": "12",
+   "school": "13555",
+   "name": "REPTON ABRAHAMS"
+  },
+  {
+   "season": "2006",
+   "sport": "021",
+   "cid": 179281,
+   "rows": 4,
+   "seasons_linked": [
+    "2004",
+    "2005",
+    "2006",
+    "2007"
+   ],
+   "cids_linked": [
+    11906,
+    155010,
+    165229,
+    179281
+   ],
+   "uniform": "15",
+   "cclass": "12",
+   "school": "02816",
+   "name": "SARA LISS"
+  },
+  {
+   "season": "2006",
+   "sport": "012",
+   "cid": 360501,
+   "rows": 3,
+   "seasons_linked": [
+    "2006",
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    360501,
+    374380,
+    387390
+   ],
+   "uniform": "7 ",
+   "cclass": "12",
+   "school": "21501",
+   "name": "VLAD DUNDA"
+  },
+  {
+   "season": "2006",
+   "sport": "012",
+   "cid": 612863,
+   "rows": 1,
+   "seasons_linked": [
+    "2006"
+   ],
+   "cids_linked": [
+    612863
+   ],
+   "uniform": "6 ",
+   "cclass": "10",
+   "school": "30500",
+   "name": "ALEJAND RAMOS"
+  },
+  {
+   "season": "2006",
+   "sport": "012",
+   "cid": 2286,
+   "rows": 4,
+   "seasons_linked": [
+    "2006",
+    "2007",
+    "2008",
+    "2009"
+   ],
+   "cids_linked": [
+    2286,
+    2378,
+    2498,
+    2617
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "01569",
+   "name": "NICHOLAS STEWART"
+  },
+  {
+   "season": "2006",
+   "sport": "021",
+   "cid": 227536,
+   "rows": 2,
+   "seasons_linked": [
+    "2005",
+    "2006"
+   ],
+   "cids_linked": [
+    221923,
+    227536
+   ],
+   "uniform": "5 ",
+   "cclass": "10",
+   "school": "17537",
+   "name": "KESHIA BIYOGHE"
+  },
+  {
+   "season": "2006",
+   "sport": "012",
+   "cid": 102001,
+   "rows": 4,
+   "seasons_linked": [
+    "2006",
+    "2007",
+    "2008",
+    "2009"
+   ],
+   "cids_linked": [
+    102001,
+    120376,
+    141869,
+    162302
+   ],
+   "uniform": "27",
+   "cclass": "12",
+   "school": "10501",
+   "name": "ROBERT LUKAUSKAS"
+  },
+  {
+   "season": "2006",
+   "sport": "012",
+   "cid": 575647,
+   "rows": 4,
+   "seasons_linked": [
+    "2005",
+    "2006",
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    565636,
+    575647,
+    583222,
+    592344
+   ],
+   "uniform": "2 ",
+   "cclass": "12",
+   "school": "26515",
+   "name": "PANAGIOTIS SERRIS"
+  },
+  {
+   "season": "2006",
+   "sport": "021",
+   "cid": 203834,
+   "rows": 1,
+   "seasons_linked": [
+    "2006"
+   ],
+   "cids_linked": [
+    203834
+   ],
+   "uniform": "9 ",
+   "cclass": "10",
+   "school": "10505",
+   "name": "SULEIMA CARINO"
+  },
+  {
+   "season": "2007",
+   "sport": "012",
+   "cid": 336847,
+   "rows": 2,
+   "seasons_linked": [
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    336847,
+    345681
+   ],
+   "uniform": "00",
+   "cclass": "11",
+   "school": "19543",
+   "name": "CARLOS WHYTE"
+  },
+  {
+   "season": "2007",
+   "sport": "012",
+   "cid": 480009,
+   "rows": 3,
+   "seasons_linked": [
+    "2007",
+    "2008",
+    "2009"
+   ],
+   "cids_linked": [
+    480009,
+    491226,
+    504905
+   ],
+   "uniform": "23",
+   "cclass": "12",
+   "school": "24515",
+   "name": "OSCAR LOPEZ"
+  },
+  {
+   "season": "2007",
+   "sport": "012",
+   "cid": 658572,
+   "rows": 2,
+   "seasons_linked": [
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    658572,
+    688962
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "31505",
+   "name": "MICHAEL SCALERA"
+  },
+  {
+   "season": "2007",
+   "sport": "021",
+   "cid": 603262,
+   "rows": 4,
+   "seasons_linked": [
+    "2004",
+    "2005",
+    "2006",
+    "2007"
+   ],
+   "cids_linked": [
+    562563,
+    576080,
+    591053,
+    603262
+   ],
+   "uniform": "9 ",
+   "cclass": "12",
+   "school": "31503",
+   "name": "EDIATU KARGBO"
+  },
+  {
+   "season": "2007",
+   "sport": "021",
+   "cid": 471058,
+   "rows": 1,
+   "seasons_linked": [
+    "2007"
+   ],
+   "cids_linked": [
+    471058
+   ],
+   "uniform": "19",
+   "cclass": "12",
+   "school": "28511",
+   "name": "HASTRI ZAMBRANO"
+  },
+  {
+   "season": "2007",
+   "sport": "012",
+   "cid": 82377,
+   "rows": 2,
+   "seasons_linked": [
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    82377,
+    89356
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "07519",
+   "name": "ELVIS RAMIREZ"
+  },
+  {
+   "season": "2007",
+   "sport": "021",
+   "cid": 239806,
+   "rows": 2,
+   "seasons_linked": [
+    "2007",
+    "2009"
+   ],
+   "cids_linked": [
+    54497,
+    239806
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "08524",
+   "name": "KATHERINE ORTEGA"
+  },
+  {
+   "season": "2007",
+   "sport": "012",
+   "cid": 304254,
+   "rows": 1,
+   "seasons_linked": [
+    "2007"
+   ],
+   "cids_linked": [
+    304254
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "13555",
+   "name": "ODANE WRIGHT"
+  },
+  {
+   "season": "2007",
+   "sport": "012",
+   "cid": 369491,
+   "rows": 1,
+   "seasons_linked": [
+    "2007"
+   ],
+   "cids_linked": [
+    369491
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "17450",
+   "name": "MONTGOM HAREWOOD"
+  },
+  {
+   "season": "2007",
+   "sport": "021",
+   "cid": 360546,
+   "rows": 2,
+   "seasons_linked": [
+    "2006",
+    "2007"
+   ],
+   "cids_linked": [
+    350758,
+    360546
+   ],
+   "uniform": "6 ",
+   "cclass": "11",
+   "school": "20535",
+   "name": "CRYSTAL TALAVERA"
+  },
+  {
+   "season": "2007",
+   "sport": "012",
+   "cid": 268110,
+   "rows": 1,
+   "seasons_linked": [
+    "2007"
+   ],
+   "cids_linked": [
+    268110
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "11503",
+   "name": "FOSTER GYAMERA"
+  },
+  {
+   "season": "2007",
+   "sport": "012",
+   "cid": 601611,
+   "rows": 3,
+   "seasons_linked": [
+    "2006",
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    588431,
+    601611,
+    613523
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "31503",
+   "name": "ALBAN ZEKAJ"
+  },
+  {
+   "season": "2008",
+   "sport": "012",
+   "cid": 688956,
+   "rows": 4,
+   "seasons_linked": [
+    "2006",
+    "2007",
+    "2008",
+    "2009"
+   ],
+   "cids_linked": [
+    588744,
+    601256,
+    688956,
+    690468
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "31505",
+   "name": "GEORGE TADRES"
+  },
+  {
+   "season": "2008",
+   "sport": "012",
+   "cid": 81190,
+   "rows": 4,
+   "seasons_linked": [
+    "2007",
+    "2008",
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    77256,
+    81190,
+    86518,
+    91476
+   ],
+   "uniform": "20",
+   "cclass": "12",
+   "school": "02538",
+   "name": "GERARDO GUZMAN SILVA"
+  },
+  {
+   "season": "2008",
+   "sport": "012",
+   "cid": 152244,
+   "rows": 2,
+   "seasons_linked": [
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    140157,
+    152244
+   ],
+   "uniform": "2 ",
+   "cclass": "12",
+   "school": "06577",
+   "name": "CARLOS BRAVO"
+  },
+  {
+   "season": "2008",
+   "sport": "012",
+   "cid": 252774,
+   "rows": 4,
+   "seasons_linked": [
+    "2006",
+    "2007",
+    "2008",
+    "2009"
+   ],
+   "cids_linked": [
+    52959,
+    222674,
+    237042,
+    252774
+   ],
+   "uniform": "16",
+   "cclass": "12",
+   "school": "08524",
+   "name": "EGRIS HAXHARI"
+  },
+  {
+   "season": "2008",
+   "sport": "021",
+   "cid": 390590,
+   "rows": 2,
+   "seasons_linked": [
+    "2008",
+    "2010"
+   ],
+   "cids_linked": [
+    390590,
+    418267
+   ],
+   "uniform": "15",
+   "cclass": "12",
+   "school": "21501",
+   "name": "GOLDEN BRI HODGES"
+  },
+  {
+   "season": "2008",
+   "sport": "012",
+   "cid": 252763,
+   "rows": 3,
+   "seasons_linked": [
+    "2006",
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    222647,
+    237176,
+    252763
+   ],
+   "uniform": "14",
+   "cclass": "12",
+   "school": "08524",
+   "name": "ELMIS OMARI"
+  },
+  {
+   "season": "2008",
+   "sport": "012",
+   "cid": 703718,
+   "rows": 2,
+   "seasons_linked": [
+    "2007",
+    "2008"
+   ],
+   "cids_linked": [
+    694472,
+    703718
+   ],
+   "uniform": "15",
+   "cclass": "12",
+   "school": "31509",
+   "name": "MINA SELIMAN"
+  },
+  {
+   "season": "2008",
+   "sport": "021",
+   "cid": 353951,
+   "rows": 3,
+   "seasons_linked": [
+    "2008",
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    205944,
+    353951,
+    366207
+   ],
+   "uniform": "9 ",
+   "cclass": "11",
+   "school": "16502",
+   "name": "BLESSING ADUWARE"
+  },
+  {
+   "season": "2008",
+   "sport": "012",
+   "cid": 141850,
+   "rows": 4,
+   "seasons_linked": [
+    "2008",
+    "2009",
+    "2010",
+    "2011"
+   ],
+   "cids_linked": [
+    141850,
+    162203,
+    180896,
+    197645
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "10501",
+   "name": "ERIC LABOURDETTE"
+  },
+  {
+   "season": "2008",
+   "sport": "012",
+   "cid": 32683,
+   "rows": 4,
+   "seasons_linked": [
+    "2006",
+    "2007",
+    "2008",
+    "2009"
+   ],
+   "cids_linked": [
+    21881,
+    24898,
+    32683,
+    36355
+   ],
+   "uniform": "9 ",
+   "cclass": "12",
+   "school": "02582",
+   "name": "ROSMEL HERNANDEZ"
+  },
+  {
+   "season": "2008",
+   "sport": "012",
+   "cid": 2505,
+   "rows": 3,
+   "seasons_linked": [
+    "2008",
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    2505,
+    2630,
+    2764
+   ],
+   "uniform": "6 ",
+   "cclass": "12",
+   "school": "01569",
+   "name": "GABRIEL HERRERA"
+  },
+  {
+   "season": "2008",
+   "sport": "012",
+   "cid": 491163,
+   "rows": 1,
+   "seasons_linked": [
+    "2008"
+   ],
+   "cids_linked": [
+    491163
+   ],
+   "uniform": "21",
+   "cclass": "12",
+   "school": "24515",
+   "name": "LUIS CALLE"
+  },
+  {
+   "season": "2009",
+   "sport": "012",
+   "cid": 248134,
+   "rows": 2,
+   "seasons_linked": [
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    248134,
+    253364
+   ],
+   "uniform": "23",
+   "cclass": "10",
+   "school": "17537",
+   "name": "DAVIDSON SMITH"
+  },
+  {
+   "season": "2009",
+   "sport": "021",
+   "cid": 586686,
+   "rows": 3,
+   "seasons_linked": [
+    "2006",
+    "2007",
+    "2009"
+   ],
+   "cids_linked": [
+    558447,
+    569068,
+    586686
+   ],
+   "uniform": "23",
+   "cclass": "12",
+   "school": "27529",
+   "name": "HAIDY ALVAREZ"
+  },
+  {
+   "season": "2009",
+   "sport": "021",
+   "cid": 552581,
+   "rows": 4,
+   "seasons_linked": [
+    "2007",
+    "2008",
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    529414,
+    542821,
+    552581,
+    565545
+   ],
+   "uniform": "13",
+   "cclass": "12",
+   "school": "28541",
+   "name": "JENNIFER ANDUJAR"
+  },
+  {
+   "season": "2009",
+   "sport": "012",
+   "cid": 67187,
+   "rows": 2,
+   "seasons_linked": [
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    67187,
+    68914
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "02589",
+   "name": "DYLAN MUSLER"
+  },
+  {
+   "season": "2009",
+   "sport": "012",
+   "cid": 541782,
+   "rows": 2,
+   "seasons_linked": [
+    "2008",
+    "2009"
+   ],
+   "cids_linked": [
+    529303,
+    541782
+   ],
+   "uniform": "7 ",
+   "cclass": "12",
+   "school": "22527",
+   "name": "SERGIO PADILLA"
+  },
+  {
+   "season": "2009",
+   "sport": "012",
+   "cid": 446367,
+   "rows": 2,
+   "seasons_linked": [
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    266033,
+    446367
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "20517",
+   "name": "MOHAMED ABDO"
+  },
+  {
+   "season": "2009",
+   "sport": "021",
+   "cid": 674226,
+   "rows": 4,
+   "seasons_linked": [
+    "2009",
+    "2010",
+    "2011",
+    "2012"
+   ],
+   "cids_linked": [
+    553382,
+    566282,
+    577389,
+    674226
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "31470",
+   "name": "NATASHIA SHIELDS"
+  },
+  {
+   "season": "2009",
+   "sport": "021",
+   "cid": 175943,
+   "rows": 3,
+   "seasons_linked": [
+    "2008",
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    171487,
+    175943,
+    180513
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "08527",
+   "name": "GUADALUPE CASTILLO"
+  },
+  {
+   "season": "2009",
+   "sport": "012",
+   "cid": 455356,
+   "rows": 4,
+   "seasons_linked": [
+    "2006",
+    "2007",
+    "2008",
+    "2009"
+   ],
+   "cids_linked": [
+    410865,
+    422837,
+    441908,
+    455356
+   ],
+   "uniform": "0 ",
+   "cclass": "12",
+   "school": "22541",
+   "name": "AMANFO ASSIBU"
+  },
+  {
+   "season": "2009",
+   "sport": "012",
+   "cid": 493630,
+   "rows": 1,
+   "seasons_linked": [
+    "2009"
+   ],
+   "cids_linked": [
+    493630
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "24527",
+   "name": "EDWIN LLIVIGANAY"
+  },
+  {
+   "season": "2009",
+   "sport": "012",
+   "cid": 90364,
+   "rows": 3,
+   "seasons_linked": [
+    "2008",
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    86009,
+    90364,
+    95144
+   ],
+   "uniform": "21",
+   "cclass": "11",
+   "school": "02465",
+   "name": "JACKSON MCGONAGLE"
+  },
+  {
+   "season": "2009",
+   "sport": "012",
+   "cid": 660798,
+   "rows": 3,
+   "seasons_linked": [
+    "2007",
+    "2008",
+    "2009"
+   ],
+   "cids_linked": [
+    627944,
+    646911,
+    660798
+   ],
+   "uniform": "5 ",
+   "cclass": "12",
+   "school": "31511",
+   "name": "LUKASZ POSKROBKO"
+  },
+  {
+   "season": "2010",
+   "sport": "021",
+   "cid": 55415,
+   "rows": 4,
+   "seasons_linked": [
+    "2008",
+    "2009",
+    "2010",
+    "2011"
+   ],
+   "cids_linked": [
+    52435,
+    54433,
+    55415,
+    55957
+   ],
+   "uniform": "25",
+   "cclass": "12",
+   "school": "05692",
+   "name": "RIKA IMAI"
+  },
+  {
+   "season": "2010",
+   "sport": "012",
+   "cid": 221698,
+   "rows": 4,
+   "seasons_linked": [
+    "2008",
+    "2009",
+    "2010",
+    "2011"
+   ],
+   "cids_linked": [
+    196186,
+    206945,
+    221698,
+    227867
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "05499",
+   "name": "JAHMAAL GALLIMORE"
+  },
+  {
+   "season": "2010",
+   "sport": "021",
+   "cid": 396355,
+   "rows": 3,
+   "seasons_linked": [
+    "2008",
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    374199,
+    383828,
+    396355
+   ],
+   "uniform": "14",
+   "cclass": "12",
+   "school": "20535",
+   "name": "KIMBERLY RODRIGUEZ"
+  },
+  {
+   "season": "2010",
+   "sport": "021",
+   "cid": 173357,
+   "rows": 3,
+   "seasons_linked": [
+    "2008",
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    154435,
+    163068,
+    173357
+   ],
+   "uniform": "0 ",
+   "cclass": "12",
+   "school": "06507",
+   "name": "DELIA SANCHEZ"
+  },
+  {
+   "season": "2010",
+   "sport": "012",
+   "cid": 331976,
+   "rows": 3,
+   "seasons_linked": [
+    "2010",
+    "2011",
+    "2012"
+   ],
+   "cids_linked": [
+    331976,
+    337503,
+    346880
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "14547",
+   "name": "MARIO CASTELLANO"
+  },
+  {
+   "season": "2010",
+   "sport": "012",
+   "cid": 403729,
+   "rows": 2,
+   "seasons_linked": [
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    403729,
+    538137
+   ],
+   "uniform": "9 ",
+   "cclass": "12",
+   "school": "26525",
+   "name": "ANTWAYNE MUIR"
+  },
+  {
+   "season": "2010",
+   "sport": "012",
+   "cid": 86287,
+   "rows": 3,
+   "seasons_linked": [
+    "2009",
+    "2010",
+    "2011"
+   ],
+   "cids_linked": [
+    85523,
+    86287,
+    200786
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "02522",
+   "name": "GORGE ANGUIANO"
+  },
+  {
+   "season": "2010",
+   "sport": "012",
+   "cid": 370536,
+   "rows": 3,
+   "seasons_linked": [
+    "2009",
+    "2010",
+    "2011"
+   ],
+   "cids_linked": [
+    180481,
+    366050,
+    370536
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "13483",
+   "name": "MATHEW PULASKI"
+  },
+  {
+   "season": "2010",
+   "sport": "012",
+   "cid": 395014,
+   "rows": 3,
+   "seasons_linked": [
+    "2009",
+    "2010",
+    "2011"
+   ],
+   "cids_linked": [
+    384416,
+    395014,
+    403399
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "21531",
+   "name": "MANUEL SCANTLEBURY"
+  },
+  {
+   "season": "2010",
+   "sport": "012",
+   "cid": 20733,
+   "rows": 2,
+   "seasons_linked": [
+    "2010",
+    "2011"
+   ],
+   "cids_linked": [
+    20733,
+    26635
+   ],
+   "uniform": "23",
+   "cclass": "12",
+   "school": "02816",
+   "name": "ZACH PIAKER"
+  },
+  {
+   "season": "2010",
+   "sport": "012",
+   "cid": 465834,
+   "rows": 4,
+   "seasons_linked": [
+    "2007",
+    "2008",
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    422810,
+    441747,
+    456881,
+    465834
+   ],
+   "uniform": "8 ",
+   "cclass": "12",
+   "school": "22541",
+   "name": "MOISE CHERY"
+  },
+  {
+   "season": "2010",
+   "sport": "021",
+   "cid": 346632,
+   "rows": 4,
+   "seasons_linked": [
+    "2007",
+    "2008",
+    "2009",
+    "2010"
+   ],
+   "cids_linked": [
+    293370,
+    313391,
+    327207,
+    346632
+   ],
+   "uniform": "4 ",
+   "cclass": "12",
+   "school": "13507",
+   "name": "NICHOLETTE CAMERON"
+  },
+  {
+   "season": "2011",
+   "sport": "021",
+   "cid": 632149,
+   "rows": 2,
+   "seasons_linked": [
+    "2011",
+    "2012"
+   ],
+   "cids_linked": [
+    632149,
+    636183
+   ],
+   "uniform": "11",
+   "cclass": "12",
+   "school": "30500",
+   "name": "AMANDA QUICHIMBO"
+  },
+  {
+   "season": "2011",
+   "sport": "012",
+   "cid": 117347,
+   "rows": 3,
+   "seasons_linked": [
+    "2011",
+    "2012",
+    "2013"
+   ],
+   "cids_linked": [
+    117347,
+    127310,
+    133838
+   ],
+   "uniform": "12",
+   "cclass": "12",
+   "school": "07519",
+   "name": "ELVIS ADDO"
+  },
+  {
+   "season": "2011",
+   "sport": "012",
+   "cid": 142082,
+   "rows": 3,
+   "seasons_linked": [
+    "2011",
+    "2012",
+    "2013"
+   ],
+   "cids_linked": [
+    142082,
+    146852,
+    150262
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "03515",
+   "name": "MARQUISS SAINTVAL"
+  },
+  {
+   "season": "2011",
+   "sport": "012",
+   "cid": 258766,
+   "rows": 1,
+   "seasons_linked": [
+    "2011"
+   ],
+   "cids_linked": [
+    258766
+   ],
+   "uniform": "4 ",
+   "cclass": "11",
+   "school": "17537",
+   "name": "LEROY HALL"
+  },
+  {
+   "season": "2011",
+   "sport": "021",
+   "cid": 200368,
+   "rows": 4,
+   "seasons_linked": [
+    "2011",
+    "2012",
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    69409,
+    200368,
+    215815,
+    236818
+   ],
+   "uniform": "11",
+   "cclass": "12",
+   "school": "10501",
+   "name": "CATHERINE FOY"
+  },
+  {
+   "season": "2011",
+   "sport": "012",
+   "cid": 102711,
+   "rows": 4,
+   "seasons_linked": [
+    "2009",
+    "2010",
+    "2011",
+    "2012"
+   ],
+   "cids_linked": [
+    90250,
+    95407,
+    102711,
+    108563
+   ],
+   "uniform": "23",
+   "cclass": "12",
+   "school": "02465",
+   "name": "AARON SCHOENFELDER"
+  },
+  {
+   "season": "2011",
+   "sport": "012",
+   "cid": 5707,
+   "rows": 3,
+   "seasons_linked": [
+    "2008",
+    "2009",
+    "2011"
+   ],
+   "cids_linked": [
+    4319,
+    4582,
+    5707
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "02380",
+   "name": "FAUSTO RODAS"
+  },
+  {
+   "season": "2011",
+   "sport": "012",
+   "cid": 49599,
+   "rows": 4,
+   "seasons_linked": [
+    "2009",
+    "2010",
+    "2011",
+    "2012"
+   ],
+   "cids_linked": [
+    23679,
+    36175,
+    49599,
+    59202
+   ],
+   "uniform": "1 ",
+   "cclass": "12",
+   "school": "03511",
+   "name": "ARON SILVERSTEIN"
+  },
+  {
+   "season": "2011",
+   "sport": "012",
+   "cid": 519951,
+   "rows": 2,
+   "seasons_linked": [
+    "2011",
+    "2012"
+   ],
+   "cids_linked": [
+    519951,
+    531445
+   ],
+   "uniform": "7 ",
+   "cclass": "11",
+   "school": "24527",
+   "name": "MICHAEL GOMEZ"
+  },
+  {
+   "season": "2011",
+   "sport": "021",
+   "cid": 407110,
+   "rows": 4,
+   "seasons_linked": [
+    "2011",
+    "2012",
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    270398,
+    284963,
+    407110,
+    432881
+   ],
+   "uniform": "12",
+   "cclass": "12",
+   "school": "20535",
+   "name": "FANEROMENI PAVLAKIS"
+  },
+  {
+   "season": "2011",
+   "sport": "012",
+   "cid": 532151,
+   "rows": 3,
+   "seasons_linked": [
+    "2010",
+    "2011",
+    "2012"
+   ],
+   "cids_linked": [
+    526862,
+    532151,
+    537409
+   ],
+   "uniform": "8 ",
+   "cclass": "12",
+   "school": "30301",
+   "name": "MAURICIO ROMAN"
+  },
+  {
+   "season": "2011",
+   "sport": "012",
+   "cid": 192611,
+   "rows": 4,
+   "seasons_linked": [
+    "2010",
+    "2011",
+    "2012",
+    "2013"
+   ],
+   "cids_linked": [
+    182523,
+    192611,
+    202760,
+    212622
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "10526",
+   "name": "MINGORO FANNY"
+  },
+  {
+   "season": "2012",
+   "sport": "012",
+   "cid": 429853,
+   "rows": 3,
+   "seasons_linked": [
+    "2011",
+    "2012",
+    "2013"
+   ],
+   "cids_linked": [
+    266852,
+    404279,
+    429853
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "20535",
+   "name": "OLEKSANDR BEREZNYAK"
+  },
+  {
+   "season": "2012",
+   "sport": "021",
+   "cid": 531142,
+   "rows": 1,
+   "seasons_linked": [
+    "2012"
+   ],
+   "cids_linked": [
+    531142
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "27519",
+   "name": "ANEL BONOLA"
+  },
+  {
+   "season": "2012",
+   "sport": "012",
+   "cid": 430270,
+   "rows": 2,
+   "seasons_linked": [
+    "2011",
+    "2012"
+   ],
+   "cids_linked": [
+    403879,
+    430270
+   ],
+   "uniform": "17",
+   "cclass": "12",
+   "school": "20535",
+   "name": "NICOLAS CHAMORRO"
+  },
+  {
+   "season": "2012",
+   "sport": "012",
+   "cid": 306390,
+   "rows": 2,
+   "seasons_linked": [
+    "2012",
+    "2013"
+   ],
+   "cids_linked": [
+    306390,
+    316075
+   ],
+   "uniform": "12",
+   "cclass": "12",
+   "school": "18511",
+   "name": "BARTHELEMY JEAN BAPTISTE"
+  },
+  {
+   "season": "2012",
+   "sport": "021",
+   "cid": 425763,
+   "rows": 3,
+   "seasons_linked": [
+    "2012",
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    425763,
+    440903,
+    450977
+   ],
+   "uniform": "1 ",
+   "cclass": "12",
+   "school": "25509",
+   "name": "ANGELIKA JEDANOWSKA"
+  },
+  {
+   "season": "2012",
+   "sport": "021",
+   "cid": 287035,
+   "rows": 3,
+   "seasons_linked": [
+    "2012",
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    287035,
+    294576,
+    306482
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "21506",
+   "name": "DAISY LLANGARI"
+  },
+  {
+   "season": "2012",
+   "sport": "012",
+   "cid": 257976,
+   "rows": 3,
+   "seasons_linked": [
+    "2012",
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    257976,
+    267384,
+    282754
+   ],
+   "uniform": "7 ",
+   "cclass": "12",
+   "school": "20519",
+   "name": "MIGUEL PERALTA"
+  },
+  {
+   "season": "2012",
+   "sport": "021",
+   "cid": 327109,
+   "rows": 1,
+   "seasons_linked": [
+    "2012"
+   ],
+   "cids_linked": [
+    327109
+   ],
+   "uniform": "7 ",
+   "cclass": "12",
+   "school": "13350",
+   "name": "DORIS CADME"
+  },
+  {
+   "season": "2012",
+   "sport": "021",
+   "cid": 426079,
+   "rows": 4,
+   "seasons_linked": [
+    "2011",
+    "2012",
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    416736,
+    426079,
+    441012,
+    451012
+   ],
+   "uniform": "5 ",
+   "cclass": "12",
+   "school": "25509",
+   "name": "CHEVANEICE LAWRENCE"
+  },
+  {
+   "season": "2012",
+   "sport": "012",
+   "cid": 481629,
+   "rows": 4,
+   "seasons_linked": [
+    "2011",
+    "2012",
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    471617,
+    481629,
+    495082,
+    514483
+   ],
+   "uniform": "11",
+   "cclass": "12",
+   "school": "25501",
+   "name": "DANIEL YACAR"
+  },
+  {
+   "season": "2012",
+   "sport": "012",
+   "cid": 3038,
+   "rows": 4,
+   "seasons_linked": [
+    "2010",
+    "2011",
+    "2012",
+    "2013"
+   ],
+   "cids_linked": [
+    2748,
+    2901,
+    3038,
+    3179
+   ],
+   "uniform": "6 ",
+   "cclass": "12",
+   "school": "01569",
+   "name": "GABRIEL ZIMMERMAN"
+  },
+  {
+   "season": "2012",
+   "sport": "012",
+   "cid": 627197,
+   "rows": 2,
+   "seasons_linked": [
+    "2012",
+    "2014"
+   ],
+   "cids_linked": [
+    627197,
+    666916
+   ],
+   "uniform": "10",
+   "cclass": "11",
+   "school": "31501",
+   "name": "DAMIAN MOTA"
+  },
+  {
+   "season": "2013",
+   "sport": "012",
+   "cid": 686864,
+   "rows": 4,
+   "seasons_linked": [
+    "2013",
+    "2014",
+    "2015",
+    "2016"
+   ],
+   "cids_linked": [
+    686864,
+    689374,
+    691164,
+    740298
+   ],
+   "uniform": "23",
+   "cclass": "12",
+   "school": "31511",
+   "name": "JACOB KARAGOZ"
+  },
+  {
+   "season": "2013",
+   "sport": "012",
+   "cid": 36601,
+   "rows": 4,
+   "seasons_linked": [
+    "2013",
+    "2014",
+    "2015",
+    "2016"
+   ],
+   "cids_linked": [
+    36601,
+    38718,
+    40910,
+    739618
+   ],
+   "uniform": "99",
+   "cclass": "12",
+   "school": "03548",
+   "name": "KEVIN SANCHEZ"
+  },
+  {
+   "season": "2013",
+   "sport": "012",
+   "cid": 458708,
+   "rows": 1,
+   "seasons_linked": [
+    "2013"
+   ],
+   "cids_linked": [
+    458708
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "27501",
+   "name": "MUHIBULLAH TOUKHI"
+  },
+  {
+   "season": "2013",
+   "sport": "012",
+   "cid": 411231,
+   "rows": 3,
+   "seasons_linked": [
+    "2011",
+    "2012",
+    "2013"
+   ],
+   "cids_linked": [
+    387444,
+    400417,
+    411231
+   ],
+   "uniform": "27",
+   "cclass": "11",
+   "school": "25521",
+   "name": "MAMADOU BALDE"
+  },
+  {
+   "season": "2013",
+   "sport": "021",
+   "cid": 302971,
+   "rows": 4,
+   "seasons_linked": [
+    "2011",
+    "2012",
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    278528,
+    287825,
+    302971,
+    316123
+   ],
+   "uniform": "3 ",
+   "cclass": "12",
+   "school": "20517",
+   "name": "BRIANA LOISELLE"
+  },
+  {
+   "season": "2013",
+   "sport": "012",
+   "cid": 233569,
+   "rows": 3,
+   "seasons_linked": [
+    "2011",
+    "2012",
+    "2013"
+   ],
+   "cids_linked": [
+    214994,
+    225524,
+    233569
+   ],
+   "uniform": "21",
+   "cclass": "12",
+   "school": "17450",
+   "name": "PAUL BROWN JR"
+  },
+  {
+   "season": "2013",
+   "sport": "012",
+   "cid": 68977,
+   "rows": 1,
+   "seasons_linked": [
+    "2013"
+   ],
+   "cids_linked": [
+    68977
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "03511",
+   "name": "IAN ANDERSON"
+  },
+  {
+   "season": "2013",
+   "sport": "012",
+   "cid": 328988,
+   "rows": 4,
+   "seasons_linked": [
+    "2012",
+    "2013",
+    "2014",
+    "2015"
+   ],
+   "cids_linked": [
+    322771,
+    328988,
+    335508,
+    350405
+   ],
+   "uniform": "7 ",
+   "cclass": "12",
+   "school": "22350",
+   "name": "DENIS MOSHCHENKO"
+  },
+  {
+   "season": "2013",
+   "sport": "012",
+   "cid": 466781,
+   "rows": 2,
+   "seasons_linked": [
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    466781,
+    484345
+   ],
+   "uniform": "4 ",
+   "cclass": "12",
+   "school": "21501",
+   "name": "YURIY PAVUK"
+  },
+  {
+   "season": "2013",
+   "sport": "021",
+   "cid": 501022,
+   "rows": 2,
+   "seasons_linked": [
+    "2012",
+    "2013"
+   ],
+   "cids_linked": [
+    484374,
+    501022
+   ],
+   "uniform": "1 ",
+   "cclass": "12",
+   "school": "25501",
+   "name": "BASHE MILLER"
+  },
+  {
+   "season": "2013",
+   "sport": "012",
+   "cid": 575753,
+   "rows": 4,
+   "seasons_linked": [
+    "2013",
+    "2014",
+    "2015",
+    "2016"
+   ],
+   "cids_linked": [
+    424882,
+    434399,
+    575753,
+    749663
+   ],
+   "uniform": "3 ",
+   "cclass": "12",
+   "school": "25521",
+   "name": "AZMAIN ISHRAK"
+  },
+  {
+   "season": "2013",
+   "sport": "012",
+   "cid": 21945,
+   "rows": 3,
+   "seasons_linked": [
+    "2013",
+    "2014",
+    "2015"
+   ],
+   "cids_linked": [
+    21945,
+    48842,
+    77938
+   ],
+   "uniform": "4 ",
+   "cclass": "12",
+   "school": "02519",
+   "name": "MERIL TAKIZAWA"
+  },
+  {
+   "season": "2014",
+   "sport": "021",
+   "cid": 35812,
+   "rows": 2,
+   "seasons_linked": [
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    33096,
+    35812
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "02436",
+   "name": "NOEMI MORITZ"
+  },
+  {
+   "season": "2014",
+   "sport": "012",
+   "cid": 672145,
+   "rows": 2,
+   "seasons_linked": [
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    657726,
+    672145
+   ],
+   "uniform": "24",
+   "cclass": "11",
+   "school": "31507",
+   "name": "DASAR ALIBEGU"
+  },
+  {
+   "season": "2014",
+   "sport": "021",
+   "cid": 212934,
+   "rows": 1,
+   "seasons_linked": [
+    "2014"
+   ],
+   "cids_linked": [
+    212934
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "06577",
+   "name": "CARMEN YAGUACHI"
+  },
+  {
+   "season": "2014",
+   "sport": "012",
+   "cid": 143951,
+   "rows": 3,
+   "seasons_linked": [
+    "2012",
+    "2013",
+    "2014"
+   ],
+   "cids_linked": [
+    138733,
+    141341,
+    143951
+   ],
+   "uniform": "1 ",
+   "cclass": "12",
+   "school": "02521",
+   "name": "ABDUL AZIZ"
+  },
+  {
+   "season": "2014",
+   "sport": "012",
+   "cid": 144126,
+   "rows": 1,
+   "seasons_linked": [
+    "2014"
+   ],
+   "cids_linked": [
+    144126
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "02521",
+   "name": "EYAD HASAN"
+  },
+  {
+   "season": "2014",
+   "sport": "012",
+   "cid": 206304,
+   "rows": 4,
+   "seasons_linked": [
+    "2013",
+    "2014",
+    "2015",
+    "2016"
+   ],
+   "cids_linked": [
+    200620,
+    206304,
+    215371,
+    737796
+   ],
+   "uniform": "24",
+   "cclass": "12",
+   "school": "13566",
+   "name": "WILFRIED ASSONGBA"
+  },
+  {
+   "season": "2014",
+   "sport": "012",
+   "cid": 449086,
+   "rows": 2,
+   "seasons_linked": [
+    "2014",
+    "2017"
+   ],
+   "cids_linked": [
+    449086,
+    813173
+   ],
+   "uniform": "18",
+   "cclass": "12",
+   "school": "25509",
+   "name": "KEVIN HERNANDEZ"
+  },
+  {
+   "season": "2014",
+   "sport": "012",
+   "cid": 555554,
+   "rows": 2,
+   "seasons_linked": [
+    "2014",
+    "2015"
+   ],
+   "cids_linked": [
+    369776,
+    555554
+   ],
+   "uniform": "10",
+   "cclass": "11",
+   "school": "24527",
+   "name": "ANTHONY BALTAZAR"
+  },
+  {
+   "season": "2014",
+   "sport": "012",
+   "cid": 35140,
+   "rows": 4,
+   "seasons_linked": [
+    "2012",
+    "2013",
+    "2014",
+    "2015"
+   ],
+   "cids_linked": [
+    26073,
+    32278,
+    35140,
+    37338
+   ],
+   "uniform": "5 ",
+   "cclass": "12",
+   "school": "02436",
+   "name": "MATEO ROCCO"
+  },
+  {
+   "season": "2014",
+   "sport": "021",
+   "cid": 116760,
+   "rows": 4,
+   "seasons_linked": [
+    "2014",
+    "2015",
+    "2016",
+    "2017"
+   ],
+   "cids_linked": [
+    116760,
+    121636,
+    739384,
+    812300
+   ],
+   "uniform": "17",
+   "cclass": "12",
+   "school": "02563",
+   "name": "SYDNEY GOLUB"
+  },
+  {
+   "season": "2014",
+   "sport": "021",
+   "cid": 122738,
+   "rows": 2,
+   "seasons_linked": [
+    "2014",
+    "2015"
+   ],
+   "cids_linked": [
+    122738,
+    133638
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "08524",
+   "name": "TYRA SANDERS"
+  },
+  {
+   "season": "2014",
+   "sport": "021",
+   "cid": 450742,
+   "rows": 2,
+   "seasons_linked": [
+    "2014",
+    "2015"
+   ],
+   "cids_linked": [
+    450742,
+    461892
+   ],
+   "uniform": "12",
+   "cclass": "12",
+   "school": "25509",
+   "name": "KEELLEE CABRERA"
+  },
+  {
+   "season": "2015",
+   "sport": "012",
+   "cid": 184080,
+   "rows": 3,
+   "seasons_linked": [
+    "2015",
+    "2016",
+    "2018"
+   ],
+   "cids_linked": [
+    184080,
+    745384,
+    880356
+   ],
+   "uniform": "16",
+   "cclass": "12",
+   "school": "02541",
+   "name": "WILSON JARA"
+  },
+  {
+   "season": "2015",
+   "sport": "021",
+   "cid": 499528,
+   "rows": 1,
+   "seasons_linked": [
+    "2015"
+   ],
+   "cids_linked": [
+    499528
+   ],
+   "uniform": "6 ",
+   "cclass": "10",
+   "school": "28517",
+   "name": "CINDY PADILLA"
+  },
+  {
+   "season": "2015",
+   "sport": "021",
+   "cid": 184709,
+   "rows": 2,
+   "seasons_linked": [
+    "2015",
+    "2016"
+   ],
+   "cids_linked": [
+    184709,
+    738864
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "02541",
+   "name": "MARTHA NIOLA"
+  },
+  {
+   "season": "2015",
+   "sport": "021",
+   "cid": 460460,
+   "rows": 3,
+   "seasons_linked": [
+    "2015",
+    "2016",
+    "2017"
+   ],
+   "cids_linked": [
+    460460,
+    740322,
+    809591
+   ],
+   "uniform": "39",
+   "cclass": "12",
+   "school": "26503",
+   "name": "HYEWON SHIN"
+  },
+  {
+   "season": "2015",
+   "sport": "012",
+   "cid": 197706,
+   "rows": 3,
+   "seasons_linked": [
+    "2013",
+    "2014",
+    "2015"
+   ],
+   "cids_linked": [
+    191502,
+    194818,
+    197706
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "08527",
+   "name": "AMARILDO AHMATI"
+  },
+  {
+   "season": "2015",
+   "sport": "012",
+   "cid": 660944,
+   "rows": 3,
+   "seasons_linked": [
+    "2013",
+    "2014",
+    "2015"
+   ],
+   "cids_linked": [
+    620828,
+    637848,
+    660944
+   ],
+   "uniform": "33",
+   "cclass": "12",
+   "school": "31509",
+   "name": "FREDERICK WEINER"
+  },
+  {
+   "season": "2015",
+   "sport": "012",
+   "cid": 263785,
+   "rows": 1,
+   "seasons_linked": [
+    "2015"
+   ],
+   "cids_linked": [
+    263785
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "15667",
+   "name": "ALDO SALAS"
+  },
+  {
+   "season": "2015",
+   "sport": "021",
+   "cid": 590875,
+   "rows": 2,
+   "seasons_linked": [
+    "2015",
+    "2016"
+   ],
+   "cids_linked": [
+    590875,
+    738493
+   ],
+   "uniform": "20",
+   "cclass": "12",
+   "school": "30470",
+   "name": "SEIDA SELMANOVIC"
+  },
+  {
+   "season": "2015",
+   "sport": "012",
+   "cid": 225052,
+   "rows": 1,
+   "seasons_linked": [
+    "2015"
+   ],
+   "cids_linked": [
+    225052
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "13300",
+   "name": "SHAWN CLARKE"
+  },
+  {
+   "season": "2015",
+   "sport": "012",
+   "cid": 536335,
+   "rows": 3,
+   "seasons_linked": [
+    "2015",
+    "2016",
+    "2017"
+   ],
+   "cids_linked": [
+    536335,
+    746216,
+    815365
+   ],
+   "uniform": "1 ",
+   "cclass": "12",
+   "school": "30502",
+   "name": "MIGUEL ALVAREZ"
+  },
+  {
+   "season": "2015",
+   "sport": "012",
+   "cid": 351164,
+   "rows": 3,
+   "seasons_linked": [
+    "2013",
+    "2014",
+    "2015"
+   ],
+   "cids_linked": [
+    318195,
+    335364,
+    351164
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "20500",
+   "name": "MAJED ALGABYALI"
+  },
+  {
+   "season": "2015",
+   "sport": "021",
+   "cid": 551133,
+   "rows": 4,
+   "seasons_linked": [
+    "2014",
+    "2015",
+    "2016",
+    "2017"
+   ],
+   "cids_linked": [
+    536097,
+    551133,
+    742805,
+    811927
+   ],
+   "uniform": "15",
+   "cclass": "12",
+   "school": "26513",
+   "name": "ELLI TSOURAPIS"
+  },
+  {
+   "season": "2016",
+   "sport": "012",
+   "cid": 744990,
+   "rows": 1,
+   "seasons_linked": [
+    "2016"
+   ],
+   "cids_linked": [
+    744990
+   ],
+   "uniform": "23",
+   "cclass": "11",
+   "school": "25521",
+   "name": "JERONIMO LOPEZ"
+  },
+  {
+   "season": "2016",
+   "sport": "012",
+   "cid": 744096,
+   "rows": 3,
+   "seasons_linked": [
+    "2014",
+    "2015",
+    "2016"
+   ],
+   "cids_linked": [
+    3355,
+    3536,
+    744096
+   ],
+   "uniform": "15",
+   "cclass": "12",
+   "school": "01569",
+   "name": "CAMILO PARRA"
+  },
+  {
+   "season": "2016",
+   "sport": "012",
+   "cid": 743488,
+   "rows": 2,
+   "seasons_linked": [
+    "2015",
+    "2016"
+   ],
+   "cids_linked": [
+    615370,
+    743488
+   ],
+   "uniform": "2 ",
+   "cclass": "12",
+   "school": "30540",
+   "name": "KENNETH ROBLEDO"
+  },
+  {
+   "season": "2016",
+   "sport": "021",
+   "cid": 746347,
+   "rows": 3,
+   "seasons_linked": [
+    "2014",
+    "2015",
+    "2016"
+   ],
+   "cids_linked": [
+    212908,
+    216143,
+    746347
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "06577",
+   "name": "EMELI PEREZ"
+  },
+  {
+   "season": "2016",
+   "sport": "021",
+   "cid": 743667,
+   "rows": 4,
+   "seasons_linked": [
+    "2016",
+    "2017",
+    "2018",
+    "2019"
+   ],
+   "cids_linked": [
+    743667,
+    814500,
+    876984,
+    941325
+   ],
+   "uniform": "5 ",
+   "cclass": "12",
+   "school": "03511",
+   "name": "DANIELLE GARDNER"
+  },
+  {
+   "season": "2016",
+   "sport": "012",
+   "cid": 744191,
+   "rows": 3,
+   "seasons_linked": [
+    "2013",
+    "2014",
+    "2016"
+   ],
+   "cids_linked": [
+    173744,
+    182050,
+    744191
+   ],
+   "uniform": "6 ",
+   "cclass": "12",
+   "school": "07500",
+   "name": "SEBASTIAN FLORES"
+  },
+  {
+   "season": "2016",
+   "sport": "021",
+   "cid": 759993,
+   "rows": 1,
+   "seasons_linked": [
+    "2016"
+   ],
+   "cids_linked": [
+    759993
+   ],
+   "uniform": "23",
+   "cclass": "12",
+   "school": "20519",
+   "name": "KHATIA GODUADZE"
+  },
+  {
+   "season": "2016",
+   "sport": "012",
+   "cid": 758021,
+   "rows": 1,
+   "seasons_linked": [
+    "2016"
+   ],
+   "cids_linked": [
+    758021
+   ],
+   "uniform": "36",
+   "cclass": "11",
+   "school": "13566",
+   "name": "JOSE CRESPIN ARIAS"
+  },
+  {
+   "season": "2016",
+   "sport": "021",
+   "cid": 740908,
+   "rows": 4,
+   "seasons_linked": [
+    "2014",
+    "2015",
+    "2016",
+    "2017"
+   ],
+   "cids_linked": [
+    618358,
+    625030,
+    740908,
+    810302
+   ],
+   "uniform": "13",
+   "cclass": "12",
+   "school": "31505",
+   "name": "NADA AHMED"
+  },
+  {
+   "season": "2016",
+   "sport": "021",
+   "cid": 744956,
+   "rows": 3,
+   "seasons_linked": [
+    "2016",
+    "2017",
+    "2018"
+   ],
+   "cids_linked": [
+    744956,
+    813915,
+    882743
+   ],
+   "uniform": "19",
+   "cclass": "12",
+   "school": "20519",
+   "name": "KEYLEE RIVERA"
+  },
+  {
+   "season": "2016",
+   "sport": "012",
+   "cid": 740968,
+   "rows": 2,
+   "seasons_linked": [
+    "2015",
+    "2016"
+   ],
+   "cids_linked": [
+    369937,
+    740968
+   ],
+   "uniform": "12",
+   "cclass": "12",
+   "school": "24527",
+   "name": "GENESIS GUZMAN GARCIA"
+  },
+  {
+   "season": "2016",
+   "sport": "021",
+   "cid": 737768,
+   "rows": 4,
+   "seasons_linked": [
+    "2015",
+    "2016",
+    "2017",
+    "2018"
+   ],
+   "cids_linked": [
+    691290,
+    737768,
+    808676,
+    874426
+   ],
+   "uniform": "7 ",
+   "cclass": "12",
+   "school": "31511",
+   "name": "VALENTINA VOLPE"
+  },
+  {
+   "season": "2017",
+   "sport": "012",
+   "cid": 808898,
+   "rows": 3,
+   "seasons_linked": [
+    "2015",
+    "2016",
+    "2017"
+   ],
+   "cids_linked": [
+    438062,
+    750684,
+    808898
+   ],
+   "uniform": "20",
+   "cclass": "11",
+   "school": "22527",
+   "name": "FAYZULLO NIGMATILLAEV"
+  },
+  {
+   "season": "2017",
+   "sport": "012",
+   "cid": 811123,
+   "rows": 1,
+   "seasons_linked": [
+    "2017"
+   ],
+   "cids_linked": [
+    811123
+   ],
+   "uniform": "19",
+   "cclass": "09",
+   "school": "13507",
+   "name": "WYATT INTRATOR"
+  },
+  {
+   "season": "2017",
+   "sport": "012",
+   "cid": 811195,
+   "rows": 3,
+   "seasons_linked": [
+    "2017",
+    "2018",
+    "2019"
+   ],
+   "cids_linked": [
+    811195,
+    884381,
+    944317
+   ],
+   "uniform": "9 ",
+   "cclass": "12",
+   "school": "11507",
+   "name": "JOSEPH OYE"
+  },
+  {
+   "season": "2017",
+   "sport": "012",
+   "cid": 808724,
+   "rows": 4,
+   "seasons_linked": [
+    "2017",
+    "2018",
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    808724,
+    874665,
+    942572,
+    1008299
+   ],
+   "uniform": "29",
+   "cclass": "12",
+   "school": "02563",
+   "name": "OSCAR CZARNECKI"
+  },
+  {
+   "season": "2017",
+   "sport": "021",
+   "cid": 811927,
+   "rows": 4,
+   "seasons_linked": [
+    "2014",
+    "2015",
+    "2016",
+    "2017"
+   ],
+   "cids_linked": [
+    536097,
+    551133,
+    742805,
+    811927
+   ],
+   "uniform": "15",
+   "cclass": "12",
+   "school": "26513",
+   "name": "ELLI TSOURAPIS"
+  },
+  {
+   "season": "2017",
+   "sport": "012",
+   "cid": 815041,
+   "rows": 3,
+   "seasons_linked": [
+    "2015",
+    "2016",
+    "2017"
+   ],
+   "cids_linked": [
+    184273,
+    745368,
+    815041
+   ],
+   "uniform": "7 ",
+   "cclass": "11",
+   "school": "02541",
+   "name": "CRISTIAN RENGIFO"
+  },
+  {
+   "season": "2017",
+   "sport": "012",
+   "cid": 814556,
+   "rows": 3,
+   "seasons_linked": [
+    "2017",
+    "2018",
+    "2019"
+   ],
+   "cids_linked": [
+    814556,
+    878817,
+    947283
+   ],
+   "uniform": "11",
+   "cclass": "12",
+   "school": "28585",
+   "name": "BRIAN CORCHO"
+  },
+  {
+   "season": "2017",
+   "sport": "012",
+   "cid": 827201,
+   "rows": 1,
+   "seasons_linked": [
+    "2017"
+   ],
+   "cids_linked": [
+    827201
+   ],
+   "uniform": "6 ",
+   "cclass": "09",
+   "school": "09517",
+   "name": "AISHA KOMARA"
+  },
+  {
+   "season": "2017",
+   "sport": "012",
+   "cid": 815080,
+   "rows": 1,
+   "seasons_linked": [
+    "2017"
+   ],
+   "cids_linked": [
+    815080
+   ],
+   "uniform": "20",
+   "cclass": "12",
+   "school": "02541",
+   "name": "MAYCON VEGA"
+  },
+  {
+   "season": "2017",
+   "sport": "021",
+   "cid": 808490,
+   "rows": 4,
+   "seasons_linked": [
+    "2015",
+    "2016",
+    "2017",
+    "2018"
+   ],
+   "cids_linked": [
+    438870,
+    738827,
+    808490,
+    875549
+   ],
+   "uniform": "51",
+   "cclass": "12",
+   "school": "22527",
+   "name": "RACHEL GOMEZ"
+  },
+  {
+   "season": "2017",
+   "sport": "021",
+   "cid": 814604,
+   "rows": 2,
+   "seasons_linked": [
+    "2016",
+    "2017"
+   ],
+   "cids_linked": [
+    760458,
+    814604
+   ],
+   "uniform": "6 ",
+   "cclass": "12",
+   "school": "17430",
+   "name": "MAMADOU DIALLO"
+  },
+  {
+   "season": "2017",
+   "sport": "021",
+   "cid": 811314,
+   "rows": 3,
+   "seasons_linked": [
+    "2015",
+    "2016",
+    "2017"
+   ],
+   "cids_linked": [
+    657181,
+    742900,
+    811314
+   ],
+   "uniform": "9 ",
+   "cclass": "12",
+   "school": "28686",
+   "name": "AISLINN AVILES"
+  },
+  {
+   "season": "2018",
+   "sport": "012",
+   "cid": 882549,
+   "rows": 2,
+   "seasons_linked": [
+    "2018",
+    "2019"
+   ],
+   "cids_linked": [
+    882549,
+    940279
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "27521",
+   "name": "ERICK PEREZ VICENTE"
+  },
+  {
+   "season": "2018",
+   "sport": "021",
+   "cid": 877165,
+   "rows": 4,
+   "seasons_linked": [
+    "2015",
+    "2016",
+    "2017",
+    "2018"
+   ],
+   "cids_linked": [
+    631282,
+    740021,
+    810792,
+    877165
+   ],
+   "uniform": "28",
+   "cclass": "12",
+   "school": "31545",
+   "name": "SHANIE MALKA"
+  },
+  {
+   "season": "2018",
+   "sport": "012",
+   "cid": 879464,
+   "rows": 4,
+   "seasons_linked": [
+    "2017",
+    "2018",
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    816508,
+    879464,
+    945095,
+    1011861
+   ],
+   "uniform": "5 ",
+   "cclass": "12",
+   "school": "06293",
+   "name": "CHRISTOPHE COLLAGUAZO PANI"
+  },
+  {
+   "season": "2018",
+   "sport": "021",
+   "cid": 896326,
+   "rows": 3,
+   "seasons_linked": [
+    "2017",
+    "2018",
+    "2019"
+   ],
+   "cids_linked": [
+    811028,
+    896326,
+    946552
+   ],
+   "uniform": "5 ",
+   "cclass": "12",
+   "school": "02436",
+   "name": "CECELIA MCANDREWS"
+  },
+  {
+   "season": "2018",
+   "sport": "012",
+   "cid": 876312,
+   "rows": 3,
+   "seasons_linked": [
+    "2017",
+    "2018",
+    "2019"
+   ],
+   "cids_linked": [
+    812536,
+    876312,
+    941080
+   ],
+   "uniform": "14",
+   "cclass": "11",
+   "school": "25501",
+   "name": "KELVIN YIP"
+  },
+  {
+   "season": "2018",
+   "sport": "012",
+   "cid": 878216,
+   "rows": 1,
+   "seasons_linked": [
+    "2018"
+   ],
+   "cids_linked": [
+    878216
+   ],
+   "uniform": "4 ",
+   "cclass": "12",
+   "school": "26525",
+   "name": "DORJEE TASHI"
+  },
+  {
+   "season": "2018",
+   "sport": "012",
+   "cid": 880783,
+   "rows": 3,
+   "seasons_linked": [
+    "2017",
+    "2018",
+    "2019"
+   ],
+   "cids_linked": [
+    809429,
+    880783,
+    945807
+   ],
+   "uniform": "14",
+   "cclass": "12",
+   "school": "28511",
+   "name": "CRISTIAN GARCIA"
+  },
+  {
+   "season": "2018",
+   "sport": "021",
+   "cid": 876027,
+   "rows": 3,
+   "seasons_linked": [
+    "2016",
+    "2018",
+    "2019"
+   ],
+   "cids_linked": [
+    741684,
+    876027,
+    944136
+   ],
+   "uniform": "8 ",
+   "cclass": "12",
+   "school": "10501",
+   "name": "TIFFANY CHYKE OKPUZOR"
+  },
+  {
+   "season": "2018",
+   "sport": "021",
+   "cid": 878759,
+   "rows": 2,
+   "seasons_linked": [
+    "2017",
+    "2018"
+   ],
+   "cids_linked": [
+    828934,
+    878759
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "04565",
+   "name": "KAREN CARDENAS"
+  },
+  {
+   "season": "2018",
+   "sport": "021",
+   "cid": 882903,
+   "rows": 2,
+   "seasons_linked": [
+    "2018",
+    "2019"
+   ],
+   "cids_linked": [
+    882903,
+    947201
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "12490",
+   "name": "ANGIE MEDINA"
+  },
+  {
+   "season": "2018",
+   "sport": "021",
+   "cid": 881246,
+   "rows": 3,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    881246,
+    948660,
+    1011709
+   ],
+   "uniform": "13",
+   "cclass": "12",
+   "school": "30540",
+   "name": "SYLVIA BOGUNIECKI"
+  },
+  {
+   "season": "2018",
+   "sport": "021",
+   "cid": 881144,
+   "rows": 2,
+   "seasons_linked": [
+    "2017",
+    "2018"
+   ],
+   "cids_linked": [
+    815393,
+    881144
+   ],
+   "uniform": "11",
+   "cclass": "11",
+   "school": "12552",
+   "name": "MARIELA ALICEA"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 941869,
+   "rows": 4,
+   "seasons_linked": [
+    "2019",
+    "2020",
+    "2021",
+    "2022"
+   ],
+   "cids_linked": [
+    941869,
+    1008353,
+    1059544,
+    1089781
+   ],
+   "uniform": "25",
+   "cclass": "12",
+   "school": "22350",
+   "name": "ALBERT SARIBEKOV"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 947321,
+   "rows": 3,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    889511,
+    947321,
+    1025034
+   ],
+   "uniform": "19",
+   "cclass": "12",
+   "school": "06577",
+   "name": "SAMPSON OBENG"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 945109,
+   "rows": 3,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    879460,
+    945109,
+    1011848
+   ],
+   "uniform": "11",
+   "cclass": "12",
+   "school": "06293",
+   "name": "RICARDO ROBLES CUENCA"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 944976,
+   "rows": 3,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    877437,
+    944976,
+    1010951
+   ],
+   "uniform": "21",
+   "cclass": "12",
+   "school": "25509",
+   "name": "JOEY CORONA"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 940162,
+   "rows": 3,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    875075,
+    940162,
+    1006040
+   ],
+   "uniform": "9 ",
+   "cclass": "11",
+   "school": "02519",
+   "name": "YOUSEF AMIN"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 941778,
+   "rows": 1,
+   "seasons_linked": [
+    "2019"
+   ],
+   "cids_linked": [
+    941778
+   ],
+   "uniform": "9 ",
+   "cclass": "10",
+   "school": "02538",
+   "name": "REYNALDO OLIVERA"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 946970,
+   "rows": 4,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020",
+    "2021"
+   ],
+   "cids_linked": [
+    880620,
+    946970,
+    1011255,
+    1057912
+   ],
+   "uniform": "21",
+   "cclass": "12",
+   "school": "26513",
+   "name": "CARLOS IRAHETA"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 960551,
+   "rows": 4,
+   "seasons_linked": [
+    "2019",
+    "2020",
+    "2021",
+    "2022"
+   ],
+   "cids_linked": [
+    960551,
+    1011725,
+    1068011,
+    1077415
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "09511",
+   "name": "DILLING ABANKWAH"
+  },
+  {
+   "season": "2019",
+   "sport": "021",
+   "cid": 940241,
+   "rows": 4,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020",
+    "2021"
+   ],
+   "cids_linked": [
+    884164,
+    940241,
+    1005882,
+    1055051
+   ],
+   "uniform": "3 ",
+   "cclass": "12",
+   "school": "31511",
+   "name": "AUTUMN SWARTZ"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 946585,
+   "rows": 3,
+   "seasons_linked": [
+    "2017",
+    "2018",
+    "2019"
+   ],
+   "cids_linked": [
+    817704,
+    895859,
+    946585
+   ],
+   "uniform": "7 ",
+   "cclass": "12",
+   "school": "08527",
+   "name": "SIDDIQ DAGENA"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 941585,
+   "rows": 3,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    878975,
+    941585,
+    1012301
+   ],
+   "uniform": "19",
+   "cclass": "12",
+   "school": "24552",
+   "name": "RICHARD SHERPA"
+  },
+  {
+   "season": "2019",
+   "sport": "012",
+   "cid": 941268,
+   "rows": 2,
+   "seasons_linked": [
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    941268,
+    1005679
+   ],
+   "uniform": "15",
+   "cclass": "10",
+   "school": "03548",
+   "name": "ANDRES GARCIA"
+  },
+  {
+   "season": "2020",
+   "sport": "012",
+   "cid": 1010721,
+   "rows": 4,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020",
+    "2021"
+   ],
+   "cids_linked": [
+    886819,
+    941582,
+    1010721,
+    1067438
+   ],
+   "uniform": "4 ",
+   "cclass": "12",
+   "school": "24552",
+   "name": "PASCAL KAVANAGH"
+  },
+  {
+   "season": "2020",
+   "sport": "012",
+   "cid": 1013776,
+   "rows": 3,
+   "seasons_linked": [
+    "2020",
+    "2022",
+    "2023"
+   ],
+   "cids_linked": [
+    1013776,
+    1081641,
+    1132788
+   ],
+   "uniform": "24",
+   "cclass": "12",
+   "school": "10141",
+   "name": "CHARLES SIPER"
+  },
+  {
+   "season": "2020",
+   "sport": "012",
+   "cid": 1020644,
+   "rows": 1,
+   "seasons_linked": [
+    "2020"
+   ],
+   "cids_linked": [
+    1020644
+   ],
+   "uniform": "12",
+   "cclass": "09",
+   "school": "27519",
+   "name": "NILSON ALVAREZ"
+  },
+  {
+   "season": "2020",
+   "sport": "021",
+   "cid": 1009771,
+   "rows": 4,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020",
+    "2021"
+   ],
+   "cids_linked": [
+    875517,
+    942815,
+    1009771,
+    1063955
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "01420",
+   "name": "MATILDA MOLINA"
+  },
+  {
+   "season": "2020",
+   "sport": "021",
+   "cid": 1011260,
+   "rows": 3,
+   "seasons_linked": [
+    "2017",
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    813047,
+    944266,
+    1011260
+   ],
+   "uniform": "6 ",
+   "cclass": "12",
+   "school": "05362",
+   "name": "ANGELY MOROCHO"
+  },
+  {
+   "season": "2020",
+   "sport": "012",
+   "cid": 1009319,
+   "rows": 1,
+   "seasons_linked": [
+    "2020"
+   ],
+   "cids_linked": [
+    1009319
+   ],
+   "uniform": "8 ",
+   "cclass": "11",
+   "school": "25521",
+   "name": "DAVID PADILLA"
+  },
+  {
+   "season": "2020",
+   "sport": "012",
+   "cid": 1008447,
+   "rows": 3,
+   "seasons_linked": [
+    "2020",
+    "2021",
+    "2022"
+   ],
+   "cids_linked": [
+    1008447,
+    1059226,
+    1072196
+   ],
+   "uniform": "6 ",
+   "cclass": "12",
+   "school": "28541",
+   "name": "RIKU SANTA CRUZ"
+  },
+  {
+   "season": "2020",
+   "sport": "012",
+   "cid": 1018812,
+   "rows": 2,
+   "seasons_linked": [
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    950937,
+    1018812
+   ],
+   "uniform": "99",
+   "cclass": "11",
+   "school": "25252",
+   "name": "JOVI VAZURA"
+  },
+  {
+   "season": "2020",
+   "sport": "012",
+   "cid": 1009570,
+   "rows": 2,
+   "seasons_linked": [
+    "2020",
+    "2023"
+   ],
+   "cids_linked": [
+    1009570,
+    1147166
+   ],
+   "uniform": "24",
+   "cclass": "12",
+   "school": "04373",
+   "name": "YOSEL MONTES"
+  },
+  {
+   "season": "2020",
+   "sport": "021",
+   "cid": 1007001,
+   "rows": 4,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020",
+    "2021"
+   ],
+   "cids_linked": [
+    876507,
+    941130,
+    1007001,
+    1056297
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "31501",
+   "name": "XIMENA FIGUEROA"
+  },
+  {
+   "season": "2020",
+   "sport": "012",
+   "cid": 1015874,
+   "rows": 1,
+   "seasons_linked": [
+    "2020"
+   ],
+   "cids_linked": [
+    1015874
+   ],
+   "uniform": "18",
+   "cclass": "09",
+   "school": "13555",
+   "name": "BRIAN LEUNG"
+  },
+  {
+   "season": "2020",
+   "sport": "021",
+   "cid": 1015701,
+   "rows": 2,
+   "seasons_linked": [
+    "2019",
+    "2020"
+   ],
+   "cids_linked": [
+    952458,
+    1015701
+   ],
+   "uniform": "13",
+   "cclass": "10",
+   "school": "13566",
+   "name": "BREYDI RODRIGUEZ TORRE"
+  },
+  {
+   "season": "2021",
+   "sport": "021",
+   "cid": 1065541,
+   "rows": 4,
+   "seasons_linked": [
+    "2020",
+    "2021",
+    "2022",
+    "2023"
+   ],
+   "cids_linked": [
+    1008675,
+    1065541,
+    1072066,
+    1130302
+   ],
+   "uniform": "13",
+   "cclass": "12",
+   "school": "10501",
+   "name": "GABRIELA JIMENEZ"
+  },
+  {
+   "season": "2021",
+   "sport": "012",
+   "cid": 1060357,
+   "rows": 4,
+   "seasons_linked": [
+    "2018",
+    "2019",
+    "2020",
+    "2021"
+   ],
+   "cids_linked": [
+    885287,
+    947812,
+    1011799,
+    1060357
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "32300",
+   "name": "EDWIN COHETERO"
+  },
+  {
+   "season": "2021",
+   "sport": "012",
+   "cid": 1055572,
+   "rows": 2,
+   "seasons_linked": [
+    "2021",
+    "2022"
+   ],
+   "cids_linked": [
+    1055572,
+    1072906
+   ],
+   "uniform": "0 ",
+   "cclass": "11",
+   "school": "31511",
+   "name": "ADAM ABDELKHALEK"
+  },
+  {
+   "season": "2021",
+   "sport": "012",
+   "cid": 1054728,
+   "rows": 2,
+   "seasons_linked": [
+    "2020",
+    "2021"
+   ],
+   "cids_linked": [
+    1010240,
+    1054728
+   ],
+   "uniform": "6 ",
+   "cclass": "12",
+   "school": "02541",
+   "name": "JAMES GUERERO"
+  },
+  {
+   "season": "2021",
+   "sport": "021",
+   "cid": 1060687,
+   "rows": 3,
+   "seasons_linked": [
+    "2021",
+    "2022",
+    "2023"
+   ],
+   "cids_linked": [
+    1060687,
+    1074775,
+    1135745
+   ],
+   "uniform": "3 ",
+   "cclass": "12",
+   "school": "28585",
+   "name": "BASANT BOHNAN"
+  },
+  {
+   "season": "2021",
+   "sport": "012",
+   "cid": 1068793,
+   "rows": 2,
+   "seasons_linked": [
+    "2021",
+    "2023"
+   ],
+   "cids_linked": [
+    1068793,
+    1130328
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "21506",
+   "name": "ASLAMBEK ALISHEROV"
+  },
+  {
+   "season": "2021",
+   "sport": "012",
+   "cid": 1065919,
+   "rows": 3,
+   "seasons_linked": [
+    "2020",
+    "2021",
+    "2022"
+   ],
+   "cids_linked": [
+    1008690,
+    1065919,
+    1077165
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "07500",
+   "name": "RAFNNY ROMERO"
+  },
+  {
+   "season": "2021",
+   "sport": "012",
+   "cid": 1055504,
+   "rows": 4,
+   "seasons_linked": [
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "cids_linked": [
+    1055504,
+    1071818,
+    1129645,
+    1196536
+   ],
+   "uniform": "24",
+   "cclass": "12",
+   "school": "31509",
+   "name": "WILLIAM UBIETA"
+  },
+  {
+   "season": "2021",
+   "sport": "012",
+   "cid": 1054750,
+   "rows": 3,
+   "seasons_linked": [
+    "2019",
+    "2020",
+    "2021"
+   ],
+   "cids_linked": [
+    941250,
+    1007083,
+    1054750
+   ],
+   "uniform": "15",
+   "cclass": "12",
+   "school": "31501",
+   "name": "HADY BAKRY"
+  },
+  {
+   "season": "2021",
+   "sport": "012",
+   "cid": 1057925,
+   "rows": 3,
+   "seasons_linked": [
+    "2021",
+    "2023",
+    "2024"
+   ],
+   "cids_linked": [
+    1057925,
+    1131994,
+    1195230
+   ],
+   "uniform": "3 ",
+   "cclass": "12",
+   "school": "26513",
+   "name": "MIKE PORTILLA"
+  },
+  {
+   "season": "2021",
+   "sport": "021",
+   "cid": 1061207,
+   "rows": 4,
+   "seasons_linked": [
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "cids_linked": [
+    1061207,
+    1079490,
+    1132482,
+    1195637
+   ],
+   "uniform": "20",
+   "cclass": "12",
+   "school": "04565",
+   "name": "ONNAH PLUMMER"
+  },
+  {
+   "season": "2021",
+   "sport": "012",
+   "cid": 1057575,
+   "rows": 2,
+   "seasons_linked": [
+    "2020",
+    "2021"
+   ],
+   "cids_linked": [
+    1026194,
+    1057575
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "13555",
+   "name": "JAHVONTIE GRANVILLE"
+  },
+  {
+   "season": "2022",
+   "sport": "012",
+   "cid": 1082630,
+   "rows": 2,
+   "seasons_linked": [
+    "2022",
+    "2023"
+   ],
+   "cids_linked": [
+    1082630,
+    1143655
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "05362",
+   "name": "LENIN ROSARIO"
+  },
+  {
+   "season": "2022",
+   "sport": "012",
+   "cid": 1082989,
+   "rows": 3,
+   "seasons_linked": [
+    "2019",
+    "2021",
+    "2022"
+   ],
+   "cids_linked": [
+    961150,
+    1067975,
+    1082989
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "09511",
+   "name": "MOHAMMED MOGALLI"
+  },
+  {
+   "season": "2022",
+   "sport": "012",
+   "cid": 1075295,
+   "rows": 2,
+   "seasons_linked": [
+    "2021",
+    "2022"
+   ],
+   "cids_linked": [
+    1070132,
+    1075295
+   ],
+   "uniform": "9 ",
+   "cclass": "12",
+   "school": "24539",
+   "name": "OSCAR ZUNA MACANCELA"
+  },
+  {
+   "season": "2022",
+   "sport": "012",
+   "cid": 1073857,
+   "rows": 2,
+   "seasons_linked": [
+    "2022",
+    "2023"
+   ],
+   "cids_linked": [
+    1073857,
+    1131711
+   ],
+   "uniform": "4 ",
+   "cclass": "12",
+   "school": "26503",
+   "name": "LUIS FIGUEROA"
+  },
+  {
+   "season": "2022",
+   "sport": "012",
+   "cid": 1073888,
+   "rows": 3,
+   "seasons_linked": [
+    "2021",
+    "2022",
+    "2023"
+   ],
+   "cids_linked": [
+    1062571,
+    1073888,
+    1137207
+   ],
+   "uniform": "27",
+   "cclass": "12",
+   "school": "13566",
+   "name": "HOSBEL AGUILAR"
+  },
+  {
+   "season": "2022",
+   "sport": "021",
+   "cid": 1073492,
+   "rows": 3,
+   "seasons_linked": [
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "cids_linked": [
+    1073492,
+    1139330,
+    1204270
+   ],
+   "uniform": "19",
+   "cclass": "12",
+   "school": "11505",
+   "name": "FATOUMATA SAWANEH"
+  },
+  {
+   "season": "2022",
+   "sport": "021",
+   "cid": 1078773,
+   "rows": 2,
+   "seasons_linked": [
+    "2022",
+    "2023"
+   ],
+   "cids_linked": [
+    1078773,
+    1135066
+   ],
+   "uniform": "22",
+   "cclass": "11",
+   "school": "08527",
+   "name": "TAINA NIEVES"
+  },
+  {
+   "season": "2022",
+   "sport": "012",
+   "cid": 1087947,
+   "rows": 2,
+   "seasons_linked": [
+    "2020",
+    "2022"
+   ],
+   "cids_linked": [
+    1014800,
+    1087947
+   ],
+   "uniform": "9 ",
+   "cclass": "12",
+   "school": "30523",
+   "name": "JEREMY ROQUE"
+  },
+  {
+   "season": "2022",
+   "sport": "012",
+   "cid": 1072812,
+   "rows": 2,
+   "seasons_linked": [
+    "2021",
+    "2022"
+   ],
+   "cids_linked": [
+    1062781,
+    1072812
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "30533",
+   "name": "ROBERT MENDIETA"
+  },
+  {
+   "season": "2022",
+   "sport": "012",
+   "cid": 1075231,
+   "rows": 2,
+   "seasons_linked": [
+    "2020",
+    "2022"
+   ],
+   "cids_linked": [
+    1010054,
+    1075231
+   ],
+   "uniform": "8 ",
+   "cclass": "12",
+   "school": "20519",
+   "name": "DIEGO JULCA"
+  },
+  {
+   "season": "2022",
+   "sport": "012",
+   "cid": 1085568,
+   "rows": 1,
+   "seasons_linked": [
+    "2022"
+   ],
+   "cids_linked": [
+    1085568
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "09511",
+   "name": "JAHMAIR MCKENZIE"
+  },
+  {
+   "season": "2022",
+   "sport": "012",
+   "cid": 1086702,
+   "rows": 2,
+   "seasons_linked": [
+    "2022",
+    "2023"
+   ],
+   "cids_linked": [
+    1086702,
+    1141909
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "11503",
+   "name": "ART VESELAJ"
+  },
+  {
+   "season": "2023",
+   "sport": "012",
+   "cid": 1131501,
+   "rows": 1,
+   "seasons_linked": [
+    "2023"
+   ],
+   "cids_linked": [
+    1131501
+   ],
+   "uniform": "17",
+   "cclass": "09",
+   "school": "21506",
+   "name": "CRISTIAN TOBON-TIROS"
+  },
+  {
+   "season": "2023",
+   "sport": "021",
+   "cid": 1145786,
+   "rows": 4,
+   "seasons_linked": [
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1145786,
+    1199519,
+    1264081,
+    1335015
+   ],
+   "uniform": "11",
+   "cclass": "12",
+   "school": "10505",
+   "name": "CHRISMARY MEJIA"
+  },
+  {
+   "season": "2023",
+   "sport": "021",
+   "cid": 1130058,
+   "rows": 4,
+   "seasons_linked": [
+    "2020",
+    "2021",
+    "2022",
+    "2023"
+   ],
+   "cids_linked": [
+    1007854,
+    1055989,
+    1073100,
+    1130058
+   ],
+   "uniform": "15",
+   "cclass": "12",
+   "school": "21506",
+   "name": "YAHAIDA TIPAS MARTINEZ"
+  },
+  {
+   "season": "2023",
+   "sport": "012",
+   "cid": 1131344,
+   "rows": 4,
+   "seasons_linked": [
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "cids_linked": [
+    1064083,
+    1074143,
+    1131344,
+    1193395
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "15498",
+   "name": "WILLIAM DAWSON-HOLLOW"
+  },
+  {
+   "season": "2023",
+   "sport": "012",
+   "cid": 1148202,
+   "rows": 3,
+   "seasons_linked": [
+    "2022",
+    "2023",
+    "2025"
+   ],
+   "cids_linked": [
+    1083033,
+    1148202,
+    1270754
+   ],
+   "uniform": "12",
+   "cclass": "12",
+   "school": "28517",
+   "name": "GERALD DAVID ALVAREZ"
+  },
+  {
+   "season": "2023",
+   "sport": "012",
+   "cid": 1129792,
+   "rows": 4,
+   "seasons_linked": [
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1129792,
+    1193597,
+    1260795,
+    1331310
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "30470",
+   "name": "VINCENT VOISARD"
+  },
+  {
+   "season": "2023",
+   "sport": "021",
+   "cid": 1130818,
+   "rows": 4,
+   "seasons_linked": [
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1130818,
+    1193994,
+    1263594,
+    1333900
+   ],
+   "uniform": "13",
+   "cclass": "12",
+   "school": "22533",
+   "name": "FRANCESCA GOODWIN"
+  },
+  {
+   "season": "2023",
+   "sport": "021",
+   "cid": 1135039,
+   "rows": 1,
+   "seasons_linked": [
+    "2023"
+   ],
+   "cids_linked": [
+    1135039
+   ],
+   "uniform": "34",
+   "cclass": "10",
+   "school": "30540",
+   "name": "NINA DAVIDSON"
+  },
+  {
+   "season": "2023",
+   "sport": "012",
+   "cid": 1129628,
+   "rows": 4,
+   "seasons_linked": [
+    "2020",
+    "2021",
+    "2022",
+    "2023"
+   ],
+   "cids_linked": [
+    1006322,
+    1055485,
+    1071789,
+    1129628
+   ],
+   "uniform": "43",
+   "cclass": "12",
+   "school": "31509",
+   "name": "OMAR IBRAHIM"
+  },
+  {
+   "season": "2023",
+   "sport": "021",
+   "cid": 1137183,
+   "rows": 2,
+   "seasons_linked": [
+    "2020",
+    "2023"
+   ],
+   "cids_linked": [
+    1008058,
+    1137183
+   ],
+   "uniform": "16",
+   "cclass": "12",
+   "school": "28541",
+   "name": "CYNDY ASITIMBAY BERME"
+  },
+  {
+   "season": "2023",
+   "sport": "021",
+   "cid": 1140831,
+   "rows": 1,
+   "seasons_linked": [
+    "2023"
+   ],
+   "cids_linked": [
+    1140831
+   ],
+   "uniform": "19",
+   "cclass": "12",
+   "school": "17523",
+   "name": "CELEANA TEAGUE"
+  },
+  {
+   "season": "2023",
+   "sport": "012",
+   "cid": 1144163,
+   "rows": 2,
+   "seasons_linked": [
+    "2023",
+    "2024"
+   ],
+   "cids_linked": [
+    1144163,
+    1204076
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "12251",
+   "name": "YENUPAAK KONLAN"
+  },
+  {
+   "season": "2024",
+   "sport": "012",
+   "cid": 1207448,
+   "rows": 3,
+   "seasons_linked": [
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "cids_linked": [
+    1148154,
+    1207448,
+    1279616
+   ],
+   "uniform": "3 ",
+   "cclass": "12",
+   "school": "09324",
+   "name": "DENIS CHICAIZA AYORA"
+  },
+  {
+   "season": "2024",
+   "sport": "021",
+   "cid": 1199147,
+   "rows": 2,
+   "seasons_linked": [
+    "2024",
+    "2025"
+   ],
+   "cids_linked": [
+    1199147,
+    1270244
+   ],
+   "uniform": "22",
+   "cclass": "12",
+   "school": "28585",
+   "name": "KAYLA CRUZ"
+  },
+  {
+   "season": "2024",
+   "sport": "012",
+   "cid": 1193548,
+   "rows": 1,
+   "seasons_linked": [
+    "2024"
+   ],
+   "cids_linked": [
+    1193548
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "08524",
+   "name": "ADAM ORTIZ"
+  },
+  {
+   "season": "2024",
+   "sport": "021",
+   "cid": 1200095,
+   "rows": 2,
+   "seasons_linked": [
+    "2023",
+    "2024"
+   ],
+   "cids_linked": [
+    1135604,
+    1200095
+   ],
+   "uniform": "7 ",
+   "cclass": "12",
+   "school": "31545",
+   "name": "ADRIANA STRABINICK"
+  },
+  {
+   "season": "2024",
+   "sport": "012",
+   "cid": 1195236,
+   "rows": 3,
+   "seasons_linked": [
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "cids_linked": [
+    1131970,
+    1195236,
+    1266498
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "26513",
+   "name": "JOSE CORONEL"
+  },
+  {
+   "season": "2024",
+   "sport": "012",
+   "cid": 1195333,
+   "rows": 1,
+   "seasons_linked": [
+    "2024"
+   ],
+   "cids_linked": [
+    1195333
+   ],
+   "uniform": "4 ",
+   "cclass": "10",
+   "school": "10526",
+   "name": "EDGAR ORTIZ CARDOZO"
+  },
+  {
+   "season": "2024",
+   "sport": "012",
+   "cid": 1195518,
+   "rows": 2,
+   "seasons_linked": [
+    "2024",
+    "2025"
+   ],
+   "cids_linked": [
+    1195518,
+    1262122
+   ],
+   "uniform": "15",
+   "cclass": "12",
+   "school": "27521",
+   "name": "DAVID PILAR URBANO"
+  },
+  {
+   "season": "2024",
+   "sport": "021",
+   "cid": 1201742,
+   "rows": 3,
+   "seasons_linked": [
+    "2022",
+    "2023",
+    "2024"
+   ],
+   "cids_linked": [
+    1081715,
+    1135152,
+    1201742
+   ],
+   "uniform": "17",
+   "cclass": "12",
+   "school": "01420",
+   "name": "DANIELLE CHIORAZZI"
+  },
+  {
+   "season": "2024",
+   "sport": "012",
+   "cid": 1196027,
+   "rows": 3,
+   "seasons_linked": [
+    "2023",
+    "2024",
+    "2026"
+   ],
+   "cids_linked": [
+    1148618,
+    1196027,
+    1339961
+   ],
+   "uniform": "15",
+   "cclass": "12",
+   "school": "02541",
+   "name": "JOSE MELECIO"
+  },
+  {
+   "season": "2024",
+   "sport": "012",
+   "cid": 1199951,
+   "rows": 3,
+   "seasons_linked": [
+    "2024",
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1199951,
+    1266098,
+    1347946
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "30500",
+   "name": "SAMUEL RIANO TORRES"
+  },
+  {
+   "season": "2024",
+   "sport": "012",
+   "cid": 1211376,
+   "rows": 4,
+   "seasons_linked": [
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "cids_linked": [
+    1072226,
+    1129724,
+    1211376,
+    1264485
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "04504",
+   "name": "OMAR MOHAMED"
+  },
+  {
+   "season": "2024",
+   "sport": "021",
+   "cid": 1214300,
+   "rows": 2,
+   "seasons_linked": [
+    "2024",
+    "2026"
+   ],
+   "cids_linked": [
+    1214300,
+    1338827
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "21501",
+   "name": "KRYSTAL MELENDEZ"
+  },
+  {
+   "season": "2025",
+   "sport": "012",
+   "cid": 1272925,
+   "rows": 3,
+   "seasons_linked": [
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1272925,
+    1334017,
+    1403480
+   ],
+   "uniform": "28",
+   "cclass": "12",
+   "school": "22350",
+   "name": "ROMAN NAD"
+  },
+  {
+   "season": "2025",
+   "sport": "012",
+   "cid": 1276951,
+   "rows": 1,
+   "seasons_linked": [
+    "2025"
+   ],
+   "cids_linked": [
+    1276951
+   ],
+   "uniform": "0 ",
+   "cclass": "12",
+   "school": "02582",
+   "name": "KEVIN PIMENTEL"
+  },
+  {
+   "season": "2025",
+   "sport": "021",
+   "cid": 1282391,
+   "rows": 2,
+   "seasons_linked": [
+    "2024",
+    "2025"
+   ],
+   "cids_linked": [
+    1202476,
+    1282391
+   ],
+   "uniform": "1 ",
+   "cclass": "12",
+   "school": "28522",
+   "name": "KISHA MIREAU"
+  },
+  {
+   "season": "2025",
+   "sport": "021",
+   "cid": 1275376,
+   "rows": 4,
+   "seasons_linked": [
+    "2024",
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1215184,
+    1275376,
+    1349665,
+    2801510
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "07500",
+   "name": "JESSICA FLORES"
+  },
+  {
+   "season": "2025",
+   "sport": "021",
+   "cid": 1265881,
+   "rows": 4,
+   "seasons_linked": [
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1138519,
+    1197091,
+    1265881,
+    1338522
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "03548",
+   "name": "ZSOFIA RACZ"
+  },
+  {
+   "season": "2025",
+   "sport": "012",
+   "cid": 1284011,
+   "rows": 2,
+   "seasons_linked": [
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1284011,
+    1337830
+   ],
+   "uniform": "23",
+   "cclass": "12",
+   "school": "05692",
+   "name": "MOUHAMED LO"
+  },
+  {
+   "season": "2025",
+   "sport": "012",
+   "cid": 1282082,
+   "rows": 2,
+   "seasons_linked": [
+    "2024",
+    "2025"
+   ],
+   "cids_linked": [
+    1196110,
+    1282082
+   ],
+   "uniform": "  ",
+   "cclass": "11",
+   "school": "02541",
+   "name": "NATHAN FLORES"
+  },
+  {
+   "season": "2025",
+   "sport": "012",
+   "cid": 1284423,
+   "rows": 1,
+   "seasons_linked": [
+    "2025"
+   ],
+   "cids_linked": [
+    1284423
+   ],
+   "uniform": "2 ",
+   "cclass": "12",
+   "school": "13555",
+   "name": "MOHSIR MAHDI"
+  },
+  {
+   "season": "2025",
+   "sport": "021",
+   "cid": 1264085,
+   "rows": 3,
+   "seasons_linked": [
+    "2024",
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1199524,
+    1264085,
+    1335006
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "10505",
+   "name": "STEPHANIE ROJAS-TLATILOLP"
+  },
+  {
+   "season": "2025",
+   "sport": "012",
+   "cid": 1263671,
+   "rows": 1,
+   "seasons_linked": [
+    "2025"
+   ],
+   "cids_linked": [
+    1263671
+   ],
+   "uniform": "3 ",
+   "cclass": "11",
+   "school": "07221",
+   "name": "ADRIEL GALINDO"
+  },
+  {
+   "season": "2025",
+   "sport": "021",
+   "cid": 1263089,
+   "rows": 2,
+   "seasons_linked": [
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1263089,
+    1340895
+   ],
+   "uniform": "11",
+   "cclass": "10",
+   "school": "25501",
+   "name": "KELSEY KO"
+  },
+  {
+   "season": "2025",
+   "sport": "021",
+   "cid": 1285272,
+   "rows": 3,
+   "seasons_linked": [
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1285272,
+    1335563,
+    1406041
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "02538",
+   "name": "KAREN ESQUINCA"
+  },
+  {
+   "season": "2026",
+   "sport": "021",
+   "cid": 1330449,
+   "rows": 4,
+   "seasons_linked": [
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1146332,
+    1192889,
+    1260672,
+    1330449
+   ],
+   "uniform": "2 ",
+   "cclass": "12",
+   "school": "30289",
+   "name": "VALENTINA CASTILLO LOPEZ"
+  },
+  {
+   "season": "2026",
+   "sport": "012",
+   "cid": 1331030,
+   "rows": 2,
+   "seasons_linked": [
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1331030,
+    1404240
+   ],
+   "uniform": "14",
+   "cclass": "11",
+   "school": "21559",
+   "name": "SAIDALI TAKHIRJANOV"
+  },
+  {
+   "season": "2026",
+   "sport": "012",
+   "cid": 1339066,
+   "rows": 2,
+   "seasons_linked": [
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1277768,
+    1339066
+   ],
+   "uniform": "8 ",
+   "cclass": "12",
+   "school": "08524",
+   "name": "ENMANUEL ROMANO"
+  },
+  {
+   "season": "2026",
+   "sport": "021",
+   "cid": 1334795,
+   "rows": 4,
+   "seasons_linked": [
+    "2024",
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1196246,
+    1272698,
+    1334795,
+    1400254
+   ],
+   "uniform": "12",
+   "cclass": "12",
+   "school": "31509",
+   "name": "ANTONIETTA D AMELIO"
+  },
+  {
+   "season": "2026",
+   "sport": "012",
+   "cid": 1333952,
+   "rows": 3,
+   "seasons_linked": [
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1286212,
+    1333952,
+    1405711
+   ],
+   "uniform": "11",
+   "cclass": "11",
+   "school": "27308",
+   "name": "TOUFIQUL TUHIN"
+  },
+  {
+   "season": "2026",
+   "sport": "012",
+   "cid": 1353081,
+   "rows": 1,
+   "seasons_linked": [
+    "2026"
+   ],
+   "cids_linked": [
+    1353081
+   ],
+   "uniform": "33",
+   "cclass": "12",
+   "school": "30258",
+   "name": "JONATHAN SOSA PONCE"
+  },
+  {
+   "season": "2026",
+   "sport": "012",
+   "cid": 1330791,
+   "rows": 2,
+   "seasons_linked": [
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1261900,
+    1330791
+   ],
+   "uniform": "24",
+   "cclass": "12",
+   "school": "26505",
+   "name": "DYLAN PARK"
+  },
+  {
+   "season": "2026",
+   "sport": "012",
+   "cid": 1337103,
+   "rows": 2,
+   "seasons_linked": [
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1285997,
+    1337103
+   ],
+   "uniform": "8 ",
+   "cclass": "12",
+   "school": "09517",
+   "name": "AMADOU TALL"
+  },
+  {
+   "season": "2026",
+   "sport": "021",
+   "cid": 1338998,
+   "rows": 2,
+   "seasons_linked": [
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1338998,
+    1410955
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "13483",
+   "name": "DELILAH CANTOR"
+  },
+  {
+   "season": "2026",
+   "sport": "012",
+   "cid": 1334578,
+   "rows": 3,
+   "seasons_linked": [
+    "2024",
+    "2025",
+    "2026"
+   ],
+   "cids_linked": [
+    1199278,
+    1265527,
+    1334578
+   ],
+   "uniform": "6 ",
+   "cclass": "12",
+   "school": "02563",
+   "name": "NIKOLAI PAVLOV"
+  },
+  {
+   "season": "2026",
+   "sport": "012",
+   "cid": 1354473,
+   "rows": 1,
+   "seasons_linked": [
+    "2026"
+   ],
+   "cids_linked": [
+    1354473
+   ],
+   "uniform": "  ",
+   "cclass": "12",
+   "school": "27308",
+   "name": "JAYDDEN ALVARADO"
+  },
+  {
+   "season": "2026",
+   "sport": "021",
+   "cid": 1353431,
+   "rows": 2,
+   "seasons_linked": [
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1353431,
+    1412085
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "22350",
+   "name": "CHLOE SHPRINZES"
+  },
+  {
+   "season": "2027",
+   "sport": "021",
+   "cid": 1400701,
+   "rows": 3,
+   "seasons_linked": [
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1267407,
+    1332215,
+    1400701
+   ],
+   "uniform": "15",
+   "cclass": "11",
+   "school": "13507",
+   "name": "CHLOE HU AU"
+  },
+  {
+   "season": "2027",
+   "sport": "021",
+   "cid": 1404065,
+   "rows": 2,
+   "seasons_linked": [
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1334033,
+    1404065
+   ],
+   "uniform": "14",
+   "cclass": "10",
+   "school": "28541",
+   "name": "FATEMAH MAJIDI"
+  },
+  {
+   "season": "2027",
+   "sport": "012",
+   "cid": 1411576,
+   "rows": 1,
+   "seasons_linked": [
+    "2027"
+   ],
+   "cids_linked": [
+    1411576
+   ],
+   "uniform": "25",
+   "cclass": "11",
+   "school": "01420",
+   "name": "NICKOLAS MONTES"
+  },
+  {
+   "season": "2027",
+   "sport": "012",
+   "cid": 1406868,
+   "rows": 2,
+   "seasons_linked": [
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1335855,
+    1406868
+   ],
+   "uniform": "  ",
+   "cclass": "10",
+   "school": "14550",
+   "name": "JOSUE NUNEZ-MARTINEZ"
+  },
+  {
+   "season": "2027",
+   "sport": "012",
+   "cid": 1399710,
+   "rows": 3,
+   "seasons_linked": [
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1261199,
+    1330236,
+    1399710
+   ],
+   "uniform": "34",
+   "cclass": "11",
+   "school": "22527",
+   "name": "ARMEND HAKRAMAJ"
+  },
+  {
+   "season": "2027",
+   "sport": "012",
+   "cid": 1409389,
+   "rows": 4,
+   "seasons_linked": [
+    "2024",
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1199757,
+    1266170,
+    1341988,
+    1409389
+   ],
+   "uniform": "20",
+   "cclass": "12",
+   "school": "02538",
+   "name": "MATTEO CLEGG"
+  },
+  {
+   "season": "2027",
+   "sport": "012",
+   "cid": 1407917,
+   "rows": 2,
+   "seasons_linked": [
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1345400,
+    1407917
+   ],
+   "uniform": "8 ",
+   "cclass": "12",
+   "school": "02582",
+   "name": "ALAN CALDAS"
+  },
+  {
+   "season": "2027",
+   "sport": "012",
+   "cid": 1404622,
+   "rows": 3,
+   "seasons_linked": [
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1271313,
+    1335830,
+    1404622
+   ],
+   "uniform": "10",
+   "cclass": "12",
+   "school": "01538",
+   "name": "ASHER GELBMAN"
+  },
+  {
+   "season": "2027",
+   "sport": "021",
+   "cid": 1405083,
+   "rows": 2,
+   "seasons_linked": [
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1336206,
+    1405083
+   ],
+   "uniform": "20",
+   "cclass": "12",
+   "school": "27519",
+   "name": "AHTZIRI SOLANO ANAYA"
+  },
+  {
+   "season": "2027",
+   "sport": "021",
+   "cid": 1400620,
+   "rows": 3,
+   "seasons_linked": [
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1265050,
+    1330498,
+    1400620
+   ],
+   "uniform": "21",
+   "cclass": "11",
+   "school": "15498",
+   "name": "STELLA SNYDER"
+  },
+  {
+   "season": "2027",
+   "sport": "012",
+   "cid": 1405714,
+   "rows": 1,
+   "seasons_linked": [
+    "2027"
+   ],
+   "cids_linked": [
+    1405714
+   ],
+   "uniform": "99",
+   "cclass": "09",
+   "school": "27308",
+   "name": "SEBASTIAN VALENTIN"
+  },
+  {
+   "season": "2027",
+   "sport": "012",
+   "cid": 1413073,
+   "rows": 3,
+   "seasons_linked": [
+    "2025",
+    "2026",
+    "2027"
+   ],
+   "cids_linked": [
+    1286322,
+    1336823,
+    1413073
+   ],
+   "uniform": "6 ",
+   "cclass": "11",
+   "school": "09511",
+   "name": "DEMBO SAMAKE"
+  }
+ ],
+ "cids_total": 119984
+}
