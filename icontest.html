@@ -3,24 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Icon Test A</title>
+<title>Icon Test B</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Icon Test A">
-<link rel="apple-touch-icon" href="/tile-180.png">
+<meta name="apple-mobile-web-app-title" content="Icon Test B">
+<link rel="apple-touch-icon" href="/tile-1024.png">
 <style>
   body{margin:0;font:16px/1.5 -apple-system,system-ui,sans-serif;background:#0C1320;color:#E9EEF7;padding:28px 20px}
   h1{font-size:20px;margin:0 0 6px}
   p{color:#8494AE;margin:0 0 18px}
   img{width:120px;height:120px;border-radius:24px;display:block;margin:22px 0}
-  code{background:#1B2840;padding:2px 6px;border-radius:5px;font-size:13px}
+  b{color:#E9EEF7}
 </style>
 </head>
 <body>
-<h1>Icon Test A</h1>
-<p>The absolute minimum: one <code>apple-touch-icon</code>, no manifest, no other icon tags.</p>
-<img src="/tile-180.png" alt="the icon as served">
-<p>Add this page to your home screen. If this tile fills edge to edge but the main
-site's does not, the difference is in the main page's markup. If this one is also
-boxed in white, the problem is the image file itself.</p>
+<h1>Icon Test B</h1>
+<p>One <code>apple-touch-icon</code> at <b>1024&times;1024</b>, no manifest, no size attribute.</p>
+<img src="/tile-1024.png" alt="the icon as served">
+<p>Test A used a 180px source. If B fills the tile and A did not, iOS was refusing
+to upscale the smaller file and centring it on white instead.</p>
 </body>
 </html>
