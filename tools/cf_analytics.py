@@ -58,6 +58,34 @@ query Traffic($account: String!, $site: String!, $start: Time!, $end: Time!) {
 """
 
 
+def token_shape(token):
+    """Say what is wrong with a token without ever saying what it is.
+
+    A Cloudflare API token is 40 characters of [A-Za-z0-9_-]. Anything else is
+    a paste that picked up more than the token -- which is worth knowing before
+    anyone goes hunting for a permissions problem that isn't there.
+    """
+    lines = ["Token check:",
+             "  length %d (a Cloudflare API token is 40)" % len(token)]
+    stray = sorted(set(c for c in token if not (c.isalnum() or c in "_-")))
+    if stray:
+        lines.append("  contains characters a token never has: %s"
+                     % " ".join(repr(c) for c in stray))
+    try:
+        req = urllib.request.Request(
+            "https://api.cloudflare.com/client/v4/user/tokens/verify",
+            headers={"Authorization": "Bearer " + token})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            v = json.load(r)
+        lines.append("  /tokens/verify says: %s" % json.dumps(v.get("result"))[:200])
+    except urllib.error.HTTPError as e:
+        lines.append("  /tokens/verify says: HTTP %s %s"
+                     % (e.code, e.read().decode("utf-8", "replace")[:200]))
+    except Exception as e:
+        lines.append("  /tokens/verify unreachable: %r" % (e,))
+    return "\n".join(lines)
+
+
 class Unavailable(Exception):
     """Cloudflare would not answer. Carries text safe to commit to a repo."""
 
@@ -73,7 +101,8 @@ def ask(token, variables):
             out = json.load(r)
     except urllib.error.HTTPError as e:
         detail = e.read().decode("utf-8", "replace")[:600]
-        raise Unavailable("HTTP %s from api.cloudflare.com\n\n%s" % (e.code, detail))
+        raise Unavailable("HTTP %s from api.cloudflare.com\n\n%s\n\n%s"
+                          % (e.code, detail, token_shape(token)))
     except Exception as e:
         raise Unavailable("could not reach api.cloudflare.com: %r" % (e,))
     if out.get("errors"):
