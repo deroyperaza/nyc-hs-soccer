@@ -849,7 +849,11 @@
     }
     if(S.openGameKey){
       var gp = S.openGameKey.split(":");
-      seg = ["game", gp[1], gp[0] === "1" ? "girls" : "boys"];
+      seg = ["game", gp[1]];
+      // a box score from an archive season has to name it, or a cold load looks
+      // for the game in the current season and finds nothing
+      if(S.seasonId && S.seasonId !== META.defaultSeason) seg.push(S.seasonId);
+      seg.push(gp[0] === "1" ? "girls" : "boys");
       return "/" + seg.join("/");
     }
     if(S.openTeamKey){
@@ -925,7 +929,11 @@
     else if(tail === "boys"){ plan.sp = 0; parts.pop(); }
     if(!parts.length) return plan;
     var head = parts[0];
-    if(head === "game" && parts[1]){ plan.game = parts[1]; return plan; }
+    if(head === "game" && parts[1]){
+      plan.game = parts[1];
+      if(parts[2] && /^\d{4}$/.test(parts[2])) plan.season = parts[2];
+      return plan;
+    }
     if(head === "player" && parts[1]){ plan.player = parts[1]; return plan; }
     if(head === "school" && parts[1]){
       plan.view = "scores";
