@@ -20,7 +20,19 @@ but it is reissued each year, so it cannot link a career together on its own.
 import json, os, sys, time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from psal_refresh import warm, call, pmap, SPORTS, SPORT_INDEX  # noqa: E402
+
+# psal_refresh is usually the script being run, which makes it __main__. A plain
+# "import psal_refresh" would then load a SECOND copy of the module with its own
+# _cookies still None, and every request would go out cookie-less, get bounced to
+# Login.aspx and retry its way to nothing. So reuse the instance that is already
+# loaded when there is one.
+_main = sys.modules.get('__main__')
+if os.path.basename(getattr(_main, '__file__', '') or '') == 'psal_refresh.py':
+    _rf = _main
+else:
+    import psal_refresh as _rf  # noqa: E402
+warm, call, pmap = _rf.warm, _rf.call, _rf.pmap
+SPORTS, SPORT_INDEX = _rf.SPORTS, _rf.SPORT_INDEX
 
 SPC_BY_INDEX = {v: k for k, v in SPORT_INDEX.items()}
 
@@ -122,6 +134,14 @@ def pull_season(season, datadir, force=False):
                    num(b.get("saves")), num(b.get("shots")), num(b.get("gallowe"))]
                   for b in rows]
 
+    if todo and not R:
+        raise SystemExit(
+            "REFUSING to write r%s.json: every one of %d games came back empty. "
+            "That is a broken session, not a season without rosters." % (season, len(todo)))
+    if todo and empty > len(todo) // 2:
+        raise SystemExit(
+            "REFUSING to write r%s.json: %d of %d games came back empty."
+            % (season, empty, len(todo)))
     blob = {"season": season, "P": names, "R": R}
     json.dump(blob, open(out_path, "w"), separators=(",", ":"))
     total = sum(len(v) for v in R.values())
