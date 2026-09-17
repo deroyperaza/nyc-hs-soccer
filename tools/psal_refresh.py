@@ -306,7 +306,7 @@ def refresh_analytics(repo, max_age_hours=6):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", default="fetch",
-                    choices=["discover", "fetch", "rosters", "analytics"])
+                    choices=["discover", "fetch", "rosters", "analytics", "probe"])
     ap.add_argument("--season", default="2027")
     ap.add_argument("--repo", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     args = ap.parse_args()
@@ -319,6 +319,13 @@ def main():
 
     warm()
     print("session ok", flush=True)
+
+    if args.mode == "probe":
+        # Read-only look at an endpoint we do not yet import. Writes its
+        # findings to probe/latest.json, because CI logs are unreadable here.
+        from psal_probe import main as probe_main
+        probe_main(os.path.join(args.repo, "data"), args.repo)
+        return
 
     if args.mode == "discover":
         discover(args.season)
