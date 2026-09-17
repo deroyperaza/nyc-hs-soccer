@@ -273,10 +273,16 @@ def sanity(season, res_now, datadir):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", default="fetch",
-                    choices=["discover", "fetch", "rosters"])
+                    choices=["discover", "fetch", "rosters", "analytics"])
     ap.add_argument("--season", default="2027")
     ap.add_argument("--repo", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     args = ap.parse_args()
+
+    if args.mode == "analytics":
+        # nothing to do with PSAL; it just needs a runner with open network
+        import cf_analytics
+        cf_analytics.main()
+        return
 
     warm()
     print("session ok", flush=True)
