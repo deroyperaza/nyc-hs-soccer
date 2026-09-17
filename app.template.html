@@ -696,8 +696,9 @@
      The URL is the app's state, so a school page or a box score can be linked
      to directly. Sport is always the last segment -- /boys or /girls -- so a
      boys link and a girls link are symmetrical and neither is ambiguous. The
-     bare forms (/, /standings, /school/beacon) still resolve, to boys, and are
-     rewritten to the canonical path on arrival. Followed teams ride along as
+     one exception is the landing page, which stays at /. The bare forms
+     (/standings, /school/beacon) still resolve, to boys, and are rewritten to
+     the canonical path on arrival. Followed teams ride along as
      ?f= -- one writer owns the whole URL so the two never fight over it. */
   var SLUGS = META.slugs || {};
   var CODE_BY_SLUG = {};
@@ -738,7 +739,9 @@
       if(S.seasonId && S.seasonId !== META.defaultSeason) seg.push(S.seasonId);
     }
     seg.push(S.sp === 1 ? "girls" : "boys");
-    return "/" + seg.join("/");
+    var path = "/" + seg.join("/");
+    // the landing page keeps the bare root; /boys still resolves to it
+    return path === "/boys" ? "/" : path;
   }
 
   function routeTitle(){
