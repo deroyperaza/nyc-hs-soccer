@@ -134,11 +134,17 @@ def pull_season(season, datadir, force=False):
                    num(b.get("saves")), num(b.get("shots")), num(b.get("gallowe"))]
                   for b in rows]
 
+    # A game with no rows is ordinary -- plenty of coaches never file a sheet,
+    # and a game played an hour ago usually hasn't got one yet. What is not
+    # ordinary is a whole pull coming back empty, which is what a dead session
+    # looks like. So only judge a pull big enough to be meaningful, and only on
+    # a near-total wipeout. An incremental run of one or two new games must
+    # never trip this.
     if todo and not R:
         raise SystemExit(
             "REFUSING to write r%s.json: every one of %d games came back empty. "
             "That is a broken session, not a season without rosters." % (season, len(todo)))
-    if todo and empty > len(todo) // 2:
+    if len(todo) >= 25 and empty >= 0.9 * len(todo):
         raise SystemExit(
             "REFUSING to write r%s.json: %d of %d games came back empty."
             % (season, empty, len(todo)))

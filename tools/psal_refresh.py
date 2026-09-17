@@ -335,7 +335,11 @@ def main():
                        check=True, cwd=args.repo, env=env)
     except StopIteration:
         pass
-    except Exception as e:
+    except (Exception, SystemExit) as e:
+        # Rosters and player pages are a bonus on top of a score refresh. A
+        # problem here must never take the scores down with it -- SystemExit
+        # included, which is what the roster guards raise and which a bare
+        # "except Exception" would sail straight past.
         print("rosters/player pages skipped: %s: %s" % (type(e).__name__, e),
               file=sys.stderr, flush=True)
     print("\ndone in %.0fs" % (time.time() - t0))
