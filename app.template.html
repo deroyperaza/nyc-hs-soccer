@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <title>NYC High School Soccer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#293955">
 <!-- Player pages are noindexed: the data is PSAL's and public, but a per-child
      profile page is an aggregation PSAL doesn't publish, and most of these
@@ -222,11 +222,8 @@
   /* ---------- sheets ---------- */
   .sheet{position:fixed; inset:0; z-index:60; display:flex; flex-direction:column; background:var(--bg)}
   .sheet[hidden]{display:none}
+  /* kills double-tap zoom on a tap-heavy UI; pinch-to-zoom stays available */
   button, input, select, textarea, a, label, summary{touch-action:manipulation}
-  /* pinch-to-zoom off: the meta tag covers Android and the home-screen app,
-     touch-action covers Chrome, and iOS Safari needs the gesture handlers at
-     the end of the page because it has ignored user-scalable since iOS 10 */
-  html{touch-action:pan-x pan-y}
   .sheet.two{z-index:70}
   .sheet.three{z-index:80}
   .plink{color:var(--blue); text-align:left; font:inherit}
@@ -278,6 +275,14 @@
   .presult .star svg{width:17px; height:17px}
   .presult .star[aria-pressed="true"]{color:var(--orange)}
   .presult.isfav{background:var(--fav-bg); box-shadow:inset 3px 0 0 var(--fav-line)}
+  .presult{background:var(--surface)}
+  .grip{flex:none; width:26px; height:32px; display:flex; align-items:center; justify-content:center;
+    color:var(--muted); cursor:grab; touch-action:none}
+  .grip svg{width:16px; height:16px}
+  .presult.dragging{position:relative; z-index:3; cursor:grabbing;
+    box-shadow:0 6px 18px rgba(0,0,0,.28); border-radius:8px}
+  #favlist .presult{transition:transform .14s ease}
+  #favlist .presult.dragging{transition:none}
   .alsorow{display:block; width:100%; padding:11px 13px; border-top:1px solid var(--line-soft);
     text-align:left; font-size:13px; color:var(--blue)}
   .alsorow .q{color:var(--muted); font-size:11.5px; display:block; margin-top:2px}
@@ -446,7 +451,8 @@
   <section class="view" id="view-history" hidden></section>
   <footer>
     Data from the PSAL league feed · <a href="https://www.psal.org/" target="_blank" rel="noopener">psal.org</a><br>
-    Unofficial. PSAL posts the official record.
+    Unofficial. PSAL posts the official record.<br>
+    Built by Deroy Peraza
   </footer>
 </main>
 
@@ -554,7 +560,7 @@
     date: null, defaultDate: null, boro: "", div: "", query: "", hsub: "champs", rankYear: "all", openBoros: {},
     favs: new Set(), cache: {}, hist: null, histState: "idle", openTeamKey: null, openGameKey: null,
     openPlayer: null, pcache: {}, rcache: {}, openRosters: {}, gshown: {},
-    pq: "", pyear: "all", presults: null, pfavs: {}, ncache: {}, pqTimer: null
+    pq: "", pyear: "all", presults: null, pfavs: {}, pfavOrder: [], ncache: {}, pqTimer: null
   };
 
   /* ---------- helpers ---------- */
@@ -1916,6 +1922,18 @@
     needShard(key, function(bundle){
       if(S.openPlayer !== key) return;
       var p = bundle && bundle[key], live = liveRows(key);
+      if(p && p.ref){
+        // this spelling was merged into another career; follow it and fix the URL
+        S.openPlayer = p.ref;
+        needShard(p.ref, function(b2){
+          if(S.openPlayer !== p.ref) return;
+          S.pdata = null;
+          var p2 = b2 && b2[p.ref];
+          if(p2) renderPlayer(p.ref, p2, liveRows(p.ref));
+          syncUrl("now");
+        });
+        return;
+      }
       if(!p && !live){
         el("psheet-name").textContent = "Player not found";
         el("psheet-sub").textContent = "";
@@ -2108,19 +2126,27 @@
   function loadPFavs(){
     try{
       var raw = JSON.parse(localStorage.getItem("psal.pfavs") || "[]");
-      raw.forEach(function(e){ if(e && e[0]) S.pfavs[e[0]] = e; });
+      raw.forEach(function(e){
+        if(e && e[0] && !S.pfavs[e[0]]){ S.pfavs[e[0]] = e; S.pfavOrder.push(e[0]); }
+      });
     }catch(e){}
   }
   function savePFavs(){
+    // the stored array IS the order, so dragging persists for free
     try{
-      localStorage.setItem("psal.pfavs", JSON.stringify(Object.keys(S.pfavs).map(function(k){
+      localStorage.setItem("psal.pfavs", JSON.stringify(S.pfavOrder.map(function(k){
         return S.pfavs[k];
-      })));
+      }).filter(Boolean)));
     }catch(e){}
   }
   function togglePFav(key, name, code, y0, y1){
-    if(S.pfavs[key]) delete S.pfavs[key];
-    else S.pfavs[key] = [key, name, code, y0 || 0, y1 || 0];
+    if(S.pfavs[key]){
+      delete S.pfavs[key];
+      S.pfavOrder = S.pfavOrder.filter(function(k){ return k !== key; });
+    }else{
+      S.pfavs[key] = [key, name, code, y0 || 0, y1 || 0];
+      S.pfavOrder.push(key);
+    }
     savePFavs();
     if(S.view === "players") renderPlayers();
     if(S.openPlayer) syncPStar();
@@ -2146,11 +2172,14 @@
       .catch(function(){ S.ncache[pre] = []; after([]); });
   }
 
-  function playerRowHTML(key, name, code, y0, y1, extra){
+  function playerRowHTML(key, name, code, y0, y1, extra, grip){
     var fav = !!S.pfavs[key];
     var yrs = y0 && y1 ? (y0 === y1 ? seasonLabel(y0) : seasonLabel(y0) + "\u2013" + String(seasonLabel(y1)).replace(/^\D+/, "")) : "";
     var meta_ = [SHORTS[code] || code, yrs].filter(Boolean).join(" \u00b7 ");
-    return '<div class="presult' + (fav ? " isfav" : "") + '">' +
+    return '<div class="presult' + (fav ? " isfav" : "") + '" data-key="' + esc(key) + '">' +
+      (grip ? '<span class="grip" data-grip aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
+        '<path d="M5 9h14M5 15h14"></path></svg></span>' : '') +
       '<button class="who" data-player="' + esc(key) + '">' +
         '<span class="nm">' + esc(titleCase(name)) + '</span>' +
         '<span class="mt">' + esc(meta_ + (extra || "")) + '</span>' +
@@ -2180,16 +2209,17 @@
         }).join("") +
       '</select></div>';
 
-    var favKeys = Object.keys(S.pfavs);
+    var favKeys = S.pfavOrder.filter(function(k){ return S.pfavs[k]; });
     var body = "";
     if(favKeys.length){
-      favKeys.sort(function(a, b){ return String(S.pfavs[a][1]).localeCompare(String(S.pfavs[b][1])); });
       body += '<div class="card"><div class="boxhead"><h3>Following</h3>' +
-        '<span class="sub">' + favKeys.length + ' player' + (favKeys.length === 1 ? "" : "s") + '</span></div>' +
-        favKeys.map(function(k){
+        '<span class="sub">' + favKeys.length + ' player' +
+        (favKeys.length === 1 ? "" : "s") +
+        (favKeys.length > 1 ? " \u00b7 drag to reorder" : "") + '</span></div>' +
+        '<div id="favlist">' + favKeys.map(function(k){
           var e = S.pfavs[k];
-          return playerRowHTML(k, e[1], e[2], e[3], e[4]);
-        }).join("") + '</div>';
+          return playerRowHTML(k, e[1], e[2], e[3], e[4], "", favKeys.length > 1);
+        }).join("") + '</div></div>';
     }
 
     var q = S.pq.trim();
@@ -2200,6 +2230,7 @@
                           "Tap the star to follow someone and they'll stay at the top of this page.") +
         '</div></div>';
       v.innerHTML = head + body;
+      initFavDrag();          // this branch renders the followed list too
       return;
     }
 
@@ -2221,6 +2252,61 @@
       }
     }
     v.innerHTML = head + body;
+    initFavDrag();
+  }
+
+  /* Drag to reorder the followed list. Pointer events rather than HTML5
+     drag-and-drop, because that one does not exist on touch. The grip carries
+     touch-action:none so a drag isn't taken over by page scrolling. */
+  function initFavDrag(){
+    var list = el("favlist");
+    if(!list || list.dataset.wired) return;
+    list.dataset.wired = "1";
+    var d = null;
+    list.addEventListener("pointerdown", function(e){
+      var h = e.target.closest ? e.target.closest("[data-grip]") : null;
+      if(!h) return;
+      var row = h.closest(".presult");
+      if(!row) return;
+      e.preventDefault();
+      var rows = Array.prototype.slice.call(list.querySelectorAll(".presult"));
+      var i = rows.indexOf(row);
+      d = {row: row, rows: rows, from: i, to: i, y0: e.clientY,
+           h: row.getBoundingClientRect().height};
+      row.classList.add("dragging");
+      try{ h.setPointerCapture(e.pointerId); }catch(x){}
+    });
+    list.addEventListener("pointermove", function(e){
+      if(!d) return;
+      var dy = e.clientY - d.y0;
+      d.row.style.transform = "translateY(" + dy + "px)";
+      var to = d.from + Math.round(dy / d.h);
+      to = Math.max(0, Math.min(d.rows.length - 1, to));
+      if(to === d.to) return;
+      d.to = to;
+      d.rows.forEach(function(r, i){
+        if(r === d.row) return;
+        var shift = 0;
+        if(d.from < to && i > d.from && i <= to) shift = -d.h;
+        else if(d.from > to && i >= to && i < d.from) shift = d.h;
+        r.style.transform = shift ? "translateY(" + shift + "px)" : "";
+      });
+    });
+    var drop = function(){
+      if(!d) return;
+      var f = d; d = null;
+      f.rows.forEach(function(r){ r.style.transform = ""; });
+      f.row.classList.remove("dragging");
+      if(f.to !== f.from){
+        var order = S.pfavOrder.slice();
+        order.splice(f.to, 0, order.splice(f.from, 1)[0]);
+        S.pfavOrder = order;
+        savePFavs();
+      }
+      renderPlayers();
+    };
+    list.addEventListener("pointerup", drop);
+    list.addEventListener("pointercancel", drop);
   }
 
   function runSearch(){
@@ -2533,22 +2619,6 @@
   applySeason(S.cache[BOOT.season.id]);
   applyRoute();
 })();
-</script>
-
-<script>
-  /* iOS Safari ignores user-scalable=no in a tab, so pinch zoom has to be
-     turned away at the gesture events themselves. Double-tap is already
-     handled by touch-action on the interactive elements. */
-  (function(){
-    var stop = function(e){ e.preventDefault(); };
-    ["gesturestart", "gesturechange", "gestureend"].forEach(function(t){
-      document.addEventListener(t, stop, {passive: false});
-    });
-    // belt and braces for browsers without the WebKit gesture events
-    document.addEventListener("touchmove", function(e){
-      if(e.touches && e.touches.length > 1) e.preventDefault();
-    }, {passive: false});
-  })();
 </script>
 
 <!-- Cloudflare Web Analytics. Cookieless, no personal data, no consent banner.

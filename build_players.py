@@ -53,6 +53,89 @@ def shard_of(slug, shards=SHARDS):
     return h % shards
 
 
+def canonical_names(DATA, seasons, live):
+    """One person can appear under more than one spelling, and it is nearly
+    always PSAL's field widths rather than a real second player.
+
+    Two systematic shapes show up in the data:
+      * per-word truncation -- older seasons cut each name part, so CHRISTIAN
+        SON is filed as CHRISTI SON, SEBASTIAN COCIOBA as SEBASTI COCIOBA;
+      * whole-string truncation -- long names stop at the field limit, so
+        JEFFERSON CASTILLO ALVAREZ is filed as JEFFERSON CASTILLO ALVARE.
+
+    Both are merged, but only when the two spellings sit at the same school in
+    the same sport and their seasons don't overlap and are within a year of each
+    other -- a real pair of same-named teammates would overlap. A longer name
+    that adds a whole new word (JOSE RAMALES -> JOSE RAMALES FLORES) is NOT
+    merged: that is as likely to be two people as one.
+
+    data/name_fixes.json handles the rest -- plain misspellings, which no rule
+    can catch. Each entry is [sport, schoolCode, asFiled, correct].
+    """
+    spans = collections.defaultdict(lambda: [9999, 0])
+    for sid in seasons + ([live] if live else []):
+        rp = os.path.join(DATA, 'r%s.json' % sid)
+        if not os.path.exists(rp):
+            continue
+        R = json.load(open(rp))
+        P = R['P']
+        y = int(sid)
+        for gk, rows in R['R'].items():
+            sp = int(gk.split(':')[0])
+            for r in rows:
+                nm = P[r[1]] if r[1] < len(P) else ''
+                if not nm or not r[0]:
+                    continue
+                sl = spans[(sp, r[0], nm)]
+                sl[0] = min(sl[0], y); sl[1] = max(sl[1], y)
+
+    by_school = collections.defaultdict(list)
+    for (sp, code, nm), (y0, y1) in spans.items():
+        by_school[(sp, code)].append((nm, y0, y1))
+
+    fix = {}
+    for key, people in by_school.items():
+        buckets = collections.defaultdict(list)
+        for t in people:
+            buckets[t[0][:6]].append(t)
+        for grp in buckets.values():
+            for a_ in grp:
+                for b_ in grp:
+                    if a_ is b_ or len(a_[0]) >= len(b_[0]):
+                        continue
+                    if not (a_[2] < b_[1] or b_[2] < a_[1]):
+                        continue                      # overlapping: two people
+                    gap = b_[1] - a_[2] if a_[2] < b_[1] else a_[1] - b_[2]
+                    if gap > 1:
+                        continue
+                    aw, bw = a_[0].split(), b_[0].split()
+                    per_word = (len(aw) == len(bw) and aw != bw and
+                                all(y.startswith(x) for x, y in zip(aw, bw)))
+                    whole = b_[0].startswith(a_[0]) and len(a_[0]) >= 20
+                    if per_word or whole:
+                        fix[(key[0], key[1], a_[0])] = b_[0]
+
+    auto = len(fix)
+    path = os.path.join(DATA, 'name_fixes.json')
+    manual = 0
+    if os.path.exists(path):
+        try:
+            for sp, code, wrong, right in json.load(open(path)):
+                fix[(int(sp), code, wrong)] = right
+                manual += 1
+        except Exception as e:
+            print('name_fixes.json ignored: %s' % e)
+
+    # follow chains so A -> B -> C lands everyone on C
+    def resolve(sp, code, nm, depth=0):
+        nxt = fix.get((sp, code, nm))
+        if nxt is None or depth > 4:
+            return nm
+        return resolve(sp, code, nxt, depth + 1)
+    fix = {k: resolve(k[0], k[1], v) for k, v in fix.items()}
+    return fix, auto, manual
+
+
 def build(skip=None):
     seasons = sorted(m.group(1) for m in
                      (re.match(r'^s(\d{4})\.json$', f) for f in os.listdir(DATA)) if m)
@@ -61,6 +144,7 @@ def build(skip=None):
     # means an hourly refresh never rewrites a single shard.
     live = skip or (seasons[-1] if seasons else None)
     seasons = [s for s in seasons if s != live]
+    namefix, auto_fixes, manual_fixes = canonical_names(DATA, seasons, live)
     players = {}
     missing = []
 
@@ -87,6 +171,7 @@ def build(skip=None):
                 name = P[nidx] if nidx < len(P) else ''
                 if not name or not school:
                     continue
+                name = namefix.get((sp, school, name), name)
                 home = school == g[4]
                 opp = g[5] if home else g[4]
                 gf = g[6] if home else g[7]
@@ -167,6 +252,19 @@ def build(skip=None):
             payload['also'] = sorted(p['also'])
         shards[shard_of(key)][key] = payload
 
+    # A link built from a roster row still uses the spelling PSAL filed, so the
+    # slug it produces has to lead somewhere. Each merged-away spelling gets a
+    # one-line stub in its own shard pointing at the career it belongs to.
+    stubs = 0
+    for (sp, code, wrong), right in namefix.items():
+        ssl = school_slugs.get(code, slugify(code))
+        old = '%d/%s-%s' % (sp, slugify(wrong), ssl)
+        new = '%d/%s-%s' % (sp, slugify(right), ssl)
+        if old == new or new not in players or old in players:
+            continue
+        shards[shard_of(old)][old] = {'ref': new}
+        stubs += 1
+
     outdir = os.path.join(DATA, 'p')
     os.makedirs(outdir, exist_ok=True)
     for old in glob.glob(os.path.join(outdir, '*.json')):
@@ -194,6 +292,7 @@ def build(skip=None):
                     nm = rl['P'][r[1]] if r[1] < len(rl['P']) else ''
                     if not nm or not r[0]:
                         continue
+                    nm = namefix.get((sp, r[0], nm), nm)
                     slug = '%s-%s' % (slugify(nm), school_slugs.get(r[0], slugify(r[0])))
                     live_ids[(sp, slug)] = (nm, r[0])
 
@@ -260,6 +359,8 @@ def build(skip=None):
             'deep': sorted(deep)}
     json.dump(meta, open(os.path.join(DATA, 'pmeta.json'), 'w'), separators=(',', ':'))
     return {'players': len(players), 'live_only': len(live_ids),
+            'name_merges_auto': auto_fixes, 'name_merges_manual': manual_fixes,
+            'alias_stubs': stubs,
             'prefix_files': len(index), 'deep_prefixes': len(deep),
             'index_kb_avg': round(sum(nsizes) / max(1, len(nsizes)) / 1024, 1),
             'index_kb_max': round(max(nsizes) / 1024, 1) if nsizes else 0,
