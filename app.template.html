@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <title>NYC High School Soccer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#293955">
 <!-- Player pages are noindexed: the data is PSAL's and public, but a per-child
      profile page is an aggregation PSAL doesn't publish, and most of these
@@ -223,6 +223,10 @@
   .sheet{position:fixed; inset:0; z-index:60; display:flex; flex-direction:column; background:var(--bg)}
   .sheet[hidden]{display:none}
   button, input, select, textarea, a, label, summary{touch-action:manipulation}
+  /* pinch-to-zoom off: the meta tag covers Android and the home-screen app,
+     touch-action covers Chrome, and iOS Safari needs the gesture handlers at
+     the end of the page because it has ignored user-scalable since iOS 10 */
+  html{touch-action:pan-x pan-y}
   .sheet.two{z-index:70}
   .sheet.three{z-index:80}
   .plink{color:var(--blue); text-align:left; font:inherit}
@@ -299,6 +303,10 @@
   .stat .v{font-family:"Archivo",sans-serif; font-weight:800; font-size:21px; font-variant-numeric:tabular-nums; margin-top:2px}
   .iconbtn{width:34px; height:34px; display:grid; place-items:center; border-radius:9px; background:rgba(255,255,255,.12); color:#fff; flex:none}
   .iconbtn svg{width:17px; height:17px}
+  /* the follow buttons in a sheet header carry aria-pressed but had no pressed
+     state, so tapping one saved the follow and looked like nothing happened */
+  .iconbtn[aria-pressed="true"]{background:var(--orange); color:#fff}
+  .iconbtn[aria-pressed="true"] svg{fill:currentColor}
   .resline{display:flex; align-items:center; gap:9px; padding:10px 13px; border-top:1px solid var(--line-soft); width:100%; text-align:left}
   .resline:first-child{border-top:none}
   .resline.pin{background:var(--fav-bg); box-shadow:inset 3px 0 0 var(--fav-line)}
@@ -2525,6 +2533,22 @@
   applySeason(S.cache[BOOT.season.id]);
   applyRoute();
 })();
+</script>
+
+<script>
+  /* iOS Safari ignores user-scalable=no in a tab, so pinch zoom has to be
+     turned away at the gesture events themselves. Double-tap is already
+     handled by touch-action on the interactive elements. */
+  (function(){
+    var stop = function(e){ e.preventDefault(); };
+    ["gesturestart", "gesturechange", "gestureend"].forEach(function(t){
+      document.addEventListener(t, stop, {passive: false});
+    });
+    // belt and braces for browsers without the WebKit gesture events
+    document.addEventListener("touchmove", function(e){
+      if(e.touches && e.touches.length > 1) e.preventDefault();
+    }, {passive: false});
+  })();
 </script>
 
 <!-- Cloudflare Web Analytics. Cookieless, no personal data, no consent banner.
