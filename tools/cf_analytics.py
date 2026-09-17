@@ -15,7 +15,7 @@ Cloudflare counts a *visit* as a pageview whose referrer was a different host,
 which is the number to trust here: the app rewrites its own URL as you navigate,
 so its pageview count runs about double.
 """
-import json, os, sys, urllib.request, datetime
+import json, os, sys, urllib.request, urllib.error, datetime, traceback
 
 API = "https://api.cloudflare.com/client/v4/graphql"
 
@@ -58,20 +58,32 @@ query Traffic($account: String!, $site: String!, $start: Time!, $end: Time!) {
 """
 
 
+class Unavailable(Exception):
+    """Cloudflare would not answer. Carries text safe to commit to a repo."""
+
+
 def ask(token, variables):
     body = json.dumps({"query": QUERY, "variables": variables}).encode()
     req = urllib.request.Request(API, data=body, headers={
         "Authorization": "Bearer " + token,
         "Content-Type": "application/json",
     })
-    with urllib.request.urlopen(req, timeout=60) as r:
-        out = json.load(r)
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            out = json.load(r)
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", "replace")[:600]
+        raise Unavailable("HTTP %s from api.cloudflare.com\n\n%s" % (e.code, detail))
+    except Exception as e:
+        raise Unavailable("could not reach api.cloudflare.com: %r" % (e,))
     if out.get("errors"):
-        raise SystemExit("Cloudflare said: %s" % json.dumps(out["errors"])[:400])
-    accounts = out["data"]["viewer"]["accounts"]
+        raise Unavailable("Cloudflare returned errors:\n\n%s"
+                          % json.dumps(out["errors"], indent=1)[:1500])
+    accounts = (out.get("data") or {}).get("viewer", {}).get("accounts")
     if not accounts:
-        raise SystemExit("No account matched CF_ACCOUNT_ID -- check the id and "
-                         "that the token has Account Analytics: Read on it.")
+        raise Unavailable("No account matched CF_ACCOUNT_ID. Check the id, and "
+                          "that the token carries Account Analytics: Read on "
+                          "that account.")
     return accounts[0]
 
 
@@ -86,14 +98,16 @@ def table(rows, key, label, total):
     return "\n".join(out) + "\n"
 
 
-def main():
+def build():
     token = os.environ.get("CF_API_TOKEN", "").strip()
     account = os.environ.get("CF_ACCOUNT_ID", "").strip()
     site = os.environ.get("CF_SITE_TAG", "").strip()
     missing = [n for n, v in [("CF_API_TOKEN", token), ("CF_ACCOUNT_ID", account),
                               ("CF_SITE_TAG", site)] if not v]
     if missing:
-        raise SystemExit("missing: %s" % ", ".join(missing))
+        raise Unavailable("These are not set in the job's environment: %s.\n\n"
+                          "They come from repository secrets, and a secret is only\nvisible to a workflow if the YAML passes it through `env:`."
+                          % ", ".join(missing))
 
     days = int(os.environ.get("CF_DAYS", "30"))
     end = datetime.datetime.utcnow().replace(microsecond=0)
@@ -143,6 +157,53 @@ def main():
                   f, indent=1)
     print("wrote analytics/latest.md -- %d visits, %d pageviews over %d days"
           % (visits, views, days))
+
+
+def report_failure(why):
+    """Write the reason into the repo instead of dying in a log nobody reads.
+
+    The refresh job's logs live behind a redirect that neither my laptop nor
+    the container can follow, so a failure that only exists in CI output is a
+    failure I cannot see. Committing it costs one line of diff and means the
+    next `git pull` explains itself.
+    """
+    repo = os.environ.get("PSAL_BASE",
+                          os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    outdir = os.path.join(repo, "analytics")
+    os.makedirs(outdir, exist_ok=True)
+    stamp = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    seen = {n: ("set, %d chars" % len(os.environ.get(n, "")))
+            if os.environ.get(n) else "EMPTY"
+            for n in ("CF_API_TOKEN", "CF_ACCOUNT_ID", "CF_SITE_TAG")}
+    body = ["# Traffic -- not updated", "",
+            "_Last tried %s._" % stamp, "",
+            "The numbers below this line are from the last run that worked, if",
+            "there was one. This run could not get new ones.", "",
+            "## Why", "", "```", why.rstrip(), "```", "",
+            "## What the job could see", "",
+            "| variable | state |", "|---|---|"]
+    body += ["| %s | %s |" % (k, v) for k, v in seen.items()]
+    body += ["", "Values are never printed here -- only whether they arrived.", ""]
+    with open(os.path.join(outdir, "latest.md"), "a+") as f:
+        f.seek(0)
+        prev = f.read()
+    keep = prev.split("\n# Traffic -- not updated")[0]
+    if keep.startswith("# Traffic -- not updated"):
+        keep = ""
+    with open(os.path.join(outdir, "latest.md"), "w") as f:
+        f.write("\n".join(body) + ("\n---\n\n" + keep if keep.strip() else "\n"))
+    print("analytics unavailable -- wrote the reason to analytics/latest.md")
+    print(why)
+
+
+def main():
+    """Never raises. An analytics hiccup must not fail a scores refresh."""
+    try:
+        build()
+    except Unavailable as e:
+        report_failure(str(e))
+    except Exception:
+        report_failure(traceback.format_exc()[-1500:])
 
 
 if __name__ == "__main__":

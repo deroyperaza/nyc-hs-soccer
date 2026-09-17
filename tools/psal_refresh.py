@@ -270,6 +270,39 @@ def sanity(season, res_now, datadir):
                          % (before, res_now))
 
 
+def refresh_analytics(repo, max_age_hours=6):
+    """Top up analytics/ during a normal refresh, a few times a day.
+
+    Analytics has no business being a separate button to press. The scores job
+    already runs hourly on a runner with an open network and the Cloudflare
+    secrets in its environment, so it may as well carry this too -- and because
+    cf_analytics.main() swallows its own failures, it cannot cost us a refresh.
+
+    The clock has to live in a file's *contents*, not its mtime: a fresh
+    checkout stamps every file with the time it was cloned, so mtime on a CI
+    runner always reads as brand new and the work would never run.
+    """
+    if not os.environ.get("CF_API_TOKEN"):
+        return
+    stamp = os.path.join(repo, "analytics", "last_attempt.txt")
+    now = time.time()
+    try:
+        with open(stamp) as f:
+            age = (now - float(f.read().strip())) / 3600.0
+        if age < max_age_hours:
+            print("analytics tried %.1fh ago -- leaving it" % age, flush=True)
+            return
+    except (OSError, ValueError):
+        pass  # never tried, or the stamp is unreadable: go
+    os.makedirs(os.path.dirname(stamp), exist_ok=True)
+    with open(stamp, "w") as f:
+        f.write("%d\n" % now)
+    print("\n$ analytics", flush=True)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import cf_analytics
+    cf_analytics.main()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", default="fetch",
@@ -348,6 +381,7 @@ def main():
         # "except Exception" would sail straight past.
         print("rosters/player pages skipped: %s: %s" % (type(e).__name__, e),
               file=sys.stderr, flush=True)
+    refresh_analytics(args.repo)
     print("\ndone in %.0fs" % (time.time() - t0))
 
 
