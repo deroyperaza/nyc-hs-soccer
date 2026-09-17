@@ -683,7 +683,10 @@
   function loadSeason(id, done){
     if(S.cache[id]){ applySeason(S.cache[id]); if(done) done(); return; }
     S.season = null; S.seasonId = id; render();
-    fetch(META.path + "s" + id + ".json", {cache:"force-cache"})
+    // a finished season never changes, so it can be served from cache however
+    // old; everything else is rebuilt by the refresh and must revalidate
+    fetch(META.path + "s" + id + ".json",
+          {cache: id === META.defaultSeason ? "default" : "force-cache"})
       .then(function(r){ if(!r.ok) throw new Error("http " + r.status); return r.json(); })
       .then(function(o){ S.cache[id] = parseSeason(o); applySeason(S.cache[id]); if(done) done(); })
       .catch(function(){ S.season = "error"; render(); });
@@ -703,7 +706,7 @@
     if(S.histState === "ok"){ if(after) after(); return; }
     if(S.histState === "loading") return;
     S.histState = "loading"; render();
-    fetch(META.path + "history.json", {cache:"force-cache"})
+    fetch(META.path + "history.json")
       .then(function(r){ if(!r.ok) throw new Error("http"); return r.json(); })
       .then(function(o){ S.hist = o; S.histState = "ok"; if(after) after(); render(); })
       .catch(function(){ S.histState = "error"; render(); });
@@ -746,14 +749,15 @@
   function needShard(key, after){
     var id = shardOf(key), hex = ("00" + id.toString(16)).slice(-3);
     if(S.pcache[hex]){ after(S.pcache[hex]); return; }
-    fetch(META.path + "p/" + hex + ".json", {cache:"force-cache"})
+    fetch(META.path + "p/" + hex + ".json")
       .then(function(r){ if(!r.ok) throw new Error("http"); return r.json(); })
       .then(function(o){ S.pcache[hex] = o; after(o); })
       .catch(function(){ after(null); });
   }
   function needRoster(sid, after){
     if(S.rcache[sid]){ after(S.rcache[sid]); return; }
-    fetch(META.path + "r" + sid + ".json", {cache:"force-cache"})
+    fetch(META.path + "r" + sid + ".json",
+          {cache: sid === META.defaultSeason ? "default" : "force-cache"})
       .then(function(r){ if(!r.ok) throw new Error("http"); return r.json(); })
       .then(function(o){ S.rcache[sid] = o; after(o); })
       .catch(function(){ S.rcache[sid] = "error"; after("error"); });
@@ -2168,7 +2172,7 @@
   function needNames(tok, after){
     var pre = prefixFor(tok);
     if(S.ncache[pre]){ after(S.ncache[pre]); return; }
-    fetch(META.path + "n/" + encodeURIComponent(pre) + ".json", {cache:"force-cache"})
+    fetch(META.path + "n/" + encodeURIComponent(pre) + ".json")
       .then(function(r){ if(!r.ok) throw new Error("http"); return r.json(); })
       .then(function(o){ S.ncache[pre] = o; after(o); })
       .catch(function(){ S.ncache[pre] = []; after([]); });
