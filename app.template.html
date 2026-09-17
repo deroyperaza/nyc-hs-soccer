@@ -668,13 +668,37 @@
 
   /* ---------- favorites ---------- */
   function loadFavs(){
+    var raw = null;
+    try{ raw = localStorage.getItem("psal.favs"); }catch(e){}
+    if(raw){
+      try{ JSON.parse(raw).forEach(function(k){ S.favs.add(k); }); }catch(e){}
+    }else{
+      /* Nothing stored here yet. iOS gives every home-screen tile its own
+         private storage and wipes it when the tile is removed, so re-adding a
+         tile used to lose the followed teams. The URL carries them as a
+         fallback, which means a tile added while following a team restores it. */
+      try{
+        var m = location.search.match(/[?&]f=([^&]*)/);
+        if(m){
+          decodeURIComponent(m[1]).split(",").forEach(function(k){ if(k) S.favs.add(k); });
+        }
+      }catch(e){}
+    }
+    syncFavUrl();
+    saveFavs();
+  }
+  /* Keep the address bar in step with the followed teams, so whatever URL gets
+     captured by "Add to Home Screen" already knows about them. */
+  function syncFavUrl(){
     try{
-      var raw = localStorage.getItem("psal.favs");
-      if(raw) JSON.parse(raw).forEach(function(k){ S.favs.add(k); });
+      var q = Array.from(S.favs).join(",");
+      var url = location.pathname + (q ? "?f=" + encodeURIComponent(q) : "") + location.hash;
+      history.replaceState(null, "", url);
     }catch(e){}
   }
   function saveFavs(){
     try{ localStorage.setItem("psal.favs", JSON.stringify(Array.from(S.favs))); }catch(e){}
+    syncFavUrl();
   }
   function toggleFav(key){
     if(S.favs.has(key)) S.favs.delete(key); else S.favs.add(key);
