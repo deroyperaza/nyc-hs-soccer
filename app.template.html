@@ -64,6 +64,8 @@
   }
   .brandrow{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; row-gap:5px}
   .brand{display:flex; align-items:center; gap:8px; min-width:0; flex:1}
+  .brand .home{display:flex; align-items:center; gap:8px; min-width:0; color:inherit; text-align:left}
+  .brand .home:active{opacity:.6}
   .brand .logo{flex:none; width:24px; height:24px; display:block}
   .brand .logo svg{width:24px; height:24px; display:block}
   .brand .mark{
@@ -345,11 +347,13 @@
   <div class="topbar-inner">
     <div class="brandrow">
       <div class="brand">
-        <span class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false">
-          <circle cx="20" cy="20" r="18" fill="var(--orange)"></circle>
-          <polygon points="20,11.42 28.16,17.35 25.04,26.94 14.96,26.94 11.84,17.35" fill="var(--navy)"></polygon>
-        </svg></span>
-        <span class="mark">NYC <em>High School Soccer</em></span>
+        <button class="home" id="homebtn" aria-label="Back to today's scores">
+          <span class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false">
+            <circle cx="20" cy="20" r="18" fill="var(--orange)"></circle>
+            <polygon points="20,11.42 28.16,17.35 25.04,26.94 14.96,26.94 11.84,17.35" fill="var(--navy)"></polygon>
+          </svg></span>
+          <span class="mark">NYC <em>High School Soccer</em></span>
+        </button>
         <button class="season" id="seasonbtn" aria-label="Switch season"><span id="seasonlabel">Fall 2026</span><span class="caret"></span></button>
       </div>
       <div class="stamp" id="stamp"><span class="pulse"></span><span id="stamptext">Loading…</span></div>
@@ -1599,6 +1603,14 @@
     if(!b) return;
     var id = b.id || "";
     if(id.indexOf("tab-") === 0){ S.view = id.slice(4); render(); window.scrollTo(0, 0); return; }
+    if(id === "homebtn"){
+      if(!el("gsheet").hidden) closeGame();
+      if(!el("sheet").hidden) closeSheet();
+      S.view = "scores"; S.boro = ""; S.div = ""; S.query = "";
+      if(S.season && S.season !== "error") S.date = pickDate(S.season, S.sp);
+      render(); window.scrollTo(0, 0);
+      return;
+    }
     if(id === "sport-0" || id === "sport-1"){
       S.sp = +id.slice(-1); S.div = "";
       if(S.season && S.season !== "error"){
