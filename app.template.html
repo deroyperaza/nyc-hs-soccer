@@ -235,10 +235,12 @@
   .prow.dnp .pn{color:var(--muted); font-weight:500}
   .prow.dnp .pv{color:var(--muted)}
   .careerbar{display:flex; gap:0; border-top:1px solid var(--line-soft)}
-  .careerbar div{flex:1; padding:11px 6px; text-align:center; border-left:1px solid var(--line-soft)}
-  .careerbar div:first-child{border-left:0}
-  .careerbar .v{font-family:Archivo,sans-serif; font-weight:800; font-size:19px; font-variant-numeric:tabular-nums}
-  .careerbar .k{font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:2px}
+  /* direct children only -- the value and label inside each cell are divs too,
+     so a bare ".careerbar div" padded them as well and drew a border down each
+     of them, which is where the stray short lines came from */
+  .careerbar > div{flex:1; padding:9px 6px 10px; text-align:center}
+  .careerbar .v{font-family:Archivo,sans-serif; font-weight:800; font-size:19px; line-height:1.1; font-variant-numeric:tabular-nums}
+  .careerbar .k{font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:1px}
   .glog{width:100%; border-collapse:collapse; font-size:13px}
   .glog th{font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
     font-weight:600; text-align:right; padding:7px 6px; border-bottom:1px solid var(--line-soft)}
