@@ -2181,22 +2181,63 @@
     }catch(e){}
     return got > 0;
   }
-  /* A synced follow starts as a bare key; fill in the name and school from the
-     shard so the Following list reads properly instead of showing blanks. */
+  /* A synced follow arrives as a bare key and has to find its own name.
+     Three places to look, cheapest first: this season's payload, which the page
+     already holds; the archive shard; and failing both, the name index, which is
+     the only one that carries a player who has only ever played this season. */
+  function fillFav(k, name, code, y0, y1){
+    if(!name) return false;
+    S.pfavs[k] = [k, name, code || "", y0 || 0, y1 || 0];
+    savePFavs();
+    if(S.view === "players") renderPlayers();
+    return true;
+  }
   function hydrateFavs(){
     S.pfavOrder.forEach(function(k){
       var e = S.pfavs[k];
       if(!e || e[1]) return;
+      var live = liveRows(k);
+      if(live && live.who && fillFav(k, live.who.n, live.who.sc, live.y, live.y)) return;
       needShard(k, function(bundle){
         var p = bundle && bundle[k];
-        if(p && p.ref && bundle[p.ref]) p = bundle[p.ref];
-        if(!p || !p.n) return;
-        var yy = (p.s || []).map(function(b){ return b[0]; });
-        S.pfavs[k] = [k, p.n, p.sc || "",
-                      yy.length ? Math.min.apply(null, yy) : 0,
-                      yy.length ? Math.max.apply(null, yy) : 0];
-        savePFavs();
-        if(S.view === "players") renderPlayers();
+        var use = function(key, q){
+          var yy = (q.s || []).map(function(b){ return b[0]; });
+          fillFav(key, q.n, q.sc,
+                  yy.length ? Math.min.apply(null, yy) : 0,
+                  yy.length ? Math.max.apply(null, yy) : 0);
+        };
+        if(p && p.ref){
+          // a merged spelling: the real career sits in a different shard, so
+          // follow it and move the follow onto the canonical key
+          var ref = p.ref;
+          needShard(ref, function(b2){
+            var q = b2 && b2[ref];
+            if(!q || !q.n) return;
+            if(S.pfavs[ref]){
+              delete S.pfavs[k];
+              S.pfavOrder = S.pfavOrder.filter(function(x){ return x !== k; });
+              savePFavs();
+              if(S.view === "players") renderPlayers();
+              return;
+            }
+            S.pfavOrder = S.pfavOrder.map(function(x){ return x === k ? ref : x; });
+            delete S.pfavs[k];
+            use(ref, q);
+          });
+          return;
+        }
+        if(p && p.n){ use(k, p); return; }
+        var parts = k.split("/"), sp = +parts[0], slug = parts[1] || "";
+        var first = slug.split("-")[0];
+        if(first.length < 2) return;
+        needNames(first, function(rows){
+          for(var i = 0; i < rows.length; i++){
+            if(rows[i][1] === slug && rows[i][2] === sp){
+              fillFav(k, rows[i][0], rows[i][3], rows[i][4], rows[i][5]);
+              return;
+            }
+          }
+        });
       });
     });
   }
@@ -2253,6 +2294,7 @@
     var fav = !!S.pfavs[key];
     var yrs = y0 && y1 ? (y0 === y1 ? seasonLabel(y0) : seasonLabel(y0) + "\u2013" + String(seasonLabel(y1)).replace(/^\D+/, "")) : "";
     var meta_ = [SHORTS[code] || code, yrs].filter(Boolean).join(" \u00b7 ");
+    if(!name){ name = "Loading\u2026"; meta_ = ""; }
     return '<div class="presult' + (fav ? " isfav" : "") + '" data-key="' + esc(key) + '">' +
       (grip ? '<span class="grip" data-grip aria-hidden="true">' +
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
@@ -2746,7 +2788,6 @@
   loadFavs();
   loadPFavs();
   if(mergeSyncFromUrl()) S.view = "players";
-  hydrateFavs();
   window.addEventListener("popstate", function(){ applyRoute(); window.scrollTo(0, 0); });
   window.addEventListener("pagehide", function(){ syncFavUrl(true); });
   document.addEventListener("visibilitychange", function(){ if(document.hidden) syncFavUrl(true); });
@@ -2756,6 +2797,7 @@
   S.cache[BOOT.season.id] = parseSeason(BOOT.season);
   applySeason(S.cache[BOOT.season.id]);
   applyRoute();
+  hydrateFavs();          // after the season payload is in memory, not before
 })();
 </script>
 
