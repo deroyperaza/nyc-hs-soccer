@@ -54,6 +54,7 @@
     margin:0; background:var(--bg); color:var(--text);
     font-family:"Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
     font-size:15px; line-height:1.45; -webkit-font-smoothing:antialiased;
+    -webkit-text-size-adjust:100%; text-size-adjust:100%;
   }
   h1,h2,h3{font-family:"Archivo", system-ui, sans-serif; margin:0; text-wrap:balance}
   button{font:inherit; color:inherit; background:none; border:none; cursor:pointer}
@@ -187,7 +188,8 @@
 
   /* ---------- teams ---------- */
   .search{display:flex; align-items:center; gap:9px; padding:10px 13px; background:var(--surface); border:1px solid var(--line); border-radius:12px}
-  .search input{flex:1; border:none; background:none; font:inherit; color:var(--text); min-width:0}
+  .search input{flex:1; border:none; background:none; font-family:inherit; font-size:16px;
+    color:var(--text); min-width:0}
   .search input:focus{outline:none}
   .search svg{width:16px; height:16px; color:var(--muted); flex:none}
   .tlist{display:flex; flex-direction:column}
@@ -220,6 +222,7 @@
   /* ---------- sheets ---------- */
   .sheet{position:fixed; inset:0; z-index:60; display:flex; flex-direction:column; background:var(--bg)}
   .sheet[hidden]{display:none}
+  button, input, select, textarea, a, label, summary{touch-action:manipulation}
   .sheet.two{z-index:70}
   .sheet.three{z-index:80}
   .plink{color:var(--blue); text-align:left; font:inherit}
@@ -251,11 +254,11 @@
   .psearch{display:flex; gap:8px; align-items:center; padding:0 13px 10px}
   .psearch input{flex:1; min-width:0; height:40px; border-radius:10px; border:1px solid var(--line);
     background:var(--surface); color:var(--text); padding:0 12px; font-family:Barlow,sans-serif;
-    font-size:15px; -webkit-appearance:none}
+    font-size:16px; -webkit-appearance:none}
   .psearch input::placeholder{color:var(--muted)}
   .psearch select{height:40px; max-width:44%; border-radius:10px; border:1px solid var(--line);
     background:var(--surface); color:var(--text-2); font-family:Barlow,sans-serif;
-    font-size:13px; font-weight:600; padding:0 8px}
+    font-size:16px; font-weight:600; padding:0 6px}
   .presult{display:flex; align-items:center; gap:10px; width:100%; padding:11px 13px;
     border-top:1px solid var(--line-soft); text-align:left}
   .presult:first-child{border-top:0}
