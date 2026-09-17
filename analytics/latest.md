@@ -1,6 +1,6 @@
 # Traffic -- not updated
 
-_Last tried 2026-09-17T19:00:40Z._
+_Last tried 2026-09-17T19:10:46Z._
 
 The numbers below this line are from the last run that worked, if
 there was one. This run could not get new ones.
@@ -11,6 +11,11 @@ there was one. This run could not get new ones.
 HTTP 401 from api.cloudflare.com
 
 {"success":false,"errors":[{"code":10000,"message":"Authentication error"}],"messages":[],"result":null}
+
+
+Token check:
+  length 53 (a Cloudflare API token is 40)
+  /tokens/verify says: HTTP 401 {"success":false,"errors":[{"code":1000,"message":"Invalid API Token"}],"messages":[],"result":null}
 ```
 
 ## What the job could see
