@@ -916,11 +916,31 @@
 
   function routeTitle(){
     var base = "NYC High School Soccer";
+    // the player sheet opens on top of the school sheet, so it has to be asked
+    // about first -- otherwise a shared player link is titled with the school
+    if(S.openPlayer){
+      var pd = S.pdata;
+      return (pd && pd.n ? titleCase(pd.n) : "Player") + " — " + base;
+    }
+    // sheets stack player > game > team, and the title has to follow the top
+    // one, or a link shared from a box score is titled with the school below it
+    if(S.openGameKey){
+      var g = null, ps = S.season;
+      if(ps && ps !== "error"){
+        for(var i = 0; i < ps.raw.G.length; i++){
+          if(gkey(ps.raw.G[i]) === S.openGameKey){ g = ps.raw.G[i]; break; }
+        }
+      }
+      if(g){
+        var hh = teamOf(g[0], g[4]), aa = teamOf(g[0], g[5]);
+        return hh.short + " vs " + aa.short + " — " + base;
+      }
+      return "Box score — " + base;
+    }
     if(S.openTeamKey && S.season && S.season !== "error"){
       var t = S.season.teams[S.openTeamKey];
       if(t) return t.name + " — " + base;
     }
-    if(S.openGameKey) return "Box score — " + base;
     var names = {standings:"Standings", teams:"Teams", playoffs:"Playoffs", history:"History"};
     return (names[S.view] ? names[S.view] + " — " : "") + base;
   }
@@ -1873,6 +1893,8 @@
     setRobots();
     el("psheet").hidden = false;
     document.body.style.overflow = "hidden";
+    S.pdata = null;
+    document.title = routeTitle();
     el("psheet-name").textContent = "Loading\u2026";
     el("psheet-sub").textContent = "";
     el("psheet-body").innerHTML = '<div class="card"><div class="empty">Looking up this player\u2026</div></div>';
@@ -2000,6 +2022,7 @@
     el("psheet-body").scrollTop = 0;
     var yy = blocks.map(function(bl){ return bl[0]; });
     S.pdata = {n: name, sc: code, y0: Math.min.apply(null, yy), y1: Math.max.apply(null, yy)};
+    document.title = routeTitle();   // the name only arrives with the shard
     syncPStar();
   }
 
