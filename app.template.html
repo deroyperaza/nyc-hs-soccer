@@ -693,13 +693,24 @@
     saveFavs();
   }
   /* Keep the address bar in step with the followed teams, so whatever URL gets
-     captured by "Add to Home Screen" already knows about them. */
-  function syncFavUrl(){
-    try{
-      var q = Array.from(S.favs).join(",");
-      var url = location.pathname + (q ? "?f=" + encodeURIComponent(q) : "") + location.hash;
-      history.replaceState(null, "", url);
-    }catch(e){}
+     captured by "Add to Home Screen" already knows about them.
+     Analytics beacons fire on history changes, so this is debounced and skips
+     the write when the URL already says the right thing -- otherwise a handful
+     of taps would register as a handful of page views. */
+  var favUrlTimer = null;
+  function syncFavUrl(now){
+    if(favUrlTimer){ clearTimeout(favUrlTimer); favUrlTimer = null; }
+    function write(){
+      favUrlTimer = null;
+      try{
+        var q = Array.from(S.favs).join(",");
+        var url = location.pathname + (q ? "?f=" + encodeURIComponent(q) : "") + location.hash;
+        if(url !== location.pathname + location.search + location.hash){
+          history.replaceState(null, "", url);
+        }
+      }catch(e){}
+    }
+    if(now) write(); else favUrlTimer = setTimeout(write, 2000);
   }
   function saveFavs(){
     try{ localStorage.setItem("psal.favs", JSON.stringify(Array.from(S.favs))); }catch(e){}
@@ -1736,6 +1747,8 @@
 
   /* ---------- boot ---------- */
   loadFavs();
+  window.addEventListener("pagehide", function(){ syncFavUrl(true); });
+  document.addEventListener("visibilitychange", function(){ if(document.hidden) syncFavUrl(true); });
   setHeaderHeight();
   window.addEventListener("load", setHeaderHeight);
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(setHeaderHeight);
