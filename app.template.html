@@ -290,6 +290,16 @@
     box-shadow:0 6px 18px rgba(0,0,0,.28); border-radius:8px}
   #favlist .presult{transition:transform .14s ease}
   #favlist .presult.dragging{transition:none}
+  .syncbox{padding:12px 13px 14px; border-top:1px solid var(--line-soft);
+    display:flex; flex-direction:column; align-items:center; gap:10px}
+  .qr{background:#fff; padding:10px; border-radius:10px; line-height:0; min-height:40px}
+  .qr img, .qr canvas{display:block}
+  .synclink{display:flex; gap:8px; width:100%}
+  .synclink input{flex:1; min-width:0; height:38px; border-radius:9px; border:1px solid var(--line);
+    background:var(--surface-2); color:var(--text-2); padding:0 10px; font-size:12px;
+    font-family:Barlow,sans-serif; -webkit-appearance:none}
+  .synclink button{height:38px; padding:0 14px; border-radius:9px; border:0;
+    background:var(--sel-bg); color:var(--sel-fg); font-weight:700; font-size:13px}
   .alsorow{display:block; width:100%; padding:11px 13px; border-top:1px solid var(--line-soft);
     text-align:left; font-size:13px; color:var(--blue)}
   .alsorow .q{color:var(--muted); font-size:11.5px; display:block; margin-top:2px}
@@ -567,7 +577,8 @@
     date: null, defaultDate: null, boro: "", div: "", query: "", hsub: "champs", rankYear: "all", openBoros: {},
     favs: new Set(), cache: {}, hist: null, histState: "idle", openTeamKey: null, openGameKey: null,
     openPlayer: null, pcache: {}, rcache: {}, openRosters: {}, gshown: {},
-    pq: "", pyear: "all", presults: null, pfavs: {}, pfavOrder: [], ncache: {}, pqTimer: null
+    pq: "", pyear: "all", presults: null, pfavs: {}, pfavOrder: [], ncache: {},
+    pqTimer: null, syncOpen: false
   };
 
   /* ---------- helpers ---------- */
@@ -2134,6 +2145,61 @@
      and sit at the top. */
   var STAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.7l5.8-.8z"></path></svg>';
 
+  /* ---------- moving follows between devices ----------
+     No accounts and no server, so the list travels in a link: teams in ?f=
+     (which already existed for the iOS tile) and players in ?p=. Opening it
+     merges rather than replaces, and the parameters are stripped straight
+     afterwards so they don't sit in the address bar or reach analytics. */
+  function syncLink(){
+    var base = location.origin + "/players" + (S.sp === 1 ? "/girls" : "/boys");
+    var q = [];
+    var teams = Array.from(S.favs);
+    if(teams.length) q.push("f=" + encodeURIComponent(teams.join(",")));
+    if(S.pfavOrder.length) q.push("p=" + encodeURIComponent(S.pfavOrder.join(" ")));
+    return base + (q.length ? "?" + q.join("&") : "");
+  }
+  function mergeSyncFromUrl(){
+    var m = location.search.match(/[?&]p=([^&]*)/);
+    if(!m) return false;
+    var got = 0;
+    try{
+      decodeURIComponent(m[1]).split(/[ ,]+/).forEach(function(k){
+        if(!k || S.pfavs[k]) return;
+        S.pfavs[k] = [k, "", "", 0, 0];   // the real name arrives with the shard
+        S.pfavOrder.push(k);
+        got++;
+      });
+    }catch(e){}
+    if(got) savePFavs();
+    // drop ?p= from the address bar straight away rather than waiting for the
+    // router's first write, so the names aren't sitting in the URL when the
+    // analytics beacon reads it
+    try{
+      var clean = location.pathname + location.search.replace(/([?&])p=[^&]*/, "$1")
+        .replace(/[?&]$/, "").replace(/\?&/, "?");
+      history.replaceState(null, "", clean + location.hash);
+    }catch(e){}
+    return got > 0;
+  }
+  /* A synced follow starts as a bare key; fill in the name and school from the
+     shard so the Following list reads properly instead of showing blanks. */
+  function hydrateFavs(){
+    S.pfavOrder.forEach(function(k){
+      var e = S.pfavs[k];
+      if(!e || e[1]) return;
+      needShard(k, function(bundle){
+        var p = bundle && bundle[k];
+        if(p && p.ref && bundle[p.ref]) p = bundle[p.ref];
+        if(!p || !p.n) return;
+        var yy = (p.s || []).map(function(b){ return b[0]; });
+        S.pfavs[k] = [k, p.n, p.sc || "",
+                      yy.length ? Math.min.apply(null, yy) : 0,
+                      yy.length ? Math.max.apply(null, yy) : 0];
+        savePFavs();
+        if(S.view === "players") renderPlayers();
+      });
+    });
+  }
   function loadPFavs(){
     try{
       var raw = JSON.parse(localStorage.getItem("psal.pfavs") || "[]");
@@ -2239,9 +2305,10 @@
         (favKeys.length ? "Type at least three letters to find another player."
                         : "Type at least three letters of a player's name. " +
                           "Tap the star to follow someone and they'll stay at the top of this page.") +
-        '</div></div>';
+        '</div></div>' + syncHTML();
       v.innerHTML = head + body;
       initFavDrag();          // this branch renders the followed list too
+      wireSync();
       return;
     }
 
@@ -2318,6 +2385,51 @@
     };
     list.addEventListener("pointerup", drop);
     list.addEventListener("pointercancel", drop);
+  }
+
+  function syncHTML(){
+    if(!S.pfavOrder.length && !S.favs.size) return "";
+    if(!S.syncOpen){
+      return '<div class="card"><button class="rosterbtn" id="syncbtn">' +
+        '<span>Move these follows to another device</span>' +
+        '<span class="ch">Show \u203a</span></button></div>';
+    }
+    var url = syncLink();
+    return '<div class="card"><button class="rosterbtn" id="syncbtn">' +
+      '<span>Move these follows to another device</span><span class="ch">Hide</span></button>' +
+      '<div class="syncbox">' +
+        '<div class="qr" id="qr"></div>' +
+        '<p class="pnote" style="padding:0">Point your phone\u2019s camera at this. ' +
+        'It opens the site there and adds ' + S.pfavOrder.length + ' player' +
+        (S.pfavOrder.length === 1 ? "" : "s") +
+        (S.favs.size ? ' and ' + S.favs.size + ' team' + (S.favs.size === 1 ? "" : "s") : "") +
+        ' to whatever that device already follows.</p>' +
+        '<div class="synclink"><input id="syncurl" readonly value="' + esc(url) + '">' +
+        '<button id="synccopy">Copy</button></div>' +
+      '</div></div>';
+  }
+  function wireSync(){
+    var box = el("qr");
+    if(!box || box.dataset.done) return;
+    box.dataset.done = "1";
+    var url = syncLink();
+    // drawn locally when the library loads; the link below works regardless
+    var go = function(){
+      try{
+        new window.QRCode(box, {text: url, width: 190, height: 190,
+          correctLevel: window.QRCode.CorrectLevel.M});
+      }catch(e){ box.innerHTML = '<div class="pnote" style="padding:0">' +
+        'Couldn\u2019t draw the code \u2014 use the link below.</div>'; }
+    };
+    if(window.QRCode) return go();
+    var sc = document.createElement("script");
+    sc.src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+    sc.onload = go;
+    sc.onerror = function(){
+      box.innerHTML = '<div class="pnote" style="padding:0">' +
+        'Couldn\u2019t load the code drawer \u2014 use the link below.</div>';
+    };
+    document.head.appendChild(sc);
   }
 
   function runSearch(){
@@ -2485,6 +2597,19 @@
       render();
       return;
     }
+    if(id === "syncbtn"){ S.syncOpen = !S.syncOpen; renderPlayers(); return; }
+    if(id === "synccopy"){
+      var box = el("syncurl");
+      if(box){
+        box.select();
+        var ok = false;
+        try{ ok = document.execCommand("copy"); }catch(e){}
+        if(!ok && navigator.clipboard) navigator.clipboard.writeText(box.value);
+        b.textContent = "Copied";
+        setTimeout(function(){ var again = el("synccopy"); if(again) again.textContent = "Copy"; }, 1600);
+      }
+      return;
+    }
     if(b.dataset.pfav){
       togglePFav(b.dataset.pfav, b.dataset.pn, b.dataset.pc, +b.dataset.py0, +b.dataset.py1);
       return;
@@ -2620,6 +2745,8 @@
 
   loadFavs();
   loadPFavs();
+  if(mergeSyncFromUrl()) S.view = "players";
+  hydrateFavs();
   window.addEventListener("popstate", function(){ applyRoute(); window.scrollTo(0, 0); });
   window.addEventListener("pagehide", function(){ syncFavUrl(true); });
   document.addEventListener("visibilitychange", function(){ if(document.hidden) syncFavUrl(true); });
