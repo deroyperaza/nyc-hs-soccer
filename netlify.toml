@@ -13,12 +13,6 @@
     Cache-Control = "public, max-age=60"
 
 [[headers]]
-  for = "/app.webmanifest"
-  [headers.values]
-    Content-Type = "application/manifest+json"
-    Cache-Control = "public, max-age=60"
-
-[[headers]]
-  for = "/tile-*.png"
+  for = "/*.png"
   [headers.values]
     Cache-Control = "public, max-age=604800"
