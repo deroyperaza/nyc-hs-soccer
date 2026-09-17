@@ -248,6 +248,29 @@
   .glog .wl.W{color:var(--win)} .glog .wl.L{color:var(--loss)} .glog .wl.T{color:var(--tie)}
   .glog .zero{color:var(--muted)}
   .pnote{padding:11px 13px; font-size:12px; color:var(--muted); line-height:1.45}
+  .psearch{display:flex; gap:8px; align-items:center; padding:0 13px 10px}
+  .psearch input{flex:1; min-width:0; height:40px; border-radius:10px; border:1px solid var(--line);
+    background:var(--surface); color:var(--text); padding:0 12px; font-family:Barlow,sans-serif;
+    font-size:15px; -webkit-appearance:none}
+  .psearch input::placeholder{color:var(--muted)}
+  .psearch select{height:40px; max-width:44%; border-radius:10px; border:1px solid var(--line);
+    background:var(--surface); color:var(--text-2); font-family:Barlow,sans-serif;
+    font-size:13px; font-weight:600; padding:0 8px}
+  .presult{display:flex; align-items:center; gap:10px; width:100%; padding:11px 13px;
+    border-top:1px solid var(--line-soft); text-align:left}
+  .presult:first-child{border-top:0}
+  .presult .who{flex:1; min-width:0}
+  .presult .nm{font-family:Archivo,sans-serif; font-weight:700; font-size:14.5px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .presult .mt{font-size:11.5px; color:var(--muted); margin-top:2px}
+  .presult .star{flex:none; width:32px; height:32px; display:flex; align-items:center;
+    justify-content:center; color:var(--muted)}
+  .presult .star svg{width:17px; height:17px}
+  .presult .star[aria-pressed="true"]{color:var(--orange)}
+  .presult.isfav{background:var(--fav-bg); box-shadow:inset 3px 0 0 var(--fav-line)}
+  .alsorow{display:block; width:100%; padding:11px 13px; border-top:1px solid var(--line-soft);
+    text-align:left; font-size:13px; color:var(--blue)}
+  .alsorow .q{color:var(--muted); font-size:11.5px; display:block; margin-top:2px}
   .sheethead{background:var(--navy); color:#fff; padding:calc(12px + env(safe-area-inset-top, 0px)) 16px 16px}
   .sheethead .row{display:flex; align-items:center; justify-content:space-between; gap:10px; max-width:760px; margin:0 auto}
   .sheethead h2{font-size:20px; font-weight:700; line-height:1.2}
@@ -368,7 +391,11 @@
 
   /* ---------- bottom nav ---------- */
   .nav{position:fixed; left:0; right:0; bottom:0; z-index:40; background:var(--surface); border-top:1px solid var(--line); padding-bottom:env(safe-area-inset-bottom, 0px)}
-  .nav-inner{max-width:760px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr)}
+  .nav-inner{max-width:760px; margin:0 auto; display:grid; grid-template-columns:repeat(6,1fr)}
+  @media (max-width:430px){
+    .nav button{font-size:8.5px; letter-spacing:.02em}
+    .nav button svg{width:19px; height:19px}
+  }
   .nav button{height:var(--nav-h); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; color:var(--muted); font-family:"Archivo",sans-serif; font-size:10px; font-weight:600; letter-spacing:.05em; text-transform:uppercase}
   .nav button svg{width:20px; height:20px}
   .nav button[aria-pressed="true"]{color:var(--orange)}
@@ -401,6 +428,7 @@
   <section class="view" id="view-standings" hidden></section>
   <section class="view" id="view-teams" hidden></section>
   <section class="view" id="view-playoffs" hidden></section>
+  <section class="view" id="view-players" hidden></section>
   <section class="view" id="view-history" hidden></section>
   <footer>
     Data from the PSAL league feed · <a href="https://www.psal.org/" target="_blank" rel="noopener">psal.org</a><br>
@@ -425,6 +453,10 @@
     <button id="tab-playoffs" aria-pressed="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h10M8 5v4a4 4 0 0 0 8 0V5M12 13v4M9 21h6M5 6H3v2a3 3 0 0 0 3 3M19 6h2v2a3 3 0 0 1-3 3"></path></svg>
       Playoffs
+    </button>
+    <button id="tab-players" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"></circle><path d="M3.2 19.2c0-3.1 2.6-5.2 5.8-5.2s5.8 2.1 5.8 5.2"></path><path d="M16.4 6.2a3 3 0 0 1 0 5.6M18 14.4c2 .7 3.3 2.3 3.3 4.4"></path></svg>
+      Players
     </button>
     <button id="tab-history" aria-pressed="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-8 4 5"></path><path d="M3 21h18"></path></svg>
@@ -476,6 +508,9 @@
         <h2 id="psheet-name">Player</h2>
         <div class="sub" id="psheet-sub"></div>
       </div>
+      <button class="iconbtn" id="psheet-fav" aria-pressed="false" aria-label="Follow this player">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.7l5.8-.8z"></path></svg>
+      </button>
     </div>
   </div>
   <div class="sheetbody"><div class="sheetbody-inner" id="psheet-body"></div></div>
@@ -504,7 +539,8 @@
     lbStat: "g", lbTier: "all", aggCache: {},
     date: null, defaultDate: null, boro: "", div: "", query: "", hsub: "champs", rankYear: "all", openBoros: {},
     favs: new Set(), cache: {}, hist: null, histState: "idle", openTeamKey: null, openGameKey: null,
-    openPlayer: null, pcache: {}, rcache: {}, openRosters: {}
+    openPlayer: null, pcache: {}, rcache: {}, openRosters: {}, gshown: {},
+    pq: "", pyear: "all", presults: null, pfavs: {}, ncache: {}, pqTimer: null
   };
 
   /* ---------- helpers ---------- */
@@ -951,6 +987,7 @@
       plan.hsub = HSUB_BY_PATH[parts[1]] || "champs";
       return plan;
     }
+    if(head === "players"){ plan.view = "players"; return plan; }
     if(head === "standings" || head === "teams" || head === "playoffs"){
       plan.view = head;
       if(parts[1] && /^\d{4}$/.test(parts[1])) plan.season = parts[1];
@@ -1730,18 +1767,23 @@
       var rows = d[4].map(function(b){
         return {code:b[0], name:P[b[1]] || "", g:b[2], a:b[3], sv:b[4], sh:b[5], ga:b[6]};
       });
+      S.gshown = {};
       [[h, g[4]], [a, g[5]]].forEach(function(side){
         var team = side[0], code = side[1];
         var mine = rows.filter(function(r){ return r.code === code; });
+        var named = S.gshown[code] = {};
         if(!mine.length){
           html += '<div class="boxwrap"><button class="boxhead" data-gteam="' + esc(g[0] + ":" + code) + '" style="width:100%">' +
             '<h3>' + esc(team.short) + ' <span style="color:var(--blue)">&rsaquo;</span></h3>' +
             '<span class="sub">no player stats posted</span></button>' +
             '<div class="empty" style="padding:14px 13px;text-align:left">PSAL has no box score entries for ' +
             esc(team.short) + ' in this game — the other side\'s coach filed stats and theirs didn\'t.</div>' +
-            rosterFold(g[0], code) + '</div>';
+            rosterFold(g[0], code, false) + '</div>';
           return;
         }
+        mine.forEach(function(r){
+          if(r.g || r.a || r.sv || r.ga || r.sh) named[r.name] = 1;
+        });
         var scorers = mine.filter(function(r){ return r.g || r.a; })
           .sort(function(x, y){ return (y.g - x.g) || (y.a - x.a) || x.name.localeCompare(y.name); });
         var keepers = mine.filter(function(r){ return r.sv || r.ga; })
@@ -1778,7 +1820,7 @@
               '<span class="pv"><em>SH</em> ' + r.sh + '</span></div>';
           }).join("") + '</div>';
         }
-        html += rosterFold(g[0], code) + '</div>';
+        html += rosterFold(g[0], code, Object.keys(named).length > 0) + '</div>';
       });
     } else if(hasScore(g)){
       html += '<div class="card"><div class="empty">PSAL didn\'t post a box score for this game.</div></div>';
@@ -1804,9 +1846,10 @@
     document.body.style.overflow = "hidden";
     syncUrl("push");
   }
-  function rosterFold(sp, code){
+  function rosterFold(sp, code, hadStats){
     return '<button class="rosterbtn" data-roster="' + esc(sp + ":" + code) + '">' +
-      '<span>Full roster</span><span class="ch">Show \u203a</span></button>' +
+      '<span>' + (hadStats ? "Rest of the roster" : "Full roster") +
+      '</span><span class="ch">Show \u203a</span></button>' +
       '<div id="roster-' + sp + '-' + code + '" hidden></div>';
   }
   function titleCase(s){
@@ -1845,6 +1888,7 @@
           'once a coach has filed a sheet with them on it.</div></div>';
         return;
       }
+      S.pdata = null;
       renderPlayer(key, p, live);
     });
   }
@@ -1929,6 +1973,23 @@
         }).join("") + '</tbody></table></div>';
     });
 
+    // Same name, different school, seasons that line up: possibly the same
+    // person having transferred. Offered as a link rather than merged, because
+    // a name match is not proof and a wrong merge is invisible once made.
+    var also = (p && p.also) || [];
+    if(also.length){
+      html += '<div class="boxwrap"><div class="boxhead"><h3>Possibly also</h3>' +
+        '<span class="sub">same name, another school, seasons that line up</span></div>' +
+        also.map(function(o){
+          return '<button class="alsorow" data-player="' + esc(sp + "/" + o[0]) + '">' +
+            esc(titleCase(name)) + ' at ' + esc(SHORTS[o[1]] || o[1]) +
+            ' <span style="color:var(--blue)">&rsaquo;</span>' +
+            '<span class="q">' + esc(o[2] === o[3] ? seasonLabel(o[2])
+              : seasonLabel(o[2]) + "\u2013" + String(seasonLabel(o[3])).replace(/^\D+/, "")) +
+            ' \u00b7 not merged, PSAL gives no way to be sure</span></button>';
+        }).join("") + '</div>';
+    }
+
     html += '<div class="boxwrap"><div class="pnote">' +
       'PSAL issues a new player id every season, so a career here is joined by ' +
       'name at the same school. Someone who transferred appears under each school ' +
@@ -1937,6 +1998,9 @@
       '</div></div>';
     el("psheet-body").innerHTML = html;
     el("psheet-body").scrollTop = 0;
+    var yy = blocks.map(function(bl){ return bl[0]; });
+    S.pdata = {n: name, sc: code, y0: Math.min.apply(null, yy), y1: Math.max.apply(null, yy)};
+    syncPStar();
   }
 
   /* ---------- full roster, folded under each side of a box score ----------
@@ -1961,9 +2025,17 @@
         box.dataset.done = "1";
         return;
       }
-      var mine = r.R[gkeyNow].filter(function(x){ return x[0] === code; });
+      // whoever the box score already named is not repeated here -- the fold
+      // exists to show the players a stat line leaves out
+      var already = (S.gshown && S.gshown[code]) || {};
+      var mine = r.R[gkeyNow].filter(function(x){
+        return x[0] === code && !already[r.P[x[1]] || ""];
+      });
       if(!mine.length){
-        box.innerHTML = '<div class="pnote">PSAL has no roster on file for this side.</div>';
+        box.innerHTML = '<div class="pnote">' +
+          (Object.keys(already).length
+            ? "Everyone PSAL has on the sheet for this side is already listed above."
+            : "PSAL has no roster on file for this side.") + '</div>';
         box.dataset.done = "1";
         return;
       }
@@ -1988,16 +2060,189 @@
     });
   }
 
+  /* ---------- players ----------
+     Search only: you type a name and the app fetches the one index file for
+     that prefix. There is deliberately no file that lists every player and no
+     way to page through them -- these are mostly minors, and the site should
+     not be a way to enumerate them. Followed players are kept in this browser
+     and sit at the top. */
+  var STAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.7l5.8-.8z"></path></svg>';
+
+  function loadPFavs(){
+    try{
+      var raw = JSON.parse(localStorage.getItem("psal.pfavs") || "[]");
+      raw.forEach(function(e){ if(e && e[0]) S.pfavs[e[0]] = e; });
+    }catch(e){}
+  }
+  function savePFavs(){
+    try{
+      localStorage.setItem("psal.pfavs", JSON.stringify(Object.keys(S.pfavs).map(function(k){
+        return S.pfavs[k];
+      })));
+    }catch(e){}
+  }
+  function togglePFav(key, name, code, y0, y1){
+    if(S.pfavs[key]) delete S.pfavs[key];
+    else S.pfavs[key] = [key, name, code, y0 || 0, y1 || 0];
+    savePFavs();
+    if(S.view === "players") renderPlayers();
+    if(S.openPlayer) syncPStar();
+  }
+  function syncPStar(){
+    var b = el("psheet-fav");
+    if(b) b.setAttribute("aria-pressed", S.pfavs[S.openPlayer] ? "true" : "false");
+  }
+
+  function prefixFor(tok){
+    if(tok.length < 3) return tok;
+    var three = tok.slice(0, 3);
+    var deep = (META.deep || []);
+    if(tok.length >= 4 && deep.indexOf(three) >= 0) return tok.slice(0, 4);
+    return three;
+  }
+  function needNames(tok, after){
+    var pre = prefixFor(tok);
+    if(S.ncache[pre]){ after(S.ncache[pre]); return; }
+    fetch(META.path + "n/" + encodeURIComponent(pre) + ".json", {cache:"force-cache"})
+      .then(function(r){ if(!r.ok) throw new Error("http"); return r.json(); })
+      .then(function(o){ S.ncache[pre] = o; after(o); })
+      .catch(function(){ S.ncache[pre] = []; after([]); });
+  }
+
+  function playerRowHTML(key, name, code, y0, y1, extra){
+    var fav = !!S.pfavs[key];
+    var yrs = y0 && y1 ? (y0 === y1 ? seasonLabel(y0) : seasonLabel(y0) + "\u2013" + String(seasonLabel(y1)).replace(/^\D+/, "")) : "";
+    var meta_ = [SHORTS[code] || code, yrs].filter(Boolean).join(" \u00b7 ");
+    return '<div class="presult' + (fav ? " isfav" : "") + '">' +
+      '<button class="who" data-player="' + esc(key) + '">' +
+        '<span class="nm">' + esc(titleCase(name)) + '</span>' +
+        '<span class="mt">' + esc(meta_ + (extra || "")) + '</span>' +
+      '</button>' +
+      '<button class="star" aria-pressed="' + fav + '" aria-label="Follow this player" ' +
+        'data-pfav="' + esc(key) + '" data-pn="' + esc(name) + '" data-pc="' + esc(code) +
+        '" data-py0="' + (y0 || 0) + '" data-py1="' + (y1 || 0) + '">' + STAR + '</button>' +
+      '</div>';
+  }
+  function seasonLabel(y){
+    var m = seasonMeta(String(y));
+    return (m && m.label) || String(y);
+  }
+
+  function renderPlayers(){
+    var v = el("view-players");
+    var years = [["all", "All time"]].concat((META.seasons || []).map(function(sm){
+      return [sm.id, sm.label];
+    }));
+    var head = '<div class="psearch">' +
+      '<input id="pq" type="search" autocomplete="off" autocorrect="off" spellcheck="false" ' +
+        'placeholder="Search a player by name" value="' + esc(S.pq) + '" aria-label="Search players">' +
+      '<select id="pyear" aria-label="Limit to a season">' +
+        years.map(function(y){
+          return '<option value="' + esc(y[0]) + '"' + (S.pyear === y[0] ? " selected" : "") +
+            '>' + esc(y[1]) + '</option>';
+        }).join("") +
+      '</select></div>';
+
+    var favKeys = Object.keys(S.pfavs);
+    var body = "";
+    if(favKeys.length){
+      favKeys.sort(function(a, b){ return String(S.pfavs[a][1]).localeCompare(String(S.pfavs[b][1])); });
+      body += '<div class="card"><div class="boxhead"><h3>Following</h3>' +
+        '<span class="sub">' + favKeys.length + ' player' + (favKeys.length === 1 ? "" : "s") + '</span></div>' +
+        favKeys.map(function(k){
+          var e = S.pfavs[k];
+          return playerRowHTML(k, e[1], e[2], e[3], e[4]);
+        }).join("") + '</div>';
+    }
+
+    var q = S.pq.trim();
+    if(q.length < 3){
+      body += '<div class="card"><div class="empty" style="text-align:left;padding:16px 13px">' +
+        (favKeys.length ? "Type at least three letters to find another player."
+                        : "Type at least three letters of a player's name. " +
+                          "Tap the star to follow someone and they'll stay at the top of this page.") +
+        '</div></div>';
+      v.innerHTML = head + body;
+      return;
+    }
+
+    var res = S.presults;
+    if(res === "loading"){
+      body += '<div class="card"><div class="loading">Searching\u2026</div></div>';
+    } else if(!res || !res.length){
+      body += '<div class="card"><div class="empty">No player by that name' +
+        (S.pyear === "all" ? "" : " in " + esc((seasonMeta(S.pyear) || {}).label || S.pyear)) + '.</div></div>';
+    } else {
+      var shown = res.slice(0, 60);
+      body += '<div class="card"><div class="boxhead"><h3>Results</h3><span class="sub">' +
+        (res.length > 60 ? "first 60 of " + res.length : res.length + " found") + '</span></div>' +
+        shown.map(function(e){
+          return playerRowHTML(e[2] + "/" + e[1], e[0], e[3], e[4], e[5]);
+        }).join("") + '</div>';
+      if(res.length > 60){
+        body += '<div class="card"><div class="pnote">Add another letter to narrow this down.</div></div>';
+      }
+    }
+    v.innerHTML = head + body;
+  }
+
+  function runSearch(){
+    var q = S.pq.trim().toLowerCase();
+    if(q.length < 3){ S.presults = null; renderPlayers(); return; }
+    var tokens = slugName(q).split("-").filter(function(t){ return t.length; });
+    if(!tokens.length){ S.presults = null; renderPlayers(); return; }
+    // the longest word is the most selective, so that's the index file to pull
+    var lead = tokens.slice().sort(function(a, b){ return b.length - a.length; })[0];
+    if(lead.length < 3){ S.presults = null; renderPlayers(); return; }
+    S.presults = "loading"; renderPlayers();
+    var want = q;
+    needNames(lead, function(rows){
+      if(S.pq.trim().toLowerCase() !== want) return;
+      var yr = S.pyear === "all" ? null : +S.pyear;
+      var out = rows.filter(function(e){
+        if(e[2] !== S.sp) return false;
+        if(yr && !(e[4] <= yr && yr <= e[5])) return false;
+        var hay = slugName(e[0]);
+        return tokens.every(function(t){
+          return hay.split("-").some(function(w){ return w.indexOf(t) === 0; });
+        });
+      });
+      out.sort(function(a, b){
+        return (b[5] - a[5]) || String(a[0]).localeCompare(String(b[0]));
+      });
+      S.presults = out;
+      renderPlayers();
+    });
+  }
+
+  document.addEventListener("change", function(e){
+    if(!e.target || e.target.id !== "pyear") return;
+    S.pyear = e.target.value;
+    runSearch();
+  });
+  document.addEventListener("input", function(e){
+    if(!e.target || e.target.id !== "pq") return;
+    S.pq = e.target.value;
+    if(S.pqTimer) clearTimeout(S.pqTimer);
+    S.pqTimer = setTimeout(function(){
+      var box = el("pq"), at = box ? box.selectionStart : null;
+      runSearch();
+      var again = el("pq");
+      if(again){ again.focus(); if(at != null){ try{ again.setSelectionRange(at, at); }catch(x){} } }
+    }, 250);
+  });
+
   /* ---------- shell ---------- */
   function render(){
     S.favDivs = favDivs();
-    ["scores","standings","teams","playoffs","history"].forEach(function(v){
+    ["scores","standings","teams","playoffs","players","history"].forEach(function(v){
       el("view-" + v).hidden = v !== S.view;
       el("tab-" + v).setAttribute("aria-pressed", v === S.view ? "true" : "false");
     });
     el("sport-0").setAttribute("aria-pressed", S.sp === 0 ? "true" : "false");
     el("sport-1").setAttribute("aria-pressed", S.sp === 1 ? "true" : "false");
     if(S.view === "history"){ renderHistory(); return; }
+    if(S.view === "players"){ renderPlayers(); return; }
     if(!S.season || S.season === "error"){
       el("view-" + S.view).innerHTML = '<div class="card"><div class="' + (S.season === "error" ? "empty" : "loading") + '">' +
         (S.season === "error" ? "Couldn't load that season." : "Loading season…") + '</div></div>';
@@ -2050,6 +2295,8 @@
     }
     if(id === "sport-0" || id === "sport-1"){
       S.sp = +id.slice(-1); S.div = "";
+      // search results are scoped to one sport, so flipping it re-runs them
+      if(S.view === "players"){ runSearch(); }
       if(S.season && S.season !== "error"){
         S.defaultDate = pickDate(S.season, S.sp);
         var has = (S.season.byDate[S.date] || []).some(function(g){ return g[0] === S.sp; });
@@ -2102,6 +2349,15 @@
       if(S.season && S.season !== "error" && S.season.teams[tk]) openTeam(tk);
       else openHistTeam(tk);
       render();
+      return;
+    }
+    if(b.dataset.pfav){
+      togglePFav(b.dataset.pfav, b.dataset.pn, b.dataset.pc, +b.dataset.py0, +b.dataset.py1);
+      return;
+    }
+    if(id === "psheet-fav"){
+      var pd = S.pdata || {};
+      togglePFav(S.openPlayer, pd.n || "", pd.sc || "", pd.y0 || 0, pd.y1 || 0);
       return;
     }
     if(b.dataset.player){ openPlayer(b.dataset.player); return; }
@@ -2229,6 +2485,7 @@
   }
 
   loadFavs();
+  loadPFavs();
   window.addEventListener("popstate", function(){ applyRoute(); window.scrollTo(0, 0); });
   window.addEventListener("pagehide", function(){ syncFavUrl(true); });
   document.addEventListener("visibilitychange", function(){ if(document.hidden) syncFavUrl(true); });

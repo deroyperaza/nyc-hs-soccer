@@ -125,6 +125,32 @@ def build(skip=None):
             merged[k] = p
     players = {k: v for k, v in merged.items()}
 
+    # ---- careers that may be the same person at a different school.
+    # Nothing is merged: name + school stays the identity, and the page offers a
+    # link instead of a claim. A pair only qualifies when the seasons don't
+    # overlap, sit within a year of each other, and span no more than five
+    # seasons all told -- nobody plays high school soccer for six.
+    by_name = collections.defaultdict(list)
+    for key, p in players.items():
+        years = sorted({r[0] for r in p['g']})
+        by_name[(p['sp'], p['n'])].append((key, p, years[0], years[-1]))
+    for (sp, name), group in by_name.items():
+        if len(group) < 2:
+            continue
+        group.sort(key=lambda t: t[2])
+        for i, (key, p, y0, y1) in enumerate(group):
+            for j, (okey, op, oy0, oy1) in enumerate(group):
+                if i == j or op['sc'] == p['sc']:
+                    continue
+                lo, hi = sorted([(y0, y1), (oy0, oy1)])
+                if lo[1] >= hi[0]:
+                    continue                      # overlapping: two people
+                if hi[0] - lo[1] > 1:
+                    continue                      # a gap: different cohorts
+                if hi[1] - lo[0] + 1 > 5:
+                    continue                      # too long to be one student
+                p.setdefault('also', []).append([op['slug'], op['sc'], oy0, oy1])
+
     shards = collections.defaultdict(dict)
     tot_apps = 0
     for key, p in players.items():
@@ -137,6 +163,8 @@ def build(skip=None):
             'n': p['n'], 'sp': p['sp'], 'sc': p['sc'], 'fn': p['fn'],
             's': [[y, rows] for y, rows in by_year.items()],
         }
+        if p.get('also'):
+            payload['also'] = sorted(p['also'])
         shards[shard_of(key)][key] = payload
 
     outdir = os.path.join(DATA, 'p')
@@ -149,10 +177,93 @@ def build(skip=None):
         json.dump(shards.get(i, {}), open(path, 'w'), separators=(',', ':'))
         sizes.append(os.path.getsize(path))
 
+    # ---- name index for search.
+    # Sharded by the first three letters of each word in a name, so looking
+    # someone up costs one small fetch, and there is no file that lists every
+    # player -- you have to know roughly who you are looking for. Deliberately carries no per-game numbers: an entry that changed as
+    # a player's stats changed would rewrite index files on every refresh.
+    live_ids = {}
+    if live:
+        lp = os.path.join(DATA, 'r%s.json' % live)
+        sp_path = os.path.join(DATA, 's%s.json' % live)
+        if os.path.exists(lp) and os.path.exists(sp_path):
+            rl = json.load(open(lp))
+            for gk, rows in rl['R'].items():
+                sp = int(gk.split(':')[0])
+                for r in rows:
+                    nm = rl['P'][r[1]] if r[1] < len(rl['P']) else ''
+                    if not nm or not r[0]:
+                        continue
+                    slug = '%s-%s' % (slugify(nm), school_slugs.get(r[0], slugify(r[0])))
+                    live_ids[(sp, slug)] = (nm, r[0])
+
+    index = collections.defaultdict(list)
+    entry_by = {}                 # (sp, slug) -> the shared row object
+
+    def add_index(name, slug, sp, code, y0, y1):
+        # one row object shared by every prefix it lands in, so widening a span
+        # later is a single assignment rather than a scan of the whole index
+        row = entry_by.get((sp, slug))
+        if row is None:
+            row = entry_by[(sp, slug)] = [name, slug, sp, code, y0, y1]
+        seen = set()
+        for word in slugify(name).split('-'):
+            if len(word) < 2:
+                continue
+            pre = word[:3]
+            if pre in seen:
+                continue
+            seen.add(pre)
+            index[pre].append(row)
+
+    for key, p in players.items():
+        years = sorted({r[0] for r in p['g']})
+        add_index(p['n'], p['slug'], p['sp'], p['sc'], years[0], years[-1])
+    liveyr = int(live) if live else 0
+    for (sp, slug), (nm, code) in live_ids.items():
+        row = entry_by.get((sp, slug))
+        if row is not None:
+            row[5] = max(row[5], liveyr)      # already indexed; widen the span
+            continue
+        add_index(nm, slug, sp, code, liveyr, liveyr)
+
+    ndir = os.path.join(DATA, 'n')
+    os.makedirs(ndir, exist_ok=True)
+    for old in glob.glob(os.path.join(ndir, '*.json')):
+        os.remove(old)
+    nsizes, deep = [], []
+    for pre, rows in index.items():
+        rows.sort(key=lambda r: (r[0], r[3]))
+        path = os.path.join(ndir, '%s.json' % pre)
+        json.dump(rows, open(path, 'w'), separators=(',', ':'))
+        size = os.path.getsize(path)
+        nsizes.append(size)
+        # A handful of prefixes carry a big share of the names -- "mar", "jos",
+        # "ale". Those also get four-letter files, so typing one more letter
+        # fetches a small one. The three-letter file stays, so a three-letter
+        # search still works.
+        if size > 40 * 1024:
+            deep.append(pre)
+            four = collections.defaultdict(list)
+            for r in rows:
+                for word in slugify(r[0]).split('-'):
+                    if word.startswith(pre) and len(word) >= 4:
+                        four[word[:4]].append(r)
+                        break
+            for p4, rs in four.items():
+                json.dump(rs, open(os.path.join(ndir, '%s.json' % p4), 'w'),
+                          separators=(',', ':'))
+
     meta = {'shards': SHARDS, 'players': len(players), 'appearances': tot_apps,
-            'seasons': seasons, 'live': live, 'missing': missing}
+            'seasons': seasons, 'live': live, 'missing': missing,
+            'indexed': len(players) + len(live_ids), 'prefixes': len(index),
+            'deep': sorted(deep)}
     json.dump(meta, open(os.path.join(DATA, 'pmeta.json'), 'w'), separators=(',', ':'))
-    return {'players': len(players), 'appearances': tot_apps,
+    return {'players': len(players), 'live_only': len(live_ids),
+            'prefix_files': len(index), 'deep_prefixes': len(deep),
+            'index_kb_avg': round(sum(nsizes) / max(1, len(nsizes)) / 1024, 1),
+            'index_kb_max': round(max(nsizes) / 1024, 1) if nsizes else 0,
+            'appearances': tot_apps,
             'shard_kb_avg': round(sum(sizes) / len(sizes) / 1024, 1),
             'shard_kb_max': round(max(sizes) / 1024, 1),
             'total_mb': round(sum(sizes) / 1048576.0, 1),
