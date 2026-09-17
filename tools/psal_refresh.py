@@ -306,7 +306,8 @@ def refresh_analytics(repo, max_age_hours=6):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", default="fetch",
-                    choices=["discover", "fetch", "rosters", "analytics", "probe"])
+                    choices=["discover", "fetch", "rosters", "analytics", "probe",
+                             "players"])
     ap.add_argument("--season", default="2027")
     ap.add_argument("--repo", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     args = ap.parse_args()
@@ -319,6 +320,17 @@ def main():
 
     warm()
     print("session ok", flush=True)
+
+    if args.mode == "players":
+        # Uniform numbers, grades, positions, and PSAL's own cross-season
+        # identity link. Checkpoints to git every few thousand cids.
+        from psal_players import run as run_players
+        one = str(args.season)
+        run_players(os.path.join(args.repo, "data"),
+                    None if one in ("0", "all", "") else
+                    ([one] if one in ("012", "021") else None),
+                    commit_repo=args.repo)
+        return
 
     if args.mode == "probe":
         # Read-only look at an endpoint we do not yet import. Writes its
