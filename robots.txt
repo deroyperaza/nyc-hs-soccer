@@ -1,0 +1,6 @@
+# Player pages aggregate PSAL's public box scores into a profile per named
+# player, and most of those players are minors. The pages stay on the site and
+# stay linkable; they are kept out of search results. A noindex header and meta
+# tag back this up for crawlers that ignore robots.txt.
+User-agent: *
+Disallow: /player/

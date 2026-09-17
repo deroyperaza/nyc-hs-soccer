@@ -291,7 +291,8 @@ def main():
         from psal_rosters import run as run_rosters
         one = str(args.season)
         run_rosters(os.path.join(args.repo, "data"),
-                    None if one in ("0", "all", "") else [one])
+                    None if one in ("0", "all", "") else [one],
+                    commit_repo=args.repo)
         return
 
     rawdir = os.path.join(args.repo, "_raw")
@@ -310,6 +311,33 @@ def main():
         print("\n$ python3 %s %s" % (script, args.season), flush=True)
         subprocess.run([sys.executable, os.path.join(args.repo, script), str(args.season)],
                        check=True, cwd=args.repo, env=env)
+
+    # Rosters for this season only, and incremental: pull_season skips games the
+    # file already covers, so a nightly run costs one call per new game. Then
+    # rebuild the player shards and run build2 once more, which is what picks up
+    # the shard count. A failure here must not fail a good score refresh.
+    try:
+        from psal_rosters import run as run_rosters
+        run_rosters(datadir, [str(args.season)])
+        # Player pages need the archive rosters. Until the backfill has landed
+        # at least one past season there is nothing to shard, and building
+        # anyway would commit 1024 empty files.
+        archive = [f for f in os.listdir(datadir)
+                   if f.startswith("r") and f.endswith(".json")
+                   and f[1:-5] != str(args.season)]
+        if not archive:
+            print("no archive rosters yet -- skipping player pages", flush=True)
+            raise StopIteration
+        print("\n$ python3 build_players.py", flush=True)
+        subprocess.run([sys.executable, os.path.join(args.repo, "build_players.py")],
+                       check=True, cwd=args.repo, env=env)
+        subprocess.run([sys.executable, os.path.join(args.repo, "build2.py"), str(args.season)],
+                       check=True, cwd=args.repo, env=env)
+    except StopIteration:
+        pass
+    except Exception as e:
+        print("rosters/player pages skipped: %s: %s" % (type(e).__name__, e),
+              file=sys.stderr, flush=True)
     print("\ndone in %.0fs" % (time.time() - t0))
 
 

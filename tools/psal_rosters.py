@@ -133,14 +133,44 @@ def pull_season(season, datadir, force=False):
     return out_path
 
 
-def run(datadir, seasons=None, force=False):
+def commit_season(repo, season):
+    """Push each season as it lands.
+
+    The first backfill ran for hours and would have lost everything if the
+    runner had been cut off, because the workflow only commits at the end. A
+    season is a natural checkpoint, and pull_season skips games a file already
+    covers, so a rerun picks up exactly where the last commit left off.
+    """
+    import subprocess
+    path = os.path.join('data', 'r%s.json' % season)
+    try:
+        subprocess.run(['git', 'config', 'user.name', 'psal-refresh'], cwd=repo, check=True)
+        subprocess.run(['git', 'config', 'user.email',
+                        'actions@users.noreply.github.com'], cwd=repo, check=True)
+        subprocess.run(['git', 'add', path], cwd=repo, check=True)
+        if subprocess.run(['git', 'diff', '--cached', '--quiet'], cwd=repo).returncode == 0:
+            return
+        subprocess.run(['git', 'commit', '-q', '-m',
+                        'Rosters: season %s' % season], cwd=repo, check=True)
+        for attempt in range(3):
+            if subprocess.run(['git', 'push'], cwd=repo).returncode == 0:
+                return
+            subprocess.run(['git', 'pull', '--rebase', '-q'], cwd=repo)
+        print('  ! could not push season %s' % season, file=sys.stderr, flush=True)
+    except Exception as e:
+        print('  ! commit failed for %s: %s' % (season, e), file=sys.stderr, flush=True)
+
+
+def run(datadir, seasons=None, force=False, commit_repo=None):
     if not seasons:
         seasons = sorted(f[1:-5] for f in os.listdir(datadir)
                          if f.startswith("s") and f.endswith(".json"))
     t0 = time.time()
     print("backfilling rosters for %d seasons" % len(seasons), flush=True)
     for s in seasons:
-        pull_season(s, datadir, force=force)
+        out = pull_season(s, datadir, force=force)
+        if out and commit_repo:
+            commit_season(commit_repo, s)
     print("\nrosters done in %.0fs" % (time.time() - t0), flush=True)
 
 
@@ -150,7 +180,10 @@ if __name__ == "__main__":
     ap.add_argument("--repo", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     ap.add_argument("--seasons", default="")
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--commit", action="store_true",
+                    help="commit and push each season as it finishes")
     a = ap.parse_args()
     warm()
     run(os.path.join(a.repo, "data"),
-        [s for s in a.seasons.split(",") if s] or None, a.force)
+        [s for s in a.seasons.split(",") if s] or None, a.force,
+        a.repo if a.commit else None)

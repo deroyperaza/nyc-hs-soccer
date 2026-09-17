@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build the NYC High School Soccer page + history.json from converted season files."""
-import json, os, glob, datetime, sys
+import json, os, glob, re, datetime, sys
 
 BASE = os.environ.get('PSAL_BASE', '/home/claude/psal')
 # In CI the repo keeps data/ and index.html at the top level, so each path is
@@ -9,11 +9,20 @@ DATA = os.environ.get('PSAL_OUT',  os.path.join(BASE, 'out', 'data'))
 TPL  = os.environ.get('PSAL_TPL',  os.path.join(BASE, 'app.template.html'))
 PAGE = os.environ.get('PSAL_PAGE', os.path.join(BASE, 'out', 'index.html'))
 
+SEASON_FILE = re.compile(r'^s(\d{4})\.json$')
+
+
+def season_ids(datadir):
+    """Only real season files -- data/ also holds slugs.json, pmeta.json and the
+    roster files, and a bare s*.json glob happily swallows them."""
+    return sorted(m.group(1) for m in
+                  (SEASON_FILE.match(f) for f in os.listdir(datadir)) if m)
+
+
 def load_all():
     out = {}
-    for p in sorted(glob.glob(os.path.join(DATA, 's*.json'))):
-        sid = os.path.basename(p)[1:-5]
-        out[sid] = json.load(open(p))
+    for sid in season_ids(DATA):
+        out[sid] = json.load(open(os.path.join(DATA, 's%s.json' % sid)))
     return out
 
 def build(updated=None, current=None):
@@ -22,6 +31,9 @@ def build(updated=None, current=None):
     cur = current or ids[-1]
 
     teams, champs, titles, finals = {}, {}, {}, {}
+    # one short name per school for the whole archive, latest season wins --
+    # player pages need to name opponents from seasons they haven't loaded
+    global_short = {}
     for sid in ids:
         o = seasons[sid]
         D = o['D']
@@ -50,6 +62,8 @@ def build(updated=None, current=None):
         for t in o['T']:
             name_by['%d:%s' % (t[0], t[1])] = t[2]
             short_by['%d:%s' % (t[0], t[1])] = t[4] if len(t) > 4 else t[2]
+        for k_, v_ in short_by.items():
+            global_short[k_.split(':')[1]] = v_
         for sp, di, rows in o['S']:
             srt = sorted(rows, key=lambda r: (-r[4], -r[1], r[2]))
             top = []
@@ -174,6 +188,11 @@ def build(updated=None, current=None):
     # that would be misleading -- only genuine duplicates get suffixed, and the
     # first (lowest code) keeps the clean one, which is stable build to build.
 
+    # the player builder needs exactly these slugs, so they are written out
+    # rather than regenerated from a second copy of the rules
+    with open(os.path.join(DATA, 'slugs.json'), 'w') as f:
+        json.dump(slugs, f, separators=(',', ':'))
+
     hist = {'teams': teams, 'finals': finals, 'titles': titles}
     with open(os.path.join(DATA, 'history.json'), 'w') as f:
         json.dump(hist, f, separators=(',', ':'))
@@ -184,7 +203,14 @@ def build(updated=None, current=None):
         'defaultSeason': cur,
         'seasons': [{'id': s, 'label': seasons[s]['label'], 'cur': s == cur} for s in sorted(ids, reverse=True)],
         'slugs': slugs,
+        'shorts': global_short,
     }
+    pmeta_path = os.path.join(DATA, 'pmeta.json')
+    if os.path.exists(pmeta_path):
+        try:
+            meta['pshards'] = json.load(open(pmeta_path)).get('shards')
+        except Exception:
+            pass
     payload = {'meta': meta, 'season': seasons[cur]}
     blob = json.dumps(payload, separators=(',', ':')).replace('</script>', '<\\/script>')
     tpl = open(TPL).read()

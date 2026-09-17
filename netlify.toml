@@ -17,6 +17,14 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
+# Player pages gather PSAL's public box scores into a profile per named player,
+# and most of those players are minors. robots.txt keeps crawlers out; this
+# header and a meta tag in the page cover anything that ignores it.
+[[headers]]
+  for = "/player/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 # Clean URLs: /school/beacon, /game/502544 and friends are app routes, not files.
 # Netlify serves a real file when one exists (so /data/*.json and the icons still
 # win), and falls through to the app for everything else.
