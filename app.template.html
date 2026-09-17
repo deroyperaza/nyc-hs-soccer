@@ -294,9 +294,11 @@
     display:flex; flex-direction:column; align-items:center; gap:10px}
   .qr{background:#fff; padding:10px; border-radius:10px; line-height:0; min-height:40px}
   .qr img, .qr canvas{display:block}
+  .syncin{width:100%; border-top:1px solid var(--line-soft); padding-top:12px;
+    display:flex; flex-direction:column; gap:8px}
   .synclink{display:flex; gap:8px; width:100%}
   .synclink input{flex:1; min-width:0; height:38px; border-radius:9px; border:1px solid var(--line);
-    background:var(--surface-2); color:var(--text-2); padding:0 10px; font-size:12px;
+    background:var(--surface-2); color:var(--text-2); padding:0 10px; font-size:16px;
     font-family:Barlow,sans-serif; -webkit-appearance:none}
   .synclink button{height:38px; padding:0 14px; border-radius:9px; border:0;
     background:var(--sel-bg); color:var(--sel-fg); font-weight:700; font-size:13px}
@@ -2192,6 +2194,27 @@
     if(S.view === "players") renderPlayers();
     return true;
   }
+  /* The slug is <name words>-<school slug>, and the school slugs are all known,
+     so a name can be recovered from it when every lookup has failed. */
+  function schoolSlugIn(slug){
+    var best = "";
+    Object.keys(SLUGS).forEach(function(code){
+      var sl = SLUGS[code];
+      if(sl && sl.length > best.length && slug.length > sl.length &&
+         slug.slice(-(sl.length + 1)) === "-" + sl) best = sl;
+    });
+    return best;
+  }
+  function codeFromSlug(slug){
+    var sl = schoolSlugIn(slug), out = "";
+    Object.keys(SLUGS).forEach(function(code){ if(SLUGS[code] === sl) out = code; });
+    return out;
+  }
+  function nameFromSlug(slug){
+    var sl = schoolSlugIn(slug);
+    var words = (sl ? slug.slice(0, -(sl.length + 1)) : slug).split("-");
+    return words.join(" ").toUpperCase();
+  }
   function hydrateFavs(){
     S.pfavOrder.forEach(function(k){
       var e = S.pfavs[k];
@@ -2237,6 +2260,7 @@
               return;
             }
           }
+          fillFav(k, nameFromSlug(slug), codeFromSlug(slug), 0, 0);
         });
       });
     });
@@ -2371,8 +2395,9 @@
         body += '<div class="card"><div class="pnote">Add another letter to narrow this down.</div></div>';
       }
     }
-    v.innerHTML = head + body;
+    v.innerHTML = head + body + syncHTML();
     initFavDrag();
+    wireSync();
   }
 
   /* Drag to reorder the followed list. Pointer events rather than HTML5
@@ -2430,25 +2455,64 @@
   }
 
   function syncHTML(){
-    if(!S.pfavOrder.length && !S.favs.size) return "";
+    var have = S.pfavOrder.length || S.favs.size;
     if(!S.syncOpen){
       return '<div class="card"><button class="rosterbtn" id="syncbtn">' +
-        '<span>Move these follows to another device</span>' +
+        '<span>Move follows between devices</span>' +
         '<span class="ch">Show \u203a</span></button></div>';
     }
     var url = syncLink();
     return '<div class="card"><button class="rosterbtn" id="syncbtn">' +
-      '<span>Move these follows to another device</span><span class="ch">Hide</span></button>' +
+      '<span>Move follows between devices</span><span class="ch">Hide</span></button>' +
       '<div class="syncbox">' +
-        '<div class="qr" id="qr"></div>' +
-        '<p class="pnote" style="padding:0">Point your phone\u2019s camera at this. ' +
-        'It opens the site there and adds ' + S.pfavOrder.length + ' player' +
-        (S.pfavOrder.length === 1 ? "" : "s") +
-        (S.favs.size ? ' and ' + S.favs.size + ' team' + (S.favs.size === 1 ? "" : "s") : "") +
-        ' to whatever that device already follows.</p>' +
-        '<div class="synclink"><input id="syncurl" readonly value="' + esc(url) + '">' +
-        '<button id="synccopy">Copy</button></div>' +
+        (have ?
+          '<div class="qr" id="qr"></div>' +
+          '<p class="pnote" style="padding:0">Point your phone\u2019s camera at this. ' +
+          'It opens the site there and adds ' + S.pfavOrder.length + ' player' +
+          (S.pfavOrder.length === 1 ? "" : "s") +
+          (S.favs.size ? ' and ' + S.favs.size + ' team' + (S.favs.size === 1 ? "" : "s") : "") +
+          ' to whatever that device already follows.</p>' +
+          '<div class="synclink"><input id="syncurl" readonly value="' + esc(url) + '">' +
+          '<button id="synccopy">Copy</button></div>'
+        : "") +
+        '<div class="syncin"' + (have ? '' : ' style="border-top:0;padding-top:0"') + '>' +
+          '<div class="pnote" style="padding:0">' + esc(standalone()
+            ? "This app has its own storage, separate from Safari \u2014 a scanned code lands in Safari, not here. Paste a sync link to bring follows in."
+            : "Got a sync link from another device? Paste it here.") + '</div>' +
+          '<div class="synclink"><input id="syncpaste" placeholder="Paste a sync link" ' +
+            'autocomplete="off" autocorrect="off" spellcheck="false">' +
+          '<button id="syncadd">Add</button></div>' +
+        '</div>' +
       '</div></div>';
+  }
+  function standalone(){
+    try{
+      return window.navigator.standalone === true ||
+        (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches);
+    }catch(e){ return false; }
+  }
+  /* Accepts a whole sync link or just the key list, so it survives being
+     forwarded, shortened or half-selected. */
+  function applySyncText(txt){
+    txt = String(txt || "").trim();
+    if(!txt) return 0;
+    var got = 0, teams = null, players = null;
+    var pm = txt.match(/[?&]p=([^&\s]*)/), fm = txt.match(/[?&]f=([^&\s]*)/);
+    try{ if(pm) players = decodeURIComponent(pm[1]); }catch(e){}
+    try{ if(fm) teams = decodeURIComponent(fm[1]); }catch(e){}
+    if(!pm && !fm && txt.indexOf("/") >= 0) players = txt;
+    (players || "").split(/[\s,]+/).forEach(function(k){
+      if(!k || !/^[01]\//.test(k) || S.pfavs[k]) return;
+      S.pfavs[k] = [k, "", "", 0, 0];
+      S.pfavOrder.push(k);
+      got++;
+    });
+    (teams || "").split(/[\s,]+/).forEach(function(k){
+      if(!k || !/^[01]:/.test(k) || S.favs.has(k)) return;
+      S.favs.add(k); got++;
+    });
+    if(got){ savePFavs(); saveFavs(); hydrateFavs(); }
+    return got;
   }
   function wireSync(){
     var box = el("qr");
@@ -2640,6 +2704,13 @@
       return;
     }
     if(id === "syncbtn"){ S.syncOpen = !S.syncOpen; renderPlayers(); return; }
+    if(id === "syncadd"){
+      var inp = el("syncpaste");
+      var n = applySyncText(inp ? inp.value : "");
+      if(n){ S.syncOpen = false; renderPlayers(); }
+      else if(inp){ inp.value = ""; inp.placeholder = "That didn\u2019t look like a sync link"; }
+      return;
+    }
     if(id === "synccopy"){
       var box = el("syncurl");
       if(box){
