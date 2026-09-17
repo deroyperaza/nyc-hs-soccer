@@ -66,3 +66,47 @@ field names above were established.
 - Followed teams live in `localStorage`, and are mirrored into the URL as `?f=`.
   iOS gives each home-screen tile its own storage and wipes it when the tile is
   removed, so the URL is what lets a re-added tile remember them.
+
+## Rosters and player pages
+
+`Get_Score_Soccer2` returns **every player on a game sheet**, including rows
+where every stat is zero. That is the roster. The original archive pull kept
+only rows carrying a stat, which dropped roughly 40% of every game back to
+2002 -- the app could say who scored but not who played. `tools/psal_rosters.py`
+backfills the rest into `data/r<season>.json`, and the hourly refresh keeps the
+live season's file current (incrementally: one call per new game).
+
+Those files are separate from `data/s<season>.json` on purpose. The season file
+is what the page boots with, so it stays lean; a roster is fetched only when
+someone opens a roster fold or a player page.
+
+### Identity
+
+PSAL's `cid` is a roster-entry id: stable for a player across one season, and
+**reissued every year**. Zohran Mamdani is 141514, then 161866, then 180413. So
+it separates two same-named players on different teams within a season, but it
+cannot join a career. Careers are joined by **name at the same school**, which
+is deliberately conservative -- a transfer shows up as two pages rather than
+risking two different kids merged into one.
+
+The slug spells that rule out: `/player/<name>-<school-slug>/<sport>`. The app
+derives it from a roster row with no lookup table, and `build_players.py` uses
+the same school slugs `build2.py` writes to `data/slugs.json`, so the two can
+never drift.
+
+### Shards, and why the live season is left out
+
+Careers live in `data/p/<xxx>.json`, 1024 shards keyed by FNV-1a of
+`<sport>/<slug>` -- one small fetch per player page, no index to load up front.
+`build_players.py` **excludes the current season**: the app already holds it in
+its boot payload and stitches those games on itself (`liveRows`). Without that,
+every hourly refresh would rewrite all 1024 shards and add ~70MB of blobs to
+the repo each time.
+
+### Not indexed
+
+The data is PSAL's and public, but a per-child profile page is an aggregation
+PSAL does not publish, and most of these players are minors. `robots.txt`
+disallows `/player/`, Netlify sends `X-Robots-Tag: noindex` for those paths, and
+the page swaps its robots meta tag while a player sheet is open. Pages stay
+linkable and deep-linkable; they just do not turn up in search.

@@ -2,6 +2,10 @@
 <title>NYC High School Soccer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#293955">
+<!-- Player pages are noindexed: the data is PSAL's and public, but a per-child
+     profile page is an aggregation PSAL doesn't publish, and most of these
+     players are minors. robots.txt disallows /player/ as well. -->
+<meta name="robots" id="robotsmeta" content="index,follow">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -217,6 +221,33 @@
   .sheet{position:fixed; inset:0; z-index:60; display:flex; flex-direction:column; background:var(--bg)}
   .sheet[hidden]{display:none}
   .sheet.two{z-index:70}
+  .sheet.three{z-index:80}
+  .plink{color:var(--blue); text-align:left; font:inherit}
+  .prow .plink{font-weight:600}
+  .rosterbtn{width:100%; display:flex; align-items:center; justify-content:space-between;
+    gap:10px; padding:11px 13px; border-top:1px solid var(--line-soft);
+    font-size:12.5px; font-weight:600; color:var(--text-2); text-align:left}
+  .rosterbtn .ch{color:var(--blue); font-size:12px; flex:none}
+  .prow.dnp .pn{color:var(--muted); font-weight:500}
+  .prow.dnp .pv{color:var(--muted)}
+  .careerbar{display:flex; gap:0; border-top:1px solid var(--line-soft)}
+  .careerbar div{flex:1; padding:11px 6px; text-align:center; border-left:1px solid var(--line-soft)}
+  .careerbar div:first-child{border-left:0}
+  .careerbar .v{font-family:Archivo,sans-serif; font-weight:800; font-size:19px; font-variant-numeric:tabular-nums}
+  .careerbar .k{font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:2px}
+  .glog{width:100%; border-collapse:collapse; font-size:13px}
+  .glog th{font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; text-align:right; padding:7px 6px; border-bottom:1px solid var(--line-soft)}
+  .glog th:first-child, .glog td:first-child{text-align:left; padding-left:13px}
+  .glog td{padding:9px 6px; text-align:right; border-bottom:1px solid var(--line-soft);
+    font-variant-numeric:tabular-nums}
+  .glog tr:last-child td{border-bottom:0}
+  .glog td:last-child, .glog th:last-child{padding-right:13px}
+  .glog .op{font-weight:600}
+  .glog .wl{font-weight:700; font-size:11px}
+  .glog .wl.W{color:var(--win)} .glog .wl.L{color:var(--loss)} .glog .wl.T{color:var(--tie)}
+  .glog .zero{color:var(--muted)}
+  .pnote{padding:11px 13px; font-size:12px; color:var(--muted); line-height:1.45}
   .sheethead{background:var(--navy); color:#fff; padding:calc(12px + env(safe-area-inset-top, 0px)) 16px 16px}
   .sheethead .row{display:flex; align-items:center; justify-content:space-between; gap:10px; max-width:760px; margin:0 auto}
   .sheethead h2{font-size:20px; font-weight:700; line-height:1.2}
@@ -435,6 +466,21 @@
   <div class="sheetbody"><div class="sheetbody-inner" id="gsheet-body"></div></div>
 </div>
 
+<div class="sheet three" id="psheet" hidden role="dialog" aria-modal="true" aria-label="Player detail">
+  <div class="sheethead">
+    <div class="row">
+      <button class="iconbtn" id="psheet-close" aria-label="Back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+      <div style="flex:1; min-width:0">
+        <h2 id="psheet-name">Player</h2>
+        <div class="sub" id="psheet-sub"></div>
+      </div>
+    </div>
+  </div>
+  <div class="sheetbody"><div class="sheetbody-inner" id="psheet-body"></div></div>
+</div>
+
 <div class="seasonmenu" id="seasonmenu" hidden>
   <div class="panel">
     <div class="ph"><h3>Season</h3><button class="clearbtn" id="seasonmenu-close">Close</button></div>
@@ -457,7 +503,8 @@
     sp: 0, view: "scores", seasonId: null, season: null, rankSort: "r", methodOpen: false,
     lbStat: "g", lbTier: "all", aggCache: {},
     date: null, defaultDate: null, boro: "", div: "", query: "", hsub: "champs", rankYear: "all", openBoros: {},
-    favs: new Set(), cache: {}, hist: null, histState: "idle", openTeamKey: null, openGameKey: null
+    favs: new Set(), cache: {}, hist: null, histState: "idle", openTeamKey: null, openGameKey: null,
+    openPlayer: null, pcache: {}, rcache: {}, openRosters: {}
   };
 
   /* ---------- helpers ---------- */
@@ -604,6 +651,84 @@
       .catch(function(){ S.histState = "error"; render(); });
   }
 
+  /* ---------- players ----------
+     A player is one person per (sport, school, name). PSAL's per-row cid is
+     stable within a season but reissued every year, so a career can only be
+     joined by name at the same school. That rule is spelled out in the slug --
+     <name>-<school-slug> -- which means a roster row can be turned into a link
+     here with no lookup table, and the same rule produced the files.
+
+     Careers are sharded by a hash of "<sport>/<slug>" so a player page fetches
+     one small file rather than a 50MB index. */
+  function deaccent(x){
+    return x.normalize ? x.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : x;
+  }
+  function slugName(n){
+    var out = "", dash = false, x = deaccent(String(n || "")).toLowerCase();
+    for(var i=0;i<x.length;i++){
+      var c = x.charAt(i);
+      if(c >= "a" && c <= "z" || c >= "0" && c <= "9"){ out += c; dash = false; }
+      else if(!dash && out){ out += "-"; dash = true; }
+    }
+    return out.replace(/^-+|-+$/g, "");
+  }
+  function playerKey(sp, code, name){
+    var sl = slugName(name);
+    if(!sl) return "";
+    return sp + "/" + sl + "-" + (SLUGS[code] || code);
+  }
+  function shardOf(key){
+    var h = 2166136261;
+    for(var i=0;i<key.length;i++){
+      h ^= key.charCodeAt(i);
+      h = Math.imul(h, 16777619) >>> 0;
+    }
+    return h % (META.pshards || 1024);
+  }
+  function needShard(key, after){
+    var id = shardOf(key), hex = ("00" + id.toString(16)).slice(-3);
+    if(S.pcache[hex]){ after(S.pcache[hex]); return; }
+    fetch(META.path + "p/" + hex + ".json", {cache:"force-cache"})
+      .then(function(r){ if(!r.ok) throw new Error("http"); return r.json(); })
+      .then(function(o){ S.pcache[hex] = o; after(o); })
+      .catch(function(){ after(null); });
+  }
+  function needRoster(sid, after){
+    if(S.rcache[sid]){ after(S.rcache[sid]); return; }
+    fetch(META.path + "r" + sid + ".json", {cache:"force-cache"})
+      .then(function(r){ if(!r.ok) throw new Error("http"); return r.json(); })
+      .then(function(o){ S.rcache[sid] = o; after(o); })
+      .catch(function(){ S.rcache[sid] = "error"; after("error"); });
+  }
+  function liveRows(key){
+    var ps = S.cache[META.defaultSeason];
+    if(!ps || ps === "error") return null;
+    var sp = +key.split("/")[0], P = ps.raw.P, out = [], who = null;
+    ps.raw.G.forEach(function(g){
+      if(g[0] !== sp) return;
+      var d = ps.raw.X[gkey(g)];
+      if(!d || !d[4] || !d[4].length) return;
+      d[4].forEach(function(r){
+        var nm = P[r[1]] || "";
+        if(!nm || playerKey(sp, r[0], nm) !== key) return;
+        var home = r[0] === g[4];
+        if(!who) who = {n: nm, sc: r[0]};
+        out.push([g[1], g[2], home ? g[5] : g[4], home ? 1 : 0,
+                  home ? g[6] : g[7], home ? g[7] : g[6],
+                  g[10] === 1 ? 1 : 0, r[2], r[3], r[4], r[5], r[6]]);
+      });
+    });
+    if(!out.length) return null;
+    out.sort(function(x, z){ return x[1] - z[1]; });
+    return {rows: out, who: who, y: +META.defaultSeason};
+  }
+  function plink(sp, code, name, cls){
+    var key = playerKey(sp, code, name), label = esc(titleCase(name));
+    if(!key) return label;
+    return '<button class="plink' + (cls ? " " + cls : "") + '" data-player="' +
+      esc(key) + '">' + label + '</button>';
+  }
+
   /* ---------- game helpers ---------- */
   function g_sp(g){ return g[0]; }
   function gkey(g){ return g[0] + ":" + g[1]; }
@@ -701,6 +826,7 @@
      the canonical path on arrival. Followed teams ride along as
      ?f= -- one writer owns the whole URL so the two never fight over it. */
   var SLUGS = META.slugs || {};
+  var SHORTS = META.shorts || {};
   var CODE_BY_SLUG = {};
   Object.keys(SLUGS).forEach(function(c){ CODE_BY_SLUG[SLUGS[c]] = c; });
   function slugFor(code){ return SLUGS[code] || String(code); }
@@ -717,6 +843,10 @@
 
   function routePath(){
     var seg = [];
+    if(S.openPlayer){
+      var pk = S.openPlayer.split("/");
+      return "/" + ["player", pk[1], pk[0] === "1" ? "girls" : "boys"].join("/");
+    }
     if(S.openGameKey){
       var gp = S.openGameKey.split(":");
       seg = ["game", gp[1], gp[0] === "1" ? "girls" : "boys"];
@@ -788,13 +918,15 @@
      the right season file is loaded. */
   function parseRoute(){
     var parts = location.pathname.split("/").filter(Boolean).map(decodeURIComponent);
-    var plan = {sp: 0, view: "scores", season: null, date: null, team: null, game: null, hsub: null};
+    var plan = {sp: 0, view: "scores", season: null, date: null, team: null, game: null,
+                player: null, hsub: null};
     var tail = parts.length ? parts[parts.length - 1] : "";
     if(tail === "girls"){ plan.sp = 1; parts.pop(); }
     else if(tail === "boys"){ plan.sp = 0; parts.pop(); }
     if(!parts.length) return plan;
     var head = parts[0];
     if(head === "game" && parts[1]){ plan.game = parts[1]; return plan; }
+    if(head === "player" && parts[1]){ plan.player = parts[1]; return plan; }
     if(head === "school" && parts[1]){
       plan.view = "scores";
       plan.team = CODE_BY_SLUG[parts[1]] || (/^\d{5}$/.test(parts[1]) ? parts[1] : null);
@@ -805,6 +937,7 @@
       if(parts[1]) plan.date = dateInt(parts[1]);
       return plan;
     }
+
     if(head === "history"){
       plan.view = "history";
       plan.hsub = HSUB_BY_PATH[parts[1]] || "champs";
@@ -1280,10 +1413,11 @@
       rows.slice(0, 100).map(function(r, i){
         var t = ps.teams[S.sp + ":" + r.code];
         var pin = S.favs.has(S.sp + ":" + r.code);
-        return '<tr class="' + (pin ? "isfav" : "") + '"><td><button class="tm" data-team="' + esc(S.sp + ":" + r.code) + '" style="text-align:left">' +
-          '<span class="pos">' + (i+1) + '</span><span>' + esc(titleCase(r.n)) +
-          '<br><span style="font-size:11.5px;color:var(--muted)">' + esc(t ? t.short : r.code) + (t && t.cls ? " \u00b7 " + esc(t.cls) : "") + '</span>' +
-          '</span></button></td>' +
+        return '<tr class="' + (pin ? "isfav" : "") + '"><td><span class="tm" style="display:flex;gap:8px;align-items:baseline">' +
+          '<span class="pos">' + (i+1) + '</span><span>' + plink(S.sp, r.code, r.n) +
+          '<br><button data-team="' + esc(S.sp + ":" + r.code) + '" style="font-size:11.5px;color:var(--muted);text-align:left">' +
+          esc(t ? t.short : r.code) + (t && t.cls ? " \u00b7 " + esc(t.cls) : "") + '</button></span>' +
+          '</span></td>' +
           '<td>' + r.gp + '</td><td class="pts w">' + r[stat] + '</td></tr>';
       }).join("") + '</tbody></table></div></div>' :
       '<div class="card"><div class="empty">No ' + esc(label.toLowerCase()) + ' recorded yet this season.</div></div>';
@@ -1596,7 +1730,8 @@
             '<h3>' + esc(team.short) + ' <span style="color:var(--blue)">&rsaquo;</span></h3>' +
             '<span class="sub">no player stats posted</span></button>' +
             '<div class="empty" style="padding:14px 13px;text-align:left">PSAL has no box score entries for ' +
-            esc(team.short) + ' in this game — the other side\'s coach filed stats and theirs didn\'t.</div></div>';
+            esc(team.short) + ' in this game — the other side\'s coach filed stats and theirs didn\'t.</div>' +
+            rosterFold(g[0], code) + '</div>';
           return;
         }
         var scorers = mine.filter(function(r){ return r.g || r.a; })
@@ -1615,7 +1750,7 @@
             if(r.g) bits.push('<em>G</em> ' + r.g);
             if(r.a) bits.push('<em>A</em> ' + r.a);
             if(r.sh) bits.push('<em>SH</em> ' + r.sh);
-            return '<div class="prow"><span class="pn">' + esc(titleCase(r.name)) + '</span>' +
+            return '<div class="prow"><span class="pn">' + plink(g[0], code, r.name) + '</span>' +
               '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
           }).join("") + '</div>';
         }
@@ -1624,17 +1759,18 @@
             var bits = [];
             if(r.sv) bits.push('<em>SV</em> ' + r.sv);
             if(r.ga) bits.push('<em>GA</em> ' + r.ga);
-            return '<div class="prow"><span class="pn">' + esc(titleCase(r.name)) + ' <span style="color:var(--muted);font-size:12px">GK</span></span>' +
+            return '<div class="prow"><span class="pn">' + plink(g[0], code, r.name) +
+              ' <span style="color:var(--muted);font-size:12px">GK</span></span>' +
               '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
           }).join("") + '</div>';
         }
         if(shooters.length){
           html += '<div class="plist" style="border-top:1px solid var(--line-soft)">' + shooters.map(function(r){
-            return '<div class="prow"><span class="pn" style="color:var(--text-2)">' + esc(titleCase(r.name)) + '</span>' +
+            return '<div class="prow"><span class="pn">' + plink(g[0], code, r.name) + '</span>' +
               '<span class="pv"><em>SH</em> ' + r.sh + '</span></div>';
           }).join("") + '</div>';
         }
-        html += '</div>';
+        html += rosterFold(g[0], code) + '</div>';
       });
     } else if(hasScore(g)){
       html += '<div class="card"><div class="empty">PSAL didn\'t post a box score for this game.</div></div>';
@@ -1660,6 +1796,11 @@
     document.body.style.overflow = "hidden";
     syncUrl("push");
   }
+  function rosterFold(sp, code){
+    return '<button class="rosterbtn" data-roster="' + esc(sp + ":" + code) + '">' +
+      '<span>Full roster</span><span class="ch">Show \u203a</span></button>' +
+      '<div id="roster-' + sp + '-' + code + '" hidden></div>';
+  }
   function titleCase(s){
     s = String(s || "");
     if(s !== s.toUpperCase()) return s;
@@ -1669,6 +1810,174 @@
     el("gsheet").hidden = true; S.openGameKey = null;
     if(el("sheet").hidden) document.body.style.overflow = "";
     syncUrl("push");
+  }
+
+  /* ---------- player sheet ---------- */
+  function setRobots(){
+    var m = el("robotsmeta");
+    if(m) m.setAttribute("content", S.openPlayer ? "noindex,nofollow" : "index,follow");
+  }
+  function openPlayer(key){
+    S.openPlayer = key;
+    setRobots();
+    el("psheet").hidden = false;
+    document.body.style.overflow = "hidden";
+    el("psheet-name").textContent = "Loading\u2026";
+    el("psheet-sub").textContent = "";
+    el("psheet-body").innerHTML = '<div class="card"><div class="empty">Looking up this player\u2026</div></div>';
+    syncUrl("push");
+    needShard(key, function(bundle){
+      if(S.openPlayer !== key) return;
+      var p = bundle && bundle[key], live = liveRows(key);
+      if(!p && !live){
+        el("psheet-name").textContent = "Player not found";
+        el("psheet-sub").textContent = "";
+        el("psheet-body").innerHTML = '<div class="card"><div class="empty">' +
+          'No PSAL record under that name and school. A player only appears here ' +
+          'once a coach has filed a sheet with them on it.</div></div>';
+        return;
+      }
+      renderPlayer(key, p, live);
+    });
+  }
+  function hidePlayer(){
+    el("psheet").hidden = true; S.openPlayer = null; setRobots();
+  }
+  function closePlayer(){
+    el("psheet").hidden = true; S.openPlayer = null;
+    setRobots();
+    if(el("sheet").hidden && el("gsheet").hidden) document.body.style.overflow = "";
+    syncUrl("push");
+  }
+  function renderPlayer(key, p, live){
+    var sp = +key.split("/")[0];
+    // seasons as [yearInt, rows]; the live season is stitched on rather than
+    // shipped, so it is always as fresh as the scores page
+    var blocks = (p && p.s ? p.s.slice() : []);
+    if(live) blocks.push([live.y, live.rows]);
+    blocks.sort(function(x, z){ return z[0] - x[0]; });
+
+    var name = (p && p.n) || (live && live.who.n) || "";
+    var code = (p && p.sc) || (live && live.who.sc) || "";
+    var full = (p && p.fn) || (S.season && S.season !== "error" &&
+      (S.season.teams[sp + ":" + code] || {}).name) || SHORTS[code] || code;
+
+    el("psheet-name").textContent = titleCase(name);
+    var years = blocks.map(function(bl){ return (seasonMeta(String(bl[0])) || {}).label || bl[0]; });
+    var span = years.length === 1 ? years[0]
+      : years[years.length-1] + "\u2013" + String(years[0]).replace(/^\D+/, "");
+    el("psheet-sub").textContent = full + " \u00b7 " + (sp === 1 ? "Girls" : "Boys") +
+      " Varsity \u00b7 " + span;
+
+    var tot = {ap:0, g:0, a:0, sh:0, sv:0, ga:0};
+    blocks.forEach(function(bl){
+      bl[1].forEach(function(r){
+        tot.ap++; tot.g += r[7]; tot.a += r[8]; tot.sv += r[9]; tot.sh += r[10]; tot.ga += r[11];
+      });
+    });
+    var keeper = tot.sv > 0 || tot.ga > 0;
+    function cell(v, k){ return '<div><div class="v">' + v + '</div><div class="k">' + k + '</div></div>'; }
+
+    var html = '<div class="boxwrap"><button class="boxhead" data-gteam="' +
+      esc(sp + ":" + code) + '" style="width:100%"><h3>' + esc(SHORTS[code] || full) +
+      ' <span style="color:var(--blue)">&rsaquo;</span></h3>' +
+      '<span class="sub">' + tot.ap + " appearance" + (tot.ap === 1 ? "" : "s") +
+      " across " + blocks.length + " season" + (blocks.length === 1 ? "" : "s") + '</span></button>' +
+      '<div class="careerbar">' + cell(tot.ap, "Games") + cell(tot.g, "Goals") +
+      cell(tot.a, "Assists") +
+      (keeper ? cell(tot.sv, "Saves") : cell(tot.sh, "Shots")) + '</div></div>';
+
+    blocks.forEach(function(bl){
+      var y = bl[0], rows = bl[1].slice().sort(function(x, z){ return x[1] - z[1]; });
+      var sg = 0, sa = 0, ssv = 0;
+      rows.forEach(function(r){ sg += r[7]; sa += r[8]; ssv += r[9]; });
+      var bits = [rows.length + " game" + (rows.length === 1 ? "" : "s")];
+      if(sg) bits.push(sg + " G");
+      if(sa) bits.push(sa + " A");
+      if(ssv) bits.push(ssv + " SV");
+      html += '<div class="boxwrap"><div class="boxhead"><h3>' +
+        esc((seasonMeta(String(y)) || {}).label || y) + '</h3>' +
+        '<span class="sub">' + esc(bits.join(" \u00b7 ")) + '</span></div>' +
+        '<table class="glog"><thead><tr><th>Date</th><th style="text-align:left">Opponent</th>' +
+        '<th>Result</th>' + (keeper ? '<th>SV</th><th>GA</th>' : '<th>G</th><th>A</th><th>SH</th>') +
+        '</tr></thead><tbody>' +
+        rows.map(function(r){
+          var dp = dparts(r[1]);
+          var gf = r[4], ga = r[5];
+          var wl = (gf == null || ga == null) ? "" : gf > ga ? "W" : gf < ga ? "L" : "T";
+          var res = (gf == null || ga == null) ? "\u2013"
+            : (gf === 999 || ga === 999) ? "FF" : (gf + "\u2013" + ga);
+          var num = function(v){ return v ? v : '<span class="zero">0</span>'; };
+          return '<tr><td>' + dp.m + "/" + dp.d + '</td>' +
+            '<td style="text-align:left"><button class="plink op" data-pgame="' +
+              esc(y + ":" + sp + ":" + r[0]) + '">' + (r[3] ? "" : "@ ") +
+              esc(SHORTS[r[2]] || r[2]) +
+              (r[6] ? ' <span style="color:var(--muted);font-size:11px">PO</span>' : "") +
+            '</button></td>' +
+            '<td><span class="wl ' + wl + '">' + wl + '</span> ' + res + '</td>' +
+            (keeper ? '<td>' + num(r[9]) + '</td><td>' + num(r[11]) + '</td>'
+                    : '<td>' + num(r[7]) + '</td><td>' + num(r[8]) + '</td><td>' + num(r[10]) + '</td>') +
+            '</tr>';
+        }).join("") + '</tbody></table></div>';
+    });
+
+    html += '<div class="boxwrap"><div class="pnote">' +
+      'PSAL issues a new player id every season, so a career here is joined by ' +
+      'name at the same school. Someone who transferred appears under each school ' +
+      'separately, and two players who shared a name at one school would appear as ' +
+      'one. Appearances count games where a coach filed a sheet.' +
+      '</div></div>';
+    el("psheet-body").innerHTML = html;
+    el("psheet-body").scrollTop = 0;
+  }
+
+  /* ---------- full roster, folded under each side of a box score ----------
+     The rosters live in their own per-season file: everyone who dressed, not
+     just whoever put a number on the sheet. It is fetched the first time
+     someone asks for one, so the app's own payload doesn't carry it. */
+  function toggleRoster(arg){
+    var parts = arg.split(":"), sp = +parts[0], code = parts[1];
+    var box = el("roster-" + sp + "-" + code);
+    var btn = document.querySelector('[data-roster="' + arg + '"] .ch');
+    if(!box) return;
+    if(!box.hidden){ box.hidden = true; if(btn) btn.textContent = "Show \u203a"; return; }
+    box.hidden = false;
+    if(btn) btn.textContent = "Hide";
+    if(box.dataset.done) return;
+    box.innerHTML = '<div class="pnote">Loading the roster\u2026</div>';
+    var sid = S.seasonId, gkeyNow = S.openGameKey;
+    needRoster(sid, function(r){
+      if(S.openGameKey !== gkeyNow) return;
+      if(r === "error" || !r || !r.R || !r.R[gkeyNow]){
+        box.innerHTML = '<div class="pnote">PSAL has no roster on file for this game.</div>';
+        box.dataset.done = "1";
+        return;
+      }
+      var mine = r.R[gkeyNow].filter(function(x){ return x[0] === code; });
+      if(!mine.length){
+        box.innerHTML = '<div class="pnote">PSAL has no roster on file for this side.</div>';
+        box.dataset.done = "1";
+        return;
+      }
+      mine.sort(function(x, z){
+        var sx = x[3] + x[4] + x[5] + x[6], sz = z[3] + z[4] + z[5] + z[6];
+        if(sx !== sz) return sz - sx;
+        return String(r.P[x[1]] || "").localeCompare(String(r.P[z[1]] || ""));
+      });
+      box.innerHTML = '<div class="plist">' + mine.map(function(x){
+        var name = r.P[x[1]] || "", bits = [];
+        if(x[3]) bits.push('<em>G</em> ' + x[3]);
+        if(x[4]) bits.push('<em>A</em> ' + x[4]);
+        if(x[5]) bits.push('<em>SV</em> ' + x[5]);
+        if(x[6]) bits.push('<em>SH</em> ' + x[6]);
+        if(x[7]) bits.push('<em>GA</em> ' + x[7]);
+        var quiet = !bits.length;
+        return '<div class="prow' + (quiet ? " dnp" : "") + '">' +
+          '<span class="pn">' + plink(sp, code, name) + '</span>' +
+          '<span class="pv">' + (quiet ? "\u2014" : bits.join(" &nbsp; ")) + '</span></div>';
+      }).join("") + '</div>';
+      box.dataset.done = "1";
+    });
   }
 
   /* ---------- shell ---------- */
@@ -1744,6 +2053,7 @@
     if(id === "seasonmenu-close"){ el("seasonmenu").hidden = true; return; }
     if(id === "sheet-close"){ closeSheet(); return; }
     if(id === "gsheet-close"){ closeGame(); return; }
+    if(id === "psheet-close"){ closePlayer(); return; }
     if(id === "clearf"){ S.boro = ""; S.div = ""; render(); return; }
     if(id === "sheet-fav"){ toggleFav(b.dataset.key); return; }
     if(id === "hsub-champs"){ S.hsub = "champs"; render(); syncUrl("push"); return; }
@@ -1786,8 +2096,18 @@
       render();
       return;
     }
-    if(b.dataset.gteam){ closeGame(); openTeam(b.dataset.gteam); return; }
-    if(b.dataset.team){ openTeam(b.dataset.team); return; }
+    if(b.dataset.player){ openPlayer(b.dataset.player); return; }
+    if(b.dataset.pgame){
+      // a row in a career log: load that season if it isn't the one on screen
+      var pg = b.dataset.pgame.split(":"), gk = pg[1] + ":" + pg[2];
+      hidePlayer();
+      if(pg[0] !== S.seasonId){ loadSeason(pg[0], function(){ openGame(gk); }); }
+      else openGame(gk);
+      return;
+    }
+    if(b.dataset.roster){ toggleRoster(b.dataset.roster); return; }
+    if(b.dataset.gteam){ hidePlayer(); closeGame(); openTeam(b.dataset.gteam); return; }
+    if(b.dataset.team){ hidePlayer(); openTeam(b.dataset.team); return; }
     if(b.dataset.hteam){ openHistTeam(b.dataset.hteam); return; }
     if(b.dataset.game){ openGame(b.dataset.game); return; }
   });
@@ -1861,10 +2181,12 @@
   function applyRoute(){
     var plan = parseRoute();
     S.sp = plan.sp;
+    if(!el("psheet").hidden){ el("psheet").hidden = true; S.openPlayer = null; }
     if(!el("gsheet").hidden){ el("gsheet").hidden = true; S.openGameKey = null; }
     if(!el("sheet").hidden){ el("sheet").hidden = true; S.openTeamKey = null; }
     document.body.style.overflow = "";
-    S.openTeamKey = null; S.openGameKey = null;
+    S.openTeamKey = null; S.openGameKey = null; S.openPlayer = null;
+    setRobots();
     S.view = plan.view; if(plan.hsub) S.hsub = plan.hsub;
     el("sport-0").setAttribute("aria-pressed", S.sp === 0 ? "true" : "false");
     el("sport-1").setAttribute("aria-pressed", S.sp === 1 ? "true" : "false");
@@ -1880,6 +2202,9 @@
         var key = plan.sp + ":" + plan.team;
         if(S.season && S.season !== "error" && S.season.teams[key]){ openTeam(key); done(); }
         else needHistory(function(){ openHistTeam(key); done(); });
+      } else if(plan.player){
+        openPlayer(plan.sp + "/" + plan.player);
+        done();
       } else if(plan.game){
         var gid = +plan.game;
         if(S.season && S.season !== "error"){
