@@ -2053,7 +2053,14 @@
     // registered for. Neither is in the box-score feed; both ride along in the
     // career payload, which is why they survive for the live season too.
     var M = (p && p.m) || {};
-    var newest = blocks.length ? M[String(blocks[0][0])] : null;
+    // The newest season is not always the one with a number on it -- a school
+    // that filed numbers one year may not have the next -- so the badge shows
+    // the most recent one PSAL actually recorded.
+    var newest = null;
+    for(var bi = 0; bi < blocks.length && !newest; bi++){
+      var cand = M[String(blocks[bi][0])];
+      if(cand && cand.u) newest = cand;
+    }
     el("psheet-name").textContent = titleCase(name);
     var badge = el("psheet-num");
     if(badge){
@@ -2124,28 +2131,30 @@
         }).join("") + '</tbody></table></div>';
     });
 
-    // Same name, different school, seasons that line up: possibly the same
-    // person having transferred. Offered as a link rather than merged, because
-    // a name match is not proof and a wrong merge is invisible once made.
+    // Transfers are merged now, so what is left here is the other case: two
+    // people PSAL files separately who happen to share a name and a school,
+    // and therefore an address. Each one links to the other.
     var also = (p && p.also) || [];
     if(also.length){
-      html += '<div class="boxwrap"><div class="boxhead"><h3>Possibly also</h3>' +
-        '<span class="sub">same name, another school, seasons that line up</span></div>' +
+      html += '<div class="boxwrap"><div class="boxhead"><h3>Someone else by this name</h3>' +
+        '<span class="sub">PSAL files these as a different player</span></div>' +
         also.map(function(o){
           return '<button class="alsorow" data-player="' + esc(sp + "/" + o[0]) + '">' +
             esc(titleCase(name)) + ' at ' + esc(SHORTS[o[1]] || o[1]) +
             ' <span style="color:var(--blue)">&rsaquo;</span>' +
             '<span class="q">' + esc(o[2] === o[3] ? seasonLabel(o[2])
               : seasonLabel(o[2]) + "\u2013" + String(seasonLabel(o[3])).replace(/^\D+/, "")) +
-            ' \u00b7 not merged, PSAL gives no way to be sure</span></button>';
+            '</span></button>';
         }).join("") + '</div>';
     }
 
     html += '<div class="boxwrap"><div class="pnote">' +
-      'PSAL issues a new player id every season, so a career here is joined by ' +
-      'name at the same school. Someone who transferred appears under each school ' +
-      'separately, and two players who shared a name at one school would appear as ' +
-      'one. Appearances count games where a coach filed a sheet.' +
+      'PSAL issues a new player id every season, but its own player profiles ' +
+      'link them, so a career here is PSAL\u2019s grouping rather than a guess at ' +
+      'a name. A player who changed schools has one page, under the school they ' +
+      'finished at. Numbers, grades and positions come from those profiles: a ' +
+      'grade is recorded for everyone, a number for about three players in four. ' +
+      'Appearances count games where a coach filed a sheet.' +
       '</div></div>';
     el("psheet-body").innerHTML = html;
     el("psheet-body").scrollTop = 0;
