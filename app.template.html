@@ -456,7 +456,7 @@
   var S = {
     sp: 0, view: "scores", seasonId: null, season: null, rankSort: "r", methodOpen: false,
     lbStat: "g", lbTier: "all", aggCache: {},
-    date: null, boro: "", div: "", query: "", hsub: "champs", rankYear: "all", openBoros: {},
+    date: null, defaultDate: null, boro: "", div: "", query: "", hsub: "champs", rankYear: "all", openBoros: {},
     favs: new Set(), cache: {}, hist: null, histState: "idle", openTeamKey: null, openGameKey: null
   };
 
@@ -586,7 +586,7 @@
   function applySeason(ps){
     S.season = ps; S.seasonId = ps.id;
     S.boro = ""; S.div = ""; S.query = ""; S.openTeamKey = null;
-    S.date = pickDate(ps, S.sp);
+    S.date = S.defaultDate = pickDate(ps, S.sp);
     el("seasonlabel").textContent = ps.label;
     el("seasonbtn").classList.toggle("past", !isCurrent());
     setStamp();
@@ -692,25 +692,116 @@
     syncFavUrl();
     saveFavs();
   }
-  /* Keep the address bar in step with the followed teams, so whatever URL gets
-     captured by "Add to Home Screen" already knows about them.
-     Analytics beacons fire on history changes, so this is debounced and skips
-     the write when the URL already says the right thing -- otherwise a handful
-     of taps would register as a handful of page views. */
-  var favUrlTimer = null;
-  function syncFavUrl(now){
-    if(favUrlTimer){ clearTimeout(favUrlTimer); favUrlTimer = null; }
-    function write(){
-      favUrlTimer = null;
+  /* ---------- routing ----------
+     The URL is the app's state, so a school page or a box score can be linked
+     to directly. Sport rides as a trailing /girls; boys is the default and
+     stays out of the path. Followed teams ride along as ?f= -- one writer owns
+     the whole URL so the two never fight over it. */
+  var SLUGS = META.slugs || {};
+  var CODE_BY_SLUG = {};
+  Object.keys(SLUGS).forEach(function(c){ CODE_BY_SLUG[SLUGS[c]] = c; });
+  function slugFor(code){ return SLUGS[code] || String(code); }
+  function isoDate(n){
+    n = String(n);
+    return n.length === 8 ? n.slice(0,4) + "-" + n.slice(4,6) + "-" + n.slice(6) : "";
+  }
+  function dateInt(iso){
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+    return m ? +(m[1] + m[2] + m[3]) : 0;
+  }
+  var HSUB_PATH = {champs:"champions", rank:"rankings", leaders:"leaders"};
+  var HSUB_BY_PATH = {champions:"champs", rankings:"rank", leaders:"leaders"};
+
+  function routePath(){
+    var seg = [];
+    if(S.openGameKey){
+      seg = ["game", S.openGameKey.split(":")[1]];
+      return "/" + seg.join("/");
+    }
+    if(S.openTeamKey){
+      var tp = S.openTeamKey.split(":");
+      seg = ["school", slugFor(tp[1])];
+      if(S.seasonId && S.seasonId !== META.defaultSeason) seg.push(S.seasonId);
+      if(tp[0] === "1") seg.push("girls");
+      return "/" + seg.join("/");
+    }
+    if(S.view === "scores"){
+      if(S.date && S.date !== S.defaultDate) seg = ["scores", isoDate(S.date)];
+    } else if(S.view === "history"){
+      seg = ["history"];
+      if(S.hsub && S.hsub !== "champs") seg.push(HSUB_PATH[S.hsub]);
+    } else {
+      seg = [S.view];
+      if(S.seasonId && S.seasonId !== META.defaultSeason) seg.push(S.seasonId);
+    }
+    if(S.sp === 1) seg.push("girls");
+    return "/" + seg.join("/");
+  }
+
+  function routeTitle(){
+    var base = "NYC High School Soccer";
+    if(S.openTeamKey && S.season && S.season !== "error"){
+      var t = S.season.teams[S.openTeamKey];
+      if(t) return t.name + " — " + base;
+    }
+    if(S.openGameKey) return "Box score — " + base;
+    var names = {standings:"Standings", teams:"Teams", playoffs:"Playoffs", history:"History"};
+    return (names[S.view] ? names[S.view] + " — " : "") + base;
+  }
+
+  var urlTimer = null;
+  /* Analytics beacons fire on history changes, so a passive sync is debounced
+     and skips the write when the URL already says the right thing. A real
+     navigation pushes immediately and gets its own history entry. */
+  function syncUrl(mode){
+    if(urlTimer){ clearTimeout(urlTimer); urlTimer = null; }
+    function write(push){
+      urlTimer = null;
       try{
         var q = Array.from(S.favs).join(",");
-        var url = location.pathname + (q ? "?f=" + encodeURIComponent(q) : "") + location.hash;
-        if(url !== location.pathname + location.search + location.hash){
-          history.replaceState(null, "", url);
-        }
+        var url = routePath() + (q ? "?f=" + encodeURIComponent(q) : "") + location.hash;
+        if(url === location.pathname + location.search + location.hash) return;
+        if(push) history.pushState(null, "", url); else history.replaceState(null, "", url);
+        document.title = routeTitle();
       }catch(e){}
     }
-    if(now) write(); else favUrlTimer = setTimeout(write, 2000);
+    if(mode === "push"){ write(true); }
+    else if(mode === "now"){ write(false); }
+    else urlTimer = setTimeout(function(){ write(false); }, 2000);
+  }
+  /* kept for the favourites code, which only ever needs a passive sync */
+  function syncFavUrl(now){ syncUrl(now ? "now" : "lazy"); }
+
+  /* Turn the current URL into app state. Returns a plan the caller applies once
+     the right season file is loaded. */
+  function parseRoute(){
+    var parts = location.pathname.split("/").filter(Boolean).map(decodeURIComponent);
+    var plan = {sp: 0, view: "scores", season: null, date: null, team: null, game: null, hsub: null};
+    if(parts.length && parts[parts.length-1] === "girls"){ plan.sp = 1; parts.pop(); }
+    if(!parts.length) return plan;
+    var head = parts[0];
+    if(head === "game" && parts[1]){ plan.game = parts[1]; return plan; }
+    if(head === "school" && parts[1]){
+      plan.view = "scores";
+      plan.team = CODE_BY_SLUG[parts[1]] || (/^\d{5}$/.test(parts[1]) ? parts[1] : null);
+      if(parts[2] && /^\d{4}$/.test(parts[2])) plan.season = parts[2];
+      return plan;
+    }
+    if(head === "scores"){
+      if(parts[1]) plan.date = dateInt(parts[1]);
+      return plan;
+    }
+    if(head === "history"){
+      plan.view = "history";
+      plan.hsub = HSUB_BY_PATH[parts[1]] || "champs";
+      return plan;
+    }
+    if(head === "standings" || head === "teams" || head === "playoffs"){
+      plan.view = head;
+      if(parts[1] && /^\d{4}$/.test(parts[1])) plan.season = parts[1];
+      return plan;
+    }
+    return plan;
   }
   function saveFavs(){
     try{ localStorage.setItem("psal.favs", JSON.stringify(Array.from(S.favs))); }catch(e){}
@@ -1392,6 +1483,7 @@
     el("sheet-body").innerHTML = html;
     el("sheet").hidden = false;
     document.body.style.overflow = "hidden";
+    syncUrl("push");
     drawChart();
     if(S.histState !== "ok") needHistory(function(){ if(S.openTeamKey === key) openTeam(key); });
   }
@@ -1411,6 +1503,7 @@
   function closeSheet(){
     el("sheet").hidden = true; S.openTeamKey = null;
     if(el("gsheet").hidden) document.body.style.overflow = "";
+    syncUrl("push");
   }
 
   /* ---------- game sheet ---------- */
@@ -1551,6 +1644,7 @@
     el("gsheet-body").innerHTML = html;
     el("gsheet").hidden = false;
     document.body.style.overflow = "hidden";
+    syncUrl("push");
   }
   function titleCase(s){
     s = String(s || "");
@@ -1560,6 +1654,7 @@
   function closeGame(){
     el("gsheet").hidden = true; S.openGameKey = null;
     if(el("sheet").hidden) document.body.style.overflow = "";
+    syncUrl("push");
   }
 
   /* ---------- shell ---------- */
@@ -1613,22 +1708,23 @@
     var b = ev.target.closest ? ev.target.closest("button, circle[data-pt]") : null;
     if(!b) return;
     var id = b.id || "";
-    if(id.indexOf("tab-") === 0){ S.view = id.slice(4); render(); window.scrollTo(0, 0); return; }
+    if(id.indexOf("tab-") === 0){ S.view = id.slice(4); render(); syncUrl("push"); window.scrollTo(0, 0); return; }
     if(id === "homebtn"){
       if(!el("gsheet").hidden) closeGame();
       if(!el("sheet").hidden) closeSheet();
       S.view = "scores"; S.boro = ""; S.div = ""; S.query = "";
-      if(S.season && S.season !== "error") S.date = pickDate(S.season, S.sp);
-      render(); window.scrollTo(0, 0);
+      if(S.season && S.season !== "error") S.date = S.defaultDate = pickDate(S.season, S.sp);
+      render(); syncUrl("push"); window.scrollTo(0, 0);
       return;
     }
     if(id === "sport-0" || id === "sport-1"){
       S.sp = +id.slice(-1); S.div = "";
       if(S.season && S.season !== "error"){
+        S.defaultDate = pickDate(S.season, S.sp);
         var has = (S.season.byDate[S.date] || []).some(function(g){ return g[0] === S.sp; });
-        if(!has) S.date = pickDate(S.season, S.sp);
+        if(!has) S.date = S.defaultDate;
       }
-      render(); return;
+      render(); syncUrl("push"); return;
     }
     if(id === "seasonbtn"){ openSeasonMenu(); return; }
     if(id === "seasonmenu-close"){ el("seasonmenu").hidden = true; return; }
@@ -1636,9 +1732,9 @@
     if(id === "gsheet-close"){ closeGame(); return; }
     if(id === "clearf"){ S.boro = ""; S.div = ""; render(); return; }
     if(id === "sheet-fav"){ toggleFav(b.dataset.key); return; }
-    if(id === "hsub-champs"){ S.hsub = "champs"; render(); return; }
-    if(id === "hsub-rank"){ S.hsub = "rank"; render(); return; }
-    if(id === "hsub-leaders"){ S.hsub = "leaders"; render(); return; }
+    if(id === "hsub-champs"){ S.hsub = "champs"; render(); syncUrl("push"); return; }
+    if(id === "hsub-rank"){ S.hsub = "rank"; render(); syncUrl("push"); return; }
+    if(id === "hsub-leaders"){ S.hsub = "leaders"; render(); syncUrl("push"); return; }
     if(b.dataset.lbs){ S.lbStat = b.dataset.lbs; render(); return; }
     if(b.dataset.lbt){ S.lbTier = b.dataset.lbt; render(); return; }
     if(b.dataset.lby){
@@ -1651,7 +1747,7 @@
       if(b.dataset.season !== S.seasonId) loadSeason(b.dataset.season);
       return;
     }
-    if(b.dataset.date){ S.date = +b.dataset.date; render(); return; }
+    if(b.dataset.date){ S.date = +b.dataset.date; render(); syncUrl("push"); return; }
     if(b.dataset.boro != null && b.hasAttribute("data-boro")){ S.boro = b.dataset.boro; S.div = ""; render(); return; }
     if(b.dataset.div != null && b.hasAttribute("data-div")){ S.div = b.dataset.div; render(); return; }
     if(b.dataset.ry){ S.rankYear = b.dataset.ry; render(); return; }
@@ -1709,6 +1805,7 @@
       }).join("") + '</tbody></table></div></div>' : "");
     el("sheet").hidden = false;
     document.body.style.overflow = "hidden";
+    syncUrl("push");
     drawChart();
   }
   var __rsz;
@@ -1746,7 +1843,40 @@
   });
 
   /* ---------- boot ---------- */
+  /* Apply whatever the URL asks for. Called at boot and on back/forward. */
+  function applyRoute(){
+    var plan = parseRoute();
+    S.sp = plan.sp;
+    if(!el("gsheet").hidden){ el("gsheet").hidden = true; S.openGameKey = null; }
+    if(!el("sheet").hidden){ el("sheet").hidden = true; S.openTeamKey = null; }
+    document.body.style.overflow = "";
+    S.openTeamKey = null; S.openGameKey = null;
+    S.view = plan.view; if(plan.hsub) S.hsub = plan.hsub;
+    el("sport-0").setAttribute("aria-pressed", S.sp === 0 ? "true" : "false");
+    el("sport-1").setAttribute("aria-pressed", S.sp === 1 ? "true" : "false");
+
+    var want = plan.season || META.defaultSeason;
+    var finish = function(){
+      if(plan.date && S.season && S.season !== "error" && S.season.byDate[plan.date]) S.date = plan.date;
+      render();
+      if(plan.team){
+        var key = plan.sp + ":" + plan.team;
+        if(S.season && S.season !== "error" && S.season.teams[key]) openTeam(key);
+        else needHistory(function(){ openHistTeam(key); });
+      } else if(plan.game){
+        var gid = +plan.game;
+        if(S.season && S.season !== "error"){
+          var g = S.season.raw.G.filter(function(x){ return x[1] === gid; })[0];
+          if(g) openGame(gkey(g));
+        }
+      }
+      document.title = routeTitle();
+    };
+    if(want !== S.seasonId) loadSeason(want, finish); else finish();
+  }
+
   loadFavs();
+  window.addEventListener("popstate", function(){ applyRoute(); window.scrollTo(0, 0); });
   window.addEventListener("pagehide", function(){ syncFavUrl(true); });
   document.addEventListener("visibilitychange", function(){ if(document.hidden) syncFavUrl(true); });
   setHeaderHeight();
@@ -1754,6 +1884,7 @@
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(setHeaderHeight);
   S.cache[BOOT.season.id] = parseSeason(BOOT.season);
   applySeason(S.cache[BOOT.season.id]);
+  applyRoute();
 })();
 </script>
 

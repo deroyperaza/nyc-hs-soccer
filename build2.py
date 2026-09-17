@@ -141,15 +141,49 @@ def build(updated=None, current=None):
                 cls = (divof.get('%d:%s' % (g[0], g[4])) or '')[:2]
                 titles.setdefault(k, []).append([sid, cls])
 
+    # ---- stable URL slugs, one per school (sport is a separate path segment) ----
+    # Built from the abbreviated names so /school/beacon reads well. A school that
+    # slugs to the same string as another gets its PSAL code appended, so a link
+    # is never ambiguous. Sorted so the winner of a collision is deterministic
+    # across builds rather than dependent on dict ordering.
+    def slugify(name):
+        out, prev_dash = [], False
+        for ch in (name or '').lower():
+            if ch.isalnum():
+                out.append(ch); prev_dash = False
+            elif not prev_dash and out:
+                out.append('-'); prev_dash = True
+        return ''.join(out).strip('-') or 'school'
+
+    best = {}
+    for k, e in teams.items():
+        code = k.split(':')[1]
+        label = e.get('sn') or e.get('n') or code
+        # prefer the boys entry's name when both exist, for a consistent slug
+        if code not in best or k.startswith('0:'):
+            best[code] = label
+    taken, slugs = {}, {}
+    for code in sorted(best):
+        base = slugify(best[code])
+        if base in taken:
+            slugs[code] = base + '-' + str(code)
+        else:
+            taken[base] = code
+            slugs[code] = base
+    # a name that collided must not leave the first claimant on the bare slug if
+    # that would be misleading -- only genuine duplicates get suffixed, and the
+    # first (lowest code) keeps the clean one, which is stable build to build.
+
     hist = {'teams': teams, 'finals': finals, 'titles': titles}
     with open(os.path.join(DATA, 'history.json'), 'w') as f:
         json.dump(hist, f, separators=(',', ':'))
 
     meta = {
         'updated': updated or datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
-        'path': 'data/',
+        'path': '/data/',   # absolute: deep routes like /school/beacon must not resolve it relatively
         'defaultSeason': cur,
         'seasons': [{'id': s, 'label': seasons[s]['label'], 'cur': s == cur} for s in sorted(ids, reverse=True)],
+        'slugs': slugs,
     }
     payload = {'meta': meta, 'season': seasons[cur]}
     blob = json.dumps(payload, separators=(',', ':')).replace('</script>', '<\\/script>')
@@ -157,7 +191,9 @@ def build(updated=None, current=None):
     open(PAGE, 'w').write(tpl.replace('__PSAL_DATA__', blob))
     return {'seasons': len(ids), 'current': cur, 'page_kb': round(os.path.getsize(PAGE)/1024),
             'history_kb': round(os.path.getsize(os.path.join(DATA, 'history.json'))/1024),
-            'teams': len(teams), 'titles': sum(len(v) for v in titles.values()),
+            'teams': len(teams), 'slugs': len(slugs),
+            'dupe_slugs': sum(1 for c, sl in slugs.items() if sl.endswith('-' + str(c))),
+            'titles': sum(len(v) for v in titles.values()),
             'finals': sum(len(v['0']) + len(v['1']) for v in finals.values())}
 
 if __name__ == '__main__':

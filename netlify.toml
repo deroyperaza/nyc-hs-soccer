@@ -16,3 +16,11 @@
   for = "/*.png"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+# Clean URLs: /school/beacon, /game/502544 and friends are app routes, not files.
+# Netlify serves a real file when one exists (so /data/*.json and the icons still
+# win), and falls through to the app for everything else.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
