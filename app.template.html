@@ -694,9 +694,11 @@
   }
   /* ---------- routing ----------
      The URL is the app's state, so a school page or a box score can be linked
-     to directly. Sport rides as a trailing /girls; boys is the default and
-     stays out of the path. Followed teams ride along as ?f= -- one writer owns
-     the whole URL so the two never fight over it. */
+     to directly. Sport is always the last segment -- /boys or /girls -- so a
+     boys link and a girls link are symmetrical and neither is ambiguous. The
+     bare forms (/, /standings, /school/beacon) still resolve, to boys, and are
+     rewritten to the canonical path on arrival. Followed teams ride along as
+     ?f= -- one writer owns the whole URL so the two never fight over it. */
   var SLUGS = META.slugs || {};
   var CODE_BY_SLUG = {};
   Object.keys(SLUGS).forEach(function(c){ CODE_BY_SLUG[SLUGS[c]] = c; });
@@ -715,14 +717,15 @@
   function routePath(){
     var seg = [];
     if(S.openGameKey){
-      seg = ["game", S.openGameKey.split(":")[1]];
+      var gp = S.openGameKey.split(":");
+      seg = ["game", gp[1], gp[0] === "1" ? "girls" : "boys"];
       return "/" + seg.join("/");
     }
     if(S.openTeamKey){
       var tp = S.openTeamKey.split(":");
       seg = ["school", slugFor(tp[1])];
       if(S.seasonId && S.seasonId !== META.defaultSeason) seg.push(S.seasonId);
-      if(tp[0] === "1") seg.push("girls");
+      seg.push(tp[0] === "1" ? "girls" : "boys");
       return "/" + seg.join("/");
     }
     if(S.view === "scores"){
@@ -734,7 +737,7 @@
       seg = [S.view];
       if(S.seasonId && S.seasonId !== META.defaultSeason) seg.push(S.seasonId);
     }
-    if(S.sp === 1) seg.push("girls");
+    seg.push(S.sp === 1 ? "girls" : "boys");
     return "/" + seg.join("/");
   }
 
@@ -750,10 +753,16 @@
   }
 
   var urlTimer = null;
+  /* True while the app is applying a URL rather than reacting to a tap. The
+     sheet openers push by default, which would stack a canonical entry on top
+     of the one we just arrived at and make Back bounce forever; while routing
+     every write is a replace instead. */
+  var routing = false;
   /* Analytics beacons fire on history changes, so a passive sync is debounced
      and skips the write when the URL already says the right thing. A real
      navigation pushes immediately and gets its own history entry. */
   function syncUrl(mode){
+    if(routing) mode = "now";
     if(urlTimer){ clearTimeout(urlTimer); urlTimer = null; }
     function write(push){
       urlTimer = null;
@@ -777,7 +786,9 @@
   function parseRoute(){
     var parts = location.pathname.split("/").filter(Boolean).map(decodeURIComponent);
     var plan = {sp: 0, view: "scores", season: null, date: null, team: null, game: null, hsub: null};
-    if(parts.length && parts[parts.length-1] === "girls"){ plan.sp = 1; parts.pop(); }
+    var tail = parts.length ? parts[parts.length - 1] : "";
+    if(tail === "girls"){ plan.sp = 1; parts.pop(); }
+    else if(tail === "boys"){ plan.sp = 0; parts.pop(); }
     if(!parts.length) return plan;
     var head = parts[0];
     if(head === "game" && parts[1]){ plan.game = parts[1]; return plan; }
@@ -1856,22 +1867,28 @@
     el("sport-1").setAttribute("aria-pressed", S.sp === 1 ? "true" : "false");
 
     var want = plan.season || META.defaultSeason;
+    /* Bare paths (/, /standings, /school/beacon) are accepted and then rewritten
+       to the canonical form, so every link that gets copied carries its sport. */
+    var done = function(){ syncUrl("now"); routing = false; document.title = routeTitle(); };
     var finish = function(){
       if(plan.date && S.season && S.season !== "error" && S.season.byDate[plan.date]) S.date = plan.date;
       render();
       if(plan.team){
         var key = plan.sp + ":" + plan.team;
-        if(S.season && S.season !== "error" && S.season.teams[key]) openTeam(key);
-        else needHistory(function(){ openHistTeam(key); });
+        if(S.season && S.season !== "error" && S.season.teams[key]){ openTeam(key); done(); }
+        else needHistory(function(){ openHistTeam(key); done(); });
       } else if(plan.game){
         var gid = +plan.game;
         if(S.season && S.season !== "error"){
           var g = S.season.raw.G.filter(function(x){ return x[1] === gid; })[0];
           if(g) openGame(gkey(g));
         }
+        done();
+      } else {
+        done();
       }
-      document.title = routeTitle();
     };
+    routing = true;
     if(want !== S.seasonId) loadSeason(want, finish); else finish();
   }
 
