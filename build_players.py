@@ -26,6 +26,50 @@ SHARDS = int(os.environ.get('PSAL_SHARDS', '1024'))
 SPORT_PATH = {0: 'boys', 1: 'girls'}
 
 
+# PSAL lets coaches type the position by hand, which over 25 years has
+# produced 2,786 distinct spellings of four positions -- "Defender", "DEF",
+# "def", "D", "Defense", "foward", "MDF". Folding them here rather than in the
+# app keeps the files smaller and the rendering dumb.
+_POS_PREFIX = (
+    ('goal', 'Goalkeeper'), ('keep', 'Goalkeeper'), ('golie', 'Goalkeeper'),
+    ('def', 'Defender'), ('back', 'Defender'),
+    ('mid', 'Midfielder'), ('half', 'Midfielder'),
+    ('forw', 'Forward'), ('fow', 'Forward'), ('for', 'Forward'),
+    ('fwd', 'Forward'), ('strik', 'Forward'), ('attack', 'Forward'),
+    ('offen', 'Forward'), ('wing', 'Forward'),
+)
+_POS_EXACT = {
+    'gk': 'Goalkeeper', 'g': 'Goalkeeper', 'k': 'Goalkeeper',
+    'd': 'Defender', 'df': 'Defender', 'cb': 'Defender', 'lb': 'Defender',
+    'rb': 'Defender', 'fb': 'Defender', 'sweeper': 'Defender',
+    'stopper': 'Defender', 'centerback': 'Defender',
+    'm': 'Midfielder', 'md': 'Midfielder', 'mf': 'Midfielder',
+    'mdf': 'Midfielder', 'cm': 'Midfielder', 'dm': 'Midfielder',
+    'am': 'Midfielder', 'cdm': 'Midfielder', 'cam': 'Midfielder',
+    'f': 'Forward', 'fw': 'Forward', 's': 'Forward', 'st': 'Forward',
+    'cf': 'Forward', 'w': 'Forward', 'lw': 'Forward', 'rw': 'Forward',
+}
+_POS_ORDER = {'Goalkeeper': 0, 'Defender': 1, 'Midfielder': 2, 'Forward': 3}
+
+
+def norm_position(raw):
+    out = []
+    for part in re.split(r"[,/&;+\-]|\band\b", raw or ''):
+        t = re.sub(r'[^a-z]', '', part.lower())
+        if not t:
+            continue
+        hit = _POS_EXACT.get(t)
+        if not hit:
+            for pre, name in _POS_PREFIX:
+                if t.startswith(pre):
+                    hit = name
+                    break
+        if hit and hit not in out:
+            out.append(hit)
+    out.sort(key=lambda x: _POS_ORDER[x])
+    return '/'.join(out)
+
+
 def slugify(name):
     # Accents are folded rather than dropped so the slug the app derives in the
     # browser (NFD + strip combining marks) matches this one exactly.
@@ -145,8 +189,29 @@ def build(skip=None):
     live = skip or (seasons[-1] if seasons else None)
     seasons = [s for s in seasons if s != live]
     namefix, auto_fixes, manual_fixes = canonical_names(DATA, seasons, live)
+
+    # ---- who is who, according to PSAL.
+    # data/pr<sport>.json is the player-profile backfill: every cid the archive
+    # mentions, resolved through GetPlayerDetails, which returns each season a
+    # person played under whichever cid that year issued. That is an identity
+    # the box scores cannot express -- cid is reissued annually -- and it
+    # replaces the name+school rule this file used to guess with. X maps any
+    # cid to the person; P carries the name PSAL filed plus, per season, the
+    # school, uniform number, grade and position.
+    prof, pidx = {}, {}
+    for sp, spc in ((0, '012'), (1, '021')):
+        path = os.path.join(DATA, 'pr%s.json' % spc)
+        if not os.path.exists(path):
+            continue
+        o = json.load(open(path))
+        for cid, key in o.get('X', {}).items():
+            pidx[(sp, int(cid))] = key
+        for key, v in o.get('P', {}).items():
+            prof[(sp, key)] = v
+
     players = {}
     missing = []
+    short_all, full_all = {}, {}
 
     for sid in seasons:
         rpath = os.path.join(DATA, 'r%s.json' % sid)
@@ -160,6 +225,11 @@ def build(skip=None):
         games = {'%d:%d' % (g[0], g[1]): g for g in season['G']}
         short = {'%d:%s' % (t[0], t[1]): (t[4] if len(t) > 4 else t[2]) for t in season['T']}
         full = {'%d:%s' % (t[0], t[1]): t[2] for t in season['T']}
+        # A transfer's page names schools from several seasons, so the team
+        # names have to outlive the season file they came from.
+        for t in season['T']:
+            short_all[(t[0], t[1])] = t[4] if len(t) > 4 else t[2]
+            full_all[(t[0], t[1])] = t[2]
 
         for key, rows in R.items():
             g = games.get(key)
@@ -171,70 +241,111 @@ def build(skip=None):
                 name = P[nidx] if nidx < len(P) else ''
                 if not name or not school:
                     continue
+                raw = name
                 name = namefix.get((sp, school, name), name)
                 home = school == g[4]
                 opp = g[5] if home else g[4]
                 gf = g[6] if home else g[7]
                 gaN = g[7] if home else g[6]
-                pid = '%d\t%s\t%s' % (sp, school, name)
+                # PSAL's own person id where it has one; the old name+school
+                # rule only as a fallback, for a cid the backfill never saw.
+                pkey = pidx.get((sp, cid))
+                pid = ('%d\t%s' % (sp, pkey) if pkey
+                       else '%d\t%s\t%s' % (sp, school, name))
                 p = players.get(pid)
                 if p is None:
                     p = players[pid] = {
-                        'n': name, 'sp': sp, 'sc': school,
-                        'sn': short.get('%d:%s' % (sp, school), school),
-                        'fn': full.get('%d:%s' % (sp, school), school),
-                        'g': [],
+                        'n': name, 'sp': sp, 'key': pkey,
+                        'ys': {}, 'seen': set(), 'g': [],
                     }
+                p['ys'][int(sid)] = school
+                p['seen'].add((school, name))
+                p['seen'].add((school, raw))
                 p['g'].append([int(sid), g[1], g[2], opp,
                                1 if home else 0, gf, gaN,
                                1 if g[10] == 1 else 0,
                                go, a, sv, sh, ga])
 
-    # ---- slugs. name + school is the identity, so the slug spells out both and
-    # the app can derive it from a roster row with no lookup table. The school
-    # half reuses build2.py's own slug map (written to slugs.json) rather than a
-    # second copy of the rules, so the two can never drift apart.
-    school_slugs = json.load(open(os.path.join(DATA, 'slugs.json')))
-    for pid, p in sorted(players.items()):
-        p['slug'] = '%s-%s' % (slugify(p['n']),
-                               school_slugs.get(p['sc'], slugify(p['sn'])))
-    # Two players who slug the same are the same person under the stated rule
-    # (same sport, same school, same name), so they merge rather than split --
-    # a split would leave one of them unreachable from a linked name.
-    merged = {}
-    for pid, p in sorted(players.items()):
-        k = '%d/%s' % (p['sp'], p['slug'])
-        if k in merged:
-            merged[k]['g'].extend(p['g'])
-        else:
-            merged[k] = p
-    players = {k: v for k, v in merged.items()}
+    # ---- names, schools and per-season detail from the profile backfill.
+    for pid, p in players.items():
+        pr = prof.get((p['sp'], p['key'])) if p.get('key') else None
+        if pr and pr.get('n'):
+            # PSAL's own spelling, which is not truncated the way a box-score
+            # row can be -- but is not immune to a typo either. Mamdani is
+            # filed as MOMDANI on his profile and as MAMDANI in three of his
+            # four box scores, so the corrections still get the last word.
+            nm = pr['n']
+            for code in set(p['ys'].values()):
+                nm = namefix.get((p['sp'], code, nm), nm)
+            p['n'] = nm
+        last = max(p['ys'])
+        p['sc'] = p['ys'][last]       # the school they finished at
+        p['sn'] = short_all.get((p['sp'], p['sc']), p['sc'])
+        p['fn'] = full_all.get((p['sp'], p['sc']), p['sc'])
+        p['meta'] = {}
+        for e in (pr or {}).get('y', []):
+            try:
+                p['meta'][int(e['y'])] = e
+            except (TypeError, ValueError):
+                pass
 
-    # ---- careers that may be the same person at a different school.
-    # Nothing is merged: name + school stays the identity, and the page offers a
-    # link instead of a claim. A pair only qualifies when the seasons don't
-    # overlap, sit within a year of each other, and span no more than five
-    # seasons all told -- nobody plays high school soccer for six.
-    by_name = collections.defaultdict(list)
-    for key, p in players.items():
-        years = sorted({r[0] for r in p['g']})
-        by_name[(p['sp'], p['n'])].append((key, p, years[0], years[-1]))
-    for (sp, name), group in by_name.items():
-        if len(group) < 2:
-            continue
-        group.sort(key=lambda t: t[2])
-        for i, (key, p, y0, y1) in enumerate(group):
-            for j, (okey, op, oy0, oy1) in enumerate(group):
-                if i == j or op['sc'] == p['sc']:
-                    continue
-                lo, hi = sorted([(y0, y1), (oy0, oy1)])
-                if lo[1] >= hi[0]:
-                    continue                      # overlapping: two people
-                if hi[0] - lo[1] > 1:
-                    continue                      # a gap: different cohorts
-                if hi[1] - lo[0] + 1 > 5:
-                    continue                      # too long to be one student
-                p.setdefault('also', []).append([op['slug'], op['sc'], oy0, oy1])
+    # ---- slugs. The identity is settled, so a slug only has to be a stable,
+    # readable address for it: the name PSAL filed plus the school the player
+    # finished at. A transfer gets one page, at the school they ended up at,
+    # and every spelling and school they passed through becomes a stub that
+    # points at it -- so a link built from an old roster row still lands.
+    school_slugs = json.load(open(os.path.join(DATA, 'slugs.json')))
+    groups = collections.defaultdict(list)
+    for pid, p in sorted(players.items()):
+        p['slug0'] = '%s-%s' % (slugify(p['n']),
+                                school_slugs.get(p['sc'], slugify(p['sn'])))
+        groups[(p['sp'], p['slug0'])].append(p)
+
+    def span(p):
+        y = sorted(p['ys'])
+        return y[0], y[-1]
+
+    def absorb(a, b):
+        a['g'].extend(b['g'])
+        a['ys'].update(b['ys'])
+        a['seen'] |= b['seen']
+        a['meta'].update(b['meta'])
+
+    players, collisions, suffixed = {}, 0, 0
+    for (sp, slug), grp in sorted(groups.items()):
+        if len(grp) > 1:
+            # PSAL has no opinion here: it kept these apart, but they share a
+            # name and a school, so they share an address and something has to
+            # decide. Seasons that sit next to each other and fit inside a high
+            # school career are one student PSAL failed to link; seasons that
+            # overlap, or sit years apart, are two students.
+            grp.sort(key=lambda q: span(q))
+            clusters = [grp[0]]
+            for q in grp[1:]:
+                a0, a1 = span(clusters[-1])
+                b0, b1 = span(q)
+                if b0 > a1 and b0 - a1 <= 1 and b1 - a0 + 1 <= 5:
+                    absorb(clusters[-1], q)
+                else:
+                    clusters.append(q)
+            grp = clusters
+            if len(grp) > 1:
+                collisions += 1
+        # Most recent keeps the bare slug: that is the one people are looking
+        # up, and the one a link off this season's roster will derive.
+        grp.sort(key=lambda q: span(q)[1], reverse=True)
+        for i, q in enumerate(grp):
+            q['slug'] = slug if i == 0 else '%s-%d' % (slug, i + 1)
+            if i:
+                suffixed += 1
+            players['%d/%s' % (sp, q['slug'])] = q
+        if len(grp) > 1:
+            for q in grp:
+                for o in grp:
+                    if o is q:
+                        continue
+                    oy = span(o)
+                    q.setdefault('also', []).append([o['slug'], o['sc'], oy[0], oy[1]])
 
     shards = collections.defaultdict(dict)
     tot_apps = 0
@@ -244,26 +355,50 @@ def build(skip=None):
         by_year = collections.OrderedDict()
         for r in p['g']:
             by_year.setdefault(r[0], []).append(r[1:])
+        # Number, grade and position travel in their own map rather than
+        # inside the season rows, because they cover the live season too --
+        # the rows for that are stitched in by the app, but a jersey number
+        # does not change hourly the way a goal tally does.
+        detail = {}
+        for y, e in p['meta'].items():
+            m = {}
+            if e.get('u'):
+                m['u'] = e['u']
+            if e.get('g'):
+                m['g'] = e['g']
+            pos = norm_position(e.get('p'))
+            if pos:
+                m['p'] = pos
+            code = p['ys'].get(y)
+            if code and code != p['sc']:
+                m['sc'] = code            # the season they spent elsewhere
+                m['sn'] = short_all.get((p['sp'], code), code)
+            if m:
+                detail[str(y)] = m
         payload = {
             'n': p['n'], 'sp': p['sp'], 'sc': p['sc'], 'fn': p['fn'],
             's': [[y, rows] for y, rows in by_year.items()],
         }
+        if detail:
+            payload['m'] = detail
         if p.get('also'):
             payload['also'] = sorted(p['also'])
         shards[shard_of(key)][key] = payload
 
-    # A link built from a roster row still uses the spelling PSAL filed, so the
-    # slug it produces has to lead somewhere. Each merged-away spelling gets a
-    # one-line stub in its own shard pointing at the career it belongs to.
+    # A link built from a roster row is derived in the browser from that row's
+    # own spelling and school, which for a transfer -- or a truncated name --
+    # is not where the career lives. Every combination the player was ever
+    # filed under gets a one-line stub pointing at the real page, so no link
+    # the app can construct leads nowhere.
     stubs = 0
-    for (sp, code, wrong), right in namefix.items():
-        ssl = school_slugs.get(code, slugify(code))
-        old = '%d/%s-%s' % (sp, slugify(wrong), ssl)
-        new = '%d/%s-%s' % (sp, slugify(right), ssl)
-        if old == new or new not in players or old in players:
-            continue
-        shards[shard_of(old)][old] = {'ref': new}
-        stubs += 1
+    for key, p in players.items():
+        for code, spelling in p['seen']:
+            alias = '%d/%s-%s' % (p['sp'], slugify(spelling),
+                                  school_slugs.get(code, slugify(code)))
+            if alias == key or alias in players or alias in shards[shard_of(alias)]:
+                continue
+            shards[shard_of(alias)][alias] = {'ref': key}
+            stubs += 1
 
     outdir = os.path.join(DATA, 'p')
     os.makedirs(outdir, exist_ok=True)
@@ -353,6 +488,21 @@ def build(skip=None):
                 json.dump(rs, open(os.path.join(ndir, '%s.json' % p4), 'w'),
                           separators=(',', ':'))
 
+    # ---- numbers and grades by cid, one file per season.
+    # A roster fold on a box score has the cid in hand and nothing else, so it
+    # can look a player up here without knowing which career page they belong
+    # to. Keyed by cid because that is what the roster rows carry.
+    udir = DATA
+    useasons = collections.defaultdict(dict)
+    for (sp, key), v in prof.items():
+        for e in v.get('y', []):
+            row = [e.get('u') or '', e.get('g') or '', norm_position(e.get('p'))]
+            if any(row):
+                useasons[e['y']][str(e['c'])] = row
+    for y, rows in useasons.items():
+        json.dump(rows, open(os.path.join(udir, 'pu%s.json' % y), 'w'),
+                  separators=(',', ':'))
+
     meta = {'shards': SHARDS, 'players': len(players), 'appearances': tot_apps,
             'seasons': seasons, 'live': live, 'missing': missing,
             'indexed': len(players) + len(live_ids), 'prefixes': len(index),
@@ -361,6 +511,11 @@ def build(skip=None):
     return {'players': len(players), 'live_only': len(live_ids),
             'name_merges_auto': auto_fixes, 'name_merges_manual': manual_fixes,
             'alias_stubs': stubs,
+            'psal_identity': sum(1 for v in players.values() if v.get('key')),
+            'name_school_fallback': sum(1 for v in players.values() if not v.get('key')),
+            'slug_collisions': collisions, 'suffixed_slugs': suffixed,
+            'transfers': sum(1 for v in players.values()
+                             if len({c for c in v['ys'].values()}) > 1),
             'prefix_files': len(index), 'deep_prefixes': len(deep),
             'index_kb_avg': round(sum(nsizes) / max(1, len(nsizes)) / 1024, 1),
             'index_kb_max': round(max(nsizes) / 1024, 1) if nsizes else 0,
@@ -369,6 +524,7 @@ def build(skip=None):
             'shard_kb_max': round(max(sizes) / 1024, 1),
             'total_mb': round(sum(sizes) / 1048576.0, 1),
             'seasons_with_rosters': len(seasons) - len(missing),
+            'uniform_files': len(useasons),
             'missing': missing}
 
 

@@ -364,6 +364,17 @@
   .boxhead{padding:11px 13px 7px; display:flex; align-items:baseline; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line-soft)}
   .boxhead h3{font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--text-2)}
   .boxhead .sub{font-size:12px; color:var(--muted)}
+  /* Jersey number. PSAL records one for about three quarters of players, so
+     this has to look deliberate when it is there and leave no hole when it is
+     not -- hence a fixed-width slot that collapses when empty. */
+  .jn{display:inline-block; min-width:1.45em; margin-right:6px; padding:0 3px;
+      border-radius:4px; background:var(--line-soft); color:var(--muted);
+      font-size:11px; font-weight:700; line-height:1.55; text-align:center;
+      font-variant-numeric:tabular-nums; vertical-align:1px}
+  .jn:empty{display:none}
+  .jn.big{flex:none; min-width:1.9em; margin:0 2px 0 0; padding:2px 5px;
+          font-size:15px; background:var(--orange); color:#fff}
+  .prow .pos{color:var(--muted); font-size:11px}
   .plist{display:flex; flex-direction:column}
   .prow{display:flex; align-items:center; gap:10px; padding:8px 13px; border-top:1px solid var(--line-soft); font-size:14px}
   .prow:first-child{border-top:none}
@@ -547,6 +558,7 @@
         <h2 id="psheet-name">Player</h2>
         <div class="sub" id="psheet-sub"></div>
       </div>
+      <span class="jn big" id="psheet-num" hidden></span>
       <button class="iconbtn" id="psheet-fav" aria-pressed="false" aria-label="Follow this player">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.7l5.8-.8z"></path></svg>
       </button>
@@ -578,7 +590,7 @@
     lbStat: "g", lbTier: "all", aggCache: {},
     date: null, defaultDate: null, boro: "", div: "", query: "", hsub: "champs", rankYear: "all", openBoros: {},
     favs: new Set(), cache: {}, hist: null, histState: "idle", openTeamKey: null, openGameKey: null,
-    openPlayer: null, pcache: {}, rcache: {}, openRosters: {}, gshown: {},
+    openPlayer: null, pcache: {}, rcache: {}, ucache: {}, openRosters: {}, gshown: {},
     pq: "", pyear: "all", presults: null, pfavs: {}, pfavOrder: [], ncache: {},
     pqTimer: null, syncOpen: false
   };
@@ -780,6 +792,20 @@
       .then(function(o){ S.rcache[sid] = o; after(o); })
       .catch(function(){ S.rcache[sid] = "error"; after("error"); });
   }
+  // Jersey numbers, grades and positions, by cid, one file per season. The
+  // box-score feed carries none of this; it comes from PSAL's player profiles,
+  // backfilled into data/pu<season>.json and keyed the way roster rows are.
+  function needUni(sid, after){
+    if(S.ucache[sid]){ after(S.ucache[sid] === "error" ? null : S.ucache[sid]); return; }
+    fetch(META.path + "pu" + sid + ".json",
+          {cache: sid === META.defaultSeason ? "default" : "force-cache"})
+      .then(function(r){ if(!r.ok) throw new Error("http"); return r.json(); })
+      .then(function(o){ S.ucache[sid] = o; after(o); })
+      .catch(function(){ S.ucache[sid] = "error"; after(null); });
+  }
+  var GRADE = {"09": "Freshman", "9": "Freshman", "10": "Sophomore",
+               "11": "Junior", "12": "Senior"};
+
   function liveRows(key){
     var ps = S.cache[META.defaultSeason];
     if(!ps || ps === "error") return null;
@@ -1864,7 +1890,8 @@
             if(r.g) bits.push('<em>G</em> ' + r.g);
             if(r.a) bits.push('<em>A</em> ' + r.a);
             if(r.sh) bits.push('<em>SH</em> ' + r.sh);
-            return '<div class="prow"><span class="pn">' + plink(g[0], code, r.name) + '</span>' +
+            return '<div class="prow"><span class="pn">' + numSlot(code, r.name) +
+              plink(g[0], code, r.name) + '</span>' +
               '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
           }).join("") + '</div>';
         }
@@ -1873,14 +1900,16 @@
             var bits = [];
             if(r.sv) bits.push('<em>SV</em> ' + r.sv);
             if(r.ga) bits.push('<em>GA</em> ' + r.ga);
-            return '<div class="prow"><span class="pn">' + plink(g[0], code, r.name) +
+            return '<div class="prow"><span class="pn">' + numSlot(code, r.name) +
+              plink(g[0], code, r.name) +
               ' <span style="color:var(--muted);font-size:12px">GK</span></span>' +
               '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
           }).join("") + '</div>';
         }
         if(shooters.length){
           html += '<div class="plist" style="border-top:1px solid var(--line-soft)">' + shooters.map(function(r){
-            return '<div class="prow"><span class="pn">' + plink(g[0], code, r.name) + '</span>' +
+            return '<div class="prow"><span class="pn">' + numSlot(code, r.name) +
+              plink(g[0], code, r.name) + '</span>' +
               '<span class="pv"><em>SH</em> ' + r.sh + '</span></div>';
           }).join("") + '</div>';
         }
@@ -1906,10 +1935,38 @@
       '</div></div>';
 
     el("gsheet-body").innerHTML = html;
+    paintNumbers(S.seasonId, key);
     el("gsheet").hidden = false;
     document.body.style.overflow = "hidden";
     syncUrl("push");
   }
+  // A box-score row knows a name and a school but not a cid, so the number
+  // cannot be drawn with it. Each row leaves a slot instead, and paintNumbers
+  // fills them in when the season's roster and profile files land.
+  function numSlot(code, name){
+    return '<span class="jn" data-jn="' + esc(code + "\u0001" + name) + '"></span>';
+  }
+  function paintNumbers(sid, gk){
+    var root = el("gsheet-body");
+    if(!root || !root.querySelector(".jn[data-jn]")) return;
+    needRoster(sid, function(r){
+      if(!r || r === "error" || !r.R || !r.R[gk]) return;
+      needUni(sid, function(u){
+        if(!u) return;
+        var byName = {};
+        r.R[gk].forEach(function(x){
+          byName[x[0] + "\u0001" + (r.P[x[1]] || "")] = x[2];
+        });
+        Array.prototype.forEach.call(root.querySelectorAll(".jn[data-jn]"), function(n){
+          var cid = byName[n.getAttribute("data-jn")];
+          var rec = cid != null && u[String(cid)];
+          if(rec && rec[0]) n.textContent = rec[0];
+          n.removeAttribute("data-jn");
+        });
+      });
+    });
+  }
+
   function rosterFold(sp, code, hadStats){
     return '<button class="rosterbtn" data-roster="' + esc(sp + ":" + code) + '">' +
       '<span>' + (hadStats ? "Rest of the roster" : "Full roster") +
@@ -1992,7 +2049,17 @@
     var full = (p && p.fn) || (S.season && S.season !== "error" &&
       (S.season.teams[sp + ":" + code] || {}).name) || SHORTS[code] || code;
 
+    // PSAL files a jersey number and a grade against each season a player
+    // registered for. Neither is in the box-score feed; both ride along in the
+    // career payload, which is why they survive for the live season too.
+    var M = (p && p.m) || {};
+    var newest = blocks.length ? M[String(blocks[0][0])] : null;
     el("psheet-name").textContent = titleCase(name);
+    var badge = el("psheet-num");
+    if(badge){
+      badge.textContent = newest && newest.u ? newest.u : "";
+      badge.hidden = !(newest && newest.u);
+    }
     var years = blocks.map(function(bl){ return (seasonMeta(String(bl[0])) || {}).label || bl[0]; });
     var span = years.length === 1 ? years[0]
       : years[years.length-1] + "\u2013" + String(years[0]).replace(/^\D+/, "");
@@ -2025,9 +2092,15 @@
       if(sg) bits.push(sg + " G");
       if(sa) bits.push(sa + " A");
       if(ssv) bits.push(ssv + " SV");
+      var m = M[String(y)] || {};
+      var who = [];
+      if(m.sn) who.push(m.sn);            // the season they were somewhere else
+      if(m.g && GRADE[m.g]) who.push(GRADE[m.g]);
+      if(m.p) who.push(m.p);
       html += '<div class="boxwrap"><div class="boxhead"><h3>' +
-        esc((seasonMeta(String(y)) || {}).label || y) + '</h3>' +
-        '<span class="sub">' + esc(bits.join(" \u00b7 ")) + '</span></div>' +
+        esc((seasonMeta(String(y)) || {}).label || y) +
+        (m.u ? ' <span class="jn">' + esc(m.u) + '</span>' : "") + '</h3>' +
+        '<span class="sub">' + esc(who.concat(bits).join(" \u00b7 ")) + '</span></div>' +
         '<table class="glog"><thead><tr><th>Date</th><th style="text-align:left">Opponent</th>' +
         '<th>Result</th>' + (keeper ? '<th>SV</th><th>GA</th>' : '<th>G</th><th>A</th><th>SH</th>') +
         '</tr></thead><tbody>' +
@@ -2123,19 +2196,26 @@
         if(sx !== sz) return sz - sx;
         return String(r.P[x[1]] || "").localeCompare(String(r.P[z[1]] || ""));
       });
-      box.innerHTML = '<div class="plist">' + mine.map(function(x){
-        var name = r.P[x[1]] || "", bits = [];
-        if(x[3]) bits.push('<em>G</em> ' + x[3]);
-        if(x[4]) bits.push('<em>A</em> ' + x[4]);
-        if(x[5]) bits.push('<em>SV</em> ' + x[5]);
-        if(x[6]) bits.push('<em>SH</em> ' + x[6]);
-        if(x[7]) bits.push('<em>GA</em> ' + x[7]);
-        var quiet = !bits.length;
-        return '<div class="prow' + (quiet ? " dnp" : "") + '">' +
-          '<span class="pn">' + plink(sp, code, name) + '</span>' +
-          '<span class="pv">' + (quiet ? "\u2014" : bits.join(" &nbsp; ")) + '</span></div>';
-      }).join("") + '</div>';
-      box.dataset.done = "1";
+      // The roster rows carry a cid, so here the number and position can be
+      // drawn straight in rather than patched in afterwards.
+      needUni(sid, function(u){
+        box.innerHTML = '<div class="plist">' + mine.map(function(x){
+          var name = r.P[x[1]] || "", bits = [];
+          if(x[3]) bits.push('<em>G</em> ' + x[3]);
+          if(x[4]) bits.push('<em>A</em> ' + x[4]);
+          if(x[5]) bits.push('<em>SV</em> ' + x[5]);
+          if(x[6]) bits.push('<em>SH</em> ' + x[6]);
+          if(x[7]) bits.push('<em>GA</em> ' + x[7]);
+          var quiet = !bits.length;
+          var rec = (u && u[String(x[2])]) || ["", "", ""];
+          var jn = rec[0] ? '<span class="jn">' + esc(rec[0]) + '</span>' : "";
+          return '<div class="prow' + (quiet ? " dnp" : "") + '">' +
+            '<span class="pn">' + jn + plink(sp, code, name) +
+            (rec[2] ? ' <span class="pos">' + esc(rec[2]) + '</span>' : "") + '</span>' +
+            '<span class="pv">' + (quiet ? "\u2014" : bits.join(" &nbsp; ")) + '</span></div>';
+        }).join("") + '</div>';
+        box.dataset.done = "1";
+      });
     });
   }
 
