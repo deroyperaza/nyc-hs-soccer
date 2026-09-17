@@ -163,6 +163,7 @@
   .standtbl th:first-child, .standtbl td:first-child{width:auto; max-width:0; overflow:hidden}
   .standtbl th:not(:first-child), .standtbl td:not(:first-child){width:38px; padding-left:3px; padding-right:5px}
   .standtbl th.w, .standtbl td.w{width:46px}
+  .standtbl th.rec, .standtbl td.rec{width:84px; font-size:12.5px; font-variant-numeric:tabular-nums; white-space:nowrap}
   .standtbl th{font-family:"Archivo",sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); text-align:right; padding:6px 8px}
   .standtbl th:first-child{text-align:left; padding-left:12px}
   .standtbl td{padding:7px 8px; text-align:right; font-variant-numeric:tabular-nums; border-top:1px solid var(--line-soft)}
@@ -1050,13 +1051,13 @@
       }).join("") + '</div></div>';
     var rows = rankRows();
     var body = rows.length ? '<div class="card"><div class="standtbl"><table><thead><tr>' +
-      '<th>School</th>' + (S.rankYear === "all" ? '' : '<th>Lvl</th>') + '<th>W</th><th>L</th><th class="w">' + (sortKey === "p" ? "Win%" : "Rating") + '</th>' +
+      '<th>School</th>' + (S.rankYear === "all" ? '' : '<th>Lvl</th>') + '<th class="rec">W-L-T</th><th class="w">' + (sortKey === "p" ? "Win%" : "Rating") + '</th>' +
       (S.rankYear === "all" ? '<th>Yrs</th>' : '') + '<th>Ttl</th></tr></thead><tbody>' +
       rows.slice(0, 150).map(function(r, i){
         var pin = S.favs.has(r.key);
         return '<tr class="' + (pin || S.favs.has(r.key) ? "isfav" : "") + '"><td><button class="tm" data-hteam="' + esc(r.key) + '">' +
           '<span class="pos">' + (i+1) + '</span><span>' + esc(r.name) + '</span></button></td>' +
-          (S.rankYear === "all" ? '' : '<td>' + esc(r.cls) + '</td>') + '<td>' + r.w + '</td><td>' + r.l + '</td>' +
+          (S.rankYear === "all" ? '' : '<td>' + esc(r.cls) + '</td>') + '<td class="rec">' + r.w + '-' + r.l + '-' + r.t + '</td>' +
           '<td class="pts w">' + pct3(sortKey === "p" ? r.p : r.r) + '</td>' +
           (S.rankYear === "all" ? '<td>' + r.n + '</td>' : '') +
           '<td>' + (r.titles || "") + '</td></tr>';
@@ -1084,6 +1085,7 @@
       '<p><b>Forfeits</b> count exactly as PSAL records them \u2014 a forfeit win is a win.' +
       (inprog ? ' This season is still in progress, and PSAL books forfeited fixtures as losses in advance, so a school that withdrew shows a full slate of losses on day one.' : '') + '</p>' +
       '<p><b>Win %</b> = (wins + half of ties) &divide; games played. It ignores level and playoffs entirely \u2014 useful as a sanity check against the rating.</p>' +
+      '<p><b>W-L-T</b> is every game on record for the school in the period shown, ties included \u2014 a drawn game is worth a point in the table and half a win in Win %.</p>' +
       '</div></details>';
   }
 
