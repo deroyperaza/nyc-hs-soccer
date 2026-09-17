@@ -1743,3 +1743,19 @@
   applySeason(S.cache[BOOT.season.id]);
 })();
 </script>
+
+<!-- Cloudflare Web Analytics. Cookieless, no personal data, no consent banner.
+     Loaded only on the live host so local runs, Netlify previews and the Claude
+     artifact copy don't inflate the visit count. -->
+<script>
+  (function(){
+    var h = location.hostname;
+    if (h !== "nychssoccer.com" && h !== "www.nychssoccer.com") return;
+    var cf = document.createElement("script");
+    cf.type = "module";
+    cf.defer = true;
+    cf.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    cf.setAttribute("data-cf-beacon", '{"token": "f5312862ab864c39a1317a88e882ea02"}');
+    document.head.appendChild(cf);
+  })();
+</script>
