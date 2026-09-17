@@ -259,10 +259,13 @@
   .presult{display:flex; align-items:center; gap:10px; width:100%; padding:11px 13px;
     border-top:1px solid var(--line-soft); text-align:left}
   .presult:first-child{border-top:0}
-  .presult .who{flex:1; min-width:0}
-  .presult .nm{font-family:Archivo,sans-serif; font-weight:700; font-size:14.5px;
+  /* the name and the school are spans inside a button: without display:block
+     they run together on one line, and the button's own centring wins */
+  .presult .who{flex:1; min-width:0; text-align:left}
+  .presult .nm{display:block; font-family:Archivo,sans-serif; font-weight:700; font-size:14.5px;
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  .presult .mt{font-size:11.5px; color:var(--muted); margin-top:2px}
+  .presult .mt{display:block; font-size:11.5px; color:var(--muted); margin-top:3px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   .presult .star{flex:none; width:32px; height:32px; display:flex; align-items:center;
     justify-content:center; color:var(--muted)}
   .presult .star svg{width:17px; height:17px}
