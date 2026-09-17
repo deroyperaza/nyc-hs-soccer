@@ -272,8 +272,9 @@ def sanity(season, res_now, datadir):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", default="fetch", choices=["discover", "fetch"])
-    ap.add_argument("--season", type=int, default=2027)
+    ap.add_argument("--mode", default="fetch",
+                    choices=["discover", "fetch", "rosters"])
+    ap.add_argument("--season", default="2027")
     ap.add_argument("--repo", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     args = ap.parse_args()
 
@@ -282,6 +283,15 @@ def main():
 
     if args.mode == "discover":
         discover(args.season)
+        return
+
+    if args.mode == "rosters":
+        # One-shot backfill of the full participation lists. Writes only
+        # data/r<season>.json, so it cannot disturb the live season files.
+        from psal_rosters import run as run_rosters
+        one = str(args.season)
+        run_rosters(os.path.join(args.repo, "data"),
+                    None if one in ("0", "all", "") else [one])
         return
 
     rawdir = os.path.join(args.repo, "_raw")
