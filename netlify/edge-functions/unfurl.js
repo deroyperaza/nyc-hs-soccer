@@ -48,7 +48,7 @@ async function playerCard(origin, slug, sp) {
   let key = sp + "/" + slug;
   let p = await fetchKey(key);
   if (p && p.ref) { key = p.ref; p = await fetchKey(key); }   // merged spelling
-  if (!p) return null;
+  if (!p) return liveOnlyCard(origin, slug, sp);
 
   let apps = 0, goals = 0, assists = 0;
   const years = [];
@@ -69,6 +69,30 @@ async function playerCard(origin, slug, sp) {
       (assists ? ", " + assists + " assist" + (assists === 1 ? "" : "s") : ""));
   }
   return { title: name + " — " + SITE, desc: bits.join(" · ") };
+}
+
+/* Players who have only played this season aren't in the shards -- the app
+   stitches those games from the payload it boots with, which keeps the refresh
+   from rewriting every shard. The edge has no such payload, so fall back to the
+   name index, which does carry them and is a couple of KB per prefix. */
+async function liveOnlyCard(origin, slug, sp) {
+  const first = slug.split("-")[0];
+  if (first.length < 2) return null;
+  const r = await fetch(origin + "/data/n/" + first.slice(0, 3) + ".json");
+  if (!r.ok) return null;
+  const rows = await r.json();
+  const hit = rows.find(function (e) { return e[1] === slug && e[2] === sp; });
+  if (!hit) return null;
+  const t = await fetch(origin + "/data/titles.json");
+  const codes = t.ok ? ((await t.json()).codes || {}) : {};
+  const school = codes[hit[3]] || "";
+  const y0 = hit[4] - 1, y1 = hit[5] - 1;
+  const when = y0 === y1 ? "fall " + y0 : "fall " + y0 + "\u2013" + y1;
+  const bits = [];
+  if (school) bits.push(school);
+  bits.push(when);
+  bits.push((sp === 1 ? "girls" : "boys") + " varsity");
+  return { title: titleCase(hit[0]) + " \u2014 " + SITE, desc: bits.join(" \u00b7 ") };
 }
 
 async function schoolCard(origin, slug) {

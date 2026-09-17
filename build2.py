@@ -199,7 +199,8 @@ def build(updated=None, current=None):
     for code, sl in slugs.items():
         by_slug[sl] = global_short.get(code, code)
     with open(os.path.join(DATA, 'titles.json'), 'w') as f:
-        json.dump({'schools': by_slug}, f, separators=(',', ':'))
+        json.dump({'schools': by_slug, 'codes': global_short},
+                  f, separators=(',', ':'))
 
     hist = {'teams': teams, 'finals': finals, 'titles': titles}
     with open(os.path.join(DATA, 'history.json'), 'w') as f:
