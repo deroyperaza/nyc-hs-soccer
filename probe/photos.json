@@ -1,0 +1,19 @@
+{
+ "seasons": {
+  "2027": {
+   "sampled": 400,
+   "with_photo": 0,
+   "pct": 0.0,
+   "roster_size": 3697,
+   "projected": 0
+  },
+  "2026": {
+   "sampled": 400,
+   "with_photo": 0,
+   "pct": 0.0,
+   "roster_size": 6477,
+   "projected": 0
+  }
+ },
+ "images": []
+}
