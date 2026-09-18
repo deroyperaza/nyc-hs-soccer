@@ -58,6 +58,53 @@ query Traffic($account: String!, $site: String!, $start: Time!, $end: Time!) {
 """
 
 
+def resolve_site(token, account, given):
+    """Turn whatever is in CF_SITE_TAG into the tag GraphQL actually wants.
+
+    Cloudflare Web Analytics gives a site two different 32-hex ids. The one in
+    the beacon snippet on the page is the site *token*; the one GraphQL filters
+    on is the site *tag*. They look identical, they are documented in different
+    places, and putting the wrong one in the filter returns a valid, empty
+    answer rather than an error -- which is exactly what happened here: real
+    traffic on the dashboard, zeroes in the report.
+
+    So the tag is looked up rather than trusted. If the lookup is not permitted
+    the given value is used as-is, and the report says the lookup failed.
+    """
+    url = ("https://api.cloudflare.com/client/v4/accounts/%s/rum/site_info/list"
+           "?per_page=50" % account)
+    try:
+        req = urllib.request.Request(url, headers={"Authorization": "Bearer " + token})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            body = json.load(r)
+    except urllib.error.HTTPError as e:
+        return given, ("could not list the account's Web Analytics sites "
+                       "(HTTP %s). Using CF_SITE_TAG as given. The token may "
+                       "need Account > Account Analytics > Read on this "
+                       "account." % e.code)
+    except Exception as e:
+        return given, "site lookup unreachable (%r); using CF_SITE_TAG as given" % (e,)
+
+    sites = body.get("result") or []
+    if not sites:
+        return given, "the account lists no Web Analytics sites"
+    for s in sites:
+        if s.get("site_tag") == given:
+            return given, None                      # already the right one
+    for s in sites:
+        if s.get("site_token") == given:
+            host = ((s.get("ruleset") or {}).get("zone_name")
+                    or (s.get("rules") or [{}])[0].get("host") or "?")
+            return s["site_tag"], ("CF_SITE_TAG held the beacon token for %s, "
+                                   "not its site tag. Used the tag instead -- "
+                                   "nothing to change, but the two are not "
+                                   "interchangeable." % host)
+    known = ", ".join(str((s.get("ruleset") or {}).get("zone_name") or "?")
+                      for s in sites[:8])
+    return given, ("CF_SITE_TAG matched no site on this account. It knows "
+                   "about: %s" % known)
+
+
 def token_shape(token):
     """Say what is wrong with a token without ever saying what it is.
 
@@ -142,6 +189,7 @@ def build():
     end = datetime.datetime.utcnow().replace(microsecond=0)
     start = end - datetime.timedelta(days=days)
     fmt = "%Y-%m-%dT%H:%M:%SZ"
+    site, note = resolve_site(token, account, site)
     data = ask(token, {"account": account, "site": site,
                        "start": start.strftime(fmt), "end": end.strftime(fmt)})
 
@@ -161,7 +209,8 @@ def build():
           "| %d days | %d | %d |" % (days, visits, views), "",
           "Pageviews run roughly double: the app rewrites its own URL as you move",
           "around, and each rewrite is a beacon. Visits counts one per arrival, so",
-          "that is the number that means something.", "",
+          "that is the number that means something.", ""] + (
+          ["> Note: %s" % note, ""] if note else []) + [
           "## By day", "", "| date | visits | pageviews |", "|---|---:|---:|"]
     for r in by_day[-days:]:
         md.append("| %s | %d | %d |" % (r["dimensions"]["date"], r["sum"]["visits"], r["count"]))
