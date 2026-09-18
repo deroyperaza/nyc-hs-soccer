@@ -367,18 +367,27 @@
   /* Jersey number. PSAL records one for about three quarters of players, so
      this has to look deliberate when it is there and leave no hole when it is
      not -- hence a fixed-width slot that collapses when empty. */
-  .jn{display:inline-block; min-width:1.45em; margin-right:6px; padding:0 3px;
-      border-radius:4px; background:var(--line-soft); color:var(--muted);
-      font-size:11px; font-weight:700; line-height:1.55; text-align:center;
-      font-variant-numeric:tabular-nums; vertical-align:1px}
-  .jn:empty{display:none}
-  .jn.big{flex:none; min-width:1.9em; margin:0 2px 0 0; padding:2px 5px;
-          font-size:15px; background:var(--orange); color:#fff}
+  /* A number on a shirt reads as a squad number in a way a coloured chip does
+     not. White with a dark number in both themes, because that is what a
+     jersey looks like -- it is an object in the picture, not a UI surface. */
+  .jersey{display:inline-block; line-height:0; flex:none}
+  .jersey svg{display:block; width:30px; height:30px}
+  .jersey path{fill:#fff; stroke:#33405A; stroke-width:1.15;
+               stroke-linejoin:round; stroke-linecap:round}
+  .jersey text{fill:#33405A; font-family:"Archivo",system-ui,sans-serif;
+               font-weight:700}
+  .jersey.big svg{width:44px; height:44px}
+  .jersey.sm svg{width:25px; height:25px}
+  /* the name line becomes a row so the shirt sits on the text's centre */
+  .presult .nm{display:flex; align-items:center; gap:8px}
   .prow .pos{color:var(--muted); font-size:11px}
   .plist{display:flex; flex-direction:column}
   .prow{display:flex; align-items:center; gap:10px; padding:8px 13px; border-top:1px solid var(--line-soft); font-size:14px}
   .prow:first-child{border-top:none}
-  .prow .pn{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .prow .pn{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis;
+            white-space:nowrap; display:flex; align-items:center; gap:7px}
+  .prow .pn > button{overflow:hidden; text-overflow:ellipsis}
+  .boxhead h3 .jersey{vertical-align:-6px; margin-left:3px}
   .prow .pv{font-family:"Archivo",sans-serif; font-weight:700; font-variant-numeric:tabular-nums; color:var(--text-2); font-size:13px; white-space:nowrap}
   .prow .pv em{font-style:normal; color:var(--muted); font-weight:600; font-size:11.5px; letter-spacing:.04em}
   .halftbl th, .halftbl td{padding:6px 8px; text-align:center; font-variant-numeric:tabular-nums}
@@ -558,7 +567,7 @@
         <h2 id="psheet-name">Player</h2>
         <div class="sub" id="psheet-sub"></div>
       </div>
-      <span class="jn big" id="psheet-num" hidden></span>
+      <span id="psheet-num" hidden></span>
       <button class="iconbtn" id="psheet-fav" aria-pressed="false" aria-label="Follow this player">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.7l5.8-.8z"></path></svg>
       </button>
@@ -1944,11 +1953,11 @@
   // cannot be drawn with it. Each row leaves a slot instead, and paintNumbers
   // fills them in when the season's roster and profile files land.
   function numSlot(code, name){
-    return '<span class="jn" data-jn="' + esc(code + "\u0001" + name) + '"></span>';
+    return '<span class="jnslot" data-jn="' + esc(code + "\u0001" + name) + '"></span>';
   }
   function paintNumbers(sid, gk){
     var root = el("gsheet-body");
-    if(!root || !root.querySelector(".jn[data-jn]")) return;
+    if(!root || !root.querySelector(".jnslot[data-jn]")) return;
     needRoster(sid, function(r){
       if(!r || r === "error" || !r.R || !r.R[gk]) return;
       needUni(sid, function(u){
@@ -1957,10 +1966,10 @@
         r.R[gk].forEach(function(x){
           byName[x[0] + "\u0001" + (r.P[x[1]] || "")] = x[2];
         });
-        Array.prototype.forEach.call(root.querySelectorAll(".jn[data-jn]"), function(n){
+        Array.prototype.forEach.call(root.querySelectorAll(".jnslot[data-jn]"), function(n){
           var cid = byName[n.getAttribute("data-jn")];
           var rec = cid != null && u[String(cid)];
-          if(rec && rec[0]) n.textContent = rec[0];
+          if(rec && rec[0]) n.innerHTML = jersey(rec[0], false, true);
           n.removeAttribute("data-jn");
         });
       });
@@ -1973,6 +1982,29 @@
       '</span><span class="ch">Show \u203a</span></button>' +
       '<div id="roster-' + sp + '-' + code + '" hidden></div>';
   }
+  // Jersey silhouette with the number on the chest. Two digits get a smaller
+  // face so they sit inside the torso rather than over the seams.
+  // Jersey silhouette with the number on the chest. The baseline is computed
+  // rather than centred by attribute, because dominant-baseline is the kind of
+  // thing that renders one way in a test and another on someone's phone.
+  var JERSEY_PATH =
+    "M8.8 3 L3.6 4.9 C2.8 5.2 2.4 6 2.6 6.8 L3.6 10.8 C3.8 11.5 4.5 11.9 5.2 11.8 " +
+    "L6.4 11.6 L6.4 20.6 C6.4 21.2 6.9 21.6 7.5 21.6 L16.5 21.6 " +
+    "C17.1 21.6 17.6 21.2 17.6 20.6 L17.6 11.6 L18.8 11.8 " +
+    "C19.5 11.9 20.2 11.5 20.4 10.8 L21.4 6.8 C21.6 6 21.2 5.2 20.4 4.9 L15.2 3 " +
+    "C14.8 4.8 13.5 6 12 6 C10.5 6 9.2 4.8 8.8 3 Z";
+  function jersey(num, big, small){
+    var n = String(num == null ? "" : num).trim();
+    if(!n) return "";
+    var size = n.length > 2 ? 6 : n.length > 1 ? 7.8 : 9.2;
+    var base = 14.6 + 0.36 * size;        // cap-height centre of the chest
+    return '<span class="jersey' + (big ? " big" : small ? " sm" : "") + '" role="img" ' +
+      'aria-label="Shirt number ' + esc(n) + '">' +
+      '<svg viewBox="0 0 24 24"><path d="' + JERSEY_PATH + '"></path>' +
+      '<text x="12" y="' + base.toFixed(1) + '" text-anchor="middle" ' +
+      'style="font-size:' + size + 'px">' + esc(n) + '</text></svg></span>';
+  }
+
   function titleCase(s){
     s = String(s || "");
     if(s !== s.toUpperCase()) return s;
@@ -2064,7 +2096,7 @@
     el("psheet-name").textContent = titleCase(name);
     var badge = el("psheet-num");
     if(badge){
-      badge.textContent = newest && newest.u ? newest.u : "";
+      badge.innerHTML = newest && newest.u ? jersey(newest.u, true) : "";
       badge.hidden = !(newest && newest.u);
     }
     var years = blocks.map(function(bl){ return (seasonMeta(String(bl[0])) || {}).label || bl[0]; });
@@ -2106,7 +2138,7 @@
       if(m.p) who.push(m.p);
       html += '<div class="boxwrap"><div class="boxhead"><h3>' +
         esc((seasonMeta(String(y)) || {}).label || y) +
-        (m.u ? ' <span class="jn">' + esc(m.u) + '</span>' : "") + '</h3>' +
+        (m.u ? " " + jersey(m.u, false, true) : "") + '</h3>' +
         '<span class="sub">' + esc(who.concat(bits).join(" \u00b7 ")) + '</span></div>' +
         '<table class="glog"><thead><tr><th>Date</th><th style="text-align:left">Opponent</th>' +
         '<th>Result</th>' + (keeper ? '<th>SV</th><th>GA</th>' : '<th>G</th><th>A</th><th>SH</th>') +
@@ -2159,7 +2191,8 @@
     el("psheet-body").innerHTML = html;
     el("psheet-body").scrollTop = 0;
     var yy = blocks.map(function(bl){ return bl[0]; });
-    S.pdata = {n: name, sc: code, y0: Math.min.apply(null, yy), y1: Math.max.apply(null, yy)};
+    S.pdata = {n: name, sc: code, u: (newest && newest.u) || "",
+               y0: Math.min.apply(null, yy), y1: Math.max.apply(null, yy)};
     document.title = routeTitle();   // the name only arrives with the shard
     syncPStar();
   }
@@ -2217,7 +2250,7 @@
           if(x[7]) bits.push('<em>GA</em> ' + x[7]);
           var quiet = !bits.length;
           var rec = (u && u[String(x[2])]) || ["", "", ""];
-          var jn = rec[0] ? '<span class="jn">' + esc(rec[0]) + '</span>' : "";
+          var jn = rec[0] ? jersey(rec[0], false, true) + " " : "";
           return '<div class="prow' + (quiet ? " dnp" : "") + '">' +
             '<span class="pn">' + jn + plink(sp, code, name) +
             (rec[2] ? ' <span class="pos">' + esc(rec[2]) + '</span>' : "") + '</span>' +
@@ -2276,9 +2309,9 @@
      Three places to look, cheapest first: this season's payload, which the page
      already holds; the archive shard; and failing both, the name index, which is
      the only one that carries a player who has only ever played this season. */
-  function fillFav(k, name, code, y0, y1){
+  function fillFav(k, name, code, y0, y1, uni){
     if(!name) return false;
-    S.pfavs[k] = [k, name, code || "", y0 || 0, y1 || 0];
+    S.pfavs[k] = [k, name, code || "", y0 || 0, y1 || 0, uni || ""];
     savePFavs();
     if(S.view === "players") renderPlayers();
     return true;
@@ -2304,19 +2337,47 @@
     var words = (sl ? slug.slice(0, -(sl.length + 1)) : slug).split("-");
     return words.join(" ").toUpperCase();
   }
+  /* A follow saved before jersey numbers existed has a name but no number, and
+     the career shard is a 90KB fetch to answer a two-character question. The
+     name index carries the number now and is a couple of KB, so ask that. An
+     empty answer is still an answer -- it is written back so the lookup does
+     not repeat on every render. */
+  function uniFromIndex(k){
+    var parts = k.split("/"), sp = +parts[0], slug = parts[1] || "";
+    var first = slug.split("-")[0];
+    if(first.length < 2) return;
+    needNames(first, function(rows){
+      var e = S.pfavs[k];
+      if(!e) return;
+      e[5] = "";
+      for(var i = 0; i < rows.length; i++){
+        if(rows[i][1] === slug && rows[i][2] === sp){ e[5] = rows[i][6] || ""; break; }
+      }
+      savePFavs();
+      if(e[5] && S.view === "players") renderPlayers();
+    });
+  }
   function hydrateFavs(){
     S.pfavOrder.forEach(function(k){
       var e = S.pfavs[k];
+      if(e && e[1] && e[5] === undefined) uniFromIndex(k);
       if(!e || e[1]) return;
       var live = liveRows(k);
-      if(live && live.who && fillFav(k, live.who.n, live.who.sc, live.y, live.y)) return;
+      if(live && live.who && fillFav(k, live.who.n, live.who.sc, live.y, live.y)){
+        uniFromIndex(k);      // liveRows knows the name, not the shirt
+        return;
+      }
       needShard(k, function(bundle){
         var p = bundle && bundle[k];
         var use = function(key, q){
           var yy = (q.s || []).map(function(b){ return b[0]; });
+          var u = "";
+          Object.keys(q.m || {}).sort().forEach(function(y){
+            if(q.m[y].u) u = q.m[y].u;      // ascending, so the last one wins
+          });
           fillFav(key, q.n, q.sc,
                   yy.length ? Math.min.apply(null, yy) : 0,
-                  yy.length ? Math.max.apply(null, yy) : 0);
+                  yy.length ? Math.max.apply(null, yy) : 0, u);
         };
         if(p && p.ref){
           // a merged spelling: the real career sits in a different shard, so
@@ -2345,7 +2406,7 @@
         needNames(first, function(rows){
           for(var i = 0; i < rows.length; i++){
             if(rows[i][1] === slug && rows[i][2] === sp){
-              fillFav(k, rows[i][0], rows[i][3], rows[i][4], rows[i][5]);
+              fillFav(k, rows[i][0], rows[i][3], rows[i][4], rows[i][5], rows[i][6]);
               return;
             }
           }
@@ -2370,12 +2431,12 @@
       }).filter(Boolean)));
     }catch(e){}
   }
-  function togglePFav(key, name, code, y0, y1){
+  function togglePFav(key, name, code, y0, y1, uni){
     if(S.pfavs[key]){
       delete S.pfavs[key];
       S.pfavOrder = S.pfavOrder.filter(function(k){ return k !== key; });
     }else{
-      S.pfavs[key] = [key, name, code, y0 || 0, y1 || 0];
+      S.pfavs[key] = [key, name, code, y0 || 0, y1 || 0, uni || ""];
       S.pfavOrder.push(key);
     }
     savePFavs();
@@ -2403,7 +2464,7 @@
       .catch(function(){ S.ncache[pre] = []; after([]); });
   }
 
-  function playerRowHTML(key, name, code, y0, y1, extra, grip){
+  function playerRowHTML(key, name, code, y0, y1, extra, grip, uni){
     var fav = !!S.pfavs[key];
     var yrs = y0 && y1 ? (y0 === y1 ? seasonLabel(y0) : seasonLabel(y0) + "\u2013" + String(seasonLabel(y1)).replace(/^\D+/, "")) : "";
     var meta_ = [SHORTS[code] || code, yrs].filter(Boolean).join(" \u00b7 ");
@@ -2413,12 +2474,13 @@
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
         '<path d="M5 9h14M5 15h14"></path></svg></span>' : '') +
       '<button class="who" data-player="' + esc(key) + '">' +
-        '<span class="nm">' + esc(titleCase(name)) + '</span>' +
+        '<span class="nm">' + jersey(uni) + esc(titleCase(name)) + '</span>' +
         '<span class="mt">' + esc(meta_ + (extra || "")) + '</span>' +
       '</button>' +
       '<button class="star" aria-pressed="' + fav + '" aria-label="Follow this player" ' +
         'data-pfav="' + esc(key) + '" data-pn="' + esc(name) + '" data-pc="' + esc(code) +
-        '" data-py0="' + (y0 || 0) + '" data-py1="' + (y1 || 0) + '">' + STAR + '</button>' +
+        '" data-py0="' + (y0 || 0) + '" data-py1="' + (y1 || 0) +
+        '" data-pu="' + esc(uni || "") + '">' + STAR + '</button>' +
       '</div>';
   }
   function seasonLabel(y){
@@ -2450,7 +2512,8 @@
         (favKeys.length > 1 ? " \u00b7 drag to reorder" : "") + '</span></div>' +
         '<div id="favlist">' + favKeys.map(function(k){
           var e = S.pfavs[k];
-          return playerRowHTML(k, e[1], e[2], e[3], e[4], "", favKeys.length > 1);
+          return playerRowHTML(k, e[1], e[2], e[3], e[4], "",
+                               favKeys.length > 1, e[5]);
         }).join("") + '</div></div>';
     }
 
@@ -2478,7 +2541,8 @@
       body += '<div class="card"><div class="boxhead"><h3>Results</h3><span class="sub">' +
         (res.length > 60 ? "first 60 of " + res.length : res.length + " found") + '</span></div>' +
         shown.map(function(e){
-          return playerRowHTML(e[2] + "/" + e[1], e[0], e[3], e[4], e[5]);
+          return playerRowHTML(e[2] + "/" + e[1], e[0], e[3], e[4], e[5],
+                               "", false, e[6]);
         }).join("") + '</div>';
       if(res.length > 60){
         body += '<div class="card"><div class="pnote">Add another letter to narrow this down.</div></div>';
@@ -2813,12 +2877,14 @@
       return;
     }
     if(b.dataset.pfav){
-      togglePFav(b.dataset.pfav, b.dataset.pn, b.dataset.pc, +b.dataset.py0, +b.dataset.py1);
+      togglePFav(b.dataset.pfav, b.dataset.pn, b.dataset.pc,
+                 +b.dataset.py0, +b.dataset.py1, b.dataset.pu);
       return;
     }
     if(id === "psheet-fav"){
       var pd = S.pdata || {};
-      togglePFav(S.openPlayer, pd.n || "", pd.sc || "", pd.y0 || 0, pd.y1 || 0);
+      togglePFav(S.openPlayer, pd.n || "", pd.sc || "", pd.y0 || 0, pd.y1 || 0,
+                 pd.u || "");
       return;
     }
     if(b.dataset.player){ openPlayer(b.dataset.player); return; }
