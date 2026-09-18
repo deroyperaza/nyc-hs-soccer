@@ -1399,7 +1399,11 @@
       '<button id="hsub-champs" aria-pressed="' + (S.hsub === "champs") + '">Champions</button>' +
       '<button id="hsub-rank" aria-pressed="' + (S.hsub === "rank") + '">Rankings</button>' +
       '<button id="hsub-leaders" aria-pressed="' + (S.hsub === "leaders") + '">Leaders</button></div>';
-    if(S.hsub === "leaders"){ v.innerHTML = head + leadersHTML(); return; }
+    if(S.hsub === "leaders"){
+      v.innerHTML = head + leadersHTML();
+      paintLeaders(S.seasonId, S.sp);
+      return;
+    }
     if(S.histState !== "ok"){
       v.innerHTML = head + '<div class="card"><div class="' + (S.histState === "error" ? "empty" : "loading") + '">' +
         (S.histState === "error" ? "Couldn't load the season archive." : "Loading every season…") + '</div></div>';
@@ -1618,7 +1622,9 @@
         var t = ps.teams[S.sp + ":" + r.code];
         var pin = S.favs.has(S.sp + ":" + r.code);
         return '<tr class="' + (pin ? "isfav" : "") + '"><td><span class="tm" style="display:flex;gap:8px;align-items:baseline">' +
-          '<span class="pos">' + (i+1) + '</span><span>' + plink(S.sp, r.code, r.n) +
+          '<span class="pos">' + (i+1) + '</span><span>' +
+          numSlot(r.code, r.n) + plink(S.sp, r.code, r.n) +
+          grSlot(r.code, r.n) + posSlot(r.code, r.n) +
           '<br><button data-team="' + esc(S.sp + ":" + r.code) + '" style="font-size:11.5px;color:var(--muted);text-align:left">' +
           esc(t ? t.short : r.code) + (t && t.cls ? " \u00b7 " + esc(t.cls) : "") + '</button></span>' +
           '</span></td>' +
@@ -2108,6 +2114,28 @@
       var rec = u[String(byName[n.getAttribute("data-ps")])];
       if(rec && rec[2]) n.innerHTML = ' <span class="pos">' + esc(posShort(rec[2])) + '</span>';
       n.removeAttribute("data-ps");
+    });
+  }
+
+  // The leaders table spans every school in a season, so its name-to-cid map
+  // is built over the whole sport rather than one game or one team. Same three
+  // slots, same roster file, wider net.
+  function paintLeaders(sid, sp){
+    var root = el("view-history");
+    if(!root || !root.querySelector(".jnslot[data-jn]")) return;
+    needRoster(sid, function(r){
+      if(!r || r === "error" || !r.R) return;
+      needUni(sid, function(u){
+        if(!u) return;
+        var byName = {};
+        Object.keys(r.R).forEach(function(gk){
+          if(+gk.split(":")[0] !== sp) return;
+          r.R[gk].forEach(function(x){
+            byName[x[0] + "\u0001" + (r.P[x[1]] || "")] = x[2];
+          });
+        });
+        fillSlots(root, byName, u);
+      });
     });
   }
 
