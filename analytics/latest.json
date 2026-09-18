@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-18T16:27:20Z",
+ "generated": "2026-09-18T18:04:31Z",
  "days": 30,
- "visits": 450,
- "pageviews": 1550,
+ "visits": 460,
+ "pageviews": 1590,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -11,14 +11,14 @@
   },
   {
    "date": "2026-09-18",
-   "visits": 140,
-   "views": 630
+   "visits": 150,
+   "views": 670
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 520
+   "views": 530
   },
   {
    "path": "/game/502587/boys",
@@ -33,11 +33,15 @@
    "views": 70
   },
   {
-   "path": "/scores/2026-09-20/boys",
+   "path": "/school/murrow/boys",
    "views": 40
   },
   {
-   "path": "/school/murrow/boys",
+   "path": "/scores/2026-09-17/boys",
+   "views": 40
+  },
+  {
+   "path": "/scores/2026-09-20/boys",
    "views": 40
   },
   {
@@ -45,19 +49,19 @@
    "views": 40
   },
   {
-   "path": "/standings/boys",
-   "views": 30
-  },
-  {
    "path": "/school/martin-l-king/boys",
    "views": 30
   },
   {
-   "path": "/scores/2026-09-16/boys",
+   "path": "/player/zohran-mamdani-bronx-science/boys",
    "views": 30
   },
   {
-   "path": "/player/zohran-mamdani-bronx-science/boys",
+   "path": "/standings/boys",
+   "views": 30
+  },
+  {
+   "path": "/scores/2026-09-16/boys",
    "views": 30
   },
   {
@@ -69,11 +73,11 @@
    "views": 20
   },
   {
-   "path": "/scores/2026-09-19/boys",
+   "path": "/game/502547/boys",
    "views": 20
   },
   {
-   "path": "/school/lehman/boys",
+   "path": "/scores/2026-09-19/boys",
    "views": 20
   },
   {
@@ -81,19 +85,15 @@
    "views": 20
   },
   {
-   "path": "/game/502547/boys",
-   "views": 20
-  },
-  {
    "path": "/scores/2026-09-22/boys",
    "views": 20
   },
   {
-   "path": "/scores/2026-09-17/boys",
+   "path": "/school/lehman/boys",
    "views": 20
   },
   {
-   "path": "/history",
+   "path": "/school/beacon/boys",
    "views": 20
   }
  ]
