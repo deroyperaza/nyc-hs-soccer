@@ -2162,6 +2162,38 @@
     if(el("sheet").hidden && el("gsheet").hidden) document.body.style.overflow = "";
     syncUrl("push");
   }
+  /* The career shards stop at last season -- the app stitches the current one
+     in itself, so an hourly refresh never rewrites a shard. That is also why
+     the number went missing here: a player whose only season is this one has
+     no shard at all, and a player who has one carries his number inside it
+     only for the seasons the shard covers. The players page showed a number
+     and his own page showed an empty shirt.
+
+     The name index is the one file that knows the current number for both
+     kinds of player, and it is a couple of KB, so the page asks it for
+     whatever the payload could not supply. */
+  function fillLiveNumber(key){
+    var root = el("psheet-body"), badge = el("psheet-num");
+    var blanks = root ? root.querySelectorAll('.pjn[data-y="' + META.defaultSeason + '"]') : [];
+    var needBadge = badge && !badge.querySelector("text");
+    if(!blanks.length && !needBadge) return;
+    var parts = key.split("/"), sp = +parts[0], slug = parts[1] || "";
+    var first = slug.split("-")[0];
+    if(first.length < 2) return;
+    needNames(first, function(rows){
+      if(S.openPlayer !== key) return;
+      var u = "";
+      for(var i = 0; i < rows.length; i++){
+        if(rows[i][1] === slug && rows[i][2] === sp){ u = rows[i][6] || ""; break; }
+      }
+      if(!u) return;
+      Array.prototype.forEach.call(blanks, function(n){
+        if(!n.querySelector("text")) n.innerHTML = jersey(u, false, true);
+      });
+      if(needBadge) badge.innerHTML = jersey(u, true);
+    });
+  }
+
   function renderPlayer(key, p, live){
     var sp = +key.split("/")[0];
     // seasons as [yearInt, rows]; the live season is stitched on rather than
@@ -2232,7 +2264,8 @@
       if(m.p) who.push(m.p);
       html += '<div class="boxwrap"><div class="boxhead"><h3>' +
         esc((seasonMeta(String(y)) || {}).label || y) +
-        " " + jersey(m.u, false, true) + '</h3>' +
+        ' <span class="pjn" data-y="' + y + '">' + jersey(m.u, false, true) +
+          '</span></h3>' +
         '<span class="sub">' + esc(who.concat(bits).join(" \u00b7 ")) + '</span></div>' +
         '<table class="glog"><thead><tr><th>Date</th><th style="text-align:left">Opponent</th>' +
         '<th>Result</th>' + (keeper ? '<th>SV</th><th>GA</th>' : '<th>G</th><th>A</th><th>SH</th>') +
@@ -2283,6 +2316,7 @@
       'Appearances count games where a coach filed a sheet.' +
       '</div></div>';
     el("psheet-body").innerHTML = html;
+    fillLiveNumber(key);
     el("psheet-body").scrollTop = 0;
     var yy = blocks.map(function(bl){ return bl[0]; });
     S.pdata = {n: name, sc: code, u: (newest && newest.u) || "",
