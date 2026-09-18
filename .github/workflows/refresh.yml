@@ -53,6 +53,6 @@ jobs:
           else
             git diff --cached --stat
             git commit -q -m "Refresh PSAL data $(date -u +'%Y-%m-%d %H:%MZ')"
-            git push
+            git pull --rebase -q && git push
             echo "Pushed. Netlify will redeploy."
           fi
