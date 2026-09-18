@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-18T18:04:31Z",
+ "generated": "2026-09-18T22:35:58Z",
  "days": 30,
- "visits": 460,
- "pageviews": 1590,
+ "visits": 510,
+ "pageviews": 1800,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -11,33 +11,41 @@
   },
   {
    "date": "2026-09-18",
-   "visits": 150,
-   "views": 670
+   "visits": 200,
+   "views": 880
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 530
+   "views": 580
+  },
+  {
+   "path": "/teams/boys",
+   "views": 80
   },
   {
    "path": "/game/502587/boys",
    "views": 80
   },
   {
-   "path": "/teams/boys",
-   "views": 70
-  },
-  {
    "path": "/players/boys",
-   "views": 70
+   "views": 80
   },
   {
-   "path": "/school/murrow/boys",
-   "views": 40
+   "path": "/standings/boys",
+   "views": 50
   },
   {
    "path": "/scores/2026-09-17/boys",
+   "views": 50
+  },
+  {
+   "path": "/scores/2026-09-16/boys",
+   "views": 50
+  },
+  {
+   "path": "/school/murrow/boys",
    "views": 40
   },
   {
@@ -49,31 +57,31 @@
    "views": 40
   },
   {
-   "path": "/school/martin-l-king/boys",
-   "views": 30
-  },
-  {
    "path": "/player/zohran-mamdani-bronx-science/boys",
    "views": 30
   },
   {
-   "path": "/standings/boys",
+   "path": "/scores/2026-09-23/boys",
    "views": 30
   },
   {
-   "path": "/scores/2026-09-16/boys",
+   "path": "/school/martin-l-king/boys",
    "views": 30
   },
   {
-   "path": "/scores/2026-09-12/boys",
+   "path": "/school/christopher-columbus/boys",
+   "views": 30
+  },
+  {
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
    "views": 20
   },
   {
-   "path": "/school/beacon/2026/boys",
+   "path": "/game/502589/boys",
    "views": 20
   },
   {
-   "path": "/game/502547/boys",
+   "path": "/history/leaders/boys",
    "views": 20
   },
   {
@@ -81,19 +89,11 @@
    "views": 20
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
-   "views": 20
-  },
-  {
-   "path": "/scores/2026-09-22/boys",
-   "views": 20
-  },
-  {
    "path": "/school/lehman/boys",
    "views": 20
   },
   {
-   "path": "/school/beacon/boys",
+   "path": "/school/beacon/2026/boys",
    "views": 20
   }
  ]
