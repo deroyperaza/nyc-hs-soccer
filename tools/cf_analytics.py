@@ -58,51 +58,61 @@ query Traffic($account: String!, $site: String!, $start: Time!, $end: Time!) {
 """
 
 
-def resolve_site(token, account, given):
+DISCOVER = """
+query Sites($account: String!, $start: Time!, $end: Time!) {
+  viewer {
+    accounts(filter: {accountTag: $account}) {
+      rumPageloadEventsAdaptiveGroups(
+        filter: {datetime_geq: $start, datetime_leq: $end}
+        limit: 20
+        orderBy: [count_DESC]
+      ) { count dimensions { siteTag } }
+    }
+  }
+}
+"""
+
+
+def resolve_site(token, account, given, start, end):
     """Turn whatever is in CF_SITE_TAG into the tag GraphQL actually wants.
 
     Cloudflare Web Analytics gives a site two different 32-hex ids. The one in
     the beacon snippet on the page is the site *token*; the one GraphQL filters
-    on is the site *tag*. They look identical, they are documented in different
-    places, and putting the wrong one in the filter returns a valid, empty
-    answer rather than an error -- which is exactly what happened here: real
-    traffic on the dashboard, zeroes in the report.
+    on is the site *tag*. They are indistinguishable by eye, and filtering on
+    the wrong one is not an error -- it is a valid question about a site with
+    no traffic, which is why the first run with a working token reported zero
+    visits against a dashboard showing hundreds.
 
-    So the tag is looked up rather than trusted. If the lookup is not permitted
-    the given value is used as-is, and the report says the lookup failed.
+    The REST endpoint that lists an account's sites needs a permission this
+    token does not carry; it answered 403. GraphQL will group by siteTag with
+    no filter at all, which settles the same question through the access we
+    already know works.
     """
-    url = ("https://api.cloudflare.com/client/v4/accounts/%s/rum/site_info/list"
-           "?per_page=50" % account)
     try:
-        req = urllib.request.Request(url, headers={"Authorization": "Bearer " + token})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            body = json.load(r)
-    except urllib.error.HTTPError as e:
-        return given, ("could not list the account's Web Analytics sites "
-                       "(HTTP %s). Using CF_SITE_TAG as given. The token may "
-                       "need Account > Account Analytics > Read on this "
-                       "account." % e.code)
-    except Exception as e:
-        return given, "site lookup unreachable (%r); using CF_SITE_TAG as given" % (e,)
-
-    sites = body.get("result") or []
-    if not sites:
-        return given, "the account lists no Web Analytics sites"
-    for s in sites:
-        if s.get("site_tag") == given:
-            return given, None                      # already the right one
-    for s in sites:
-        if s.get("site_token") == given:
-            host = ((s.get("ruleset") or {}).get("zone_name")
-                    or (s.get("rules") or [{}])[0].get("host") or "?")
-            return s["site_tag"], ("CF_SITE_TAG held the beacon token for %s, "
-                                   "not its site tag. Used the tag instead -- "
-                                   "nothing to change, but the two are not "
-                                   "interchangeable." % host)
-    known = ", ".join(str((s.get("ruleset") or {}).get("zone_name") or "?")
-                      for s in sites[:8])
-    return given, ("CF_SITE_TAG matched no site on this account. It knows "
-                   "about: %s" % known)
+        data = post(token, DISCOVER, {"account": account, "start": start, "end": end})
+    except Unavailable as e:
+        return given, ("could not list the account's sites (%s); used "
+                       "CF_SITE_TAG as given"
+                       % str(e).splitlines()[0][:120])
+    rows = data.get("rumPageloadEventsAdaptiveGroups") or []
+    seen = [(r["dimensions"]["siteTag"], r["count"]) for r in rows
+            if (r.get("dimensions") or {}).get("siteTag")]
+    if not seen:
+        return given, ("no Web Analytics traffic on this account in the window "
+                       "under any site tag, so the account id is the thing to "
+                       "check rather than the tag")
+    for tag, _ in seen:
+        if tag == given:
+            return given, None
+    tag, n = seen[0]
+    if len(seen) == 1:
+        return tag, ("CF_SITE_TAG matched no site with traffic, and the account "
+                     "has exactly one that does, so this report uses it. The "
+                     "stored value is almost certainly the beacon token from "
+                     "the page rather than the site tag -- different ids.")
+    return tag, ("CF_SITE_TAG matched none of the %d sites with traffic here; "
+                 "used the busiest, %d pageviews, tag ending %s."
+                 % (len(seen), n, tag[-6:]))
 
 
 def token_shape(token):
@@ -137,8 +147,8 @@ class Unavailable(Exception):
     """Cloudflare would not answer. Carries text safe to commit to a repo."""
 
 
-def ask(token, variables):
-    body = json.dumps({"query": QUERY, "variables": variables}).encode()
+def post(token, query, variables):
+    body = json.dumps({"query": query, "variables": variables}).encode()
     req = urllib.request.Request(API, data=body, headers={
         "Authorization": "Bearer " + token,
         "Content-Type": "application/json",
@@ -161,6 +171,10 @@ def ask(token, variables):
                           "that the token carries Account Analytics: Read on "
                           "that account.")
     return accounts[0]
+
+
+def ask(token, variables):
+    return post(token, QUERY, variables)
 
 
 def table(rows, key, label, total):
@@ -189,7 +203,8 @@ def build():
     end = datetime.datetime.utcnow().replace(microsecond=0)
     start = end - datetime.timedelta(days=days)
     fmt = "%Y-%m-%dT%H:%M:%SZ"
-    site, note = resolve_site(token, account, site)
+    site, note = resolve_site(token, account, site,
+                              start.strftime(fmt), end.strftime(fmt))
     data = ask(token, {"account": account, "site": site,
                        "start": start.strftime(fmt), "end": end.strftime(fmt)})
 
