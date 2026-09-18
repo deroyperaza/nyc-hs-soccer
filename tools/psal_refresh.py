@@ -406,8 +406,32 @@ def main():
         # problem here must never take the scores down with it -- SystemExit
         # included, which is what the roster guards raise and which a bare
         # "except Exception" would sail straight past.
-        print("rosters/player pages skipped: %s: %s" % (type(e).__name__, e),
-              file=sys.stderr, flush=True)
+        #
+        # But "never fails the job" quietly became "never tells anyone": a
+        # build that skipped the player pages looked exactly like one that
+        # rebuilt them, and the reason only existed in a log that redirects to
+        # storage nothing here can read. So it is written where a git pull
+        # will show it.
+        import traceback
+        msg = "%s: %s\n\n%s" % (type(e).__name__, e, traceback.format_exc())
+        print("rosters/player pages skipped: " + msg, file=sys.stderr, flush=True)
+        try:
+            d = os.path.join(args.repo, "probe")
+            os.makedirs(d, exist_ok=True)
+            with open(os.path.join(d, "last_build_skip.txt"), "w") as f:
+                f.write("%s UTC\n\n%s" % (
+                    __import__("datetime").datetime.utcnow().isoformat(), msg[-4000:]))
+        except Exception:
+            pass
+    else:
+        # A clean pass clears the last complaint, so a stale file never reads
+        # as a current failure.
+        stale = os.path.join(args.repo, "probe", "last_build_skip.txt")
+        if os.path.exists(stale):
+            try:
+                os.remove(stale)
+            except OSError:
+                pass
     refresh_analytics(args.repo)
     print("\ndone in %.0fs" % (time.time() - t0))
 
