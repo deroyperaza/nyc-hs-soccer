@@ -307,7 +307,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", default="fetch",
                     choices=["discover", "fetch", "rosters", "analytics", "probe",
-                             "players"])
+                             "players", "photos"])
     ap.add_argument("--season", default="2027")
     ap.add_argument("--repo", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     args = ap.parse_args()
@@ -330,6 +330,14 @@ def main():
                     None if one in ("0", "all", "") else
                     ([one] if one in ("012", "021") else None),
                     commit_repo=args.repo)
+        return
+
+    if args.mode == "photos":
+        # Read-only: how many players have a headshot, and how big are they.
+        from psal_photos_probe import main as photos_main
+        want = [x for x in str(args.season).split(",") if x.strip()]
+        photos_main(os.path.join(args.repo, "data"), args.repo,
+                    want or ["2027", "2026"])
         return
 
     if args.mode == "probe":
