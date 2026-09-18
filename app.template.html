@@ -202,6 +202,15 @@
      and the cell clipped it -- a hard cut with no ellipsis, which reads as a
      rendering fault rather than as a name that did not fit. */
   .standtbl .tm span:last-child{flex:1 1 auto; min-width:0; text-align:left}
+  /* The name line is a row of its own so that a long name shrinks and
+     ellipsises on its own account. Left as inline text it is an atomic
+     inline-block: when the line overflows the browser drops the whole button
+     and leaves a bare "..." next to the chips. */
+  .standtbl .nmline{display:flex; align-items:center; min-width:0}
+  .standtbl .nmline .plink{flex:0 1 auto; min-width:0; overflow:hidden;
+                           text-overflow:ellipsis; white-space:nowrap; text-align:left}
+  .standtbl .nmline > span,
+  .standtbl .nmline > span:last-child{flex:none; min-width:auto}
   .standtbl .pos{font-family:"Archivo",sans-serif; font-size:11px; font-weight:700; color:var(--muted); min-width:16px; flex:none; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums}
   .standtbl .pts{font-family:"Archivo",sans-serif; font-weight:700}
   .standtbl tr.isfav td{background:var(--fav-bg)}
@@ -400,14 +409,18 @@
 
      Solid, no outline: the mark takes the page's ink and the number is knocked
      out of it, so it flips with the theme. The shirt in the player-page header
-     always runs white, because it sits on navy in either theme. */
+     always runs white, because it sits on navy in either theme.
+
+     One fixed width rather than a minimum: 23px holds two tabular digits
+     (13.35px at this size) with room to spare, so empty, one-digit and
+     two-digit chips are the same object and a column of them has one edge. */
   .jersey{display:inline-block; line-height:0; flex:none}
   .jersey svg{display:block; width:44px; height:44px}
   .jersey path{fill:#FFFFFF}
   .jersey text{fill:#293955; font-family:"Archivo",system-ui,sans-serif;
                font-weight:700}
   .numchip{display:inline-flex; align-items:center; justify-content:center;
-           flex:none; min-width:23px; height:20px; padding:0 5px;
+           flex:none; width:23px; height:20px; padding:0;
            border-radius:5px; background:var(--shirt); color:var(--shirt-num);
            font-family:"Archivo",sans-serif; font-weight:700; font-size:12px;
            line-height:1; font-variant-numeric:tabular-nums}
@@ -1623,9 +1636,9 @@
         var pin = S.favs.has(S.sp + ":" + r.code);
         return '<tr class="' + (pin ? "isfav" : "") + '"><td><span class="tm" style="display:flex;gap:8px;align-items:baseline">' +
           '<span class="pos">' + (i+1) + '</span><span>' +
-          numSlot(r.code, r.n) + plink(S.sp, r.code, r.n) +
-          grSlot(r.code, r.n) + posSlot(r.code, r.n) +
-          '<br><button data-team="' + esc(S.sp + ":" + r.code) + '" style="font-size:11.5px;color:var(--muted);text-align:left">' +
+          '<span class="nmline">' + numSlot(r.code, r.n) + plink(S.sp, r.code, r.n) +
+          grSlot(r.code, r.n) + posSlot(r.code, r.n) + '</span>' +
+          '<button data-team="' + esc(S.sp + ":" + r.code) + '" style="font-size:11.5px;color:var(--muted);text-align:left">' +
           esc(t ? t.short : r.code) + (t && t.cls ? " \u00b7 " + esc(t.cls) : "") + '</button></span>' +
           '</span></td>' +
           '<td>' + r.gp + '</td><td class="pts w">' + r[stat] + '</td></tr>';
