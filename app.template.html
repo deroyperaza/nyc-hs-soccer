@@ -1722,12 +1722,26 @@
     var out = '<div><div class="grouphead"><h3>Player stats</h3><div class="rule"></div>' +
       '<span class="eyebrow">' + goals + ' goal' + (goals === 1 ? "" : "s") + ' logged</span></div>';
     if(field.length){
-      out += '<div class="card"><div class="standtbl"><table><thead><tr>' +
-        '<th>Player</th><th>GP</th><th>G</th><th>A</th><th>Sh</th></tr></thead><tbody>' +
-        field.map(function(r, i){
-          return '<tr><td><span class="tm"><span class="pos">' + (i+1) + '</span><span>' + esc(titleCase(r.n)) + '</span></span></td>' +
-            '<td>' + r.gp + '</td><td class="pts">' + (r.g || "") + '</td><td>' + (r.a || "") + '</td><td>' + (r.sh || "") + '</td></tr>';
-        }).join("") + '</tbody></table></div></div>';
+      // Three names, then the door to the rest. A school's stat table ran to
+      // twenty-odd rows of mostly zeroes, which buried the two or three
+      // players anybody opened the page to look for.
+      var top = field.slice(0, 3);
+      S.tshown = {};
+      top.forEach(function(r){ S.tshown[r.n] = 1; });
+      out += '<div class="card">' +
+        '<div class="plist">' + top.map(function(r){
+          var bits = [];
+          if(r.g) bits.push('<em>G</em> ' + r.g);
+          if(r.a) bits.push('<em>A</em> ' + r.a);
+          if(r.sh) bits.push('<em>SH</em> ' + r.sh);
+          return '<div class="prow"><span class="pn">' + numSlot(code, r.n) +
+            plink(sp, code, r.n) + '</span>' +
+            '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
+        }).join("") + '</div>' +
+        '<button class="rosterbtn" data-sroster="' + esc(sp + ":" + code) + '">' +
+          '<span>Show full roster</span><span class="ch">Show \u203a</span></button>' +
+        '<div id="sroster-' + sp + '-' + code + '" hidden></div>' +
+      '</div>';
     }
     if(keepers.length){
       out += '<div class="grouphead" style="padding-top:10px"><h3 style="font-size:12px">Goalkeeping</h3><div class="rule"></div></div>' +
@@ -1796,6 +1810,7 @@
     }
     if(!played.length && !upcoming.length) html += '<div class="card"><div class="empty">No games on the schedule.</div></div>';
     el("sheet-body").innerHTML = html;
+    paintTeamNumbers(S.seasonId, sp, code);
     el("sheet").hidden = false;
     document.body.style.overflow = "hidden";
     syncUrl("push");
@@ -2000,6 +2015,42 @@
         });
       });
     });
+  }
+
+  // The three names at the top of a school page come from the season payload,
+  // which has no cid, so their shirts are filled the same way a box score's
+  // are: from the roster file, matched on name within this school.
+  function paintTeamNumbers(sid, sp, code){
+    var root = el("sheet-body");
+    if(!root || !root.querySelector(".jnslot[data-jn]")) return;
+    needRoster(sid, function(r){
+      if(!r || r === "error" || !r.R) return;
+      needUni(sid, function(u){
+        if(!u) return;
+        var byName = {};
+        Object.keys(r.R).forEach(function(gk){
+          if(+gk.split(":")[0] !== sp) return;
+          r.R[gk].forEach(function(x){
+            if(x[0] === code) byName[x[0] + "\u0001" + (r.P[x[1]] || "")] = x[2];
+          });
+        });
+        Array.prototype.forEach.call(root.querySelectorAll(".jnslot[data-jn]"), function(n){
+          var cid = byName[n.getAttribute("data-jn")];
+          var rec = cid != null && u[String(cid)];
+          if(rec && rec[0]) n.innerHTML = jersey(rec[0], false, true);
+          n.removeAttribute("data-jn");
+        });
+      });
+    });
+  }
+
+  // "Defender/Midfielder" is longer than most of the names it sits next to, and
+  // in a roster row the name is the part that matters. The build already folds
+  // PSAL's free text down to four positions, so they abbreviate cleanly.
+  var POS_ABBR = {Goalkeeper: "GK", Defender: "D", Midfielder: "M", Forward: "F"};
+  function posShort(p){
+    if(!p) return "";
+    return String(p).split("/").map(function(x){ return POS_ABBR[x] || x; }).join("/");
   }
 
   function rosterFold(sp, code, hadStats){
@@ -2240,6 +2291,80 @@
     syncPStar();
   }
 
+  /* ---------- full roster on a school page ----------
+     Same file and the same idea as the box-score fold, but rolled up over the
+     whole season instead of one game: a player's rows are summed across every
+     fixture, so someone who dressed eleven times and never troubled the sheet
+     still appears, which is the point of showing a roster at all. */
+  function toggleSchoolRoster(arg){
+    var parts = arg.split(":"), sp = +parts[0], code = parts[1];
+    var box = el("sroster-" + sp + "-" + code);
+    var btn = document.querySelector('[data-sroster="' + arg + '"] .ch');
+    if(!box) return;
+    if(!box.hidden){ box.hidden = true; if(btn) btn.textContent = "Show \u203a"; return; }
+    box.hidden = false;
+    if(btn) btn.textContent = "Hide";
+    if(box.dataset.done) return;
+    box.innerHTML = '<div class="pnote">Loading the roster\u2026</div>';
+    var sid = S.seasonId, keyNow = S.openTeamKey;
+    needRoster(sid, function(r){
+      if(S.openTeamKey !== keyNow) return;
+      if(r === "error" || !r || !r.R){
+        box.innerHTML = '<div class="pnote">PSAL has no rosters on file for this season.</div>';
+        box.dataset.done = "1";
+        return;
+      }
+      var by = {}, order = [];
+      Object.keys(r.R).forEach(function(gk){
+        if(+gk.split(":")[0] !== sp) return;
+        r.R[gk].forEach(function(x){
+          if(x[0] !== code) return;
+          var e = by[x[2]];
+          if(!e){
+            e = by[x[2]] = {cid: x[2], n: r.P[x[1]] || "", gp: 0,
+                            g: 0, a: 0, sv: 0, sh: 0, ga: 0};
+            order.push(e);
+          }
+          e.gp++; e.g += x[3]; e.a += x[4]; e.sv += x[5]; e.sh += x[6]; e.ga += x[7];
+        });
+      });
+      var already = S.tshown || {};
+      var mine = order.filter(function(e){ return e.n && !already[e.n]; });
+      if(!mine.length){
+        box.innerHTML = '<div class="pnote">' +
+          (Object.keys(already).length
+            ? "Everyone PSAL has on file for this school is already listed above."
+            : "PSAL has no roster on file for this school.") + '</div>';
+        box.dataset.done = "1";
+        return;
+      }
+      mine.sort(function(x, z){
+        var sx = x.g * 3 + x.a * 2 + x.sh + x.sv, sz = z.g * 3 + z.a * 2 + z.sh + z.sv;
+        if(sx !== sz) return sz - sx;
+        return x.n.localeCompare(z.n);
+      });
+      needUni(sid, function(u){
+        box.innerHTML = '<div class="plist">' + mine.map(function(e){
+          var bits = [];
+          if(e.g) bits.push('<em>G</em> ' + e.g);
+          if(e.a) bits.push('<em>A</em> ' + e.a);
+          if(e.sv) bits.push('<em>SV</em> ' + e.sv);
+          if(e.sh) bits.push('<em>SH</em> ' + e.sh);
+          if(e.ga) bits.push('<em>GA</em> ' + e.ga);
+          var quiet = !bits.length;
+          var rec = (u && u[String(e.cid)]) || ["", "", ""];
+          return '<div class="prow' + (quiet ? " dnp" : "") + '">' +
+            '<span class="pn">' + jersey(rec[0], false, true) + " " +
+              plink(sp, code, e.n) +
+              (rec[2] ? ' <span class="pos">' + esc(posShort(rec[2])) + '</span>' : "") + '</span>' +
+            '<span class="pv">' + (quiet ? "\u2014 " + e.gp + " game" + (e.gp === 1 ? "" : "s")
+                                         : bits.join(" &nbsp; ")) + '</span></div>';
+        }).join("") + '</div>';
+        box.dataset.done = "1";
+      });
+    });
+  }
+
   /* ---------- full roster, folded under each side of a box score ----------
      The rosters live in their own per-season file: everyone who dressed, not
      just whoever put a number on the sheet. It is fetched the first time
@@ -2296,7 +2421,7 @@
           var jn = jersey(rec[0], false, true) + " ";
           return '<div class="prow' + (quiet ? " dnp" : "") + '">' +
             '<span class="pn">' + jn + plink(sp, code, name) +
-            (rec[2] ? ' <span class="pos">' + esc(rec[2]) + '</span>' : "") + '</span>' +
+            (rec[2] ? ' <span class="pos">' + esc(posShort(rec[2])) + '</span>' : "") + '</span>' +
             '<span class="pv">' + (quiet ? "\u2014" : bits.join(" &nbsp; ")) + '</span></div>';
         }).join("") + '</div>';
         box.dataset.done = "1";
@@ -2940,6 +3065,7 @@
       return;
     }
     if(b.dataset.roster){ toggleRoster(b.dataset.roster); return; }
+    if(b.dataset.sroster){ toggleSchoolRoster(b.dataset.sroster); return; }
     if(b.dataset.gteam){ hidePlayer(); closeGame(); openTeam(b.dataset.gteam); return; }
     if(b.dataset.team){ hidePlayer(); openTeam(b.dataset.team); return; }
     if(b.dataset.hteam){ openHistTeam(b.dataset.hteam); return; }
