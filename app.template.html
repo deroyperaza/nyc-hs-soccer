@@ -382,26 +382,42 @@
   .boxwrap{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
   .boxhead{padding:11px 13px 7px; display:flex; align-items:baseline; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line-soft)}
   .boxhead h3{font-size:13px; font-weight:700; letter-spacing:.04em;
-              text-transform:uppercase; color:var(--text-2);
-              display:flex; align-items:center; gap:5px}
+              text-transform:uppercase; color:var(--text-2)}
+  /* Left inline rather than flexed: a flex container turns the heading's own
+     text into an anonymous item that shrinks and wraps, which broke
+     "Leaders In Our" across two lines the moment a chip sat beside it. */
+  .boxhead h3 .numchip{vertical-align:-5px; margin-left:4px}
   .boxhead .sub{font-size:12px; color:var(--muted)}
   /* Jersey number. PSAL records one for about three quarters of players, so
      this has to look deliberate when it is there and leave no hole when it is
      not -- hence a fixed-width slot that collapses when empty. */
   /* A number on a shirt reads as a squad number in a way a coloured chip does
-     not. Solid silhouette, no outline: the shirt takes the page's ink colour
-     and the number is knocked out of it, so it flips with the theme and never
-     needs a stroke to hold its edge. The one in the player-page header always
-     runs white, because it sits on navy in both themes. */
+     not -- but only at a size where the shirt is legible as a shirt. Shrunk to
+     fit a list row the garment wins and the number, which is the information,
+     is down to a few pixels. So the drawing survives at the top of a player's
+     page and everywhere else the same ink becomes a plain chip, which is the
+     same colour and twice as readable.
+
+     Solid, no outline: the mark takes the page's ink and the number is knocked
+     out of it, so it flips with the theme. The shirt in the player-page header
+     always runs white, because it sits on navy in either theme. */
   .jersey{display:inline-block; line-height:0; flex:none}
-  .jersey svg{display:block; width:30px; height:30px}
-  .jersey path{fill:var(--shirt)}
-  .jersey text{fill:var(--shirt-num); font-family:"Archivo",system-ui,sans-serif;
+  .jersey svg{display:block; width:44px; height:44px}
+  .jersey path{fill:#FFFFFF}
+  .jersey text{fill:#293955; font-family:"Archivo",system-ui,sans-serif;
                font-weight:700}
-  .jersey.big svg{width:44px; height:44px}
-  .jersey.big path{fill:#FFFFFF}
-  .jersey.big text{fill:#293955}
-  .jersey.sm svg{width:25px; height:25px}
+  .numchip{display:inline-flex; align-items:center; justify-content:center;
+           flex:none; min-width:23px; height:20px; padding:0 5px;
+           border-radius:5px; background:var(--shirt); color:var(--shirt-num);
+           font-family:"Archivo",sans-serif; font-weight:700; font-size:12px;
+           line-height:1; font-variant-numeric:tabular-nums}
+  /* An empty slot rather than a gap: PSAL has no number for about a quarter of
+     players and the rows still have to line up. */
+  .numchip.none{background:var(--line-soft)}
+  .grchip{display:inline-block; flex:none; padding:1.5px 4px; border-radius:4px;
+          background:var(--chip); color:var(--muted);
+          font-family:"Archivo",sans-serif; font-weight:700; font-size:9.5px;
+          line-height:1.15; letter-spacing:.06em}
   /* the name line becomes a row so the shirt sits on the text's centre */
   .presult .nm{display:flex; align-items:center; gap:8px}
   .prow .pos{color:var(--muted); font-size:11px}
@@ -1735,7 +1751,7 @@
           if(r.a) bits.push('<em>A</em> ' + r.a);
           if(r.sh) bits.push('<em>SH</em> ' + r.sh);
           return '<div class="prow"><span class="pn">' + numSlot(code, r.n) +
-            plink(sp, code, r.n) + '</span>' +
+            plink(sp, code, r.n) + grSlot(code, r.n) + '</span>' +
             '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
         }).join("") + '</div>' +
         '<button class="rosterbtn" data-sroster="' + esc(sp + ":" + code) + '">' +
@@ -1938,7 +1954,7 @@
             if(r.a) bits.push('<em>A</em> ' + r.a);
             if(r.sh) bits.push('<em>SH</em> ' + r.sh);
             return '<div class="prow"><span class="pn">' + numSlot(code, r.name) +
-              plink(g[0], code, r.name) + '</span>' +
+              plink(g[0], code, r.name) + grSlot(code, r.name) + '</span>' +
               '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
           }).join("") + '</div>';
         }
@@ -1948,7 +1964,7 @@
             if(r.sv) bits.push('<em>SV</em> ' + r.sv);
             if(r.ga) bits.push('<em>GA</em> ' + r.ga);
             return '<div class="prow"><span class="pn">' + numSlot(code, r.name) +
-              plink(g[0], code, r.name) +
+              plink(g[0], code, r.name) + grSlot(code, r.name) +
               ' <span style="color:var(--muted);font-size:12px">GK</span></span>' +
               '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
           }).join("") + '</div>';
@@ -1956,7 +1972,7 @@
         if(shooters.length){
           html += '<div class="plist" style="border-top:1px solid var(--line-soft)">' + shooters.map(function(r){
             return '<div class="prow"><span class="pn">' + numSlot(code, r.name) +
-              plink(g[0], code, r.name) + '</span>' +
+              plink(g[0], code, r.name) + grSlot(code, r.name) + '</span>' +
               '<span class="pv"><em>SH</em> ' + r.sh + '</span></div>';
           }).join("") + '</div>';
         }
@@ -1990,11 +2006,15 @@
   // A box-score row knows a name and a school but not a cid, so the number
   // cannot be drawn with it. Each row leaves a slot instead, and paintNumbers
   // fills them in when the season's roster and profile files land.
+  // A box-score row knows a name and a school but not a cid, so neither mark
+  // can be drawn with it. The empty number chip goes in straight away, so the
+  // row does not shift when the roster lands and the values drop in.
   function numSlot(code, name){
-    // the empty shirt is drawn straight away so the row does not shift when
-    // the roster arrives and the number drops in
     return '<span class="jnslot" data-jn="' + esc(code + "\u0001" + name) + '">' +
-      jersey("", false, true) + '</span>';
+      jersey("") + '</span>';
+  }
+  function grSlot(code, name){
+    return '<span class="grslot" data-gr="' + esc(code + "\u0001" + name) + '"></span>';
   }
   function paintNumbers(sid, gk){
     var root = el("gsheet-body");
@@ -2007,12 +2027,7 @@
         r.R[gk].forEach(function(x){
           byName[x[0] + "\u0001" + (r.P[x[1]] || "")] = x[2];
         });
-        Array.prototype.forEach.call(root.querySelectorAll(".jnslot[data-jn]"), function(n){
-          var cid = byName[n.getAttribute("data-jn")];
-          var rec = cid != null && u[String(cid)];
-          if(rec && rec[0]) n.innerHTML = jersey(rec[0], false, true);
-          n.removeAttribute("data-jn");
-        });
+        fillSlots(root, byName, u);
       });
     });
   }
@@ -2034,12 +2049,7 @@
             if(x[0] === code) byName[x[0] + "\u0001" + (r.P[x[1]] || "")] = x[2];
           });
         });
-        Array.prototype.forEach.call(root.querySelectorAll(".jnslot[data-jn]"), function(n){
-          var cid = byName[n.getAttribute("data-jn")];
-          var rec = cid != null && u[String(cid)];
-          if(rec && rec[0]) n.innerHTML = jersey(rec[0], false, true);
-          n.removeAttribute("data-jn");
-        });
+        fillSlots(root, byName, u);
       });
     });
   }
@@ -2051,6 +2061,19 @@
   function posShort(p){
     if(!p) return "";
     return String(p).split("/").map(function(x){ return POS_ABBR[x] || x; }).join("/");
+  }
+
+  function fillSlots(root, byName, u){
+    Array.prototype.forEach.call(root.querySelectorAll(".jnslot[data-jn]"), function(n){
+      var rec = u[String(byName[n.getAttribute("data-jn")])];
+      if(rec && rec[0]) n.innerHTML = jersey(rec[0]);
+      n.removeAttribute("data-jn");
+    });
+    Array.prototype.forEach.call(root.querySelectorAll(".grslot[data-gr]"), function(n){
+      var rec = u[String(byName[n.getAttribute("data-gr")])];
+      if(rec && rec[1]) n.innerHTML = gradeChip(rec[1]);
+      n.removeAttribute("data-gr");
+    });
   }
 
   function rosterFold(sp, code, hadStats){
@@ -2079,8 +2102,18 @@
   // are not the same width in any of them. The baseline is computed from the
   // font size: dominant-baseline renders one way in a test and another on a
   // phone.
-  function jersey(num, big, small){
+  var GRADES = {"09": "FR", "9": "FR", "10": "SO", "11": "JR", "12": "SR"};
+  function gradeChip(g){
+    var t = GRADES[String(g == null ? "" : g).trim()];
+    return t ? '<span class="grchip">' + t + '</span>' : "";
+  }
+  function jersey(num, big){
     var n = String(num == null ? "" : num).trim().slice(0, 3);
+    if(!big){
+      return '<span class="numchip' + (n ? "" : " none") + '"' +
+        (n ? ' aria-label="Shirt number ' + esc(n) + '"' : ' aria-hidden="true"') +
+        '>' + esc(n || "\u00a0") + '</span>';
+    }
     var body = "";
     if(n){
       var size = n.length > 2 ? 6.6 : n.length > 1 ? 8.4 : 9.6;
@@ -2091,8 +2124,8 @@
         'text-anchor="middle" style="font-size:' + size + 'px"' + fit + '>' +
         esc(n) + '</text>';
     }
-    return '<span class="jersey' + (big ? " big" : small ? " sm" : "") + '" role="img" ' +
-      'aria-label="' + (n ? "Shirt number " + esc(n) : "No shirt number on file") + '">' +
+    return '<span class="jersey" role="img" aria-label="' +
+      (n ? "Shirt number " + esc(n) : "No shirt number on file") + '">' +
       '<svg viewBox="0 0 24 24"><path d="' + JERSEY_PATH + '"></path>' +
       body + '</svg></span>';
   }
@@ -2173,24 +2206,29 @@
      kinds of player, and it is a couple of KB, so the page asks it for
      whatever the payload could not supply. */
   function fillLiveNumber(key){
-    var root = el("psheet-body"), badge = el("psheet-num");
+    var root = el("psheet-body"), badge = el("psheet-num"), hdr = el("psheet-name");
     var blanks = root ? root.querySelectorAll('.pjn[data-y="' + META.defaultSeason + '"]') : [];
-    var needBadge = badge && !badge.querySelector("text");
-    if(!blanks.length && !needBadge) return;
+    var needNum = badge && !badge.querySelector("text");
+    var needGr = hdr && !hdr.querySelector(".grchip");
+    if(!blanks.length && !needNum && !needGr) return;
     var parts = key.split("/"), sp = +parts[0], slug = parts[1] || "";
     var first = slug.split("-")[0];
     if(first.length < 2) return;
     needNames(first, function(rows){
       if(S.openPlayer !== key) return;
-      var u = "";
+      var row = null;
       for(var i = 0; i < rows.length; i++){
-        if(rows[i][1] === slug && rows[i][2] === sp){ u = rows[i][6] || ""; break; }
+        if(rows[i][1] === slug && rows[i][2] === sp){ row = rows[i]; break; }
       }
-      if(!u) return;
-      Array.prototype.forEach.call(blanks, function(n){
-        if(!n.querySelector("text")) n.innerHTML = jersey(u, false, true);
-      });
-      if(needBadge) badge.innerHTML = jersey(u, true);
+      if(!row) return;
+      var u = row[6] || "", g = row[7] || "";
+      if(u){
+        Array.prototype.forEach.call(blanks, function(n){
+          if(n.querySelector(".numchip.none")) n.innerHTML = jersey(u);
+        });
+        if(needNum) badge.innerHTML = jersey(u, true);
+      }
+      if(g && needGr) hdr.innerHTML = hdr.innerHTML + " " + gradeChip(g);
     });
   }
 
@@ -2219,7 +2257,8 @@
       var cand = M[String(blocks[bi][0])];
       if(cand && cand.u) newest = cand;
     }
-    el("psheet-name").textContent = titleCase(name);
+    el("psheet-name").innerHTML = esc(titleCase(name)) +
+      (newest && newest.g ? " " + gradeChip(newest.g) : "");
     var badge = el("psheet-num");
     if(badge){
       badge.innerHTML = jersey(newest && newest.u, true);
@@ -2264,7 +2303,7 @@
       if(m.p) who.push(m.p);
       html += '<div class="boxwrap"><div class="boxhead"><h3>' +
         esc((seasonMeta(String(y)) || {}).label || y) +
-        ' <span class="pjn" data-y="' + y + '">' + jersey(m.u, false, true) +
+        ' <span class="pjn" data-y="' + y + '">' + jersey(m.u) +
           '</span></h3>' +
         '<span class="sub">' + esc(who.concat(bits).join(" \u00b7 ")) + '</span></div>' +
         '<table class="glog"><thead><tr><th>Date</th><th style="text-align:left">Opponent</th>' +
@@ -2320,6 +2359,7 @@
     el("psheet-body").scrollTop = 0;
     var yy = blocks.map(function(bl){ return bl[0]; });
     S.pdata = {n: name, sc: code, u: (newest && newest.u) || "",
+               g: (newest && newest.g) || "",
                y0: Math.min.apply(null, yy), y1: Math.max.apply(null, yy)};
     document.title = routeTitle();   // the name only arrives with the shard
     syncPStar();
@@ -2388,8 +2428,8 @@
           var quiet = !bits.length;
           var rec = (u && u[String(e.cid)]) || ["", "", ""];
           return '<div class="prow' + (quiet ? " dnp" : "") + '">' +
-            '<span class="pn">' + jersey(rec[0], false, true) + " " +
-              plink(sp, code, e.n) +
+            '<span class="pn">' + jersey(rec[0]) + " " +
+              plink(sp, code, e.n) + gradeChip(rec[1]) +
               (rec[2] ? ' <span class="pos">' + esc(posShort(rec[2])) + '</span>' : "") + '</span>' +
             '<span class="pv">' + (quiet ? "\u2014 " + e.gp + " game" + (e.gp === 1 ? "" : "s")
                                          : bits.join(" &nbsp; ")) + '</span></div>';
@@ -2452,9 +2492,9 @@
           if(x[7]) bits.push('<em>GA</em> ' + x[7]);
           var quiet = !bits.length;
           var rec = (u && u[String(x[2])]) || ["", "", ""];
-          var jn = jersey(rec[0], false, true) + " ";
           return '<div class="prow' + (quiet ? " dnp" : "") + '">' +
-            '<span class="pn">' + jn + plink(sp, code, name) +
+            '<span class="pn">' + jersey(rec[0]) + " " + plink(sp, code, name) +
+            gradeChip(rec[1]) +
             (rec[2] ? ' <span class="pos">' + esc(posShort(rec[2])) + '</span>' : "") + '</span>' +
             '<span class="pv">' + (quiet ? "\u2014" : bits.join(" &nbsp; ")) + '</span></div>';
         }).join("") + '</div>';
@@ -2511,9 +2551,9 @@
      Three places to look, cheapest first: this season's payload, which the page
      already holds; the archive shard; and failing both, the name index, which is
      the only one that carries a player who has only ever played this season. */
-  function fillFav(k, name, code, y0, y1, uni){
+  function fillFav(k, name, code, y0, y1, uni, grade){
     if(!name) return false;
-    S.pfavs[k] = [k, name, code || "", y0 || 0, y1 || 0, uni || ""];
+    S.pfavs[k] = [k, name, code || "", y0 || 0, y1 || 0, uni || "", grade || ""];
     savePFavs();
     if(S.view === "players") renderPlayers();
     return true;
@@ -2557,8 +2597,11 @@
       var e = S.pfavs[k];
       if(!e) return;
       for(var i = 0; i < rows.length; i++){
-        if(rows[i][1] === slug && rows[i][2] === sp && rows[i][6]){
-          e[5] = rows[i][6];
+        if(rows[i][1] === slug && rows[i][2] === sp){
+          var u = rows[i][6] || "", g = rows[i][7] || "";
+          if(!u && !g) return;
+          if(u) e[5] = u;
+          if(g) e[6] = g;
           savePFavs();
           if(S.view === "players") renderPlayers();
           return;
@@ -2569,7 +2612,7 @@
   function hydrateFavs(){
     S.pfavOrder.forEach(function(k){
       var e = S.pfavs[k];
-      if(e && e[1] && e[5] === undefined) uniFromIndex(k);
+      if(e && e[1] && (e[5] === undefined || e[6] === undefined)) uniFromIndex(k);
       if(!e || e[1]) return;
       var live = liveRows(k);
       if(live && live.who && fillFav(k, live.who.n, live.who.sc, live.y, live.y)){
@@ -2580,13 +2623,14 @@
         var p = bundle && bundle[k];
         var use = function(key, q){
           var yy = (q.s || []).map(function(b){ return b[0]; });
-          var u = "";
+          var u = "", g = "";
           Object.keys(q.m || {}).sort().forEach(function(y){
             if(q.m[y].u) u = q.m[y].u;      // ascending, so the last one wins
+            if(q.m[y].g) g = q.m[y].g;
           });
           fillFav(key, q.n, q.sc,
                   yy.length ? Math.min.apply(null, yy) : 0,
-                  yy.length ? Math.max.apply(null, yy) : 0, u);
+                  yy.length ? Math.max.apply(null, yy) : 0, u, g);
         };
         if(p && p.ref){
           // a merged spelling: the real career sits in a different shard, so
@@ -2615,7 +2659,8 @@
         needNames(first, function(rows){
           for(var i = 0; i < rows.length; i++){
             if(rows[i][1] === slug && rows[i][2] === sp){
-              fillFav(k, rows[i][0], rows[i][3], rows[i][4], rows[i][5], rows[i][6]);
+              fillFav(k, rows[i][0], rows[i][3], rows[i][4], rows[i][5],
+                      rows[i][6], rows[i][7]);
               return;
             }
           }
@@ -2631,7 +2676,7 @@
         // An empty string here is a miss an older build wrote down. Drop it so
         // the number gets looked up again; a real absence costs one small
         // index fetch a session and shows an empty shirt either way.
-        if(e && e[5] === "") e.length = 5;
+        if(e && e[5] === "" && e[6] === undefined) e.length = 5;
         if(e && e[0] && !S.pfavs[e[0]]){ S.pfavs[e[0]] = e; S.pfavOrder.push(e[0]); }
       });
     }catch(e){}
@@ -2644,12 +2689,12 @@
       }).filter(Boolean)));
     }catch(e){}
   }
-  function togglePFav(key, name, code, y0, y1, uni){
+  function togglePFav(key, name, code, y0, y1, uni, grade){
     if(S.pfavs[key]){
       delete S.pfavs[key];
       S.pfavOrder = S.pfavOrder.filter(function(k){ return k !== key; });
     }else{
-      S.pfavs[key] = [key, name, code, y0 || 0, y1 || 0, uni || ""];
+      S.pfavs[key] = [key, name, code, y0 || 0, y1 || 0, uni || "", grade || ""];
       S.pfavOrder.push(key);
     }
     savePFavs();
@@ -2677,7 +2722,7 @@
       .catch(function(){ S.ncache[pre] = []; after([]); });
   }
 
-  function playerRowHTML(key, name, code, y0, y1, extra, grip, uni){
+  function playerRowHTML(key, name, code, y0, y1, extra, grip, uni, grade){
     var fav = !!S.pfavs[key];
     var yrs = y0 && y1 ? (y0 === y1 ? seasonLabel(y0) : seasonLabel(y0) + "\u2013" + String(seasonLabel(y1)).replace(/^\D+/, "")) : "";
     var meta_ = [SHORTS[code] || code, yrs].filter(Boolean).join(" \u00b7 ");
@@ -2687,13 +2732,15 @@
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
         '<path d="M5 9h14M5 15h14"></path></svg></span>' : '') +
       '<button class="who" data-player="' + esc(key) + '">' +
-        '<span class="nm">' + jersey(uni) + esc(titleCase(name)) + '</span>' +
+        '<span class="nm">' + jersey(uni) + esc(titleCase(name)) +
+          gradeChip(grade) + '</span>' +
         '<span class="mt">' + esc(meta_ + (extra || "")) + '</span>' +
       '</button>' +
       '<button class="star" aria-pressed="' + fav + '" aria-label="Follow this player" ' +
         'data-pfav="' + esc(key) + '" data-pn="' + esc(name) + '" data-pc="' + esc(code) +
         '" data-py0="' + (y0 || 0) + '" data-py1="' + (y1 || 0) +
-        '" data-pu="' + esc(uni || "") + '">' + STAR + '</button>' +
+        '" data-pu="' + esc(uni || "") + '" data-pg="' + esc(grade || "") +
+        '">' + STAR + '</button>' +
       '</div>';
   }
   function seasonLabel(y){
@@ -2726,7 +2773,7 @@
         '<div id="favlist">' + favKeys.map(function(k){
           var e = S.pfavs[k];
           return playerRowHTML(k, e[1], e[2], e[3], e[4], "",
-                               favKeys.length > 1, e[5]);
+                               favKeys.length > 1, e[5], e[6]);
         }).join("") + '</div></div>';
     }
 
@@ -2755,7 +2802,7 @@
         (res.length > 60 ? "first 60 of " + res.length : res.length + " found") + '</span></div>' +
         shown.map(function(e){
           return playerRowHTML(e[2] + "/" + e[1], e[0], e[3], e[4], e[5],
-                               "", false, e[6]);
+                               "", false, e[6], e[7]);
         }).join("") + '</div>';
       if(res.length > 60){
         body += '<div class="card"><div class="pnote">Add another letter to narrow this down.</div></div>';
@@ -3091,13 +3138,13 @@
     }
     if(b.dataset.pfav){
       togglePFav(b.dataset.pfav, b.dataset.pn, b.dataset.pc,
-                 +b.dataset.py0, +b.dataset.py1, b.dataset.pu);
+                 +b.dataset.py0, +b.dataset.py1, b.dataset.pu, b.dataset.pg);
       return;
     }
     if(id === "psheet-fav"){
       var pd = S.pdata || {};
       togglePFav(S.openPlayer, pd.n || "", pd.sc || "", pd.y0 || 0, pd.y1 || 0,
-                 pd.u || "");
+                 pd.u || "", pd.g || "");
       return;
     }
     if(b.dataset.player){ openPlayer(b.dataset.player); return; }

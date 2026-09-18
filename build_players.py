@@ -434,17 +434,25 @@ def build(skip=None):
     index = collections.defaultdict(list)
     entry_by = {}                 # (sp, slug) -> the shared row object
 
-    def add_index(name, slug, sp, code, y0, y1, uni=''):
+    def tail(uni, grade):
+        # Fixed positions -- uniform at 6, grade at 7 -- with trailing blanks
+        # trimmed so a row costs nothing when PSAL recorded neither.
+        t = [uni or '', grade or '']
+        while t and not t[-1]:
+            t.pop()
+        return t
+
+    def add_index(name, slug, sp, code, y0, y1, uni='', grade=''):
         # one row object shared by every prefix it lands in, so widening a span
-        # later is a single assignment rather than a scan of the whole index
-        # The jersey number rides along so the players page can show it without
-        # opening a career shard per row. It is the most recent one PSAL has,
-        # and it changes at most once a season, so it does not churn the index
-        # the way a stat would.
+        # later is a single assignment rather than a scan of the whole index.
+        # The shirt number and grade ride along so the players page can show
+        # them without opening a career shard per row. Both are the most recent
+        # PSAL has, and both change at most once a season, so they do not churn
+        # the index the way a stat would.
         row = entry_by.get((sp, slug))
         if row is None:
             row = entry_by[(sp, slug)] = ([name, slug, sp, code, y0, y1] +
-                                          ([uni] if uni else []))
+                                          tail(uni, grade))
         seen = set()
         for word in slugify(name).split('-'):
             if len(word) < 2:
@@ -455,40 +463,34 @@ def build(skip=None):
             seen.add(pre)
             index[pre].append(row)
 
-    def newest_uniform(meta):
+    def newest(meta, field):
         for y in sorted(meta, reverse=True):
-            if meta[y].get('u'):
-                return meta[y]['u']
+            if meta[y].get(field):
+                return meta[y][field]
         return ''
 
     for key, p in players.items():
         years = sorted({r[0] for r in p['g']})
         add_index(p['n'], p['slug'], p['sp'], p['sc'], years[0], years[-1],
-                  newest_uniform(p['meta']))
+                  newest(p['meta'], 'u'), newest(p['meta'], 'g'))
     liveyr = int(live) if live else 0
     for (sp, slug), (nm, code, cid) in live_ids.items():
+        pk = pidx.get((sp, cid))
+        cur_u = cur_g = ''
+        for e in (prof.get((sp, pk)) or {}).get('y', []):
+            if e.get('y') == str(liveyr):
+                cur_u, cur_g = e.get('u') or '', e.get('g') or ''
         row = entry_by.get((sp, slug))
         if row is not None:
             row[5] = max(row[5], liveyr)      # already indexed; widen the span
-            # a career that is still going: this season's shirt is the current
-            # one, and the shards stop at last season
-            pk = pidx.get((sp, cid))
-            cur = ''
-            for e in (prof.get((sp, pk)) or {}).get('y', []):
-                if e.get('y') == str(liveyr) and e.get('u'):
-                    cur = e['u']
-            if cur:
-                if len(row) > 6:
-                    row[6] = cur
-                else:
-                    row.append(cur)
+            # a career still going: this season's shirt and grade are the
+            # current ones, and the shards stop at last season
+            t = tail(cur_u or (row[6] if len(row) > 6 else ''),
+                     cur_g or (row[7] if len(row) > 7 else ''))
+            del row[6:]
+            row.extend(t)
             continue
-        pk = pidx.get((sp, cid))
-        uni = ''
-        for e in (prof.get((sp, pk)) or {}).get('y', []):
-            if e.get('y') == str(liveyr) and e.get('u'):
-                uni = e['u']
-        add_index(nm, slug, sp, code, liveyr, liveyr, uni)
+        add_index(nm, slug, sp, code, liveyr, liveyr, cur_u, cur_g)
 
     ndir = os.path.join(DATA, 'n')
     os.makedirs(ndir, exist_ok=True)
