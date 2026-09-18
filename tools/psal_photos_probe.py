@@ -26,7 +26,7 @@ call, pmap, sess = _rf.call, _rf.pmap, _rf.sess
 
 PIC = "https://www.psal.org/psalapps/psalsports/common/dsplyprflPicture.ashx?id=%s"
 SPC = {0: "012", 1: "021"}
-SAMPLE = 400          # cids per season, both sports pooled
+SAMPLE = int(os.environ.get("PSAL_PHOTO_SAMPLE", "400"))
 FETCH = 12            # images actually downloaded, to size them
 
 
@@ -58,24 +58,41 @@ def run(datadir, repo, seasons):
             continue
         pick = random.sample(pool, min(SAMPLE, len(pool)))
 
+        # The profile carries more than a picture: PSAL's form has fields for
+        # athletic achievements, college plans, scholastic honours, community
+        # work and a quote from the coach. If any of those are filled in they
+        # are worth more than a headshot, so count them while we are here.
+        EXTRA = ("athletic", "colplan", "scholastic", "community", "coachquote",
+                 "cfeet", "cweight")
+
         def one(job):
             spc, cid = job
             rows = call("GetPlayerDetails", sportcode="'%s'" % spc,
                         playerId="'%d'" % cid, query="'profiledetails'",
                         season=0) or []
+            row = None
             for r in rows:
                 if str(r.get("season")) == season:
-                    return r.get("img_id")
-            return rows[0].get("img_id") if rows else None
+                    row = r
+                    break
+            row = row or (rows[0] if rows else {})
+            out = {"img": row.get("img_id")}
+            for k in EXTRA:
+                v = row.get(k)
+                out[k] = bool(v is not None and str(v).strip())
+            return out
 
         got = pmap(one, pick, "photos %s" % season)
-        have = [g for g in got if g not in (None, "", 0, "0")]
-        report["seasons"][season] = {
+        have = [g["img"] for g in got if g["img"] not in (None, "", 0, "0")]
+        rec = {
             "sampled": len(pick), "with_photo": len(have),
             "pct": round(100.0 * len(have) / max(len(pick), 1), 1),
             "roster_size": len(pool),
             "projected": int(round(len(pool) * len(have) / max(len(pick), 1))),
         }
+        for k in EXTRA:
+            rec[k] = sum(1 for g in got if g.get(k))
+        report["seasons"][season] = rec
         ids += [str(g) for g in have]
         print("  %s: %d of %d sampled have an img_id (%.1f%%)"
               % (season, len(have), len(pick), report["seasons"][season]["pct"]),
