@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-09-18T03:01:26Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-09-18T07:40:05Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 40 | 220 | 
+| today | 110 | 450 | 
 | yesterday | 310 | 920 |
-| 30 days | 350 | 1140 |
+| 30 days | 420 | 1370 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -19,51 +19,51 @@ that is the number that means something.
 | date | visits | pageviews |
 |---|---:|---:|
 | 2026-09-17 | 310 | 920 |
-| 2026-09-18 | 40 | 220 |
+| 2026-09-18 | 110 | 450 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 370 | 32% |
-| /game/502587/boys | 70 | 6% |
-| /school/graphics/boys | 40 | 4% |
-| /teams/boys | 30 | 3% |
-| /standings/boys | 30 | 3% |
-| /scores/2026-09-16/boys | 30 | 3% |
-| /players/boys | 30 | 3% |
-| /player/zohran-mamdani-bronx-science/boys | 20 | 2% |
-| /scores/2026-09-22/boys | 20 | 2% |
-| /history | 20 | 2% |
-| /school/lehman/boys | 20 | 2% |
-| /game/502547/boys | 20 | 2% |
-| /school/beacon/2026/boys | 20 | 2% |
-| /scores/2026-09-12/boys | 20 | 2% |
-| /school/brooklyn-tech/boys | 20 | 2% |
-| /player/jasper-philpot-murrow/boys | 20 | 2% |
-| /school/beacon/boys | 20 | 2% |
-| /school/beacon/2025/boys | 20 | 2% |
-| /school/murrow/boys | 20 | 2% |
-| /school/martin-l-king/boys | 10 | 1% |
+| / | 460 | 34% |
+| /game/502587/boys | 70 | 5% |
+| /teams/boys | 50 | 4% |
+| /school/murrow/boys | 40 | 3% |
+| /players/boys | 40 | 3% |
+| /school/graphics/boys | 40 | 3% |
+| /standings/boys | 30 | 2% |
+| /scores/2026-09-16/boys | 30 | 2% |
+| /scores/2026-09-20/boys | 30 | 2% |
+| /school/martin-l-king/boys | 30 | 2% |
+| /player/zohran-mamdani-bronx-science/boys | 30 | 2% |
+| /scores/2026-09-22/boys | 20 | 1% |
+| /player/cyrus-vossoughian-bard-manhattan/boys | 20 | 1% |
+| /school/lehman/boys | 20 | 1% |
+| /game/502547/boys | 20 | 1% |
+| /history | 20 | 1% |
+| /school/beacon/2026/boys | 20 | 1% |
+| /scores/2026-09-12/boys | 20 | 1% |
+| /game/502589/boys | 20 | 1% |
+| /player/jasper-philpot-murrow/boys | 20 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 790 | 69% |
-| (direct) | 340 | 30% |
+| nychssoccer.com | 950 | 69% |
+| (direct) | 410 | 30% |
 | www.psal.org | 10 | 1% |
 
 ## Countries
 
 | country | views | share |
 |---|---:|---:|
-| US | 1140 | 100% |
+| US | 1370 | 100% |
 
 ## Devices
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 930 | 82% |
-| desktop | 210 | 18% |
+| mobile | 1120 | 82% |
+| desktop | 250 | 18% |
 
