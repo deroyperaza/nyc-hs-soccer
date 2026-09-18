@@ -1,30 +1,35 @@
-# Traffic -- not updated
+# Traffic
 
-_Last tried 2026-09-17T23:04:59Z._
+_2026-09-18T02:51:35Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
-The numbers below this line are from the last run that worked, if
-there was one. This run could not get new ones.
+| | visits | pageviews |
+|---|---:|---:|
+| today | 0 | 0 | 
+| yesterday | 0 | 0 |
+| 30 days | 0 | 0 |
 
-## Why
+Pageviews run roughly double: the app rewrites its own URL as you move
+around, and each rewrite is a beacon. Visits counts one per arrival, so
+that is the number that means something.
 
-```
-HTTP 401 from api.cloudflare.com
+## By day
 
-{"success":false,"errors":[{"code":10000,"message":"Authentication error"}],"messages":[],"result":null}
+| date | visits | pageviews |
+|---|---:|---:|
 
+## Most-read pages
 
-Token check:
-  length 53 (a Cloudflare API token is 40)
-  /tokens/verify says: HTTP 401 {"success":false,"errors":[{"code":1000,"message":"Invalid API Token"}],"messages":[],"result":null}
-```
+_none_
 
-## What the job could see
+## Where people came from
 
-| variable | state |
-|---|---|
-| CF_API_TOKEN | set, 53 chars |
-| CF_ACCOUNT_ID | set, 32 chars |
-| CF_SITE_TAG | set, 32 chars |
+_none_
 
-Values are never printed here -- only whether they arrived.
+## Countries
+
+_none_
+
+## Devices
+
+_none_
 
