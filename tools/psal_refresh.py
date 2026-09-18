@@ -11,7 +11,7 @@ with cwinner == "TIE " (trailing space), while an unplayed game has cwinner
 null. Testing "is cwinner set" is therefore what separates played from
 unplayed, and it keeps 0-0 draws, which a score-based test would throw away.
 """
-import argparse, json, os, subprocess, sys, threading, time
+import argparse, datetime, json, os, subprocess, sys, threading, time
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
@@ -380,11 +380,24 @@ def main():
 
     # Rosters for this season only, and incremental: pull_season skips games the
     # file already covers, so a nightly run costs one call per new game. Then
-    # rebuild the player shards and run build2 once more, which is what picks up
-    # the shard count. A failure here must not fail a good score refresh.
+    # rebuild the player shards and run build2 once more, which is what picks
+    # up the shard count. Neither may fail a good score refresh.
+    #
+    # Two separate jobs that used to share one try block, so a refused roster
+    # pull silently took the player pages with it. Pulling this season's
+    # rosters can fail for its own reasons; the pages are rebuilt from whatever
+    # is on disk either way.
+    skips = []
     try:
         from psal_rosters import run as run_rosters
         run_rosters(datadir, [str(args.season)])
+    except (Exception, SystemExit) as e:
+        import traceback
+        skips.append("roster pull: %s: %s\n\n%s"
+                     % (type(e).__name__, e, traceback.format_exc()))
+        print("roster pull skipped: %s" % e, file=sys.stderr, flush=True)
+
+    try:
         # Player pages need the archive rosters. Until the backfill has landed
         # at least one past season there is nothing to shard, and building
         # anyway would commit 1024 empty files.
@@ -402,9 +415,9 @@ def main():
     except StopIteration:
         pass
     except (Exception, SystemExit) as e:
-        # Rosters and player pages are a bonus on top of a score refresh. A
-        # problem here must never take the scores down with it -- SystemExit
-        # included, which is what the roster guards raise and which a bare
+        # Player pages are a bonus on top of a score refresh. A problem here
+        # must never take the scores down with it -- SystemExit included,
+        # which is what the roster guards raise and which a bare
         # "except Exception" would sail straight past.
         #
         # But "never fails the job" quietly became "never tells anyone": a
@@ -414,24 +427,22 @@ def main():
         # will show it.
         import traceback
         msg = "%s: %s\n\n%s" % (type(e).__name__, e, traceback.format_exc())
-        print("rosters/player pages skipped: " + msg, file=sys.stderr, flush=True)
-        try:
-            d = os.path.join(args.repo, "probe")
-            os.makedirs(d, exist_ok=True)
-            with open(os.path.join(d, "last_build_skip.txt"), "w") as f:
-                f.write("%s UTC\n\n%s" % (
-                    __import__("datetime").datetime.utcnow().isoformat(), msg[-4000:]))
-        except Exception:
-            pass
-    else:
+        skips.append("player pages: " + msg)
+        print("player pages skipped: " + msg, file=sys.stderr, flush=True)
+
+    stale = os.path.join(args.repo, "probe", "last_build_skip.txt")
+    if skips:
+        os.makedirs(os.path.dirname(stale), exist_ok=True)
+        with open(stale, "w") as f:
+            f.write("%s UTC\n\n%s" % (datetime.datetime.utcnow().isoformat(),
+                                       ("\n\n----\n\n".join(skips))[-6000:]))
+    elif os.path.exists(stale):
         # A clean pass clears the last complaint, so a stale file never reads
         # as a current failure.
-        stale = os.path.join(args.repo, "probe", "last_build_skip.txt")
-        if os.path.exists(stale):
-            try:
-                os.remove(stale)
-            except OSError:
-                pass
+        try:
+            os.remove(stale)
+        except OSError:
+            pass
     refresh_analytics(args.repo)
     print("\ndone in %.0fs" % (time.time() - t0))
 

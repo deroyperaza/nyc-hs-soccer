@@ -134,20 +134,28 @@ def pull_season(season, datadir, force=False):
                    num(b.get("saves")), num(b.get("shots")), num(b.get("gallowe"))]
                   for b in rows]
 
-    # A game with no rows is ordinary -- plenty of coaches never file a sheet,
-    # and a game played an hour ago usually hasn't got one yet. What is not
-    # ordinary is a whole pull coming back empty, which is what a dead session
-    # looks like. So only judge a pull big enough to be meaningful, and only on
-    # a near-total wipeout. An incremental run of one or two new games must
-    # never trip this.
-    if todo and not R:
+    # A game with no rows is ordinary -- plenty of coaches never file a sheet.
+    # What is not ordinary is a pull where nothing at all comes back, which is
+    # what a dead session looks like: cookie-less requests bounce to Login.aspx
+    # and every game reads as empty.
+    #
+    # The test used to be a 90% empty rate, and that was wrong in a way that
+    # only showed up mid-season. Games whose coach never files stay uncovered
+    # and are retried on every run, so the uncovered set fills up with them as
+    # the season goes on and the empty rate climbs past 90% on its own. It
+    # tripped at 62 of 68 on a night when the service was working perfectly,
+    # took the player-page rebuild down with it, and did so silently.
+    #
+    # Whether the session is alive is answered by whether ANY game came back
+    # with rows, not by the ratio. A pull that dies halfway writes what it got;
+    # the games it missed are left out rather than recorded empty, so the next
+    # run retries them and it heals itself.
+    got = sum(1 for _key, rows in results if rows)
+    if len(todo) >= 10 and got == 0:
         raise SystemExit(
-            "REFUSING to write r%s.json: every one of %d games came back empty. "
-            "That is a broken session, not a season without rosters." % (season, len(todo)))
-    if len(todo) >= 25 and empty >= 0.9 * len(todo):
-        raise SystemExit(
-            "REFUSING to write r%s.json: %d of %d games came back empty."
-            % (season, empty, len(todo)))
+            "REFUSING to write r%s.json: not one of %d games returned a roster. "
+            "That is a broken session, not a season without sheets."
+            % (season, len(todo)))
     blob = {"season": season, "P": names, "R": R}
     json.dump(blob, open(out_path, "w"), separators=(",", ":"))
     total = sum(len(v) for v in R.values())
