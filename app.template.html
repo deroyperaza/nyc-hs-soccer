@@ -176,16 +176,32 @@
   .standtbl{padding:6px 4px 8px}
   .standtbl table{table-layout:fixed; width:100%}
   .standtbl th:first-child, .standtbl td:first-child{width:auto; max-width:0; overflow:hidden}
-  .standtbl th:not(:first-child), .standtbl td:not(:first-child){width:38px; padding-left:3px; padding-right:5px}
+  /* Every pixel these columns do not need belongs to the school name, which is
+     the only one that can run out of room. W-L-T had 84px for a string that is
+     five characters most of the season, and the slack read as a gap between
+     the level and the record rather than as breathing space. */
+  .standtbl th:not(:first-child), .standtbl td:not(:first-child){width:30px; padding-left:3px; padding-right:5px}
   .standtbl th.w, .standtbl td.w{width:46px}
-  .standtbl th.rec, .standtbl td.rec{width:84px; font-size:12.5px; font-variant-numeric:tabular-nums; white-space:nowrap}
-  .standtbl th{font-family:"Archivo",sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); text-align:right; padding:6px 8px}
-  .standtbl th:first-child{text-align:left; padding-left:12px}
+  .standtbl th:last-child, .standtbl td:last-child{width:34px}
+  .standtbl th.lv, .standtbl td.lv{width:26px}
+  .standtbl th.rec, .standtbl td.rec{width:58px; font-size:12.5px; font-variant-numeric:tabular-nums; white-space:nowrap}
+  /* The headings are set tighter than the body so RATING and TTL fit inside
+     columns sized for .925 and 1 rather than for their own labels. */
+  .standtbl th{font-family:"Archivo",sans-serif; font-size:9.5px; font-weight:700;
+               letter-spacing:.03em; text-transform:uppercase; color:var(--muted);
+               text-align:right; padding:6px 8px; white-space:nowrap}
+  .standtbl th:first-child{text-align:left; padding-left:12px; padding-right:10px;
+                           font-size:10.5px; letter-spacing:.1em}
   .standtbl td{padding:7px 8px; text-align:right; font-variant-numeric:tabular-nums; border-top:1px solid var(--line-soft)}
-  .standtbl td:first-child{text-align:left; padding-left:12px}
+  .standtbl td:first-child{text-align:left; padding-left:12px; padding-right:10px}
   .standtbl tbody tr:first-child td{border-top:none}
-  .standtbl .tm{display:flex; align-items:center; gap:7px; min-width:0}
+  .standtbl .tm{display:flex; align-items:center; gap:7px; min-width:0; width:100%}
   .standtbl .tm span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  /* A flex item will not shrink below its content unless it is told it may, so
+     without this the name kept its full width, the button overflowed the cell,
+     and the cell clipped it -- a hard cut with no ellipsis, which reads as a
+     rendering fault rather than as a name that did not fit. */
+  .standtbl .tm span:last-child{flex:1 1 auto; min-width:0; text-align:left}
   .standtbl .pos{font-family:"Archivo",sans-serif; font-size:11px; font-weight:700; color:var(--muted); min-width:16px; flex:none; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums}
   .standtbl .pts{font-family:"Archivo",sans-serif; font-weight:700}
   .standtbl tr.isfav td{background:var(--fav-bg)}
@@ -1459,13 +1475,13 @@
       }).join("") + '</div></div>';
     var rows = rankRows();
     var body = rows.length ? '<div class="card"><div class="standtbl"><table><thead><tr>' +
-      '<th>School</th>' + (S.rankYear === "all" ? '' : '<th>Lvl</th>') + '<th class="rec">W-L-T</th><th class="w">' + (sortKey === "p" ? "Win%" : "Rating") + '</th>' +
+      '<th>School</th>' + (S.rankYear === "all" ? '' : '<th class="lv">Lvl</th>') + '<th class="rec">W-L-T</th><th class="w">' + (sortKey === "p" ? "Win%" : "Rating") + '</th>' +
       (S.rankYear === "all" ? '<th>Yrs</th>' : '') + '<th>Ttl</th></tr></thead><tbody>' +
       rows.slice(0, 150).map(function(r, i){
         var pin = S.favs.has(r.key);
         return '<tr class="' + (pin || S.favs.has(r.key) ? "isfav" : "") + '"><td><button class="tm" data-hteam="' + esc(r.key) + '">' +
           '<span class="pos">' + (i+1) + '</span><span>' + esc(r.name) + '</span></button></td>' +
-          (S.rankYear === "all" ? '' : '<td>' + esc(r.cls) + '</td>') + '<td class="rec">' + r.w + '-' + r.l + '-' + r.t + '</td>' +
+          (S.rankYear === "all" ? '' : '<td class="lv">' + esc(r.cls) + '</td>') + '<td class="rec">' + r.w + '-' + r.l + '-' + r.t + '</td>' +
           '<td class="pts w">' + pct3(sortKey === "p" ? r.p : r.r) + '</td>' +
           (S.rankYear === "all" ? '<td>' + r.n + '</td>' : '') +
           '<td>' + (r.titles || "") + '</td></tr>';
