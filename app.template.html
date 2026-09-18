@@ -32,6 +32,7 @@
     --shadow:0 1px 2px rgba(20,28,43,.06), 0 6px 18px rgba(20,28,43,.06);
     --sel-bg:#293955; --sel-fg:#FFFFFF;
     --fav-bg:rgba(240,116,47,.10); --fav-line:#F0742F;
+    --shirt:#36435A; --shirt-num:#FFFFFF;
     --radius:14px; --nav-h:62px; color-scheme:light;
   }
   @media (prefers-color-scheme: dark){
@@ -43,6 +44,7 @@
       --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 22px rgba(0,0,0,.35);
       --sel-bg:#FFFFFF; --sel-fg:#0B1320;
       --fav-bg:rgba(250,138,78,.16); --fav-line:#FA8A4E;
+      --shirt:#E9EEF7; --shirt-num:#16223A;
       color-scheme:dark;
     }
   }
@@ -52,6 +54,7 @@
     --text:#E9EEF7; --text-2:#C2CCDE; --muted:#8494AE;
     --win:#3FBE92; --loss:#E58363; --tie:#D6AE4E; --chip:#1B2840;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 22px rgba(0,0,0,.35);
+    --shirt:#E9EEF7; --shirt-num:#16223A;
     color-scheme:dark;
   }
   *{box-sizing:border-box}
@@ -362,21 +365,26 @@
   /* ---------- box score ---------- */
   .boxwrap{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
   .boxhead{padding:11px 13px 7px; display:flex; align-items:baseline; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line-soft)}
-  .boxhead h3{font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--text-2)}
+  .boxhead h3{font-size:13px; font-weight:700; letter-spacing:.04em;
+              text-transform:uppercase; color:var(--text-2);
+              display:flex; align-items:center; gap:5px}
   .boxhead .sub{font-size:12px; color:var(--muted)}
   /* Jersey number. PSAL records one for about three quarters of players, so
      this has to look deliberate when it is there and leave no hole when it is
      not -- hence a fixed-width slot that collapses when empty. */
   /* A number on a shirt reads as a squad number in a way a coloured chip does
-     not. White with a dark number in both themes, because that is what a
-     jersey looks like -- it is an object in the picture, not a UI surface. */
+     not. Solid silhouette, no outline: the shirt takes the page's ink colour
+     and the number is knocked out of it, so it flips with the theme and never
+     needs a stroke to hold its edge. The one in the player-page header always
+     runs white, because it sits on navy in both themes. */
   .jersey{display:inline-block; line-height:0; flex:none}
   .jersey svg{display:block; width:30px; height:30px}
-  .jersey path{fill:#fff; stroke:#33405A; stroke-width:1.15;
-               stroke-linejoin:round; stroke-linecap:round}
-  .jersey text{fill:#33405A; font-family:"Archivo",system-ui,sans-serif;
+  .jersey path{fill:var(--shirt)}
+  .jersey text{fill:var(--shirt-num); font-family:"Archivo",system-ui,sans-serif;
                font-weight:700}
   .jersey.big svg{width:44px; height:44px}
+  .jersey.big path{fill:#FFFFFF}
+  .jersey.big text{fill:#293955}
   .jersey.sm svg{width:25px; height:25px}
   /* the name line becomes a row so the shirt sits on the text's centre */
   .presult .nm{display:flex; align-items:center; gap:8px}
@@ -387,7 +395,6 @@
   .prow .pn{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis;
             white-space:nowrap; display:flex; align-items:center; gap:7px}
   .prow .pn > button{overflow:hidden; text-overflow:ellipsis}
-  .boxhead h3 .jersey{vertical-align:-6px; margin-left:3px}
   .prow .pv{font-family:"Archivo",sans-serif; font-weight:700; font-variant-numeric:tabular-nums; color:var(--text-2); font-size:13px; white-space:nowrap}
   .prow .pv em{font-style:normal; color:var(--muted); font-weight:600; font-size:11.5px; letter-spacing:.04em}
   .halftbl th, .halftbl td{padding:6px 8px; text-align:center; font-variant-numeric:tabular-nums}
@@ -1953,7 +1960,10 @@
   // cannot be drawn with it. Each row leaves a slot instead, and paintNumbers
   // fills them in when the season's roster and profile files land.
   function numSlot(code, name){
-    return '<span class="jnslot" data-jn="' + esc(code + "\u0001" + name) + '"></span>';
+    // the empty shirt is drawn straight away so the row does not shift when
+    // the roster arrives and the number drops in
+    return '<span class="jnslot" data-jn="' + esc(code + "\u0001" + name) + '">' +
+      jersey("", false, true) + '</span>';
   }
   function paintNumbers(sid, gk){
     var root = el("gsheet-body");
@@ -1989,21 +1999,38 @@
   // thing that renders one way in a test and another on someone's phone.
   var JERSEY_PATH =
     "M8.8 3 L3.6 4.9 C2.8 5.2 2.4 6 2.6 6.8 L3.6 10.8 C3.8 11.5 4.5 11.9 5.2 11.8 " +
-    "L6.4 11.6 L6.4 20.6 C6.4 21.2 6.9 21.6 7.5 21.6 L16.5 21.6 " +
-    "C17.1 21.6 17.6 21.2 17.6 20.6 L17.6 11.6 L18.8 11.8 " +
+    "L6.4 11.4 L6.4 21.4 C6.4 22 6.9 22.4 7.5 22.4 L16.5 22.4 " +
+    "C17.1 22.4 17.6 22 17.6 21.4 L17.6 11.4 L18.8 11.8 " +
     "C19.5 11.9 20.2 11.5 20.4 10.8 L21.4 6.8 C21.6 6 21.2 5.2 20.4 4.9 L15.2 3 " +
     "C14.8 4.8 13.5 6 12 6 C10.5 6 9.2 4.8 8.8 3 Z";
+  // A shirt with no number is still a shirt: PSAL has no number for about a
+  // quarter of players, and an empty placeholder keeps the rows aligned and
+  // says "not recorded" rather than leaving a hole.
+  //
+  // Two digits are forced to a fixed width rather than trusted to fit, because
+  // the fallback font is not the one this was measured against and "1" and "8"
+  // are not the same width in any of them. The baseline is computed from the
+  // font size: dominant-baseline renders one way in a test and another on a
+  // phone.
   function jersey(num, big, small){
-    var n = String(num == null ? "" : num).trim();
-    if(!n) return "";
-    var size = n.length > 2 ? 6 : n.length > 1 ? 7.8 : 9.2;
-    var base = 14.6 + 0.36 * size;        // cap-height centre of the chest
+    var n = String(num == null ? "" : num).trim().slice(0, 3);
+    var body = "";
+    if(n){
+      var size = n.length > 2 ? 6.6 : n.length > 1 ? 8.4 : 9.6;
+      var fit = n.length > 1
+        ? ' textLength="' + (n.length > 2 ? 9.6 : 8.8) + '" lengthAdjust="spacingAndGlyphs"'
+        : "";
+      body = '<text x="12" y="' + (15.1 + 0.355 * size).toFixed(2) + '" ' +
+        'text-anchor="middle" style="font-size:' + size + 'px"' + fit + '>' +
+        esc(n) + '</text>';
+    }
     return '<span class="jersey' + (big ? " big" : small ? " sm" : "") + '" role="img" ' +
-      'aria-label="Shirt number ' + esc(n) + '">' +
+      'aria-label="' + (n ? "Shirt number " + esc(n) : "No shirt number on file") + '">' +
       '<svg viewBox="0 0 24 24"><path d="' + JERSEY_PATH + '"></path>' +
-      '<text x="12" y="' + base.toFixed(1) + '" text-anchor="middle" ' +
-      'style="font-size:' + size + 'px">' + esc(n) + '</text></svg></span>';
+      body + '</svg></span>';
   }
+
+  window.__jersey = jersey;   // for visual checks in a test harness
 
   function titleCase(s){
     s = String(s || "");
@@ -2096,8 +2123,8 @@
     el("psheet-name").textContent = titleCase(name);
     var badge = el("psheet-num");
     if(badge){
-      badge.innerHTML = newest && newest.u ? jersey(newest.u, true) : "";
-      badge.hidden = !(newest && newest.u);
+      badge.innerHTML = jersey(newest && newest.u, true);
+      badge.hidden = false;
     }
     var years = blocks.map(function(bl){ return (seasonMeta(String(bl[0])) || {}).label || bl[0]; });
     var span = years.length === 1 ? years[0]
@@ -2138,7 +2165,7 @@
       if(m.p) who.push(m.p);
       html += '<div class="boxwrap"><div class="boxhead"><h3>' +
         esc((seasonMeta(String(y)) || {}).label || y) +
-        (m.u ? " " + jersey(m.u, false, true) : "") + '</h3>' +
+        " " + jersey(m.u, false, true) + '</h3>' +
         '<span class="sub">' + esc(who.concat(bits).join(" \u00b7 ")) + '</span></div>' +
         '<table class="glog"><thead><tr><th>Date</th><th style="text-align:left">Opponent</th>' +
         '<th>Result</th>' + (keeper ? '<th>SV</th><th>GA</th>' : '<th>G</th><th>A</th><th>SH</th>') +
@@ -2250,7 +2277,7 @@
           if(x[7]) bits.push('<em>GA</em> ' + x[7]);
           var quiet = !bits.length;
           var rec = (u && u[String(x[2])]) || ["", "", ""];
-          var jn = rec[0] ? jersey(rec[0], false, true) + " " : "";
+          var jn = jersey(rec[0], false, true) + " ";
           return '<div class="prow' + (quiet ? " dnp" : "") + '">' +
             '<span class="pn">' + jn + plink(sp, code, name) +
             (rec[2] ? ' <span class="pos">' + esc(rec[2]) + '</span>' : "") + '</span>' +
