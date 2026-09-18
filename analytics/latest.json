@@ -1,8 +1,100 @@
 {
- "generated": "2026-09-18T02:58:06Z",
+ "generated": "2026-09-18T03:01:26Z",
  "days": 30,
- "visits": 0,
- "pageviews": 0,
- "byDay": [],
- "topPaths": []
+ "visits": 350,
+ "pageviews": 1140,
+ "byDay": [
+  {
+   "date": "2026-09-17",
+   "visits": 310,
+   "views": 920
+  },
+  {
+   "date": "2026-09-18",
+   "visits": 40,
+   "views": 220
+  }
+ ],
+ "topPaths": [
+  {
+   "path": "/",
+   "views": 370
+  },
+  {
+   "path": "/game/502587/boys",
+   "views": 70
+  },
+  {
+   "path": "/school/graphics/boys",
+   "views": 40
+  },
+  {
+   "path": "/teams/boys",
+   "views": 30
+  },
+  {
+   "path": "/standings/boys",
+   "views": 30
+  },
+  {
+   "path": "/scores/2026-09-16/boys",
+   "views": 30
+  },
+  {
+   "path": "/players/boys",
+   "views": 30
+  },
+  {
+   "path": "/player/zohran-mamdani-bronx-science/boys",
+   "views": 20
+  },
+  {
+   "path": "/scores/2026-09-22/boys",
+   "views": 20
+  },
+  {
+   "path": "/history",
+   "views": 20
+  },
+  {
+   "path": "/school/lehman/boys",
+   "views": 20
+  },
+  {
+   "path": "/game/502547/boys",
+   "views": 20
+  },
+  {
+   "path": "/school/beacon/2026/boys",
+   "views": 20
+  },
+  {
+   "path": "/scores/2026-09-12/boys",
+   "views": 20
+  },
+  {
+   "path": "/school/brooklyn-tech/boys",
+   "views": 20
+  },
+  {
+   "path": "/player/jasper-philpot-murrow/boys",
+   "views": 20
+  },
+  {
+   "path": "/school/beacon/boys",
+   "views": 20
+  },
+  {
+   "path": "/school/beacon/2025/boys",
+   "views": 20
+  },
+  {
+   "path": "/school/murrow/boys",
+   "views": 20
+  },
+  {
+   "path": "/school/martin-l-king/boys",
+   "views": 10
+  }
+ ]
 }
