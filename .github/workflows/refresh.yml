@@ -9,11 +9,13 @@ on:
       season:
         description: "PSAL season (2027 = fall 2026)"
         default: "2027"
-  schedule:
-    # every hour from 4pm to 11pm New York time (games finish late afternoon)
-    - cron: "0 20-23,0-3 * * *"
-    - cron: "0 12 * * *"
 
+  schedule:
+    # every 20 minutes, 4pm–11pm New York. Deliberately off the hour: GitHub
+    # drops scheduled runs under load, and :00 is when everyone else asks.
+    - cron: "13,33,53 20-23,0-3 * * *"
+    - cron: "13 12 * * *"
+    
 concurrency:
   group: psal-refresh
   cancel-in-progress: false
