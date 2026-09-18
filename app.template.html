@@ -1471,9 +1471,24 @@
       out.push({key:k, name:(e.sn || e.n), w:w, l:l, t:t, n:n, cls:topCls,
                 p:pct(w, l, t), r:rsum / gsum, titles:titles, finals:finals});
     });
-    var maxG = 0;
-    out.forEach(function(r){ maxG = Math.max(maxG, r.w + r.l + r.t); });
-    var min = S.rankYear === "all" ? 40 : Math.max(1, Math.min(6, Math.floor(maxG / 2)));
+    /* How many games a team needs before it is ranked. Half of what a typical
+       team has played, capped at six -- and typical means the median, not the
+       leader.
+
+       The leader is the wrong yardstick because PSAL books a withdrawn
+       school's whole season as forfeit losses on day one. Two girls teams sat
+       at 0-10 in the first week of Fall 2026 while everyone actually playing
+       had two to four games; the bar came out at five and the only two teams
+       that cleared it were the two winless ones. The boys table was quietly
+       dropping 58 of 170 for the same reason. The median cannot be dragged
+       around by a handful of outliers, and on every completed season it picks
+       exactly the same teams the old rule did. */
+    var played = out.map(function(r){ return r.w + r.l + r.t; }).sort(function(a, b){ return a - b; });
+    var mid = played.length
+      ? (played.length % 2 ? played[(played.length - 1) / 2]
+                           : (played[played.length / 2 - 1] + played[played.length / 2]) / 2)
+      : 0;
+    var min = S.rankYear === "all" ? 40 : Math.max(1, Math.min(6, Math.floor(mid / 2)));
     out = out.filter(function(r){ return (r.w + r.l + r.t) >= min; });
     var key = S.rankSort || "r";
     out.sort(function(a, b){
@@ -1527,7 +1542,7 @@
       '<p><b>Playoff score</b>: missed the playoffs 0 \u00b7 qualified .20 \u00b7 round of 16 .30 \u00b7 quarterfinals .45 \u00b7 semifinals .60 \u00b7 lost the final .80 \u00b7 <b>won the title 1.00</b>.</p>' +
       '<p><b>Level weight</b>: top flight &times;1.00, second tier &times;0.88, third &times;0.76, anything below &times;0.68. PSAL renamed its ladder in 2025 \u2014 1A was the <i>top</i> division through 2024 and is the <i>bottom</i> one now \u2014 so the app reads each season\'s own ladder rather than the label. That is also why the all-time table leaves the level column out.</p>' +
       '<p><b>All-time</b> is the average of a school\'s season ratings, weighted by games played, across every season in the archive. Titles counts championships won.</p>' +
-      '<p><b>Who appears</b>: 40 games minimum all-time; for a single season, half the leader\'s games played, capped at six.</p>' +
+      '<p><b>Who appears</b>: 40 games minimum all-time; for a single season, half of what a typical team has played \u2014 the median, capped at six. Not the leader\'s total, because PSAL books a withdrawn school\'s whole season as forfeit losses on day one, and one of those would otherwise set the bar for everybody.</p>' +
       '<p><b>Forfeits</b> count exactly as PSAL records them \u2014 a forfeit win is a win.' +
       (inprog ? ' This season is still in progress, and PSAL books forfeited fixtures as losses in advance, so a school that withdrew shows a full slate of losses on day one.' : '') + '</p>' +
       '<p><b>Win %</b> = (wins + half of ties) &divide; games played. It ignores level and playoffs entirely \u2014 useful as a sanity check against the rating.</p>' +
