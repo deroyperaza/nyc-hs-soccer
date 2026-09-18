@@ -386,7 +386,7 @@
   /* Left inline rather than flexed: a flex container turns the heading's own
      text into an anonymous item that shrinks and wraps, which broke
      "Leaders In Our" across two lines the moment a chip sat beside it. */
-  .boxhead h3 .numchip{vertical-align:-5px; margin-left:4px}
+  .boxhead h3 .numchip{vertical-align:-3px; margin-left:4px}
   .boxhead .sub{font-size:12px; color:var(--muted)}
   /* Jersey number. PSAL records one for about three quarters of players, so
      this has to look deliberate when it is there and leave no hole when it is
@@ -411,10 +411,16 @@
            border-radius:5px; background:var(--shirt); color:var(--shirt-num);
            font-family:"Archivo",sans-serif; font-weight:700; font-size:12px;
            line-height:1; font-variant-numeric:tabular-nums}
-  /* An empty slot rather than a gap: PSAL has no number for about a quarter of
-     players and the rows still have to line up. */
-  .numchip.none{background:var(--line-soft)}
-  .grchip{display:inline-block; flex:none; padding:1.5px 4px; border-radius:4px;
+  /* An empty chip rather than a gap: PSAL has no number for about a quarter of
+     players and the rows still have to line up. It keeps the fill a numbered
+     one has -- faded, it read as a different kind of thing on a light card and
+     as nothing at all on a dark one. */
+  /* middle rather than a nudge in pixels: it is defined against the parent's
+     x-height, so the chip stays centred on the name whatever size that name is
+     set at. Measured against the real cap-height centre it lands within half a
+     pixel in the player-page header, where the name is 20px and the chip 9.5. */
+  .grchip{display:inline-block; flex:none; vertical-align:middle;
+          padding:1.5px 4px; border-radius:4px;
           background:var(--chip); color:var(--muted);
           font-family:"Archivo",sans-serif; font-weight:700; font-size:9.5px;
           line-height:1.15; letter-spacing:.06em}
@@ -1751,7 +1757,7 @@
           if(r.a) bits.push('<em>A</em> ' + r.a);
           if(r.sh) bits.push('<em>SH</em> ' + r.sh);
           return '<div class="prow"><span class="pn">' + numSlot(code, r.n) +
-            plink(sp, code, r.n) + grSlot(code, r.n) + '</span>' +
+            plink(sp, code, r.n) + grSlot(code, r.n) + posSlot(code, r.n) + '</span>' +
             '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
         }).join("") + '</div>' +
         '<button class="rosterbtn" data-sroster="' + esc(sp + ":" + code) + '">' +
@@ -1954,7 +1960,8 @@
             if(r.a) bits.push('<em>A</em> ' + r.a);
             if(r.sh) bits.push('<em>SH</em> ' + r.sh);
             return '<div class="prow"><span class="pn">' + numSlot(code, r.name) +
-              plink(g[0], code, r.name) + grSlot(code, r.name) + '</span>' +
+              plink(g[0], code, r.name) + grSlot(code, r.name) +
+              posSlot(code, r.name) + '</span>' +
               '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
           }).join("") + '</div>';
         }
@@ -1965,14 +1972,15 @@
             if(r.ga) bits.push('<em>GA</em> ' + r.ga);
             return '<div class="prow"><span class="pn">' + numSlot(code, r.name) +
               plink(g[0], code, r.name) + grSlot(code, r.name) +
-              ' <span style="color:var(--muted);font-size:12px">GK</span></span>' +
+              posSlot(code, r.name, "GK") + '</span>' +
               '<span class="pv">' + bits.join(" &nbsp; ") + '</span></div>';
           }).join("") + '</div>';
         }
         if(shooters.length){
           html += '<div class="plist" style="border-top:1px solid var(--line-soft)">' + shooters.map(function(r){
             return '<div class="prow"><span class="pn">' + numSlot(code, r.name) +
-              plink(g[0], code, r.name) + grSlot(code, r.name) + '</span>' +
+              plink(g[0], code, r.name) + grSlot(code, r.name) +
+              posSlot(code, r.name) + '</span>' +
               '<span class="pv"><em>SH</em> ' + r.sh + '</span></div>';
           }).join("") + '</div>';
         }
@@ -2015,6 +2023,13 @@
   }
   function grSlot(code, name){
     return '<span class="grslot" data-gr="' + esc(code + "\u0001" + name) + '"></span>';
+  }
+  // The keepers list already knows what it is looking at, so it passes GK as a
+  // fallback: PSAL leaves the position blank for two players in three, and a
+  // goalkeeper losing his label to a missing field would be a step backwards.
+  function posSlot(code, name, fb){
+    return '<span class="posslot" data-ps="' + esc(code + "\u0001" + name) + '">' +
+      (fb ? ' <span class="pos">' + esc(fb) + '</span>' : "") + '</span>';
   }
   function paintNumbers(sid, gk){
     var root = el("gsheet-body");
@@ -2073,6 +2088,11 @@
       var rec = u[String(byName[n.getAttribute("data-gr")])];
       if(rec && rec[1]) n.innerHTML = gradeChip(rec[1]);
       n.removeAttribute("data-gr");
+    });
+    Array.prototype.forEach.call(root.querySelectorAll(".posslot[data-ps]"), function(n){
+      var rec = u[String(byName[n.getAttribute("data-ps")])];
+      if(rec && rec[2]) n.innerHTML = ' <span class="pos">' + esc(posShort(rec[2])) + '</span>';
+      n.removeAttribute("data-ps");
     });
   }
 
