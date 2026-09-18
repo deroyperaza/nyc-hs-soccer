@@ -2507,9 +2507,14 @@
   }
   /* A follow saved before jersey numbers existed has a name but no number, and
      the career shard is a 90KB fetch to answer a two-character question. The
-     name index carries the number now and is a couple of KB, so ask that. An
-     empty answer is still an answer -- it is written back so the lookup does
-     not repeat on every render. */
+     name index carries the number now and is a couple of KB, so ask that.
+
+     Only a hit is written back. Writing the miss too looked like a sensible
+     way to stop the lookup repeating, and it cached "no number" permanently
+     for anyone who opened the page during the eleven minutes between the
+     shirts shipping and the index being rebuilt with numbers in it. Nothing
+     would ever have asked again. hydrateFavs runs at boot, not per render, so
+     there was never a repeat to prevent. */
   function uniFromIndex(k){
     var parts = k.split("/"), sp = +parts[0], slug = parts[1] || "";
     var first = slug.split("-")[0];
@@ -2517,12 +2522,14 @@
     needNames(first, function(rows){
       var e = S.pfavs[k];
       if(!e) return;
-      e[5] = "";
       for(var i = 0; i < rows.length; i++){
-        if(rows[i][1] === slug && rows[i][2] === sp){ e[5] = rows[i][6] || ""; break; }
+        if(rows[i][1] === slug && rows[i][2] === sp && rows[i][6]){
+          e[5] = rows[i][6];
+          savePFavs();
+          if(S.view === "players") renderPlayers();
+          return;
+        }
       }
-      savePFavs();
-      if(e[5] && S.view === "players") renderPlayers();
     });
   }
   function hydrateFavs(){
@@ -2587,6 +2594,10 @@
     try{
       var raw = JSON.parse(localStorage.getItem("psal.pfavs") || "[]");
       raw.forEach(function(e){
+        // An empty string here is a miss an older build wrote down. Drop it so
+        // the number gets looked up again; a real absence costs one small
+        // index fetch a session and shows an empty shirt either way.
+        if(e && e[5] === "") e.length = 5;
         if(e && e[0] && !S.pfavs[e[0]]){ S.pfavs[e[0]] = e; S.pfavOrder.push(e[0]); }
       });
     }catch(e){}
