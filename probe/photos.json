@@ -1,85 +1,162 @@
 {
  "seasons": {
-  "2027": {
+  "2010": {
+   "sampled": 400,
+   "with_photo": 2,
+   "pct": 0.5,
+   "roster_size": 3857,
+   "projected": 19,
+   "athletic": 4,
+   "colplan": 4,
+   "scholastic": 4,
+   "community": 2,
+   "coachquote": 8,
+   "cfeet": 22,
+   "cweight": 18
+  },
+  "2008": {
+   "sampled": 400,
+   "with_photo": 4,
+   "pct": 1.0,
+   "roster_size": 4186,
+   "projected": 42,
+   "athletic": 10,
+   "colplan": 10,
+   "scholastic": 10,
+   "community": 4,
+   "coachquote": 20,
+   "cfeet": 66,
+   "cweight": 59
+  },
+  "2006": {
    "sampled": 400,
    "with_photo": 0,
    "pct": 0.0,
-   "roster_size": 3697,
+   "roster_size": 3772,
    "projected": 0,
-   "athletic": 0,
-   "colplan": 0,
-   "scholastic": 0,
-   "community": 0,
-   "coachquote": 0,
-   "cfeet": 0,
-   "cweight": 0
+   "athletic": 15,
+   "colplan": 17,
+   "scholastic": 13,
+   "community": 9,
+   "coachquote": 19,
+   "cfeet": 89,
+   "cweight": 90
   },
-  "2026": {
+  "2004": {
    "sampled": 400,
-   "with_photo": 0,
-   "pct": 0.0,
-   "roster_size": 6477,
-   "projected": 0,
-   "athletic": 0,
-   "colplan": 0,
-   "scholastic": 0,
-   "community": 0,
-   "coachquote": 0,
-   "cfeet": 2,
-   "cweight": 1
-  },
-  "2019": {
-   "sampled": 400,
-   "with_photo": 0,
-   "pct": 0.0,
-   "roster_size": 5814,
-   "projected": 0,
-   "athletic": 1,
-   "colplan": 0,
-   "scholastic": 0,
-   "community": 0,
-   "coachquote": 0,
-   "cfeet": 5,
-   "cweight": 4
-  },
-  "2012": {
-   "sampled": 400,
-   "with_photo": 0,
-   "pct": 0.0,
-   "roster_size": 4142,
-   "projected": 0,
-   "athletic": 3,
-   "colplan": 0,
-   "scholastic": 1,
-   "community": 0,
-   "coachquote": 0,
-   "cfeet": 13,
-   "cweight": 11
-  },
-  "2005": {
-   "sampled": 400,
-   "with_photo": 1,
-   "pct": 0.2,
-   "roster_size": 3640,
-   "projected": 9,
-   "athletic": 40,
+   "with_photo": 3,
+   "pct": 0.8,
+   "roster_size": 3319,
+   "projected": 25,
+   "athletic": 42,
    "colplan": 37,
-   "scholastic": 34,
-   "community": 23,
-   "coachquote": 49,
-   "cfeet": 99,
-   "cweight": 94
+   "scholastic": 35,
+   "community": 21,
+   "coachquote": 46,
+   "cfeet": 119,
+   "cweight": 103
+  },
+  "2002": {
+   "sampled": 400,
+   "with_photo": 4,
+   "pct": 1.0,
+   "roster_size": 2842,
+   "projected": 28,
+   "athletic": 87,
+   "colplan": 84,
+   "scholastic": 65,
+   "community": 51,
+   "coachquote": 84,
+   "cfeet": 170,
+   "cweight": 154
   }
  },
  "images": [
   {
-   "id": "3505",
+   "id": "5782",
    "status": 200,
-   "bytes": 23534,
+   "bytes": 20784,
+   "type": "image/gif",
+   "magic": "ffd8ffe0"
+  },
+  {
+   "id": "5781",
+   "status": 200,
+   "bytes": 22303,
+   "type": "image/gif",
+   "magic": "ffd8ffe0"
+  },
+  {
+   "id": "4355",
+   "status": 200,
+   "bytes": 8618,
+   "type": "image/gif",
+   "magic": "ffd8ffe0"
+  },
+  {
+   "id": "4594",
+   "status": 200,
+   "bytes": 44237,
+   "type": "image/gif",
+   "magic": "ffd8ffe0"
+  },
+  {
+   "id": "4608",
+   "status": 200,
+   "bytes": 50576,
+   "type": "image/gif",
+   "magic": "ffd8ffe0"
+  },
+  {
+   "id": "4336",
+   "status": 200,
+   "bytes": 4008,
+   "type": "image/gif",
+   "magic": "ffd8ffe0"
+  },
+  {
+   "id": "3255",
+   "status": 200,
+   "bytes": 18755,
+   "type": "image/gif",
+   "magic": "ffd8fffe"
+  },
+  {
+   "id": "3257",
+   "status": 200,
+   "bytes": 9081,
+   "type": "image/gif",
+   "magic": "ffd8ffe1"
+  },
+  {
+   "id": "3252",
+   "status": 200,
+   "bytes": 18628,
+   "type": "image/gif",
+   "magic": "ffd8fffe"
+  },
+  {
+   "id": "2795",
+   "status": 200,
+   "bytes": 23672,
+   "type": "image/gif",
+   "magic": "ffd8ffe0"
+  },
+  {
+   "id": "2801",
+   "status": 200,
+   "bytes": 9835,
+   "type": "image/gif",
+   "magic": "ffd8ffe0"
+  },
+  {
+   "id": "2797",
+   "status": 200,
+   "bytes": 24086,
    "type": "image/gif",
    "magic": "ffd8ffe0"
   }
  ],
- "avg_bytes": 23534,
- "projected_mb_for_sampled_seasons": 0.2
+ "avg_bytes": 21215,
+ "projected_mb_for_sampled_seasons": 2.3
 }
