@@ -5,15 +5,81 @@
    "with_photo": 0,
    "pct": 0.0,
    "roster_size": 3697,
-   "projected": 0
+   "projected": 0,
+   "athletic": 0,
+   "colplan": 0,
+   "scholastic": 0,
+   "community": 0,
+   "coachquote": 0,
+   "cfeet": 0,
+   "cweight": 0
   },
   "2026": {
    "sampled": 400,
    "with_photo": 0,
    "pct": 0.0,
    "roster_size": 6477,
-   "projected": 0
+   "projected": 0,
+   "athletic": 0,
+   "colplan": 0,
+   "scholastic": 0,
+   "community": 0,
+   "coachquote": 0,
+   "cfeet": 2,
+   "cweight": 1
+  },
+  "2019": {
+   "sampled": 400,
+   "with_photo": 0,
+   "pct": 0.0,
+   "roster_size": 5814,
+   "projected": 0,
+   "athletic": 1,
+   "colplan": 0,
+   "scholastic": 0,
+   "community": 0,
+   "coachquote": 0,
+   "cfeet": 5,
+   "cweight": 4
+  },
+  "2012": {
+   "sampled": 400,
+   "with_photo": 0,
+   "pct": 0.0,
+   "roster_size": 4142,
+   "projected": 0,
+   "athletic": 3,
+   "colplan": 0,
+   "scholastic": 1,
+   "community": 0,
+   "coachquote": 0,
+   "cfeet": 13,
+   "cweight": 11
+  },
+  "2005": {
+   "sampled": 400,
+   "with_photo": 1,
+   "pct": 0.2,
+   "roster_size": 3640,
+   "projected": 9,
+   "athletic": 40,
+   "colplan": 37,
+   "scholastic": 34,
+   "community": 23,
+   "coachquote": 49,
+   "cfeet": 99,
+   "cweight": 94
   }
  },
- "images": []
+ "images": [
+  {
+   "id": "3505",
+   "status": 200,
+   "bytes": 23534,
+   "type": "image/gif",
+   "magic": "ffd8ffe0"
+  }
+ ],
+ "avg_bytes": 23534,
+ "projected_mb_for_sampled_seasons": 0.2
 }
