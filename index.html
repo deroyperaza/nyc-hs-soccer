@@ -975,18 +975,20 @@
     try{ raw = localStorage.getItem("psal.favs"); }catch(e){}
     if(raw){
       try{ JSON.parse(raw).forEach(function(k){ S.favs.add(k); }); }catch(e){}
-    }else{
-      /* Nothing stored here yet. iOS gives every home-screen tile its own
-         private storage and wipes it when the tile is removed, so re-adding a
-         tile used to lose the followed teams. The URL carries them as a
-         fallback, which means a tile added while following a team restores it. */
-      try{
-        var m = location.search.match(/[?&]f=([^&]*)/);
-        if(m){
-          decodeURIComponent(m[1]).split(",").forEach(function(k){ if(k) S.favs.add(k); });
-        }
-      }catch(e){}
     }
+    /* The URL carries followed teams as ?f=, and it is merged in every time it
+       is there rather than only into an empty browser. Two things make the
+       empty test useless: the app writes a list on first load, so "nothing
+       stored" is true exactly once, and Safari drops a site's storage after a
+       week away -- which means the copy in a link someone kept is often the
+       only copy left, and it arrives in a browser that has been here before.
+       Adding a team back costs a tap to undo; losing the lot costs the list. */
+    try{
+      var m = location.search.match(/[?&]f=([^&]*)/);
+      if(m){
+        decodeURIComponent(m[1]).split(",").forEach(function(k){ if(k) S.favs.add(k); });
+      }
+    }catch(e){}
     syncFavUrl();
     saveFavs();
   }
@@ -1078,8 +1080,17 @@
       var t = S.season.teams[S.openTeamKey];
       if(t) return t.name + " — " + base;
     }
-    var names = {standings:"Standings", teams:"Teams", playoffs:"Playoffs", history:"History"};
-    return (names[S.view] ? names[S.view] + " — " : "") + base;
+    var names = {standings:"Standings", teams:"Teams", playoffs:"Playoffs",
+                 players:"Players", history:"History"};
+    var name = names[S.view];
+    // the landing page is today's scores and keeps the bare name; a dated one
+    // is a page you were sent on purpose, so it says so
+    if(S.view === "scores" && S.date && S.date !== S.defaultDate) name = "Scores";
+    // History is three pages behind one tab; the title says which one
+    if(S.view === "history"){
+      name = {champs:"Champions", rank:"Rankings", leaders:"Leaders"}[S.hsub] || "History";
+    }
+    return (name ? name + " — " : "") + base;
   }
 
   var urlTimer = null;

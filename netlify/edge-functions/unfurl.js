@@ -105,12 +105,96 @@ async function schoolCard(origin, slug) {
            desc: "Schedule, results and rosters from the PSAL league feed." };
 }
 
+const MON = ["Jan","Feb","Mar","Apr","May","Jun",
+             "Jul","Aug","Sep","Oct","Nov","Dec"];
+function longDate(n) {
+  n = String(n || "");
+  if (n.length !== 8) return "";
+  return MON[+n.slice(4, 6) - 1] + " " + (+n.slice(6)) + ", " + n.slice(0, 4);
+}
+
+/* A box score is the most shared link on the site -- it is what you send
+   after a game -- and it was the one that unfurled as the bare site name. */
+async function gameCard(origin, id, seasonId, sp) {
+  const r = await fetch(origin + "/data/s" + seasonId + ".json");
+  if (!r.ok) return null;
+  const season = await r.json();
+  let g = null;
+  for (const row of (season.G || [])) {
+    if (String(row[1]) === String(id)) { g = row; break; }
+  }
+  if (!g) return null;
+
+  const short = {};
+  for (const t of (season.T || [])) {
+    if (t[0] === g[0]) short[t[1]] = t[4] || t[2];
+  }
+  const home = short[g[4]] || String(g[4]);
+  const away = short[g[5]] || String(g[5]);
+  const hs = g[6], as = g[7];
+  const played = hs != null && as != null;
+  const ff = hs === 999 || as === 999;
+
+  const bits = [];
+  const day = longDate(g[2]);
+  if (day) bits.push(day);
+  if (ff) bits.push("Forfeit · " + (hs === 999 ? home : away) + " win");
+  else if (played) bits.push("Final · " + home + " " + hs + ", " + away + " " + as);
+  else if (g[3]) bits.push(String(g[3]).replace(/^0/, ""));
+  bits.push((g[0] === 1 ? "girls" : "boys") + " varsity");
+  return { title: home + " vs " + away + " — " + SITE, desc: bits.join(" · ") };
+}
+
+/* The rest of the app is five tabs and three history pages. They carry no
+   name of their own, so a pasted link showed the site name and nothing else
+   -- true, but it tells you nothing about which page you were sent. */
+const SECTIONS = {
+  scores:    ["Scores", "Results and kickoff times, day by day."],
+  standings: ["Standings", "Every division table, sorted by record."],
+  teams:     ["Teams", "Every PSAL school fielding a soccer team."],
+  playoffs:  ["Playoffs", "The bracket, round by round."],
+  players:   ["Players", "Search 26 seasons of PSAL players."],
+  history:   ["History", "Champions, rankings and season leaders."]
+};
+const HISTORY = {
+  champions: ["Champions", "Every PSAL soccer title, season by season."],
+  rankings:  ["Rankings", "Schools ranked by how they actually played."],
+  leaders:   ["Leaders", "Goals, assists, points, shots and saves."]
+};
+function sectionCard(parts, sp) {
+  let pair = SECTIONS[parts[0]];
+  if (parts[0] === "history" && HISTORY[parts[1]]) pair = HISTORY[parts[1]];
+  if (!pair) return null;
+  const bits = [pair[1]];
+  if (parts[0] === "scores" && /^\d{4}-\d{2}-\d{2}$/.test(parts[1] || "")) {
+    bits.unshift(longDate(parts[1].replace(/-/g, "")));
+  }
+  bits.push((sp === 1 ? "girls" : "boys") + " varsity");
+  return { title: pair[0] + " — " + SITE, desc: bits.join(" · ") };
+}
+
+/* A game link only names its season when it is an archive one, so the
+   current season has to come from the page itself. */
+function defaultSeason(html) {
+  const m = html.match(/<script id="psal-data"[^>]*>([\s\S]*?)<\/script>/);
+  if (!m) return null;
+  try { return JSON.parse(m[1]).meta.defaultSeason; } catch (e) { return null; }
+}
+
 export default async (request, context) => {
   const url = new URL(request.url);
   const parts = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
   const res = await context.next();
   const type = res.headers.get("content-type") || "";
   if (!type.includes("text/html")) return res;
+  // read once: a box score route needs the payload in the page to know which
+  // season "now" is, and the body can only be consumed the one time
+  const html = await res.text();
+  const passthrough = () => {
+    const h = new Headers(res.headers);
+    h.delete("content-length");
+    return new Response(html, { status: res.status, headers: h });
+  };
 
   let card = null;
   try {
@@ -118,12 +202,15 @@ export default async (request, context) => {
     const sp = last === "girls" ? 1 : 0;
     if (parts[0] === "player" && parts[1]) card = await playerCard(url.origin, parts[1], sp);
     else if (parts[0] === "school" && parts[1]) card = await schoolCard(url.origin, parts[1]);
+    else if (parts[0] === "game" && parts[1]) {
+      const sid = /^\d{4}$/.test(parts[2] || "") ? parts[2] : defaultSeason(html);
+      card = sid ? await gameCard(url.origin, parts[1], sid, sp) : null;
+    }
+    else if (SECTIONS[parts[0]]) card = sectionCard(parts, sp);
   } catch (e) {
     card = null;                       // a preview is never worth a broken page
   }
-  if (!card) return res;
-
-  const html = await res.text();
+  if (!card) return passthrough();
   const head =
     "<title>" + esc(card.title) + "</title>" +
     '<meta property="og:title" content="' + esc(card.title) + '">' +

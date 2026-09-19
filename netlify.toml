@@ -33,8 +33,10 @@
   to = "/index.html"
   status = 200
 
-# Link previews: rewrite <title> and add Open Graph tags for the routes that
-# name something specific. Everything else falls through untouched.
+# Link previews: rewrite <title> and add Open Graph tags. Every app route is
+# listed, because a link is pasted into a chat from wherever the person happens
+# to be standing -- a box score after a game as often as a player page. Only the
+# landing page is left out; its own title is already the right one.
 [[edge_functions]]
   function = "unfurl"
   path = "/player/*"
@@ -42,3 +44,31 @@
 [[edge_functions]]
   function = "unfurl"
   path = "/school/*"
+
+[[edge_functions]]
+  function = "unfurl"
+  path = "/game/*"
+
+[[edge_functions]]
+  function = "unfurl"
+  path = "/scores/*"
+
+[[edge_functions]]
+  function = "unfurl"
+  path = "/standings/*"
+
+[[edge_functions]]
+  function = "unfurl"
+  path = "/teams/*"
+
+[[edge_functions]]
+  function = "unfurl"
+  path = "/playoffs/*"
+
+[[edge_functions]]
+  function = "unfurl"
+  path = "/players/*"
+
+[[edge_functions]]
+  function = "unfurl"
+  path = "/history/*"
