@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-19T05:13:45Z",
+ "generated": "2026-09-19T15:55:30Z",
  "days": 30,
- "visits": 560,
- "pageviews": 1950,
+ "visits": 580,
+ "pageviews": 2120,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -16,14 +16,14 @@
   },
   {
    "date": "2026-09-19",
-   "visits": 30,
-   "views": 70
+   "visits": 50,
+   "views": 240
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 610
+   "views": 630
   },
   {
    "path": "/players/boys",
@@ -38,16 +38,16 @@
    "views": 80
   },
   {
+   "path": "/scores/2026-09-20/boys",
+   "views": 70
+  },
+  {
+   "path": "/scores/2026-10-06/boys",
+   "views": 60
+  },
+  {
    "path": "/standings/boys",
    "views": 60
-  },
-  {
-   "path": "/scores/2026-09-20/boys",
-   "views": 60
-  },
-  {
-   "path": "/scores/2026-09-16/boys",
-   "views": 50
   },
   {
    "path": "/scores/2026-09-17/boys",
@@ -55,6 +55,14 @@
   },
   {
    "path": "/school/beacon/boys",
+   "views": 50
+  },
+  {
+   "path": "/scores/2026-09-16/boys",
+   "views": 50
+  },
+  {
+   "path": "/school/murrow/boys",
    "views": 40
   },
   {
@@ -66,8 +74,24 @@
    "views": 40
   },
   {
-   "path": "/school/murrow/boys",
-   "views": 40
+   "path": "/scores/2026-09-18/boys",
+   "views": 30
+  },
+  {
+   "path": "/school/christopher-columbus/boys",
+   "views": 30
+  },
+  {
+   "path": "/player/jasper-philpot-murrow/boys",
+   "views": 30
+  },
+  {
+   "path": "/scores/2026-09-23/boys",
+   "views": 30
+  },
+  {
+   "path": "/game/502547/boys",
+   "views": 30
   },
   {
    "path": "/school/martin-l-king/boys",
@@ -76,30 +100,6 @@
   {
    "path": "/player/zohran-mamdani-bronx-science/boys",
    "views": 30
-  },
-  {
-   "path": "/school/christopher-columbus/boys",
-   "views": 30
-  },
-  {
-   "path": "/scores/2026-09-23/boys",
-   "views": 30
-  },
-  {
-   "path": "/player/jasper-philpot-murrow/boys",
-   "views": 30
-  },
-  {
-   "path": "/game/502547/boys",
-   "views": 20
-  },
-  {
-   "path": "/history/leaders/boys",
-   "views": 20
-  },
-  {
-   "path": "/scores/2026-09-12/boys",
-   "views": 20
   }
  ]
 }
