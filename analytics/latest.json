@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-18T22:35:58Z",
+ "generated": "2026-09-19T05:13:45Z",
  "days": 30,
- "visits": 510,
- "pageviews": 1800,
+ "visits": 560,
+ "pageviews": 1950,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -11,14 +11,23 @@
   },
   {
    "date": "2026-09-18",
-   "visits": 200,
-   "views": 880
+   "visits": 220,
+   "views": 960
+  },
+  {
+   "date": "2026-09-19",
+   "visits": 30,
+   "views": 70
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 580
+   "views": 610
+  },
+  {
+   "path": "/players/boys",
+   "views": 90
   },
   {
    "path": "/teams/boys",
@@ -29,11 +38,15 @@
    "views": 80
   },
   {
-   "path": "/players/boys",
-   "views": 80
+   "path": "/standings/boys",
+   "views": 60
   },
   {
-   "path": "/standings/boys",
+   "path": "/scores/2026-09-20/boys",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-09-16/boys",
    "views": 50
   },
   {
@@ -41,15 +54,7 @@
    "views": 50
   },
   {
-   "path": "/scores/2026-09-16/boys",
-   "views": 50
-  },
-  {
-   "path": "/school/murrow/boys",
-   "views": 40
-  },
-  {
-   "path": "/scores/2026-09-20/boys",
+   "path": "/school/beacon/boys",
    "views": 40
   },
   {
@@ -57,15 +62,19 @@
    "views": 40
   },
   {
-   "path": "/player/zohran-mamdani-bronx-science/boys",
-   "views": 30
+   "path": "/scores/2026-09-22/boys",
+   "views": 40
   },
   {
-   "path": "/scores/2026-09-23/boys",
-   "views": 30
+   "path": "/school/murrow/boys",
+   "views": 40
   },
   {
    "path": "/school/martin-l-king/boys",
+   "views": 30
+  },
+  {
+   "path": "/player/zohran-mamdani-bronx-science/boys",
    "views": 30
   },
   {
@@ -73,11 +82,15 @@
    "views": 30
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
-   "views": 20
+   "path": "/scores/2026-09-23/boys",
+   "views": 30
   },
   {
-   "path": "/game/502589/boys",
+   "path": "/player/jasper-philpot-murrow/boys",
+   "views": 30
+  },
+  {
+   "path": "/game/502547/boys",
    "views": 20
   },
   {
@@ -85,15 +98,7 @@
    "views": 20
   },
   {
-   "path": "/scores/2026-09-19/boys",
-   "views": 20
-  },
-  {
-   "path": "/school/lehman/boys",
-   "views": 20
-  },
-  {
-   "path": "/school/beacon/2026/boys",
+   "path": "/scores/2026-09-12/boys",
    "views": 20
   }
  ]
