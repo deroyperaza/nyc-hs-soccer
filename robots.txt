@@ -4,3 +4,44 @@
 # tag back this up for crawlers that ignore robots.txt.
 User-agent: *
 Disallow: /player/
+
+# The fetchers below are not search crawlers. Each one reads a single URL, on
+# demand, because a person already sent that link to another person, and all it
+# produces is the card under the link in the chat. Blocking them did not keep a
+# player page private -- the recipient has the link either way -- it just made
+# the card say nothing. The noindex header still applies to everything they
+# read, so none of it is listed anywhere.
+User-agent: Applebot
+Allow: /player/
+
+User-agent: Twitterbot
+Allow: /player/
+
+User-agent: facebookexternalhit
+Allow: /player/
+
+User-agent: WhatsApp
+Allow: /player/
+
+User-agent: Slackbot-LinkExpanding
+Allow: /player/
+
+User-agent: Slackbot
+Allow: /player/
+
+User-agent: Discordbot
+Allow: /player/
+
+User-agent: TelegramBot
+Allow: /player/
+
+User-agent: LinkedInBot
+Allow: /player/
+
+User-agent: SkypeUriPreview
+Allow: /player/
+
+# Applebot-Extended is the opt-out token for training Apple's models on what
+# Applebot fetched. Letting Applebot draw a card is not agreeing to that.
+User-agent: Applebot-Extended
+Disallow: /

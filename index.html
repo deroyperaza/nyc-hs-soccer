@@ -1347,7 +1347,8 @@
       }).sort(byName);
       v.innerHTML = head + '<div class="card"><div class="tlist">' +
         (hits.length ? hits.map(row).join("") : '<div class="empty">No schools match that search.</div>') +
-        '</div></div>';
+        '</div></div>' + syncHTML();
+      wireSync();
       return;
     }
 
@@ -1373,7 +1374,11 @@
         '<summary><span class="bname">' + esc(b) + '</span><span class="bcount">' + teams.length + '</span></summary>' +
         '<div class="tlist">' + teams.map(row).join("") + '</div></details>';
     }).join("");
-    v.innerHTML = html;
+    /* The sync card sits at the foot of this page as well as the players one.
+       Teams are the follows most people have, and this is the page they are
+       standing on when they think to move them across. */
+    v.innerHTML = html + syncHTML();
+    wireSync();
   }
 
   /* ---------- view: playoffs ---------- */
@@ -2954,6 +2959,13 @@
     list.addEventListener("pointercancel", drop);
   }
 
+  /* Two pages carry this card, so toggling it or pasting into it redraws the
+     one you are on. Teams goes back through render() because that is where the
+     "season still loading" guard lives. */
+  function redrawFollows(){
+    if(S.view === "players") renderPlayers();
+    else render();
+  }
   function syncHTML(){
     var have = S.pfavOrder.length || S.favs.size;
     if(!S.syncOpen){
@@ -3203,11 +3215,11 @@
       render();
       return;
     }
-    if(id === "syncbtn"){ S.syncOpen = !S.syncOpen; renderPlayers(); return; }
+    if(id === "syncbtn"){ S.syncOpen = !S.syncOpen; redrawFollows(); return; }
     if(id === "syncadd"){
       var inp = el("syncpaste");
       var n = applySyncText(inp ? inp.value : "");
-      if(n){ S.syncOpen = false; renderPlayers(); }
+      if(n){ S.syncOpen = false; redrawFollows(); }
       else if(inp){ inp.value = ""; inp.placeholder = "That didn\u2019t look like a sync link"; }
       return;
     }

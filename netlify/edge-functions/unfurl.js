@@ -222,7 +222,13 @@ export default async (request, context) => {
     '<meta name="twitter:title" content="' + esc(card.title) + '">' +
     '<meta name="twitter:description" content="' + esc(card.desc) + '">';
 
-  const out = html.replace(/<title>[\s\S]*?<\/title>/, head);
+  /* The page ships its own og: and twitter: defaults, and they sit after the
+     title -- so injecting ours at the title left two of each in the document
+     and let every scraper's choice of first-or-last decide what the card said.
+     Clear them out first; what goes back in is the only set. */
+  const bare = html.replace(
+    /\s*<meta\s+(?:property="og:[^"]*"|name="twitter:[^"]*")[^>]*>/g, "");
+  const out = bare.replace(/<title>[\s\S]*?<\/title>/, head);
   const headers = new Headers(res.headers);
   headers.delete("content-length");
   return new Response(out, { status: res.status, headers: headers });
