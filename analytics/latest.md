@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-09-19T15:55:30Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-09-19T22:21:03Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 50 | 240 | 
+| today | 50 | 460 | 
 | yesterday | 220 | 960 |
-| 30 days | 580 | 2120 |
+| 30 days | 580 | 2340 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -20,51 +20,51 @@ that is the number that means something.
 |---|---:|---:|
 | 2026-09-17 | 310 | 920 |
 | 2026-09-18 | 220 | 960 |
-| 2026-09-19 | 50 | 240 |
+| 2026-09-19 | 50 | 460 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 630 | 30% |
+| / | 640 | 27% |
 | /players/boys | 90 | 4% |
-| /teams/boys | 80 | 4% |
-| /game/502587/boys | 80 | 4% |
+| /teams/boys | 80 | 3% |
+| /game/502587/boys | 80 | 3% |
+| /scores/2026-09-17/boys | 70 | 3% |
+| /standings/boys | 70 | 3% |
 | /scores/2026-09-20/boys | 70 | 3% |
 | /scores/2026-10-06/boys | 60 | 3% |
-| /standings/boys | 60 | 3% |
-| /scores/2026-09-17/boys | 50 | 2% |
-| /school/beacon/boys | 50 | 2% |
+| /game/502607/boys | 60 | 3% |
+| /school/beacon/boys | 60 | 3% |
+| /scores/2026-09-18/boys | 50 | 2% |
+| /scores/2026-09-22/boys | 50 | 2% |
 | /scores/2026-09-16/boys | 50 | 2% |
 | /school/murrow/boys | 40 | 2% |
 | /school/graphics/boys | 40 | 2% |
-| /scores/2026-09-22/boys | 40 | 2% |
-| /scores/2026-09-18/boys | 30 | 1% |
 | /school/christopher-columbus/boys | 30 | 1% |
-| /player/jasper-philpot-murrow/boys | 30 | 1% |
-| /scores/2026-09-23/boys | 30 | 1% |
+| /school/east-side-community/boys | 30 | 1% |
 | /game/502547/boys | 30 | 1% |
-| /school/martin-l-king/boys | 30 | 1% |
 | /player/zohran-mamdani-bronx-science/boys | 30 | 1% |
+| /school/beacon/girls | 30 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 1540 | 73% |
-| (direct) | 570 | 27% |
+| nychssoccer.com | 1760 | 75% |
+| (direct) | 570 | 24% |
 | www.psal.org | 10 | 0% |
 
 ## Countries
 
 | country | views | share |
 |---|---:|---:|
-| US | 2120 | 100% |
+| US | 2340 | 100% |
 
 ## Devices
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 1730 | 82% |
-| desktop | 390 | 18% |
+| mobile | 1950 | 83% |
+| desktop | 390 | 17% |
 

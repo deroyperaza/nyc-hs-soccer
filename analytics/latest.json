@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-19T15:55:30Z",
+ "generated": "2026-09-19T22:21:03Z",
  "days": 30,
  "visits": 580,
- "pageviews": 2120,
+ "pageviews": 2340,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -17,13 +17,13 @@
   {
    "date": "2026-09-19",
    "visits": 50,
-   "views": 240
+   "views": 460
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 630
+   "views": 640
   },
   {
    "path": "/players/boys",
@@ -38,6 +38,14 @@
    "views": 80
   },
   {
+   "path": "/scores/2026-09-17/boys",
+   "views": 70
+  },
+  {
+   "path": "/standings/boys",
+   "views": 70
+  },
+  {
    "path": "/scores/2026-09-20/boys",
    "views": 70
   },
@@ -46,15 +54,19 @@
    "views": 60
   },
   {
-   "path": "/standings/boys",
+   "path": "/game/502607/boys",
    "views": 60
   },
   {
-   "path": "/scores/2026-09-17/boys",
+   "path": "/school/beacon/boys",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-09-18/boys",
    "views": 50
   },
   {
-   "path": "/school/beacon/boys",
+   "path": "/scores/2026-09-22/boys",
    "views": 50
   },
   {
@@ -70,23 +82,11 @@
    "views": 40
   },
   {
-   "path": "/scores/2026-09-22/boys",
-   "views": 40
-  },
-  {
-   "path": "/scores/2026-09-18/boys",
-   "views": 30
-  },
-  {
    "path": "/school/christopher-columbus/boys",
    "views": 30
   },
   {
-   "path": "/player/jasper-philpot-murrow/boys",
-   "views": 30
-  },
-  {
-   "path": "/scores/2026-09-23/boys",
+   "path": "/school/east-side-community/boys",
    "views": 30
   },
   {
@@ -94,11 +94,11 @@
    "views": 30
   },
   {
-   "path": "/school/martin-l-king/boys",
+   "path": "/player/zohran-mamdani-bronx-science/boys",
    "views": 30
   },
   {
-   "path": "/player/zohran-mamdani-bronx-science/boys",
+   "path": "/school/beacon/girls",
    "views": 30
   }
  ]
