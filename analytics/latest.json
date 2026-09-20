@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-19T22:21:03Z",
+ "generated": "2026-09-20T05:21:04Z",
  "days": 30,
- "visits": 580,
- "pageviews": 2340,
+ "visits": 590,
+ "pageviews": 2460,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -17,16 +17,25 @@
   {
    "date": "2026-09-19",
    "visits": 50,
-   "views": 460
+   "views": 530
+  },
+  {
+   "date": "2026-09-20",
+   "visits": 10,
+   "views": 50
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 640
+   "views": 670
   },
   {
    "path": "/players/boys",
+   "views": 110
+  },
+  {
+   "path": "/game/502607/boys",
    "views": 90
   },
   {
@@ -38,15 +47,15 @@
    "views": 80
   },
   {
-   "path": "/scores/2026-09-17/boys",
-   "views": 70
-  },
-  {
    "path": "/standings/boys",
-   "views": 70
+   "views": 80
   },
   {
    "path": "/scores/2026-09-20/boys",
+   "views": 80
+  },
+  {
+   "path": "/scores/2026-09-17/boys",
    "views": 70
   },
   {
@@ -54,16 +63,8 @@
    "views": 60
   },
   {
-   "path": "/game/502607/boys",
-   "views": 60
-  },
-  {
    "path": "/school/beacon/boys",
    "views": 60
-  },
-  {
-   "path": "/scores/2026-09-18/boys",
-   "views": 50
   },
   {
    "path": "/scores/2026-09-22/boys",
@@ -71,6 +72,10 @@
   },
   {
    "path": "/scores/2026-09-16/boys",
+   "views": 50
+  },
+  {
+   "path": "/scores/2026-09-18/boys",
    "views": 50
   },
   {
