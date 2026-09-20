@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-20T16:09:30Z",
+ "generated": "2026-09-20T22:27:40Z",
  "days": 30,
- "visits": 630,
- "pageviews": 2640,
+ "visits": 640,
+ "pageviews": 2720,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -21,21 +21,25 @@
   },
   {
    "date": "2026-09-20",
-   "visits": 50,
-   "views": 230
+   "visits": 60,
+   "views": 310
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 720
+   "views": 760
+  },
+  {
+   "path": "/teams/boys",
+   "views": 120
   },
   {
    "path": "/players/boys",
    "views": 110
   },
   {
-   "path": "/teams/boys",
+   "path": "/standings/boys",
    "views": 100
   },
   {
@@ -51,10 +55,6 @@
    "views": 80
   },
   {
-   "path": "/standings/boys",
-   "views": 80
-  },
-  {
    "path": "/scores/2026-09-20/boys",
    "views": 80
   },
@@ -67,7 +67,7 @@
    "views": 60
   },
   {
-   "path": "/scores/2026-09-22/boys",
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
    "views": 50
   },
   {
@@ -79,7 +79,7 @@
    "views": 50
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "path": "/scores/2026-09-22/boys",
    "views": 50
   },
   {
@@ -99,11 +99,11 @@
    "views": 40
   },
   {
-   "path": "/scores/2026-09-23/boys",
+   "path": "/school/east-side-community/boys",
    "views": 30
   },
   {
-   "path": "/player/zohran-mamdani-bronx-science/boys",
+   "path": "/player/jasper-philpot-murrow/boys",
    "views": 30
   }
  ]
