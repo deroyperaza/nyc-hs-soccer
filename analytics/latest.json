@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-21T05:22:42Z",
+ "generated": "2026-09-21T18:14:53Z",
  "days": 30,
- "visits": 660,
- "pageviews": 2940,
+ "visits": 700,
+ "pageviews": 3120,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -26,14 +26,14 @@
   },
   {
    "date": "2026-09-21",
-   "visits": 20,
-   "views": 190
+   "visits": 60,
+   "views": 370
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 820
+   "views": 890
   },
   {
    "path": "/teams/boys",
@@ -60,11 +60,11 @@
    "views": 90
   },
   {
-   "path": "/game/502587/boys",
+   "path": "/scores/2026-09-20/boys",
    "views": 80
   },
   {
-   "path": "/scores/2026-09-20/boys",
+   "path": "/game/502587/boys",
    "views": 80
   },
   {
@@ -80,10 +80,6 @@
    "views": 50
   },
   {
-   "path": "/scores/2026-09-16/boys",
-   "views": 50
-  },
-  {
    "path": "/scores/2026-09-18/boys",
    "views": 50
   },
@@ -92,11 +88,15 @@
    "views": 50
   },
   {
-   "path": "/school/graphics/boys",
-   "views": 40
+   "path": "/scores/2026-09-16/boys",
+   "views": 50
   },
   {
    "path": "/school/beacon/2026/boys",
+   "views": 40
+  },
+  {
+   "path": "/school/graphics/boys",
    "views": 40
   },
   {
@@ -104,12 +104,12 @@
    "views": 40
   },
   {
-   "path": "/school/murrow/boys",
+   "path": "/scores/2026-09-23/boys",
    "views": 40
   },
   {
-   "path": "/school/martin-l-king/2023/boys",
-   "views": 30
+   "path": "/school/murrow/boys",
+   "views": 40
   }
  ]
 }
