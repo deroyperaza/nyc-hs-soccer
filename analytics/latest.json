@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-20T22:27:40Z",
+ "generated": "2026-09-21T05:22:42Z",
  "days": 30,
- "visits": 640,
- "pageviews": 2720,
+ "visits": 660,
+ "pageviews": 2940,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -22,13 +22,18 @@
   {
    "date": "2026-09-20",
    "visits": 60,
-   "views": 310
+   "views": 340
+  },
+  {
+   "date": "2026-09-21",
+   "visits": 20,
+   "views": 190
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 760
+   "views": 820
   },
   {
    "path": "/teams/boys",
@@ -39,6 +44,10 @@
    "views": 110
   },
   {
+   "path": "/school/beacon/boys",
+   "views": 100
+  },
+  {
    "path": "/standings/boys",
    "views": 100
   },
@@ -47,11 +56,11 @@
    "views": 90
   },
   {
-   "path": "/game/502587/boys",
-   "views": 80
+   "path": "/school/martin-l-king/boys",
+   "views": 90
   },
   {
-   "path": "/school/beacon/boys",
+   "path": "/game/502587/boys",
    "views": 80
   },
   {
@@ -71,11 +80,11 @@
    "views": 50
   },
   {
-   "path": "/scores/2026-09-18/boys",
+   "path": "/scores/2026-09-16/boys",
    "views": 50
   },
   {
-   "path": "/scores/2026-09-16/boys",
+   "path": "/scores/2026-09-18/boys",
    "views": 50
   },
   {
@@ -83,11 +92,11 @@
    "views": 50
   },
   {
-   "path": "/school/beacon/2026/boys",
+   "path": "/school/graphics/boys",
    "views": 40
   },
   {
-   "path": "/school/graphics/boys",
+   "path": "/school/beacon/2026/boys",
    "views": 40
   },
   {
@@ -99,11 +108,7 @@
    "views": 40
   },
   {
-   "path": "/school/east-side-community/boys",
-   "views": 30
-  },
-  {
-   "path": "/player/jasper-philpot-murrow/boys",
+   "path": "/school/martin-l-king/2023/boys",
    "views": 30
   }
  ]
