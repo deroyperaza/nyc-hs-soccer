@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-09-22T01:48:39Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-09-22T17:00:40Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 0 | 40 | 
-| yesterday | 70 | 490 |
-| 30 days | 710 | 3280 |
+| today | 0 | 500 | 
+| yesterday | 0 | 900 |
+| 30 days | 800 | 4700 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,57 +18,55 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-09-17 | 310 | 920 |
-| 2026-09-18 | 220 | 960 |
-| 2026-09-19 | 50 | 530 |
-| 2026-09-20 | 60 | 340 |
-| 2026-09-21 | 70 | 490 |
-| 2026-09-22 | 0 | 40 |
+| 2026-09-17 | 400 | 1200 |
+| 2026-09-18 | 200 | 1200 |
+| 2026-09-19 | 0 | 700 |
+| 2026-09-20 | 200 | 200 |
+| 2026-09-21 | 0 | 900 |
+| 2026-09-22 | 0 | 500 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 900 | 27% |
-| /teams/boys | 130 | 4% |
-| /players/boys | 110 | 3% |
-| /school/beacon/boys | 100 | 3% |
-| /standings/boys | 100 | 3% |
-| /game/502607/boys | 90 | 3% |
-| /school/martin-l-king/boys | 90 | 3% |
-| /game/502587/boys | 80 | 2% |
-| /school/martin-l-king/2023/boys | 80 | 2% |
-| /scores/2026-09-20/boys | 80 | 2% |
-| /scores/2026-09-17/boys | 70 | 2% |
-| /scores/2026-10-06/boys | 60 | 2% |
-| /school/east-side-community/boys | 60 | 2% |
-| /scores/2026-09-22/boys | 50 | 2% |
-| /player/cyrus-vossoughian-bard-manhattan/boys | 50 | 2% |
-| /game/502591/boys | 50 | 2% |
-| /scores/2026-09-18/boys | 50 | 2% |
-| /scores/2026-09-16/boys | 50 | 2% |
-| /school/graphics/boys | 40 | 1% |
-| /school/beacon/2026/boys | 40 | 1% |
+| / | 1400 | 30% |
+| /players/boys | 600 | 13% |
+| /teams/boys | 300 | 6% |
+| /school/martin-l-king/2023/boys | 300 | 6% |
+| /scores/2026-09-18/boys | 200 | 4% |
+| /school/beacon/2026/boys | 200 | 4% |
+| /school/lehman/boys | 200 | 4% |
+| /school/east-side-community/boys | 200 | 4% |
+| /scores/2026-09-22/boys | 200 | 4% |
+| /scores/2026-09-25/boys | 200 | 4% |
+| /scores/2026-10-15/boys | 200 | 4% |
+| /school/bronx-science/2010/boys | 100 | 2% |
+| /school/school-of-the-future/boys | 100 | 2% |
+| /history/leaders/boys | 100 | 2% |
+| /teams/2026/boys | 100 | 2% |
+| /standings/girls | 100 | 2% |
+| /game/502587/boys | 100 | 2% |
+| /scores/2026-09-17/boys | 100 | 2% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 2570 | 78% |
-| (direct) | 700 | 21% |
+| nychssoccer.com | 2730 | 58% |
+| (direct) | 740 | 16% |
 | www.psal.org | 10 | 0% |
 
 ## Countries
 
 | country | views | share |
 |---|---:|---:|
-| US | 3270 | 100% |
+| US | 3470 | 74% |
 | DE | 10 | 0% |
 
 ## Devices
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 2820 | 86% |
-| desktop | 460 | 14% |
+| mobile | 2980 | 63% |
+| desktop | 500 | 11% |
 
