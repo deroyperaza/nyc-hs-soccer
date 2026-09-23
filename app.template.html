@@ -188,7 +188,8 @@
   .pomark{font-family:"Archivo",sans-serif; font-size:9.5px; font-weight:700;
           letter-spacing:.02em; color:var(--muted); white-space:nowrap}
   .pomark.yes{color:var(--win)}
-  .pomark.gold{color:var(--tie); font-size:12px; letter-spacing:0}
+  .pomark.gold{color:var(--tie); font-size:13px; letter-spacing:0}
+  .pomark.dot{font-size:13px; line-height:1}
   .pomark.no{color:var(--muted); opacity:.75}
   .polegend{font-size:12px; color:var(--muted); padding:0 2px 10px; line-height:1.5}
   .polegend b{color:var(--text-2); font-weight:700}
@@ -861,10 +862,11 @@
     if(st.kind === "champ"){ m = "\u2605"; c = "gold"; ttl = "Won the championship"; }
     else if(st.kind === "made"){
       m = (st.best >= 0 && st.best < PO_MARK.length) ? PO_MARK[st.best] : "\u2713";
+      if(m === "\u2713") c = "yes dot";
       ttl = "Made the playoffs, reached " + (PO_REACHED[st.best] || "the playoffs");
     }
     else if(st.kind === "clinched"){ m = "IN"; ttl = "Cannot finish below .500"; }
-    else if(st.kind === "in"){ m = "\u25CF"; ttl = "At .500 or better right now"; }
+    else if(st.kind === "in"){ m = "\u25CF"; c = "yes dot"; ttl = "At .500 or better right now"; }
     else if(st.kind === "out"){ m = "OUT"; c = "no"; ttl = "Can no longer reach .500"; }
     else return '<td class="po"></td>';
     return '<td class="po"><span class="pomark ' + c + '" title="' + esc(ttl) + '">' + m + '</span></td>';
