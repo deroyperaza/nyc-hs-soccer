@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-23T01:32:11Z",
+ "generated": "2026-09-23T17:03:11Z",
  "days": 30,
- "visits": 820,
- "pageviews": 3900,
+ "visits": 870,
+ "pageviews": 4250,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -36,26 +36,26 @@
   },
   {
    "date": "2026-09-23",
-   "visits": 20,
-   "views": 120
+   "visits": 70,
+   "views": 470
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1050
+   "views": 1090
   },
   {
    "path": "/teams/boys",
-   "views": 180
+   "views": 210
   },
   {
    "path": "/players/boys",
-   "views": 160
+   "views": 170
   },
   {
    "path": "/standings/boys",
-   "views": 130
+   "views": 150
   },
   {
    "path": "/school/beacon/boys",
@@ -66,43 +66,43 @@
    "views": 110
   },
   {
-   "path": "/game/502607/boys",
+   "path": "/school/martin-l-king/2023/boys",
    "views": 90
   },
   {
-   "path": "/game/502587/boys",
-   "views": 80
+   "path": "/game/502591/boys",
+   "views": 90
+  },
+  {
+   "path": "/game/502607/boys",
+   "views": 90
   },
   {
    "path": "/scores/2026-09-20/boys",
    "views": 80
   },
   {
-   "path": "/school/martin-l-king/2023/boys",
+   "path": "/game/502587/boys",
    "views": 80
+  },
+  {
+   "path": "/scores/2026-09-22/boys",
+   "views": 70
   },
   {
    "path": "/scores/2026-09-17/boys",
    "views": 70
   },
   {
-   "path": "/scores/2026-10-06/boys",
-   "views": 60
-  },
-  {
    "path": "/school/east-side-community/boys",
    "views": 60
   },
   {
-   "path": "/game/502591/boys",
-   "views": 50
+   "path": "/scores/2026-10-06/boys",
+   "views": 60
   },
   {
-   "path": "/girls",
-   "views": 50
-  },
-  {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "path": "/scores/2026-09-18/boys",
    "views": 50
   },
   {
@@ -110,15 +110,15 @@
    "views": 50
   },
   {
-   "path": "/scores/2026-09-18/boys",
+   "path": "/history/boys",
    "views": 50
   },
   {
-   "path": "/player/jasper-philpot-murrow/boys",
+   "path": "/girls",
    "views": 50
   },
   {
-   "path": "/scores/2026-09-22/boys",
+   "path": "/scores/2026-09-23/boys",
    "views": 50
   }
  ]
