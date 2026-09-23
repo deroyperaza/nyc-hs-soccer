@@ -191,6 +191,27 @@
   .pomark.gold{color:var(--tie); font-size:13px; letter-spacing:0}
   .pomark.dot{font-size:13px; line-height:1}
   .pomark.no{color:var(--muted); opacity:.75}
+  .brtoggle{font-family:"Archivo",sans-serif; font-size:10px; font-weight:700; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--text-2); background:var(--chip);
+            border:1px solid var(--line-soft); border-radius:999px; padding:5px 11px; white-space:nowrap}
+  .brtoggle[aria-pressed="true"]{background:var(--sel-bg); color:var(--sel-fg); border-color:var(--sel-bg)}
+  .bwrap{overflow-x:auto; overflow-y:hidden; overscroll-behavior-x:contain;
+         -webkit-overflow-scrolling:touch; padding:2px 0 6px}
+  .bcanvas{position:relative}
+  .bcanvas svg{position:absolute; inset:0; width:100%; height:100%; pointer-events:none}
+  .brd{position:absolute; font-family:"Archivo",sans-serif; font-size:9.5px; font-weight:700;
+       letter-spacing:.06em; text-transform:uppercase; color:var(--muted); white-space:nowrap}
+  .bmatch{position:absolute; display:flex; flex-direction:column; justify-content:center; gap:2px;
+          background:var(--surface); border:1px solid var(--line-soft); border-radius:10px;
+          box-shadow:var(--shadow); padding:5px 8px; text-align:left; overflow:hidden}
+  .bmatch .bt{display:flex; align-items:center; gap:6px; min-width:0; font-size:12px;
+              color:var(--muted); line-height:1.3}
+  .bmatch .bt .nm{flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .bmatch .bt .sc{flex:none; font-variant-numeric:tabular-nums; font-weight:700}
+  .bmatch .bt.won{color:var(--text); font-weight:700}
+  .bmatch .bt.fav .nm{color:var(--fav-line)}
+  .bmatch.champ{border-color:var(--tie)}
+  .bnote{font-size:12px; color:var(--muted); padding:0 2px 8px}
   .polegend{font-size:12px; color:var(--muted); padding:0 2px 10px; line-height:1.5}
   .polegend b{color:var(--text-2); font-weight:700}
   .poline{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-2);
@@ -674,7 +695,7 @@
     favs: new Set(), cache: {}, hist: null, histState: "idle", openTeamKey: null, openGameKey: null,
     openPlayer: null, pcache: {}, rcache: {}, ucache: {}, openRosters: {}, gshown: {},
     pq: "", pyear: "all", presults: null, pfavs: {}, pfavOrder: [], ncache: {},
-    pqTimer: null, syncOpen: false
+    pqTimer: null, syncOpen: false, brOpen: {}
   };
 
   /* ---------- helpers ---------- */
@@ -1502,6 +1523,89 @@
     wireSync();
   }
 
+  /* ---------- the elimination bracket ----------
+     PSAL posts a list of games, not a tree, so the tree is inferred: walk the
+     rounds in order keeping the last game each team played, and a team that
+     turns up in a later round came from that game. A team with nothing behind
+     it had a bye, which is most of the field in a 33-team bracket.
+
+     Layout is done here rather than in CSS because the rounds are not
+     balanced -- one opening-round game can sit under a single round-of-32
+     game while fifteen others have none -- and a grid of equal rows cannot
+     draw that. Every box knows its own slot span, and the connectors are
+     plain geometry once the centres are known. */
+  var BR_ROW = 27, BR_BOX = 50, BR_COL = 136, BR_GAP = 28, BR_TOP = 22;
+  function bracketTree(gs){
+    var byRound = {};
+    gs.forEach(function(g){ (byRound[g[11]] = byRound[g[11]] || []).push(g); });
+    var rounds = Object.keys(byRound).map(Number).sort(function(a, b){ return a - b; });
+    var lastOf = {}, nodes = [], taken = {};
+    rounds.forEach(function(ri){
+      byRound[ri].forEach(function(g){
+        var n = {g: g, ri: ri, kids: [lastOf[g[4]] || null, lastOf[g[5]] || null]};
+        n.kids.forEach(function(k){ if(k) taken[k.id] = true; });
+        n.id = nodes.length;
+        nodes.push(n);
+        lastOf[g[4]] = n; lastOf[g[5]] = n;
+      });
+    });
+    var roots = nodes.filter(function(n){ return !taken[n.id]; });
+    function measure(n){
+      var a = n.kids[0] ? measure(n.kids[0]) : 1, b = n.kids[1] ? measure(n.kids[1]) : 1;
+      n.h = a + b;
+      return n.h;
+    }
+    function place(n, top){
+      var a = n.kids[0], b = n.kids[1];
+      var ah = a ? a.h : 1;
+      var ca = a ? (place(a, top), a.c) : top + 0.5;
+      var cb = b ? (place(b, top + ah), b.c) : top + ah + 0.5;
+      n.top = top; n.c = (ca + cb) / 2;
+    }
+    var slots = 0;
+    roots.forEach(function(r){ measure(r); place(r, slots); slots += r.h; });
+    return {roots: roots, nodes: nodes, slots: slots, minRound: rounds[0], maxRound: rounds[rounds.length-1]};
+  }
+  function bracketHTML(gs){
+    var t = bracketTree(gs);
+    if(!t.nodes.length) return "";
+    var cols = t.maxRound - t.minRound + 1;
+    var W = cols * BR_COL + (cols - 1) * BR_GAP, H = t.slots * BR_ROW + BR_TOP + 8;
+    var x = function(ri){ return (ri - t.minRound) * (BR_COL + BR_GAP); };
+    var y = function(n){ return BR_TOP + n.c * BR_ROW - BR_BOX / 2; };
+    var cy = function(n){ return BR_TOP + n.c * BR_ROW; };
+    var lines = [];
+    t.nodes.forEach(function(n){
+      n.kids.forEach(function(k){
+        if(!k) return;
+        var x1 = x(k.ri) + BR_COL, x2 = x(n.ri), mid = x1 + (x2 - x1) / 2;
+        lines.push('<path d="M' + x1 + ' ' + cy(k) + 'H' + mid + 'V' + cy(n) + 'H' + x2 + '"/>');
+      });
+    });
+    var heads = [];
+    for(var ri = t.minRound; ri <= t.maxRound; ri++){
+      heads.push('<div class="brd" style="left:' + x(ri) + 'px;top:0;width:' + BR_COL + 'px">' +
+        esc(ri >= 0 && ri < ROUNDS.length ? ROUNDS[ri] : "Playoffs") + '</div>');
+    }
+    var boxes = t.nodes.map(function(n){
+      var g = n.g, sp = g[0], done = hasScore(g);
+      var hw = done && g[6] > g[7], aw = done && g[7] > g[6];
+      var champ = n.ri === 5 && done;
+      function side(code, sc, won){
+        var tm = teamOf(sp, code);
+        return '<span class="bt' + (won ? " won" : "") + (S.favs.has(sp + ":" + code) ? " fav" : "") + '">' +
+          '<span class="nm">' + esc(tm.short || code) + '</span>' +
+          '<span class="sc">' + (done ? sc : "\u2013") + '</span></span>';
+      }
+      return '<button class="bmatch' + (champ ? " champ" : "") + '" data-game="' + esc(gkey(g)) + '" ' +
+        'style="left:' + x(n.ri) + 'px;top:' + y(n) + 'px;width:' + BR_COL + 'px;height:' + BR_BOX + 'px">' +
+        side(g[4], g[6], hw) + side(g[5], g[7], aw) + '</button>';
+    });
+    return '<div class="bwrap"><div class="bcanvas" style="width:' + W + 'px;height:' + H + 'px">' +
+      '<svg viewBox="0 0 ' + W + ' ' + H + '" fill="none" stroke="var(--line)" stroke-width="1.5">' +
+      lines.join("") + '</svg>' + heads.join("") + boxes.join("") + '</div></div>';
+  }
+
   /* ---------- view: playoffs ---------- */
   function renderPlayoffs(){
     var v = el("view-playoffs"), ps = S.season;
@@ -1532,7 +1636,13 @@
         gs.forEach(function(g){ (byRound[g[11]] = byRound[g[11]] || []).push(g); });
         var keys = Object.keys(byRound).map(Number).sort(function(a, b){ return a - b; });
         var label = c.split("#")[0];
-        return '<div class="group"><div class="grouphead"><h3>' + esc(label) + '</h3><div class="rule"></div></div>' +
+        /* one bracket per division per season, folded away until asked for:
+           it is the widest thing in the app and most visits want a score */
+        var bkey = ps.id + "|" + S.sp + "|" + c, open = !!S.brOpen[bkey];
+        return '<div class="group"><div class="grouphead"><h3>' + esc(label) + '</h3><div class="rule"></div>' +
+          '<button class="brtoggle" data-br="' + esc(bkey) + '" aria-pressed="' + open + '">' +
+          (open ? "Hide bracket" : "Bracket") + '</button></div>' +
+          (open ? bracketHTML(gs) + '<div class="bnote">Drag sideways to follow the rounds. Tap a game for the box score.</div>' : "") +
           keys.map(function(ri){
             var label = ri >= 0 && ri < ROUNDS.length ? ROUNDS[ri] : "Playoffs";
             return '<div class="sectionhead" style="padding:8px 2px 4px"><span class="eyebrow">' + esc(label) + '</span>' +
@@ -3326,6 +3436,7 @@
     if(b.dataset.div != null && b.hasAttribute("data-div")){ S.div = b.dataset.div; render(); return; }
     if(b.dataset.ry){ S.rankYear = b.dataset.ry; render(); return; }
     if(b.dataset.rs){ S.rankSort = b.dataset.rs; render(); return; }
+    if(b.dataset.br){ S.brOpen[b.dataset.br] = !S.brOpen[b.dataset.br]; renderPlayoffs(); return; }
     if(b.dataset.tyr){
       var bits = b.dataset.tyr.split(":"), yid = bits[0], ykey = bits[1] + ":" + bits[2];
       if(yid === S.seasonId){ return; }
