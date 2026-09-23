@@ -58,7 +58,11 @@
     color-scheme:dark;
   }
   *{box-sizing:border-box}
+  /* the bracket is wider than the screen and scrolls inside its own box; clip
+     rather than hidden, so the sticky header keeps working */
+  html{overflow-x:clip; overscroll-behavior-x:none}
   body{
+    overflow-x:clip; overscroll-behavior-x:none;
     margin:0; background:var(--bg); color:var(--text);
     font-family:"Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
     font-size:15px; line-height:1.45; -webkit-font-smoothing:antialiased;
