@@ -184,6 +184,20 @@
   .standtbl th.w, .standtbl td.w{width:46px}
   .standtbl th:last-child, .standtbl td:last-child{width:34px}
   .standtbl th.lv, .standtbl td.lv{width:26px}
+  .standtbl th.po, .standtbl td.po{width:36px; padding-left:2px; padding-right:9px}
+  .pomark{font-family:"Archivo",sans-serif; font-size:9.5px; font-weight:700;
+          letter-spacing:.02em; color:var(--muted); white-space:nowrap}
+  .pomark.yes{color:var(--win)}
+  .pomark.gold{color:var(--tie); font-size:12px; letter-spacing:0}
+  .pomark.no{color:var(--muted); opacity:.75}
+  .polegend{font-size:12px; color:var(--muted); padding:0 2px 10px; line-height:1.5}
+  .polegend b{color:var(--text-2); font-weight:700}
+  .poline{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-2);
+          background:var(--chip); border-radius:10px; padding:9px 12px; margin-bottom:2px}
+  .poline .tag{font-family:"Archivo",sans-serif; font-size:9.5px; font-weight:700;
+               letter-spacing:.04em; text-transform:uppercase; color:var(--win); white-space:nowrap}
+  .poline .tag.gold{color:var(--tie)}
+  .poline .tag.no{color:var(--muted)}
   .standtbl th.rec, .standtbl td.rec{width:58px; font-size:12.5px; font-variant-numeric:tabular-nums; white-space:nowrap}
   /* The headings are set tighter than the body so RATING and TTL fit inside
      columns sized for .925 and 1 rather than for their own labels. */
@@ -777,6 +791,99 @@
   }
   function isCurrent(){ return seasonMeta(S.seasonId).cur; }
 
+  /* ---------- the playoff line ----------
+     PSAL's rule is a floor rather than a bracket size: finish the league
+     season at .500 or better and you are in, a tie counting half a win. The
+     four seasons played under the current format say so exactly -- of 1,103
+     team-seasons, every team at .500 or better appeared in the postseason and
+     every team below it did not. The only exceptions sat in the developmental
+     "New Teams" divisions, which play for nothing, so those are left unmarked.
+
+     A finished season is not predicted here at all. It is marked from the
+     games PSAL actually played, which is also the only honest way to handle
+     the older seasons, when the field was capped and a .500 record could
+     still leave a team out. Only the season in progress uses the rule. */
+  function poField(ps){
+    if(ps.poField) return ps.poField;
+    var teams = {}, any = false;
+    ps.raw.G.forEach(function(g){
+      if(g[10] !== 1) return;
+      any = true;
+      var ri = (g[11] == null || g[11] < 0) ? 0 : g[11];
+      [[g[4], g[6], g[7]], [g[5], g[7], g[6]]].forEach(function(s){
+        var k = g[0] + ":" + s[0], e = teams[k] || (teams[k] = {best: -1, champ: false});
+        if(ri > e.best) e.best = ri;
+        if(ri === 5 && s[1] != null && s[2] != null && s[1] > s[2]) e.champ = true;
+      });
+    });
+    ps.poField = {teams: teams, any: any};
+    return ps.poField;
+  }
+  /* league games still on the schedule -- what a clinch turns on. A postponed
+     game that is never made up only helps: dropping it raises the worst case
+     a team can finish on and lowers the best, so neither verdict flips. */
+  function gamesLeft(ps){
+    if(ps.gleft) return ps.gleft;
+    var left = {};
+    ps.raw.G.forEach(function(g){
+      if(g[10] !== 0 || hasScore(g)) return;
+      var a = g[0] + ":" + g[4], b = g[0] + ":" + g[5];
+      left[a] = (left[a] || 0) + 1;
+      left[b] = (left[b] || 0) + 1;
+    });
+    ps.gleft = left;
+    return left;
+  }
+  function poStatus(ps, sp, row, div){
+    if(/new teams/i.test(div || "")) return null;
+    var key = sp + ":" + row[0];
+    if(!seasonMeta(ps.id).cur){
+      var f = poField(ps);
+      if(!f.any) return null;
+      var e = f.teams[key];
+      return e ? {kind: e.champ ? "champ" : "made", best: e.best} : {kind: "missed"};
+    }
+    var w = row[1], l = row[2], t = row[3], gp = w + l + t, we = w + t/2;
+    var r = gamesLeft(ps)[key] || 0, all = gp + r;
+    if(!all) return null;
+    /* wins still needed to land on the line; a tie is worth half of one */
+    var need = Math.max(0, Math.ceil(all/2 - we - 1e-9));
+    if(!need) return {kind: "clinched", need: 0, left: r};
+    if(need > r) return {kind: "out", need: need, left: r};
+    return {kind: (gp && we/gp >= 0.5) ? "in" : "chase", need: need, left: r};
+  }
+  var PO_MARK = ["\u2713", "R32", "R16", "QF", "SF", "F"];
+  var PO_REACHED = ["the opening round", "the round of 32", "the round of 16",
+                    "the quarterfinals", "the semifinals", "the final"];
+  function poCell(st){
+    if(!st) return '<td class="po"></td>';
+    var m = "", c = "yes", ttl = "";
+    if(st.kind === "champ"){ m = "\u2605"; c = "gold"; ttl = "Won the championship"; }
+    else if(st.kind === "made"){
+      m = (st.best >= 0 && st.best < PO_MARK.length) ? PO_MARK[st.best] : "\u2713";
+      ttl = "Made the playoffs, reached " + (PO_REACHED[st.best] || "the playoffs");
+    }
+    else if(st.kind === "clinched"){ m = "IN"; ttl = "Cannot finish below .500"; }
+    else if(st.kind === "in"){ m = "\u25CF"; ttl = "At .500 or better right now"; }
+    else if(st.kind === "out"){ m = "OUT"; c = "no"; ttl = "Can no longer reach .500"; }
+    else return '<td class="po"></td>';
+    return '<td class="po"><span class="pomark ' + c + '" title="' + esc(ttl) + '">' + m + '</span></td>';
+  }
+  function poSentence(ps, st){
+    if(!st) return "";
+    if(st.kind === "champ") return ["Champions", "Won the title in " + ps.label + "."];
+    if(st.kind === "made")
+      return ["Playoffs", "Made the playoffs and reached " + (PO_REACHED[st.best] || "the postseason") + "."];
+    if(st.kind === "missed") return ["", ""];
+    var more = st.need === 1 ? "one more win" : st.need + " more wins";
+    var of = st.left === 1 ? "its last game" : "its last " + st.left + " games";
+    if(st.kind === "clinched") return ["In", "Cannot finish below .500 \u2014 a playoff spot is safe."];
+    if(st.kind === "in") return ["In the zone", "At .500 or better, and " + more + " from " + of + " makes it certain."];
+    if(st.kind === "chase") return ["Below the line", "Needs " + more + " from " + of + " to finish at .500."];
+    if(st.kind === "out") return ["Out", "Can no longer reach .500."];
+    return ["", ""];
+  }
+
   function loadSeason(id, done){
     if(S.cache[id]){ applySeason(S.cache[id]); if(done) done(); return; }
     S.season = null; S.seasonId = id; render();
@@ -1298,15 +1405,26 @@
     var groups = ps.stand.filter(function(s){ return s.sp === S.sp && s.rows.length; })
       .sort(function(a, b){ return cmpDiv(a.div, b.div); });
     if(!groups.length){ v.innerHTML = '<div class="card"><div class="empty">No standings posted for this season yet.</div></div>'; return; }
+    /* The playoff column only earns its width when there is something to put
+       in it: a season with postseason games on file, or one still being
+       played, where the .500 line is the whole story. */
+    var live = seasonMeta(ps.id).cur, showPO = live || poField(ps).any;
+    var legend = !showPO ? "" : '<div class="polegend">' + (live ?
+      'PSAL takes every team that finishes at <b>.500 or better</b>, a tie counting half a win. ' +
+      '<b>IN</b> means it cannot finish below the line whatever happens, <b>\u25CF</b> means at .500 or better right now, ' +
+      '<b>OUT</b> means the line is out of reach.' :
+      '<b>\u2713</b> made the playoffs, <b>\u2605</b> won the title. R32, R16, QF, SF and F are how far a team went.') +
+      '</div>';
     v.innerHTML = '<div class="sectionhead"><span class="eyebrow">' + esc(ps.label) + ' standings</span>' +
-        '<span class="eyebrow">' + groups.length + ' divisions</span></div>' +
+        '<span class="eyebrow">' + groups.length + ' divisions</span></div>' + legend +
       groups.map(function(s){
         var rows = s.rows.slice().sort(function(a, b){
           return (b[4] - a[4]) || (b[1] - a[1]) || (a[2] - b[2]);
         });
         return '<div class="group"><div class="grouphead"><h3>' + esc(divLabel(s.div)) + '</h3><div class="rule"></div></div>' +
           '<div class="card"><div class="standtbl"><table><thead><tr>' +
-          '<th>Team</th><th>W</th><th>L</th><th>T</th><th>Pts</th></tr></thead><tbody>' +
+          '<th>Team</th><th>W</th><th>L</th><th>T</th><th>Pts</th>' +
+          (showPO ? '<th class="po" title="Playoffs">PO</th>' : '') + '</tr></thead><tbody>' +
           rows.map(function(r, i){
             var key = s.sp + ":" + r[0], t = teamOf(s.sp, r[0]);
             var cls = [];
@@ -1314,7 +1432,8 @@
             if(i < 2) cls.push("gold");
             return '<tr class="' + cls.join(" ") + '"><td><button class="tm" data-team="' + esc(key) + '">' +
               '<span class="pos">' + (i+1) + '</span><span>' + esc(t.short) + '</span></button></td>' +
-              '<td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td class="pts">' + r[4] + '</td></tr>';
+              '<td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td class="pts">' + r[4] + '</td>' +
+              (showPO ? poCell(poStatus(ps, s.sp, r, s.div)) : '') + '</tr>';
           }).join("") + '</tbody></table></div></div></div>';
       }).join("");
   }
@@ -1387,7 +1506,9 @@
     var po = ps.raw.G.filter(function(g){ return g[0] === S.sp && g[10] === 1; });
     if(!po.length){
       v.innerHTML = '<div class="note"><h3>No playoff games yet</h3>' +
-        '<p>Playoff brackets appear here once PSAL posts postseason games for ' + esc(ps.label) + '.</p></div>';
+        '<p>Playoff brackets appear here once PSAL posts postseason games for ' + esc(ps.label) + '. ' +
+        'Until then the standings carry the playoff column: PSAL takes every team that finishes at .500 or better, ' +
+        'and the column says who is already there, who is on the right side of the line today, and who can no longer reach it.</p></div>';
       return;
     }
     var byCls = {}, brTier = {};
@@ -1861,6 +1982,14 @@
       '<div class="stat"><div class="k">Record</div><div class="v">' + (rec ? rec[1] + "-" + rec[2] + (rec[3] ? "-" + rec[3] : "") : w + "-" + l + (tie ? "-" + tie : "")) + '</div></div>' +
       '<div class="stat"><div class="k">Goals for</div><div class="v">' + gf + '</div></div>' +
       '<div class="stat"><div class="k">Goals against</div><div class="v">' + ga + '</div></div></div>';
+    if(rec){
+      var pst = poStatus(ps, sp, rec, t.div), say = poSentence(ps, pst);
+      if(say && say[0]){
+        html += '<div class="poline"><span class="tag' +
+          (pst.kind === "champ" ? " gold" : (pst.kind === "out" || pst.kind === "chase") ? " no" : "") +
+          '">' + esc(say[0]) + '</span><span>' + esc(say[1]) + '</span></div>';
+      }
+    }
     if(played.length){
       var withScore = played.filter(hasScore);
       var withStats = withScore.filter(function(g){ return boxRowsFor(g, code) > 0; });
