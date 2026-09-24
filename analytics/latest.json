@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-23T17:03:11Z",
+ "generated": "2026-09-24T01:25:32Z",
  "days": 30,
- "visits": 870,
- "pageviews": 4250,
+ "visits": 900,
+ "pageviews": 4400,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -36,14 +36,14 @@
   },
   {
    "date": "2026-09-23",
-   "visits": 70,
-   "views": 470
+   "visits": 100,
+   "views": 620
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1090
+   "views": 1110
   },
   {
    "path": "/teams/boys",
@@ -55,7 +55,7 @@
   },
   {
    "path": "/standings/boys",
-   "views": 150
+   "views": 160
   },
   {
    "path": "/school/beacon/boys",
@@ -70,35 +70,39 @@
    "views": 90
   },
   {
-   "path": "/game/502591/boys",
-   "views": 90
-  },
-  {
    "path": "/game/502607/boys",
    "views": 90
   },
   {
-   "path": "/scores/2026-09-20/boys",
-   "views": 80
+   "path": "/game/502591/boys",
+   "views": 90
   },
   {
    "path": "/game/502587/boys",
    "views": 80
   },
   {
-   "path": "/scores/2026-09-22/boys",
-   "views": 70
+   "path": "/scores/2026-09-20/boys",
+   "views": 80
   },
   {
    "path": "/scores/2026-09-17/boys",
    "views": 70
   },
   {
-   "path": "/school/east-side-community/boys",
-   "views": 60
+   "path": "/scores/2026-09-22/boys",
+   "views": 70
+  },
+  {
+   "path": "/girls",
+   "views": 70
   },
   {
    "path": "/scores/2026-10-06/boys",
+   "views": 60
+  },
+  {
+   "path": "/school/east-side-community/boys",
    "views": 60
   },
   {
@@ -106,15 +110,11 @@
    "views": 50
   },
   {
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "views": 50
+  },
+  {
    "path": "/scores/2026-09-16/boys",
-   "views": 50
-  },
-  {
-   "path": "/history/boys",
-   "views": 50
-  },
-  {
-   "path": "/girls",
    "views": 50
   },
   {
