@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-24T17:15:13Z",
+ "generated": "2026-09-25T01:35:13Z",
  "days": 30,
- "visits": 920,
- "pageviews": 4470,
+ "visits": 940,
+ "pageviews": 4570,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -41,14 +41,19 @@
   },
   {
    "date": "2026-09-24",
-   "visits": 20,
-   "views": 70
+   "visits": 40,
+   "views": 160
+  },
+  {
+   "date": "2026-09-25",
+   "visits": 0,
+   "views": 10
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1120
+   "views": 1140
   },
   {
    "path": "/teams/boys",
@@ -60,7 +65,7 @@
   },
   {
    "path": "/standings/boys",
-   "views": 160
+   "views": 170
   },
   {
    "path": "/school/beacon/boys",
@@ -68,6 +73,10 @@
   },
   {
    "path": "/school/martin-l-king/boys",
+   "views": 110
+  },
+  {
+   "path": "/girls",
    "views": 110
   },
   {
@@ -88,10 +97,6 @@
   },
   {
    "path": "/scores/2026-09-20/boys",
-   "views": 80
-  },
-  {
-   "path": "/girls",
    "views": 80
   },
   {
