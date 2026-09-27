@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-09-26T22:50:05Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-09-27T06:38:09Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 90 | 540 | 
-| yesterday | 20 | 260 |
-| 30 days | 1050 | 5360 |
+| today | 0 | 20 | 
+| yesterday | 100 | 550 |
+| 30 days | 1060 | 5390 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -27,15 +27,16 @@ that is the number that means something.
 | 2026-09-23 | 100 | 620 |
 | 2026-09-24 | 40 | 160 |
 | 2026-09-25 | 20 | 260 |
-| 2026-09-26 | 90 | 540 |
+| 2026-09-26 | 100 | 550 |
+| 2026-09-27 | 0 | 20 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
 | / | 1200 | 22% |
-| /teams/boys | 210 | 4% |
-| /standings/boys | 180 | 3% |
+| /teams/boys | 230 | 4% |
+| /standings/boys | 190 | 4% |
 | /players/boys | 170 | 3% |
 | /school/beacon/boys | 140 | 3% |
 | /girls | 130 | 2% |
@@ -47,19 +48,19 @@ that is the number that means something.
 | /scores/2026-09-20/boys | 80 | 1% |
 | /game/502587/boys | 80 | 1% |
 | /scores/2026-09-17/boys | 70 | 1% |
-| /school/east-side-community/boys | 60 | 1% |
-| /scores/2026-10-06/boys | 60 | 1% |
 | /scores/2023-11-07/girls | 60 | 1% |
-| /standings/girls | 60 | 1% |
+| /scores/2026-10-06/boys | 60 | 1% |
 | /scores/2026-09-23/boys | 60 | 1% |
+| /school/east-side-community/boys | 60 | 1% |
+| /standings/girls | 60 | 1% |
 | /game/502704/boys | 60 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 4310 | 80% |
-| (direct) | 1030 | 19% |
+| nychssoccer.com | 4330 | 80% |
+| (direct) | 1040 | 19% |
 | facebook.com | 10 | 0% |
 | www.psal.org | 10 | 0% |
 
@@ -67,7 +68,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 5320 | 99% |
+| US | 5350 | 99% |
 | CA | 20 | 0% |
 | DE | 10 | 0% |
 | TW | 10 | 0% |
@@ -76,6 +77,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 4500 | 84% |
+| mobile | 4530 | 84% |
 | desktop | 860 | 16% |
 
