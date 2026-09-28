@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-28T07:48:50Z",
+ "generated": "2026-09-28T19:43:18Z",
  "days": 30,
- "visits": 1060,
- "pageviews": 5460,
+ "visits": 1090,
+ "pageviews": 5540,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -61,14 +61,14 @@
   },
   {
    "date": "2026-09-28",
-   "visits": 0,
-   "views": 20
+   "visits": 30,
+   "views": 100
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1210
+   "views": 1230
   },
   {
    "path": "/teams/boys",
@@ -111,11 +111,11 @@
    "views": 90
   },
   {
-   "path": "/game/502587/boys",
+   "path": "/scores/2026-09-20/boys",
    "views": 80
   },
   {
-   "path": "/scores/2026-09-20/boys",
+   "path": "/game/502587/boys",
    "views": 80
   },
   {

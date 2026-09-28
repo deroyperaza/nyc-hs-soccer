@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-09-28T07:48:50Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-09-28T19:43:18Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 0 | 20 | 
+| today | 30 | 100 | 
 | yesterday | 0 | 70 |
-| 30 days | 1060 | 5460 |
+| 30 days | 1090 | 5540 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -29,13 +29,13 @@ that is the number that means something.
 | 2026-09-25 | 20 | 260 |
 | 2026-09-26 | 100 | 550 |
 | 2026-09-27 | 0 | 70 |
-| 2026-09-28 | 0 | 20 |
+| 2026-09-28 | 30 | 100 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1210 | 22% |
+| / | 1230 | 22% |
 | /teams/boys | 230 | 4% |
 | /standings/boys | 190 | 3% |
 | /players/boys | 180 | 3% |
@@ -46,8 +46,8 @@ that is the number that means something.
 | /game/502607/boys | 90 | 2% |
 | /scores/2026-09-22/boys | 90 | 2% |
 | /school/martin-l-king/2023/boys | 90 | 2% |
-| /game/502587/boys | 80 | 1% |
 | /scores/2026-09-20/boys | 80 | 1% |
+| /game/502587/boys | 80 | 1% |
 | /scores/2026-09-17/boys | 70 | 1% |
 | /scores/2023-11-07/girls | 60 | 1% |
 | /scores/2026-10-06/boys | 60 | 1% |
@@ -60,8 +60,8 @@ that is the number that means something.
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 4400 | 81% |
-| (direct) | 1040 | 19% |
+| nychssoccer.com | 4450 | 80% |
+| (direct) | 1070 | 19% |
 | facebook.com | 10 | 0% |
 | www.psal.org | 10 | 0% |
 
@@ -69,7 +69,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 5420 | 99% |
+| US | 5500 | 99% |
 | CA | 20 | 0% |
 | DE | 10 | 0% |
 | TW | 10 | 0% |
@@ -78,6 +78,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 4600 | 84% |
-| desktop | 860 | 16% |
+| mobile | 4650 | 84% |
+| desktop | 890 | 16% |
 
