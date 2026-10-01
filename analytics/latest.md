@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-01T02:33:10Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-01T09:25:41Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 30 | 70 | 
+| today | 30 | 80 | 
 | yesterday | 40 | 120 |
-| 30 days | 1210 | 6260 |
+| 30 days | 1210 | 6270 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -32,7 +32,7 @@ that is the number that means something.
 | 2026-09-28 | 50 | 400 |
 | 2026-09-29 | 30 | 230 |
 | 2026-09-30 | 40 | 120 |
-| 2026-10-01 | 30 | 70 |
+| 2026-10-01 | 30 | 80 |
 
 ## Most-read pages
 
@@ -46,24 +46,24 @@ that is the number that means something.
 | /girls | 130 | 2% |
 | /school/martin-l-king/boys | 110 | 2% |
 | /school/martin-l-king/2023/boys | 90 | 1% |
+| /game/502591/boys | 90 | 1% |
 | /game/502607/boys | 90 | 1% |
 | /scores/2026-09-22/boys | 90 | 1% |
-| /game/502591/boys | 90 | 1% |
 | /game/502587/boys | 80 | 1% |
 | /scores/2026-09-20/boys | 80 | 1% |
-| /standings/girls | 70 | 1% |
 | /scores/2026-09-17/boys | 70 | 1% |
-| /scores/2023-11-07/girls | 60 | 1% |
-| /scores/2026-10-06/boys | 60 | 1% |
+| /standings/girls | 70 | 1% |
 | /history/boys | 60 | 1% |
+| /scores/2023-11-07/girls | 60 | 1% |
 | /school/east-side-community/boys | 60 | 1% |
-| /scores/2026-09-23/boys | 60 | 1% |
+| /school/stuyvesant/boys | 60 | 1% |
+| /school/graphics/boys | 60 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 5050 | 81% |
+| nychssoccer.com | 5060 | 81% |
 | (direct) | 1190 | 19% |
 | facebook.com | 10 | 0% |
 | www.psal.org | 10 | 0% |
@@ -72,7 +72,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 6200 | 99% |
+| US | 6210 | 99% |
 | CA | 40 | 1% |
 | DE | 10 | 0% |
 | TW | 10 | 0% |
@@ -82,5 +82,5 @@ that is the number that means something.
 | device | views | share |
 |---|---:|---:|
 | mobile | 5220 | 83% |
-| desktop | 1040 | 17% |
+| desktop | 1050 | 17% |
 
