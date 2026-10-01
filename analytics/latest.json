@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-30T18:02:58Z",
+ "generated": "2026-10-01T02:33:10Z",
  "days": 30,
- "visits": 1160,
- "pageviews": 6100,
+ "visits": 1210,
+ "pageviews": 6260,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -71,14 +71,19 @@
   },
   {
    "date": "2026-09-30",
-   "visits": 20,
-   "views": 30
+   "visits": 40,
+   "views": 120
+  },
+  {
+   "date": "2026-10-01",
+   "visits": 30,
+   "views": 70
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1310
+   "views": 1390
   },
   {
    "path": "/teams/boys",
@@ -86,7 +91,7 @@
   },
   {
    "path": "/standings/boys",
-   "views": 230
+   "views": 240
   },
   {
    "path": "/players/boys",
@@ -121,11 +126,11 @@
    "views": 90
   },
   {
-   "path": "/scores/2026-09-20/boys",
+   "path": "/game/502587/boys",
    "views": 80
   },
   {
-   "path": "/game/502587/boys",
+   "path": "/scores/2026-09-20/boys",
    "views": 80
   },
   {
@@ -137,7 +142,7 @@
    "views": 70
   },
   {
-   "path": "/school/east-side-community/boys",
+   "path": "/scores/2023-11-07/girls",
    "views": 60
   },
   {
@@ -145,15 +150,15 @@
    "views": 60
   },
   {
-   "path": "/game/502704/boys",
-   "views": 60
-  },
-  {
-   "path": "/scores/2023-11-07/girls",
-   "views": 60
-  },
-  {
    "path": "/history/boys",
+   "views": 60
+  },
+  {
+   "path": "/school/east-side-community/boys",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-09-23/boys",
    "views": 60
   }
  ]
