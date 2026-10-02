@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-02T10:03:44Z",
+ "generated": "2026-10-02T17:56:41Z",
  "days": 30,
  "visits": 1250,
- "pageviews": 6590,
+ "pageviews": 6630,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -82,7 +82,7 @@
   {
    "date": "2026-10-02",
    "visits": 10,
-   "views": 50
+   "views": 90
   }
  ],
  "topPaths": [
@@ -96,7 +96,7 @@
   },
   {
    "path": "/standings/boys",
-   "views": 250
+   "views": 260
   },
   {
    "path": "/players/boys",
@@ -147,6 +147,10 @@
    "views": 70
   },
   {
+   "path": "/history/boys",
+   "views": 70
+  },
+  {
    "path": "/standings/girls",
    "views": 70
   },
@@ -160,10 +164,6 @@
   },
   {
    "path": "/scores/2023-11-07/girls",
-   "views": 60
-  },
-  {
-   "path": "/school/stuyvesant/boys",
    "views": 60
   }
  ]
