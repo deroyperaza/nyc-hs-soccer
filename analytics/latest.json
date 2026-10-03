@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-03T08:33:53Z",
+ "generated": "2026-10-03T16:21:41Z",
  "days": 30,
- "visits": 1280,
- "pageviews": 6830,
+ "visits": 1290,
+ "pageviews": 7000,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -86,8 +86,8 @@
   },
   {
    "date": "2026-10-03",
-   "visits": 0,
-   "views": 70
+   "visits": 10,
+   "views": 240
   }
  ],
  "topPaths": [
@@ -97,34 +97,38 @@
   },
   {
    "path": "/teams/boys",
-   "views": 280
+   "views": 290
   },
   {
    "path": "/standings/boys",
    "views": 270
   },
   {
-   "path": "/players/boys",
-   "views": 200
+   "path": "/school/beacon/boys",
+   "views": 210
   },
   {
-   "path": "/school/beacon/boys",
-   "views": 180
+   "path": "/players/boys",
+   "views": 200
   },
   {
    "path": "/girls",
    "views": 150
   },
   {
+   "path": "/scores/2026-09-30/boys",
+   "views": 120
+  },
+  {
    "path": "/school/martin-l-king/boys",
    "views": 110
   },
   {
-   "path": "/scores/2026-09-30/boys",
-   "views": 100
+   "path": "/school/martin-l-king/2023/boys",
+   "views": 90
   },
   {
-   "path": "/school/martin-l-king/2023/boys",
+   "path": "/game/502591/boys",
    "views": 90
   },
   {
@@ -136,15 +140,11 @@
    "views": 90
   },
   {
-   "path": "/game/502591/boys",
-   "views": 90
-  },
-  {
-   "path": "/standings/girls",
+   "path": "/game/502587/boys",
    "views": 80
   },
   {
-   "path": "/game/502587/boys",
+   "path": "/standings/girls",
    "views": 80
   },
   {
@@ -152,7 +152,7 @@
    "views": 80
   },
   {
-   "path": "/scores/2026-09-17/boys",
+   "path": "/school/graphics/boys",
    "views": 70
   },
   {
@@ -160,15 +160,15 @@
    "views": 70
   },
   {
-   "path": "/scores/2026-09-23/boys",
+   "path": "/scores/2026-09-17/boys",
+   "views": 70
+  },
+  {
+   "path": "/school/east-side-community/boys",
    "views": 60
   },
   {
-   "path": "/scores/2026-10-06/boys",
-   "views": 60
-  },
-  {
-   "path": "/school/stuyvesant/boys",
+   "path": "/scores/2023-11-07/girls",
    "views": 60
   }
  ]
