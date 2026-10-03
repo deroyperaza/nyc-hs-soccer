@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-02T17:56:41Z",
+ "generated": "2026-10-03T02:26:56Z",
  "days": 30,
- "visits": 1250,
- "pageviews": 6630,
+ "visits": 1280,
+ "pageviews": 6780,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -81,22 +81,27 @@
   },
   {
    "date": "2026-10-02",
-   "visits": 10,
-   "views": 90
+   "visits": 40,
+   "views": 220
+  },
+  {
+   "date": "2026-10-03",
+   "visits": 0,
+   "views": 20
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1430
+   "views": 1500
   },
   {
    "path": "/teams/boys",
-   "views": 270
+   "views": 280
   },
   {
    "path": "/standings/boys",
-   "views": 260
+   "views": 270
   },
   {
    "path": "/players/boys",
@@ -139,6 +144,10 @@
    "views": 80
   },
   {
+   "path": "/standings/girls",
+   "views": 80
+  },
+  {
    "path": "/game/502587/boys",
    "views": 80
   },
@@ -148,10 +157,6 @@
   },
   {
    "path": "/history/boys",
-   "views": 70
-  },
-  {
-   "path": "/standings/girls",
    "views": 70
   },
   {
