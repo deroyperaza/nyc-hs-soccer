@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-04T08:54:48Z",
+ "generated": "2026-10-04T16:53:50Z",
  "days": 30,
- "visits": 1340,
- "pageviews": 7240,
+ "visits": 1350,
+ "pageviews": 7430,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -91,90 +91,90 @@
   },
   {
    "date": "2026-10-04",
-   "visits": 0,
-   "views": 70
+   "visits": 10,
+   "views": 260
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1580
-  },
-  {
-   "path": "/teams/boys",
-   "views": 290
-  },
-  {
-   "path": "/standings/boys",
-   "views": 280
-  },
-  {
-   "path": "/school/beacon/boys",
-   "views": 240
+   "views": 2300
   },
   {
    "path": "/players/boys",
+   "views": 600
+  },
+  {
+   "path": "/teams/boys",
+   "views": 400
+  },
+  {
+   "path": "/standings/boys",
+   "views": 400
+  },
+  {
+   "path": "/school/martin-l-king/2023/boys",
+   "views": 300
+  },
+  {
+   "path": "/school/beacon/2023/boys",
+   "views": 300
+  },
+  {
+   "path": "/scores/2026-09-25/boys",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-10-15/boys",
+   "views": 200
+  },
+  {
+   "path": "/standings/girls",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-10-02/boys",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-09-22/boys",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-09-30/boys",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-09-18/boys",
+   "views": 200
+  },
+  {
+   "path": "/game/502591/boys",
    "views": 200
   },
   {
    "path": "/girls",
-   "views": 150
+   "views": 200
   },
   {
-   "path": "/scores/2026-09-30/boys",
-   "views": 120
+   "path": "/school/east-side-community/boys",
+   "views": 200
   },
   {
-   "path": "/school/martin-l-king/boys",
-   "views": 120
+   "path": "/school/lehman/boys",
+   "views": 200
   },
   {
-   "path": "/scores/2026-09-22/boys",
-   "views": 90
+   "path": "/school/beacon/2026/boys",
+   "views": 200
   },
   {
-   "path": "/game/502591/boys",
-   "views": 90
-  },
-  {
-   "path": "/game/502607/boys",
-   "views": 90
-  },
-  {
-   "path": "/school/martin-l-king/2023/boys",
-   "views": 90
-  },
-  {
-   "path": "/scores/2026-09-20/boys",
-   "views": 80
-  },
-  {
-   "path": "/history/boys",
-   "views": 80
-  },
-  {
-   "path": "/standings/girls",
-   "views": 80
-  },
-  {
-   "path": "/game/502587/boys",
-   "views": 80
+   "path": "/game/502592/boys",
+   "views": 100
   },
   {
    "path": "/scores/2026-09-17/boys",
-   "views": 70
-  },
-  {
-   "path": "/school/graphics/boys",
-   "views": 70
-  },
-  {
-   "path": "/scores/2026-10-02/boys",
-   "views": 70
-  },
-  {
-   "path": "/scores/2023-11-07/girls",
-   "views": 60
+   "views": 100
   }
  ]
 }
