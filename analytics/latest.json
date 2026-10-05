@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-04T23:10:31Z",
+ "generated": "2026-10-05T09:03:59Z",
  "days": 30,
- "visits": 1370,
- "pageviews": 7540,
+ "visits": 1400,
+ "pageviews": 7670,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -93,24 +93,29 @@
    "date": "2026-10-04",
    "visits": 30,
    "views": 370
+  },
+  {
+   "date": "2026-10-05",
+   "visits": 30,
+   "views": 130
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1600
+   "views": 1620
+  },
+  {
+   "path": "/standings/boys",
+   "views": 300
   },
   {
    "path": "/teams/boys",
    "views": 290
   },
   {
-   "path": "/standings/boys",
-   "views": 290
-  },
-  {
    "path": "/school/beacon/boys",
-   "views": 240
+   "views": 260
   },
   {
    "path": "/players/boys",
@@ -153,11 +158,11 @@
    "views": 90
   },
   {
-   "path": "/history/boys",
+   "path": "/scores/2026-09-20/boys",
    "views": 80
   },
   {
-   "path": "/scores/2026-09-20/boys",
+   "path": "/history/boys",
    "views": 80
   },
   {
@@ -165,11 +170,11 @@
    "views": 80
   },
   {
-   "path": "/school/bard-manhattan/boys",
+   "path": "/school/graphics/boys",
    "views": 70
   },
   {
-   "path": "/school/graphics/boys",
+   "path": "/school/bard-manhattan/boys",
    "views": 70
   },
   {
