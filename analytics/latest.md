@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-05T09:03:59Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-05T20:42:31Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 30 | 130 | 
+| today | 40 | 210 | 
 | yesterday | 30 | 370 |
-| 30 days | 1400 | 7670 |
+| 30 days | 1410 | 7750 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -36,29 +36,29 @@ that is the number that means something.
 | 2026-10-02 | 40 | 220 |
 | 2026-10-03 | 60 | 410 |
 | 2026-10-04 | 30 | 370 |
-| 2026-10-05 | 30 | 130 |
+| 2026-10-05 | 40 | 210 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1620 | 21% |
-| /standings/boys | 300 | 4% |
+| / | 1630 | 21% |
+| /standings/boys | 310 | 4% |
 | /teams/boys | 290 | 4% |
-| /school/beacon/boys | 260 | 3% |
+| /school/beacon/boys | 270 | 3% |
 | /players/boys | 200 | 3% |
-| /girls | 190 | 2% |
+| /girls | 200 | 3% |
 | /scores/2026-10-02/boys | 130 | 2% |
 | /scores/2026-09-30/boys | 120 | 2% |
+| /standings/girls | 120 | 2% |
 | /school/martin-l-king/boys | 120 | 2% |
-| /standings/girls | 110 | 1% |
 | /game/502607/boys | 90 | 1% |
 | /scores/2026-09-22/boys | 90 | 1% |
 | /school/martin-l-king/2023/boys | 90 | 1% |
 | /game/502591/boys | 90 | 1% |
+| /game/502587/boys | 80 | 1% |
 | /scores/2026-09-20/boys | 80 | 1% |
 | /history/boys | 80 | 1% |
-| /game/502587/boys | 80 | 1% |
 | /school/graphics/boys | 70 | 1% |
 | /school/bard-manhattan/boys | 70 | 1% |
 | /scores/2026-09-17/boys | 70 | 1% |
@@ -67,8 +67,8 @@ that is the number that means something.
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 6270 | 82% |
-| (direct) | 1370 | 18% |
+| nychssoccer.com | 6340 | 82% |
+| (direct) | 1380 | 18% |
 | facebook.com | 10 | 0% |
 | www.google.com | 10 | 0% |
 | www.psal.org | 10 | 0% |
@@ -77,7 +77,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 7610 | 99% |
+| US | 7690 | 99% |
 | CA | 40 | 1% |
 | DE | 10 | 0% |
 | TW | 10 | 0% |
@@ -86,6 +86,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 6340 | 83% |
-| desktop | 1330 | 17% |
+| mobile | 6410 | 83% |
+| desktop | 1340 | 17% |
 
