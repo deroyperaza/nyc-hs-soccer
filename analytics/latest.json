@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-05T20:42:31Z",
+ "generated": "2026-10-06T08:05:56Z",
  "days": 30,
- "visits": 1410,
- "pageviews": 7750,
+ "visits": 1470,
+ "pageviews": 7940,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -96,14 +96,19 @@
   },
   {
    "date": "2026-10-05",
-   "visits": 40,
-   "views": 210
+   "visits": 90,
+   "views": 260
+  },
+  {
+   "date": "2026-10-06",
+   "visits": 10,
+   "views": 140
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1630
+   "views": 1680
   },
   {
    "path": "/standings/boys",
@@ -118,20 +123,20 @@
    "views": 270
   },
   {
-   "path": "/players/boys",
-   "views": 200
-  },
-  {
    "path": "/girls",
    "views": 200
   },
   {
-   "path": "/scores/2026-10-02/boys",
-   "views": 130
+   "path": "/players/boys",
+   "views": 200
   },
   {
    "path": "/scores/2026-09-30/boys",
-   "views": 120
+   "views": 150
+  },
+  {
+   "path": "/scores/2026-10-02/boys",
+   "views": 130
   },
   {
    "path": "/standings/girls",
@@ -142,6 +147,14 @@
    "views": 120
   },
   {
+   "path": "/game/502591/boys",
+   "views": 90
+  },
+  {
+   "path": "/school/martin-l-king/2023/boys",
+   "views": 90
+  },
+  {
    "path": "/game/502607/boys",
    "views": 90
   },
@@ -150,12 +163,8 @@
    "views": 90
   },
   {
-   "path": "/school/martin-l-king/2023/boys",
-   "views": 90
-  },
-  {
-   "path": "/game/502591/boys",
-   "views": 90
+   "path": "/history/boys",
+   "views": 80
   },
   {
    "path": "/game/502587/boys",
@@ -166,19 +175,15 @@
    "views": 80
   },
   {
-   "path": "/history/boys",
-   "views": 80
-  },
-  {
-   "path": "/school/graphics/boys",
-   "views": 70
-  },
-  {
-   "path": "/school/bard-manhattan/boys",
+   "path": "/scores/2026-10-06/boys",
    "views": 70
   },
   {
    "path": "/scores/2026-09-17/boys",
+   "views": 70
+  },
+  {
+   "path": "/school/graphics/boys",
    "views": 70
   }
  ]
