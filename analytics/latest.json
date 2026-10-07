@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-07T09:26:26Z",
+ "generated": "2026-10-07T19:01:09Z",
  "days": 30,
- "visits": 1540,
- "pageviews": 8220,
+ "visits": 1550,
+ "pageviews": 8290,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -106,14 +106,14 @@
   },
   {
    "date": "2026-10-07",
-   "visits": 0,
-   "views": 40
+   "visits": 10,
+   "views": 110
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1720
+   "views": 1730
   },
   {
    "path": "/standings/boys",
@@ -129,7 +129,7 @@
   },
   {
    "path": "/girls",
-   "views": 210
+   "views": 220
   },
   {
    "path": "/players/boys",
@@ -152,11 +152,11 @@
    "views": 120
   },
   {
-   "path": "/scores/2026-09-22/boys",
-   "views": 90
+   "path": "/scores/2026-10-06/boys",
+   "views": 100
   },
   {
-   "path": "/game/502607/boys",
+   "path": "/scores/2026-09-22/boys",
    "views": 90
   },
   {
@@ -168,11 +168,11 @@
    "views": 90
   },
   {
-   "path": "/scores/2026-09-20/boys",
-   "views": 80
+   "path": "/game/502607/boys",
+   "views": 90
   },
   {
-   "path": "/game/502587/boys",
+   "path": "/scores/2026-09-20/boys",
    "views": 80
   },
   {
@@ -180,11 +180,11 @@
    "views": 80
   },
   {
-   "path": "/school/graphics/boys",
-   "views": 70
+   "path": "/game/502587/boys",
+   "views": 80
   },
   {
-   "path": "/scores/2026-09-17/boys",
+   "path": "/school/graphics/boys",
    "views": 70
   },
   {
