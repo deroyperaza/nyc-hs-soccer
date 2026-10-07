@@ -1,6 +1,6 @@
 # Traffic
 
-_2026-10-07T02:47:14Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-07T09:26:26Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
@@ -59,11 +59,11 @@ that is the number that means something.
 | /game/502591/boys | 90 | 1% |
 | /school/martin-l-king/2023/boys | 90 | 1% |
 | /scores/2026-09-20/boys | 80 | 1% |
-| /history/boys | 80 | 1% |
 | /game/502587/boys | 80 | 1% |
+| /history/boys | 80 | 1% |
 | /school/graphics/boys | 70 | 1% |
+| /scores/2026-09-17/boys | 70 | 1% |
 | /school/bard-manhattan/boys | 70 | 1% |
-| /player/cyrus-vossoughian-bard-manhattan/boys | 70 | 1% |
 
 ## Where people came from
 

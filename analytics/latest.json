@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-07T02:47:14Z",
+ "generated": "2026-10-07T09:26:26Z",
  "days": 30,
  "visits": 1540,
  "pageviews": 8220,
@@ -172,11 +172,11 @@
    "views": 80
   },
   {
-   "path": "/history/boys",
+   "path": "/game/502587/boys",
    "views": 80
   },
   {
-   "path": "/game/502587/boys",
+   "path": "/history/boys",
    "views": 80
   },
   {
@@ -184,11 +184,11 @@
    "views": 70
   },
   {
-   "path": "/school/bard-manhattan/boys",
+   "path": "/scores/2026-09-17/boys",
    "views": 70
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "path": "/school/bard-manhattan/boys",
    "views": 70
   }
  ]
