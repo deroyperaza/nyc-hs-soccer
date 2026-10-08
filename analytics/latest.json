@@ -1,113 +1,118 @@
 {
- "generated": "2026-10-08T06:11:33Z",
+ "generated": "2026-10-08T18:55:30Z",
  "days": 30,
- "visits": 1400,
- "pageviews": 9300,
+ "visits": 1580,
+ "pageviews": 8680,
  "byDay": [
   {
    "date": "2026-09-17",
-   "visits": 400,
-   "views": 1200
+   "visits": 310,
+   "views": 920
   },
   {
    "date": "2026-09-18",
-   "visits": 200,
-   "views": 1200
+   "visits": 220,
+   "views": 960
   },
   {
    "date": "2026-09-19",
-   "visits": 0,
-   "views": 700
+   "visits": 50,
+   "views": 530
   },
   {
    "date": "2026-09-20",
-   "visits": 200,
-   "views": 200
+   "visits": 60,
+   "views": 340
   },
   {
    "date": "2026-09-21",
-   "visits": 0,
-   "views": 900
+   "visits": 70,
+   "views": 490
   },
   {
    "date": "2026-09-22",
-   "visits": 0,
-   "views": 700
+   "visits": 90,
+   "views": 540
   },
   {
    "date": "2026-09-23",
    "visits": 100,
-   "views": 500
+   "views": 620
   },
   {
    "date": "2026-09-24",
-   "visits": 100,
-   "views": 100
+   "visits": 40,
+   "views": 160
   },
   {
    "date": "2026-09-25",
-   "visits": 0,
-   "views": 300
+   "visits": 20,
+   "views": 260
   },
   {
    "date": "2026-09-26",
    "visits": 100,
-   "views": 600
+   "views": 550
+  },
+  {
+   "date": "2026-09-27",
+   "visits": 0,
+   "views": 70
   },
   {
    "date": "2026-09-28",
-   "visits": 0,
-   "views": 200
+   "visits": 50,
+   "views": 400
   },
   {
    "date": "2026-09-29",
-   "visits": 0,
-   "views": 100
+   "visits": 30,
+   "views": 230
   },
   {
    "date": "2026-09-30",
-   "visits": 0,
-   "views": 200
+   "visits": 40,
+   "views": 120
   },
   {
    "date": "2026-10-01",
-   "visits": 0,
-   "views": 400
+   "visits": 60,
+   "views": 350
   },
   {
    "date": "2026-10-02",
-   "visits": 100,
-   "views": 400
+   "visits": 40,
+   "views": 220
   },
   {
    "date": "2026-10-03",
-   "visits": 0,
-   "views": 400
+   "visits": 60,
+   "views": 410
   },
   {
    "date": "2026-10-04",
-   "visits": 0,
-   "views": 400
+   "visits": 30,
+   "views": 370
   },
   {
    "date": "2026-10-05",
-   "visits": 100,
-   "views": 300
+   "visits": 90,
+   "views": 260
   },
   {
    "date": "2026-10-06",
-   "visits": 100,
-   "views": 200
+   "visits": 80,
+   "views": 380
   },
   {
    "date": "2026-10-07",
-   "visits": 0,
-   "views": 200
+   "visits": 30,
+   "views": 300
   },
   {
    "date": "2026-10-08",
-   "visits": 0,
-   "views": 100
+   "visits": 10,
+   "views": 200
   }
  ],
  "topPaths": [
@@ -117,7 +122,7 @@
   },
   {
    "path": "/standings/boys",
-   "views": 330
+   "views": 340
   },
   {
    "path": "/school/beacon/boys",
@@ -128,16 +133,16 @@
    "views": 300
   },
   {
+   "path": "/girls",
+   "views": 230
+  },
+  {
    "path": "/players/boys",
    "views": 220
   },
   {
-   "path": "/girls",
-   "views": 220
-  },
-  {
    "path": "/standings/girls",
-   "views": 180
+   "views": 200
   },
   {
    "path": "/scores/2026-09-30/boys",
@@ -160,11 +165,11 @@
    "views": 100
   },
   {
-   "path": "/game/502607/boys",
+   "path": "/scores/2026-09-22/boys",
    "views": 90
   },
   {
-   "path": "/scores/2026-09-22/boys",
+   "path": "/game/502607/boys",
    "views": 90
   },
   {
