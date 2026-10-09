@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-09T06:37:28Z",
+ "generated": "2026-10-09T18:25:43Z",
  "days": 30,
- "visits": 1640,
- "pageviews": 8950,
+ "visits": 1660,
+ "pageviews": 9040,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -116,18 +116,18 @@
   },
   {
    "date": "2026-10-09",
-   "visits": 20,
-   "views": 40
+   "visits": 40,
+   "views": 130
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1810
+   "views": 1830
   },
   {
    "path": "/standings/boys",
-   "views": 340
+   "views": 350
   },
   {
    "path": "/school/beacon/boys",
@@ -139,7 +139,7 @@
   },
   {
    "path": "/girls",
-   "views": 230
+   "views": 250
   },
   {
    "path": "/players/boys",
@@ -167,7 +167,11 @@
   },
   {
    "path": "/history/boys",
-   "views": 100
+   "views": 110
+  },
+  {
+   "path": "/game/502607/boys",
+   "views": 90
   },
   {
    "path": "/scores/2026-09-22/boys",
@@ -178,15 +182,11 @@
    "views": 90
   },
   {
-   "path": "/school/bard-manhattan/boys",
-   "views": 90
-  },
-  {
    "path": "/game/502591/boys",
    "views": 90
   },
   {
-   "path": "/game/502607/boys",
+   "path": "/school/bard-manhattan/boys",
    "views": 90
   },
   {
@@ -194,11 +194,11 @@
    "views": 80
   },
   {
-   "path": "/game/502587/boys",
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
    "views": 80
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "path": "/game/502587/boys",
    "views": 80
   }
  ]
