@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-08T18:55:30Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-09T06:37:28Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 10 | 200 | 
-| yesterday | 30 | 300 |
-| 30 days | 1580 | 8680 |
+| today | 20 | 40 | 
+| yesterday | 50 | 430 |
+| 30 days | 1640 | 8950 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -39,39 +39,40 @@ that is the number that means something.
 | 2026-10-05 | 90 | 260 |
 | 2026-10-06 | 80 | 380 |
 | 2026-10-07 | 30 | 300 |
-| 2026-10-08 | 10 | 200 |
+| 2026-10-08 | 50 | 430 |
+| 2026-10-09 | 20 | 40 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1760 | 20% |
+| / | 1810 | 20% |
 | /standings/boys | 340 | 4% |
 | /school/beacon/boys | 320 | 4% |
-| /teams/boys | 300 | 3% |
+| /teams/boys | 310 | 3% |
 | /girls | 230 | 3% |
-| /players/boys | 220 | 3% |
+| /players/boys | 220 | 2% |
 | /standings/girls | 200 | 2% |
 | /scores/2026-09-30/boys | 150 | 2% |
 | /scores/2026-10-02/boys | 140 | 2% |
-| /scores/2026-10-06/boys | 120 | 1% |
+| /scores/2026-10-06/boys | 130 | 1% |
 | /school/martin-l-king/boys | 120 | 1% |
 | /history/boys | 100 | 1% |
 | /scores/2026-09-22/boys | 90 | 1% |
-| /game/502607/boys | 90 | 1% |
-| /game/502591/boys | 90 | 1% |
 | /school/martin-l-king/2023/boys | 90 | 1% |
 | /school/bard-manhattan/boys | 90 | 1% |
-| /player/cyrus-vossoughian-bard-manhattan/boys | 80 | 1% |
+| /game/502591/boys | 90 | 1% |
+| /game/502607/boys | 90 | 1% |
 | /scores/2026-09-20/boys | 80 | 1% |
 | /game/502587/boys | 80 | 1% |
+| /player/cyrus-vossoughian-bard-manhattan/boys | 80 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 7100 | 82% |
-| (direct) | 1550 | 18% |
+| nychssoccer.com | 7310 | 82% |
+| (direct) | 1610 | 18% |
 | facebook.com | 10 | 0% |
 | www.google.com | 10 | 0% |
 | www.psal.org | 10 | 0% |
@@ -80,7 +81,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 8600 | 99% |
+| US | 8870 | 99% |
 | CA | 60 | 1% |
 | DE | 10 | 0% |
 | TW | 10 | 0% |
@@ -89,6 +90,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 7080 | 82% |
-| desktop | 1600 | 18% |
+| mobile | 7220 | 81% |
+| desktop | 1730 | 19% |
 

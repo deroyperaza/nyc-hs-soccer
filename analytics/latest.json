@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-08T18:55:30Z",
+ "generated": "2026-10-09T06:37:28Z",
  "days": 30,
- "visits": 1580,
- "pageviews": 8680,
+ "visits": 1640,
+ "pageviews": 8950,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -111,14 +111,19 @@
   },
   {
    "date": "2026-10-08",
-   "visits": 10,
-   "views": 200
+   "visits": 50,
+   "views": 430
+  },
+  {
+   "date": "2026-10-09",
+   "visits": 20,
+   "views": 40
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1760
+   "views": 1810
   },
   {
    "path": "/standings/boys",
@@ -130,7 +135,7 @@
   },
   {
    "path": "/teams/boys",
-   "views": 300
+   "views": 310
   },
   {
    "path": "/girls",
@@ -154,7 +159,7 @@
   },
   {
    "path": "/scores/2026-10-06/boys",
-   "views": 120
+   "views": 130
   },
   {
    "path": "/school/martin-l-king/boys",
@@ -169,14 +174,6 @@
    "views": 90
   },
   {
-   "path": "/game/502607/boys",
-   "views": 90
-  },
-  {
-   "path": "/game/502591/boys",
-   "views": 90
-  },
-  {
    "path": "/school/martin-l-king/2023/boys",
    "views": 90
   },
@@ -185,8 +182,12 @@
    "views": 90
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
-   "views": 80
+   "path": "/game/502591/boys",
+   "views": 90
+  },
+  {
+   "path": "/game/502607/boys",
+   "views": 90
   },
   {
    "path": "/scores/2026-09-20/boys",
@@ -194,6 +195,10 @@
   },
   {
    "path": "/game/502587/boys",
+   "views": 80
+  },
+  {
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
    "views": 80
   }
  ]
