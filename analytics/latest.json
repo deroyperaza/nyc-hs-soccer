@@ -1,128 +1,123 @@
 {
- "generated": "2026-10-10T05:53:17Z",
+ "generated": "2026-10-10T17:24:20Z",
  "days": 30,
- "visits": 1730,
- "pageviews": 9410,
+ "visits": 1800,
+ "pageviews": 10900,
  "byDay": [
   {
    "date": "2026-09-17",
-   "visits": 310,
-   "views": 920
+   "visits": 400,
+   "views": 1200
   },
   {
    "date": "2026-09-18",
-   "visits": 220,
-   "views": 960
+   "visits": 200,
+   "views": 1200
   },
   {
    "date": "2026-09-19",
-   "visits": 50,
-   "views": 530
+   "visits": 0,
+   "views": 700
   },
   {
    "date": "2026-09-20",
-   "visits": 60,
-   "views": 340
+   "visits": 200,
+   "views": 200
   },
   {
    "date": "2026-09-21",
-   "visits": 70,
-   "views": 490
+   "visits": 0,
+   "views": 900
   },
   {
    "date": "2026-09-22",
-   "visits": 90,
-   "views": 540
+   "visits": 0,
+   "views": 700
   },
   {
    "date": "2026-09-23",
    "visits": 100,
-   "views": 620
+   "views": 500
   },
   {
    "date": "2026-09-24",
-   "visits": 40,
-   "views": 160
+   "visits": 100,
+   "views": 100
   },
   {
    "date": "2026-09-25",
-   "visits": 20,
-   "views": 260
+   "visits": 0,
+   "views": 300
   },
   {
    "date": "2026-09-26",
    "visits": 100,
-   "views": 550
-  },
-  {
-   "date": "2026-09-27",
-   "visits": 0,
-   "views": 70
+   "views": 600
   },
   {
    "date": "2026-09-28",
-   "visits": 50,
-   "views": 400
+   "visits": 0,
+   "views": 200
   },
   {
    "date": "2026-09-29",
-   "visits": 30,
-   "views": 230
+   "visits": 0,
+   "views": 100
   },
   {
    "date": "2026-09-30",
-   "visits": 40,
-   "views": 120
+   "visits": 0,
+   "views": 200
   },
   {
    "date": "2026-10-01",
-   "visits": 60,
-   "views": 350
+   "visits": 0,
+   "views": 400
   },
   {
    "date": "2026-10-02",
-   "visits": 40,
-   "views": 220
+   "visits": 100,
+   "views": 400
   },
   {
    "date": "2026-10-03",
-   "visits": 60,
-   "views": 410
+   "visits": 0,
+   "views": 400
   },
   {
    "date": "2026-10-04",
-   "visits": 30,
-   "views": 370
+   "visits": 0,
+   "views": 400
   },
   {
    "date": "2026-10-05",
-   "visits": 90,
-   "views": 260
-  },
-  {
-   "date": "2026-10-06",
-   "visits": 80,
-   "views": 380
-  },
-  {
-   "date": "2026-10-07",
-   "visits": 30,
+   "visits": 100,
    "views": 300
   },
   {
+   "date": "2026-10-06",
+   "visits": 100,
+   "views": 200
+  },
+  {
+   "date": "2026-10-07",
+   "visits": 0,
+   "views": 200
+  },
+  {
    "date": "2026-10-08",
-   "visits": 50,
-   "views": 430
+   "visits": 0,
+   "views": 900
   },
   {
    "date": "2026-10-09",
-   "visits": 70,
-   "views": 220
+   "visits": 300,
+   "views": 500
   },
   {
    "date": "2026-10-10",
-   "visits": 40,
-   "views": 280
+   "visits": 100,
+   "views": 300
   }
  ],
  "topPaths": [
@@ -147,7 +142,7 @@
    "views": 300
   },
   {
-   "path": "/school/beacon/2023/boys",
+   "path": "/scores/2026-10-02/boys",
    "views": 300
   },
   {
@@ -155,7 +150,7 @@
    "views": 300
   },
   {
-   "path": "/scores/2026-10-02/boys",
+   "path": "/school/beacon/2023/boys",
    "views": 300
   },
   {
@@ -163,39 +158,7 @@
    "views": 300
   },
   {
-   "path": "/scores/2026-10-15/boys",
-   "views": 200
-  },
-  {
-   "path": "/school/beacon/2026/boys",
-   "views": 200
-  },
-  {
-   "path": "/game/502749/boys",
-   "views": 200
-  },
-  {
-   "path": "/school/lehman/boys",
-   "views": 200
-  },
-  {
    "path": "/girls",
-   "views": 200
-  },
-  {
-   "path": "/game/502591/boys",
-   "views": 200
-  },
-  {
-   "path": "/scores/2026-09-18/boys",
-   "views": 200
-  },
-  {
-   "path": "/school/murrow/girls",
-   "views": 200
-  },
-  {
-   "path": "/school/east-side-community/boys",
    "views": 200
   },
   {
@@ -203,7 +166,39 @@
    "views": 200
   },
   {
+   "path": "/scores/2026-09-25/boys",
+   "views": 200
+  },
+  {
    "path": "/scores/2026-09-22/boys",
+   "views": 200
+  },
+  {
+   "path": "/school/east-side-community/boys",
+   "views": 200
+  },
+  {
+   "path": "/school/lehman/boys",
+   "views": 200
+  },
+  {
+   "path": "/game/502749/boys",
+   "views": 200
+  },
+  {
+   "path": "/school/beacon/2026/boys",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-10-15/boys",
+   "views": 200
+  },
+  {
+   "path": "/school/murrow/girls",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-09-30/boys",
    "views": 200
   }
  ]
