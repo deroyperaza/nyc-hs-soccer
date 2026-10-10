@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-09T18:25:43Z",
+ "generated": "2026-10-10T05:53:17Z",
  "days": 30,
- "visits": 1660,
- "pageviews": 9040,
+ "visits": 1730,
+ "pageviews": 9410,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -116,90 +116,95 @@
   },
   {
    "date": "2026-10-09",
+   "visits": 70,
+   "views": 220
+  },
+  {
+   "date": "2026-10-10",
    "visits": 40,
-   "views": 130
+   "views": 280
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1830
-  },
-  {
-   "path": "/standings/boys",
-   "views": 350
-  },
-  {
-   "path": "/school/beacon/boys",
-   "views": 320
-  },
-  {
-   "path": "/teams/boys",
-   "views": 310
-  },
-  {
-   "path": "/girls",
-   "views": 250
+   "views": 2800
   },
   {
    "path": "/players/boys",
-   "views": 220
+   "views": 700
   },
   {
-   "path": "/standings/girls",
-   "views": 200
+   "path": "/standings/boys",
+   "views": 600
   },
   {
-   "path": "/scores/2026-09-30/boys",
-   "views": 150
+   "path": "/teams/boys",
+   "views": 500
   },
   {
-   "path": "/scores/2026-10-02/boys",
-   "views": 140
+   "path": "/school/hunter-college/boys",
+   "views": 300
   },
   {
-   "path": "/scores/2026-10-06/boys",
-   "views": 130
-  },
-  {
-   "path": "/school/martin-l-king/boys",
-   "views": 120
-  },
-  {
-   "path": "/history/boys",
-   "views": 110
-  },
-  {
-   "path": "/game/502607/boys",
-   "views": 90
-  },
-  {
-   "path": "/scores/2026-09-22/boys",
-   "views": 90
+   "path": "/school/beacon/2023/boys",
+   "views": 300
   },
   {
    "path": "/school/martin-l-king/2023/boys",
-   "views": 90
+   "views": 300
+  },
+  {
+   "path": "/scores/2026-10-02/boys",
+   "views": 300
+  },
+  {
+   "path": "/standings/girls",
+   "views": 300
+  },
+  {
+   "path": "/scores/2026-10-15/boys",
+   "views": 200
+  },
+  {
+   "path": "/school/beacon/2026/boys",
+   "views": 200
+  },
+  {
+   "path": "/game/502749/boys",
+   "views": 200
+  },
+  {
+   "path": "/school/lehman/boys",
+   "views": 200
+  },
+  {
+   "path": "/girls",
+   "views": 200
   },
   {
    "path": "/game/502591/boys",
-   "views": 90
+   "views": 200
   },
   {
-   "path": "/school/bard-manhattan/boys",
-   "views": 90
+   "path": "/scores/2026-09-18/boys",
+   "views": 200
   },
   {
-   "path": "/scores/2026-09-20/boys",
-   "views": 80
+   "path": "/school/murrow/girls",
+   "views": 200
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
-   "views": 80
+   "path": "/school/east-side-community/boys",
+   "views": 200
   },
   {
-   "path": "/game/502587/boys",
-   "views": 80
+   "path": "/history/girls",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-09-22/boys",
+   "views": 200
   }
  ]
 }
