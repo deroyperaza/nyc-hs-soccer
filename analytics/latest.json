@@ -1,205 +1,210 @@
 {
- "generated": "2026-10-10T17:24:20Z",
+ "generated": "2026-10-10T23:35:21Z",
  "days": 30,
- "visits": 1800,
- "pageviews": 10900,
+ "visits": 1750,
+ "pageviews": 9550,
  "byDay": [
   {
    "date": "2026-09-17",
-   "visits": 400,
-   "views": 1200
+   "visits": 310,
+   "views": 920
   },
   {
    "date": "2026-09-18",
-   "visits": 200,
-   "views": 1200
+   "visits": 220,
+   "views": 960
   },
   {
    "date": "2026-09-19",
-   "visits": 0,
-   "views": 700
+   "visits": 50,
+   "views": 530
   },
   {
    "date": "2026-09-20",
-   "visits": 200,
-   "views": 200
+   "visits": 60,
+   "views": 340
   },
   {
    "date": "2026-09-21",
-   "visits": 0,
-   "views": 900
+   "visits": 70,
+   "views": 490
   },
   {
    "date": "2026-09-22",
-   "visits": 0,
-   "views": 700
+   "visits": 90,
+   "views": 540
   },
   {
    "date": "2026-09-23",
    "visits": 100,
-   "views": 500
+   "views": 620
   },
   {
    "date": "2026-09-24",
-   "visits": 100,
-   "views": 100
+   "visits": 40,
+   "views": 160
   },
   {
    "date": "2026-09-25",
-   "visits": 0,
-   "views": 300
+   "visits": 20,
+   "views": 260
   },
   {
    "date": "2026-09-26",
    "visits": 100,
-   "views": 600
+   "views": 550
+  },
+  {
+   "date": "2026-09-27",
+   "visits": 0,
+   "views": 70
   },
   {
    "date": "2026-09-28",
-   "visits": 0,
-   "views": 200
+   "visits": 50,
+   "views": 400
   },
   {
    "date": "2026-09-29",
-   "visits": 0,
-   "views": 100
+   "visits": 30,
+   "views": 230
   },
   {
    "date": "2026-09-30",
-   "visits": 0,
-   "views": 200
+   "visits": 40,
+   "views": 120
   },
   {
    "date": "2026-10-01",
-   "visits": 0,
-   "views": 400
+   "visits": 60,
+   "views": 350
   },
   {
    "date": "2026-10-02",
-   "visits": 100,
-   "views": 400
+   "visits": 40,
+   "views": 220
   },
   {
    "date": "2026-10-03",
-   "visits": 0,
-   "views": 400
+   "visits": 60,
+   "views": 410
   },
   {
    "date": "2026-10-04",
-   "visits": 0,
-   "views": 400
+   "visits": 30,
+   "views": 370
   },
   {
    "date": "2026-10-05",
-   "visits": 100,
-   "views": 300
+   "visits": 90,
+   "views": 260
   },
   {
    "date": "2026-10-06",
-   "visits": 100,
-   "views": 200
+   "visits": 80,
+   "views": 380
   },
   {
    "date": "2026-10-07",
-   "visits": 0,
-   "views": 200
+   "visits": 30,
+   "views": 300
   },
   {
    "date": "2026-10-08",
-   "visits": 0,
-   "views": 900
+   "visits": 50,
+   "views": 430
   },
   {
    "date": "2026-10-09",
-   "visits": 300,
-   "views": 500
+   "visits": 70,
+   "views": 220
   },
   {
    "date": "2026-10-10",
-   "visits": 100,
-   "views": 300
+   "visits": 60,
+   "views": 420
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 2800
-  },
-  {
-   "path": "/players/boys",
-   "views": 700
+   "views": 1900
   },
   {
    "path": "/standings/boys",
-   "views": 600
+   "views": 380
   },
   {
    "path": "/teams/boys",
-   "views": 500
+   "views": 320
   },
   {
-   "path": "/school/hunter-college/boys",
-   "views": 300
-  },
-  {
-   "path": "/scores/2026-10-02/boys",
-   "views": 300
-  },
-  {
-   "path": "/school/martin-l-king/2023/boys",
-   "views": 300
-  },
-  {
-   "path": "/school/beacon/2023/boys",
-   "views": 300
-  },
-  {
-   "path": "/standings/girls",
-   "views": 300
+   "path": "/school/beacon/boys",
+   "views": 320
   },
   {
    "path": "/girls",
-   "views": 200
+   "views": 250
   },
   {
-   "path": "/history/girls",
-   "views": 200
+   "path": "/players/boys",
+   "views": 220
   },
   {
-   "path": "/scores/2026-09-25/boys",
-   "views": 200
-  },
-  {
-   "path": "/scores/2026-09-22/boys",
-   "views": 200
-  },
-  {
-   "path": "/school/east-side-community/boys",
-   "views": 200
-  },
-  {
-   "path": "/school/lehman/boys",
-   "views": 200
-  },
-  {
-   "path": "/game/502749/boys",
-   "views": 200
-  },
-  {
-   "path": "/school/beacon/2026/boys",
-   "views": 200
-  },
-  {
-   "path": "/scores/2026-10-15/boys",
-   "views": 200
-  },
-  {
-   "path": "/school/murrow/girls",
+   "path": "/standings/girls",
    "views": 200
   },
   {
    "path": "/scores/2026-09-30/boys",
-   "views": 200
+   "views": 150
+  },
+  {
+   "path": "/school/bard-manhattan/boys",
+   "views": 140
+  },
+  {
+   "path": "/scores/2026-10-02/boys",
+   "views": 140
+  },
+  {
+   "path": "/history/boys",
+   "views": 130
+  },
+  {
+   "path": "/scores/2026-10-06/boys",
+   "views": 130
+  },
+  {
+   "path": "/school/martin-l-king/boys",
+   "views": 120
+  },
+  {
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "views": 110
+  },
+  {
+   "path": "/game/502607/boys",
+   "views": 90
+  },
+  {
+   "path": "/school/east-side-community/boys",
+   "views": 90
+  },
+  {
+   "path": "/game/502591/boys",
+   "views": 90
+  },
+  {
+   "path": "/school/murrow/girls",
+   "views": 90
+  },
+  {
+   "path": "/scores/2026-09-22/boys",
+   "views": 90
+  },
+  {
+   "path": "/school/martin-l-king/2023/boys",
+   "views": 90
   }
  ]
 }
