@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-11T17:44:16Z",
+ "generated": "2026-10-12T02:43:58Z",
  "days": 30,
- "visits": 1760,
- "pageviews": 9640,
+ "visits": 1770,
+ "pageviews": 9710,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -127,7 +127,12 @@
   {
    "date": "2026-10-11",
    "visits": 10,
-   "views": 90
+   "views": 150
+  },
+  {
+   "date": "2026-10-12",
+   "visits": 10,
+   "views": 10
   }
  ],
  "topPaths": [
@@ -137,7 +142,7 @@
   },
   {
    "path": "/standings/boys",
-   "views": 380
+   "views": 400
   },
   {
    "path": "/teams/boys",
@@ -192,15 +197,11 @@
    "views": 100
   },
   {
-   "path": "/scores/2026-09-22/boys",
-   "views": 90
-  },
-  {
-   "path": "/game/502607/boys",
-   "views": 90
-  },
-  {
    "path": "/school/murrow/girls",
+   "views": 90
+  },
+  {
+   "path": "/scores/2026-09-22/boys",
    "views": 90
   },
   {
@@ -209,6 +210,10 @@
   },
   {
    "path": "/game/502591/boys",
+   "views": 90
+  },
+  {
+   "path": "/game/502607/boys",
    "views": 90
   }
  ]
