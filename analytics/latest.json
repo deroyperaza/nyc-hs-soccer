@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-12T21:20:16Z",
+ "generated": "2026-10-13T09:26:48Z",
  "days": 30,
  "visits": 1780,
- "pageviews": 9860,
+ "pageviews": 9980,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -132,7 +132,12 @@
   {
    "date": "2026-10-12",
    "visits": 20,
-   "views": 160
+   "views": 260
+  },
+  {
+   "date": "2026-10-13",
+   "visits": 0,
+   "views": 20
   }
  ],
  "topPaths": [
@@ -165,7 +170,7 @@
    "views": 200
   },
   {
-   "path": "/history/boys",
+   "path": "/school/bard-manhattan/boys",
    "views": 150
   },
   {
@@ -173,8 +178,8 @@
    "views": 150
   },
   {
-   "path": "/school/bard-manhattan/boys",
-   "views": 140
+   "path": "/history/boys",
+   "views": 150
   },
   {
    "path": "/scores/2026-10-02/boys",
@@ -201,15 +206,15 @@
    "views": 100
   },
   {
+   "path": "/game/502591/boys",
+   "views": 90
+  },
+  {
+   "path": "/scores/2026-10-15/boys",
+   "views": 90
+  },
+  {
    "path": "/scores/2026-09-22/boys",
-   "views": 90
-  },
-  {
-   "path": "/game/502607/boys",
-   "views": 90
-  },
-  {
-   "path": "/school/murrow/girls",
    "views": 90
   },
   {
