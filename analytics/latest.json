@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-13T09:26:48Z",
+ "generated": "2026-10-13T19:21:42Z",
  "days": 30,
- "visits": 1780,
- "pageviews": 9980,
+ "visits": 1790,
+ "pageviews": 10130,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -136,18 +136,18 @@
   },
   {
    "date": "2026-10-13",
-   "visits": 0,
-   "views": 20
+   "visits": 10,
+   "views": 170
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1960
+   "views": 2000
   },
   {
    "path": "/standings/boys",
-   "views": 410
+   "views": 430
   },
   {
    "path": "/teams/boys",
@@ -198,19 +198,19 @@
    "views": 110
   },
   {
-   "path": "/school/east-side-community/boys",
-   "views": 100
-  },
-  {
    "path": "/school/midwood/boys",
    "views": 100
   },
   {
-   "path": "/game/502591/boys",
+   "path": "/school/east-side-community/boys",
+   "views": 100
+  },
+  {
+   "path": "/school/murrow/girls",
    "views": 90
   },
   {
-   "path": "/scores/2026-10-15/boys",
+   "path": "/school/martin-l-king/2023/boys",
    "views": 90
   },
   {
@@ -218,7 +218,7 @@
    "views": 90
   },
   {
-   "path": "/school/martin-l-king/2023/boys",
+   "path": "/game/502607/boys",
    "views": 90
   }
  ]
