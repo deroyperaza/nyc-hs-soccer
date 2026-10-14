@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-14T02:17:26Z",
+ "generated": "2026-10-14T17:15:22Z",
  "days": 30,
- "visits": 1810,
- "pageviews": 10270,
+ "visits": 1850,
+ "pageviews": 10510,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -141,30 +141,30 @@
   },
   {
    "date": "2026-10-14",
-   "visits": 10,
-   "views": 50
+   "visits": 50,
+   "views": 290
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 2020
+   "views": 2060
   },
   {
    "path": "/standings/boys",
-   "views": 430
+   "views": 450
   },
   {
    "path": "/school/beacon/boys",
-   "views": 330
+   "views": 340
   },
   {
    "path": "/teams/boys",
-   "views": 320
+   "views": 330
   },
   {
    "path": "/girls",
-   "views": 250
+   "views": 270
   },
   {
    "path": "/players/boys",
@@ -180,7 +180,7 @@
   },
   {
    "path": "/history/boys",
-   "views": 150
+   "views": 160
   },
   {
    "path": "/school/bard-manhattan/boys",
@@ -203,7 +203,15 @@
    "views": 110
   },
   {
-   "path": "/school/midwood/boys",
+   "path": "/scores/2026-10-15/boys",
+   "views": 110
+  },
+  {
+   "path": "/school/stuyvesant/boys",
+   "views": 100
+  },
+  {
+   "path": "/school/murrow/girls",
    "views": 100
   },
   {
@@ -211,19 +219,11 @@
    "views": 100
   },
   {
-   "path": "/school/hunter-college/boys",
-   "views": 90
-  },
-  {
-   "path": "/scores/2026-09-22/boys",
-   "views": 90
+   "path": "/school/midwood/boys",
+   "views": 100
   },
   {
    "path": "/game/502607/boys",
-   "views": 90
-  },
-  {
-   "path": "/school/murrow/girls",
    "views": 90
   }
  ]
