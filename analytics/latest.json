@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-13T19:21:42Z",
+ "generated": "2026-10-14T02:17:26Z",
  "days": 30,
- "visits": 1790,
- "pageviews": 10130,
+ "visits": 1810,
+ "pageviews": 10270,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -136,25 +136,30 @@
   },
   {
    "date": "2026-10-13",
+   "visits": 20,
+   "views": 260
+  },
+  {
+   "date": "2026-10-14",
    "visits": 10,
-   "views": 170
+   "views": 50
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 2000
+   "views": 2020
   },
   {
    "path": "/standings/boys",
    "views": 430
   },
   {
-   "path": "/teams/boys",
-   "views": 320
+   "path": "/school/beacon/boys",
+   "views": 330
   },
   {
-   "path": "/school/beacon/boys",
+   "path": "/teams/boys",
    "views": 320
   },
   {
@@ -170,15 +175,15 @@
    "views": 200
   },
   {
-   "path": "/school/bard-manhattan/boys",
-   "views": 150
-  },
-  {
    "path": "/scores/2026-09-30/boys",
-   "views": 150
+   "views": 190
   },
   {
    "path": "/history/boys",
+   "views": 150
+  },
+  {
+   "path": "/school/bard-manhattan/boys",
    "views": 150
   },
   {
@@ -206,11 +211,7 @@
    "views": 100
   },
   {
-   "path": "/school/murrow/girls",
-   "views": 90
-  },
-  {
-   "path": "/school/martin-l-king/2023/boys",
+   "path": "/school/hunter-college/boys",
    "views": 90
   },
   {
@@ -219,6 +220,10 @@
   },
   {
    "path": "/game/502607/boys",
+   "views": 90
+  },
+  {
+   "path": "/school/murrow/girls",
    "views": 90
   }
  ]
