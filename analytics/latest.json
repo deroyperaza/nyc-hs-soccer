@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-14T23:16:43Z",
+ "generated": "2026-10-15T06:25:25Z",
  "days": 30,
- "visits": 1890,
- "pageviews": 10650,
+ "visits": 1910,
+ "pageviews": 10720,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -143,16 +143,21 @@
    "date": "2026-10-14",
    "visits": 90,
    "views": 430
+  },
+  {
+   "date": "2026-10-15",
+   "visits": 20,
+   "views": 70
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 2110
+   "views": 2140
   },
   {
    "path": "/standings/boys",
-   "views": 450
+   "views": 460
   },
   {
    "path": "/school/beacon/boys",
@@ -195,11 +200,11 @@
    "views": 130
   },
   {
-   "path": "/school/martin-l-king/boys",
+   "path": "/scores/2026-10-15/boys",
    "views": 120
   },
   {
-   "path": "/scores/2026-10-15/boys",
+   "path": "/school/martin-l-king/boys",
    "views": 120
   },
   {
@@ -211,7 +216,11 @@
    "views": 100
   },
   {
-   "path": "/school/midwood/boys",
+   "path": "/school/hunter-college/boys",
+   "views": 100
+  },
+  {
+   "path": "/school/stuyvesant/boys",
    "views": 100
   },
   {
@@ -219,11 +228,7 @@
    "views": 100
   },
   {
-   "path": "/school/hunter-college/boys",
-   "views": 100
-  },
-  {
-   "path": "/school/stuyvesant/boys",
+   "path": "/school/midwood/boys",
    "views": 100
   }
  ]
