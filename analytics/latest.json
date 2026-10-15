@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-15T17:06:30Z",
+ "generated": "2026-10-15T23:06:49Z",
  "days": 30,
- "visits": 1910,
- "pageviews": 10850,
+ "visits": 1930,
+ "pageviews": 10880,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -146,8 +146,8 @@
   },
   {
    "date": "2026-10-15",
-   "visits": 20,
-   "views": 200
+   "visits": 40,
+   "views": 230
   }
  ],
  "topPaths": [
@@ -169,15 +169,15 @@
   },
   {
    "path": "/girls",
-   "views": 290
+   "views": 300
+  },
+  {
+   "path": "/standings/girls",
+   "views": 230
   },
   {
    "path": "/players/boys",
    "views": 220
-  },
-  {
-   "path": "/standings/girls",
-   "views": 210
   },
   {
    "path": "/scores/2026-09-30/boys",

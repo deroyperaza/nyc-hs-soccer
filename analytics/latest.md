@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-15T17:06:30Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-15T23:06:49Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 20 | 200 | 
+| today | 40 | 230 | 
 | yesterday | 90 | 430 |
-| 30 days | 1910 | 10850 |
+| 30 days | 1930 | 10880 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -46,7 +46,7 @@ that is the number that means something.
 | 2026-10-12 | 20 | 260 |
 | 2026-10-13 | 20 | 260 |
 | 2026-10-14 | 90 | 430 |
-| 2026-10-15 | 20 | 200 |
+| 2026-10-15 | 40 | 230 |
 
 ## Most-read pages
 
@@ -56,9 +56,9 @@ that is the number that means something.
 | /standings/boys | 460 | 4% |
 | /school/beacon/boys | 340 | 3% |
 | /teams/boys | 330 | 3% |
-| /girls | 290 | 3% |
+| /girls | 300 | 3% |
+| /standings/girls | 230 | 2% |
 | /players/boys | 220 | 2% |
-| /standings/girls | 210 | 2% |
 | /scores/2026-09-30/boys | 190 | 2% |
 | /school/bard-manhattan/boys | 160 | 1% |
 | /history/boys | 160 | 1% |
@@ -77,8 +77,8 @@ that is the number that means something.
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 8940 | 82% |
-| (direct) | 1880 | 17% |
+| nychssoccer.com | 8950 | 82% |
+| (direct) | 1900 | 17% |
 | facebook.com | 10 | 0% |
 | www.google.com | 10 | 0% |
 | www.psal.org | 10 | 0% |
@@ -87,7 +87,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 10660 | 98% |
+| US | 10690 | 98% |
 | CA | 80 | 1% |
 | NL | 80 | 1% |
 | DE | 20 | 0% |
@@ -97,6 +97,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 9700 | 89% |
-| desktop | 2700 | 25% |
+| mobile | 8510 | 78% |
+| desktop | 2370 | 22% |
 
