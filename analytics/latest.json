@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-15T06:25:25Z",
+ "generated": "2026-10-15T17:06:30Z",
  "days": 30,
  "visits": 1910,
- "pageviews": 10720,
+ "pageviews": 10850,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -147,13 +147,13 @@
   {
    "date": "2026-10-15",
    "visits": 20,
-   "views": 70
+   "views": 200
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 2140
+   "views": 2150
   },
   {
    "path": "/standings/boys",
@@ -169,7 +169,7 @@
   },
   {
    "path": "/girls",
-   "views": 270
+   "views": 290
   },
   {
    "path": "/players/boys",
@@ -184,12 +184,12 @@
    "views": 190
   },
   {
-   "path": "/history/boys",
+   "path": "/school/bard-manhattan/boys",
    "views": 160
   },
   {
-   "path": "/school/bard-manhattan/boys",
-   "views": 150
+   "path": "/history/boys",
+   "views": 160
   },
   {
    "path": "/scores/2026-10-02/boys",
@@ -200,19 +200,27 @@
    "views": 130
   },
   {
-   "path": "/scores/2026-10-15/boys",
-   "views": 120
-  },
-  {
    "path": "/school/martin-l-king/boys",
    "views": 120
   },
   {
+   "path": "/scores/2026-10-15/boys",
+   "views": 120
+  },
+  {
    "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
-   "views": 110
+   "views": 120
   },
   {
    "path": "/school/murrow/girls",
+   "views": 100
+  },
+  {
+   "path": "/school/midwood/boys",
+   "views": 100
+  },
+  {
+   "path": "/school/east-side-community/boys",
    "views": 100
   },
   {
@@ -221,14 +229,6 @@
   },
   {
    "path": "/school/stuyvesant/boys",
-   "views": 100
-  },
-  {
-   "path": "/school/east-side-community/boys",
-   "views": 100
-  },
-  {
-   "path": "/school/midwood/boys",
    "views": 100
   }
  ]
