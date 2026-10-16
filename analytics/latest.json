@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-16T06:20:36Z",
+ "generated": "2026-10-16T16:43:40Z",
  "days": 30,
- "visits": 1950,
- "pageviews": 11010,
+ "visits": 1970,
+ "pageviews": 11120,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -151,22 +151,22 @@
   },
   {
    "date": "2026-10-16",
-   "visits": 20,
-   "views": 130
+   "visits": 40,
+   "views": 240
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 2170
+   "views": 2190
   },
   {
    "path": "/standings/boys",
-   "views": 470
+   "views": 490
   },
   {
    "path": "/school/beacon/boys",
-   "views": 340
+   "views": 350
   },
   {
    "path": "/teams/boys",
@@ -174,11 +174,11 @@
   },
   {
    "path": "/girls",
-   "views": 310
+   "views": 320
   },
   {
    "path": "/standings/girls",
-   "views": 230
+   "views": 240
   },
   {
    "path": "/players/boys",
@@ -201,11 +201,11 @@
    "views": 140
   },
   {
-   "path": "/scores/2026-10-06/boys",
-   "views": 130
+   "path": "/scores/2026-10-15/boys",
+   "views": 140
   },
   {
-   "path": "/scores/2026-10-15/boys",
+   "path": "/scores/2026-10-06/boys",
    "views": 130
   },
   {
@@ -221,7 +221,7 @@
    "views": 110
   },
   {
-   "path": "/school/murrow/girls",
+   "path": "/school/hunter-college/boys",
    "views": 100
   },
   {
@@ -229,11 +229,11 @@
    "views": 100
   },
   {
-   "path": "/school/hunter-college/boys",
+   "path": "/school/east-side-community/boys",
    "views": 100
   },
   {
-   "path": "/school/east-side-community/boys",
+   "path": "/school/murrow/girls",
    "views": 100
   }
  ]
