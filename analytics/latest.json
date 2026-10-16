@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-16T16:43:40Z",
+ "generated": "2026-10-16T22:52:59Z",
  "days": 30,
- "visits": 1970,
- "pageviews": 11120,
+ "visits": 1980,
+ "pageviews": 11170,
  "byDay": [
   {
    "date": "2026-09-17",
@@ -151,8 +151,8 @@
   },
   {
    "date": "2026-10-16",
-   "visits": 40,
-   "views": 240
+   "visits": 50,
+   "views": 290
   }
  ],
  "topPaths": [
@@ -178,7 +178,7 @@
   },
   {
    "path": "/standings/girls",
-   "views": 240
+   "views": 250
   },
   {
    "path": "/players/boys",
@@ -205,6 +205,10 @@
    "views": 140
   },
   {
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "views": 130
+  },
+  {
    "path": "/scores/2026-10-06/boys",
    "views": 130
   },
@@ -213,16 +217,8 @@
    "views": 120
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
-   "views": 120
-  },
-  {
    "path": "/school/stuyvesant/boys",
    "views": 110
-  },
-  {
-   "path": "/school/hunter-college/boys",
-   "views": 100
   },
   {
    "path": "/school/midwood/boys",
@@ -230,6 +226,10 @@
   },
   {
    "path": "/school/east-side-community/boys",
+   "views": 100
+  },
+  {
+   "path": "/school/hunter-college/boys",
    "views": 100
   },
   {
