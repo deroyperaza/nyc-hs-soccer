@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-17T05:10:11Z",
+ "generated": "2026-10-17T15:39:56Z",
  "days": 30,
- "visits": 1950,
- "pageviews": 11170,
+ "visits": 1840,
+ "pageviews": 10700,
  "byDay": [
   {
    "date": "2026-09-17",
-   "visits": 280,
-   "views": 850
+   "visits": 150,
+   "views": 330
   },
   {
    "date": "2026-09-18",
@@ -156,25 +156,21 @@
   },
   {
    "date": "2026-10-17",
-   "visits": 0,
-   "views": 70
+   "visits": 20,
+   "views": 120
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 2170
+   "views": 2070
   },
   {
    "path": "/standings/boys",
-   "views": 500
+   "views": 490
   },
   {
    "path": "/school/beacon/boys",
-   "views": 350
-  },
-  {
-   "path": "/teams/boys",
    "views": 330
   },
   {
@@ -182,31 +178,35 @@
    "views": 330
   },
   {
+   "path": "/teams/boys",
+   "views": 310
+  },
+  {
    "path": "/standings/girls",
-   "views": 250
+   "views": 260
   },
   {
    "path": "/players/boys",
-   "views": 220
-  },
-  {
-   "path": "/scores/2026-09-30/boys",
-   "views": 190
+   "views": 210
   },
   {
    "path": "/school/bard-manhattan/boys",
    "views": 190
   },
   {
-   "path": "/history/boys",
-   "views": 160
+   "path": "/scores/2026-09-30/boys",
+   "views": 190
   },
   {
-   "path": "/scores/2026-10-02/boys",
-   "views": 140
+   "path": "/history/boys",
+   "views": 150
   },
   {
    "path": "/scores/2026-10-15/boys",
+   "views": 140
+  },
+  {
+   "path": "/scores/2026-10-02/boys",
    "views": 140
   },
   {
@@ -214,8 +214,12 @@
    "views": 130
   },
   {
+   "path": "/school/murrow/girls",
+   "views": 120
+  },
+  {
    "path": "/scores/2026-10-06/boys",
-   "views": 130
+   "views": 120
   },
   {
    "path": "/school/martin-l-king/boys",
@@ -226,7 +230,7 @@
    "views": 110
   },
   {
-   "path": "/school/hunter-college/boys",
+   "path": "/school/east-side-community/boys",
    "views": 100
   },
   {
@@ -234,11 +238,7 @@
    "views": 100
   },
   {
-   "path": "/school/east-side-community/boys",
-   "views": 100
-  },
-  {
-   "path": "/school/murrow/girls",
+   "path": "/school/hunter-college/boys",
    "views": 100
   }
  ]
