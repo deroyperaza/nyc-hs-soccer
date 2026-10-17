@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-16T22:52:59Z",
+ "generated": "2026-10-17T05:10:11Z",
  "days": 30,
- "visits": 1980,
+ "visits": 1950,
  "pageviews": 11170,
  "byDay": [
   {
    "date": "2026-09-17",
-   "visits": 310,
-   "views": 920
+   "visits": 280,
+   "views": 850
   },
   {
    "date": "2026-09-18",
@@ -153,16 +153,21 @@
    "date": "2026-10-16",
    "visits": 50,
    "views": 290
+  },
+  {
+   "date": "2026-10-17",
+   "visits": 0,
+   "views": 70
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 2190
+   "views": 2170
   },
   {
    "path": "/standings/boys",
-   "views": 490
+   "views": 500
   },
   {
    "path": "/school/beacon/boys",
@@ -174,7 +179,7 @@
   },
   {
    "path": "/girls",
-   "views": 320
+   "views": 330
   },
   {
    "path": "/standings/girls",
@@ -190,7 +195,7 @@
   },
   {
    "path": "/school/bard-manhattan/boys",
-   "views": 180
+   "views": 190
   },
   {
    "path": "/history/boys",
@@ -221,15 +226,15 @@
    "views": 110
   },
   {
+   "path": "/school/hunter-college/boys",
+   "views": 100
+  },
+  {
    "path": "/school/midwood/boys",
    "views": 100
   },
   {
    "path": "/school/east-side-community/boys",
-   "views": 100
-  },
-  {
-   "path": "/school/hunter-college/boys",
    "views": 100
   },
   {

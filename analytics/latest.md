@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-16T22:52:59Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-17T05:10:11Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 50 | 290 | 
-| yesterday | 40 | 230 |
-| 30 days | 1980 | 11170 |
+| today | 0 | 70 | 
+| yesterday | 50 | 290 |
+| 30 days | 1950 | 11170 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,7 +18,6 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-09-17 | 310 | 920 |
 | 2026-09-18 | 220 | 960 |
 | 2026-09-19 | 50 | 530 |
 | 2026-09-20 | 60 | 340 |
@@ -48,20 +47,21 @@ that is the number that means something.
 | 2026-10-14 | 90 | 430 |
 | 2026-10-15 | 40 | 230 |
 | 2026-10-16 | 50 | 290 |
+| 2026-10-17 | 0 | 70 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 2190 | 20% |
-| /standings/boys | 490 | 4% |
+| / | 2170 | 19% |
+| /standings/boys | 500 | 4% |
 | /school/beacon/boys | 350 | 3% |
 | /teams/boys | 330 | 3% |
-| /girls | 320 | 3% |
+| /girls | 330 | 3% |
 | /standings/girls | 250 | 2% |
 | /players/boys | 220 | 2% |
 | /scores/2026-09-30/boys | 190 | 2% |
-| /school/bard-manhattan/boys | 180 | 2% |
+| /school/bard-manhattan/boys | 190 | 2% |
 | /history/boys | 160 | 1% |
 | /scores/2026-10-02/boys | 140 | 1% |
 | /scores/2026-10-15/boys | 140 | 1% |
@@ -69,20 +69,19 @@ that is the number that means something.
 | /scores/2026-10-06/boys | 130 | 1% |
 | /school/martin-l-king/boys | 120 | 1% |
 | /school/stuyvesant/boys | 110 | 1% |
+| /school/hunter-college/boys | 100 | 1% |
 | /school/midwood/boys | 100 | 1% |
 | /school/east-side-community/boys | 100 | 1% |
-| /school/hunter-college/boys | 100 | 1% |
 | /school/murrow/girls | 100 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 9190 | 82% |
-| (direct) | 1950 | 17% |
+| nychssoccer.com | 9220 | 83% |
+| (direct) | 1930 | 17% |
 | facebook.com | 10 | 0% |
 | www.google.com | 10 | 0% |
-| www.psal.org | 10 | 0% |
 
 ## Countries
 
@@ -98,6 +97,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 8730 | 78% |
-| desktop | 2440 | 22% |
+| mobile | 8760 | 78% |
+| desktop | 2410 | 22% |
 
