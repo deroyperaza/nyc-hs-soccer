@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-17T15:39:56Z",
+ "generated": "2026-10-17T22:20:19Z",
  "days": 30,
- "visits": 1840,
- "pageviews": 10700,
+ "visits": 1760,
+ "pageviews": 10560,
  "byDay": [
   {
    "date": "2026-09-17",
-   "visits": 150,
-   "views": 330
+   "visits": 70,
+   "views": 140
   },
   {
    "date": "2026-09-18",
@@ -157,29 +157,29 @@
   {
    "date": "2026-10-17",
    "visits": 20,
-   "views": 120
+   "views": 170
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 2070
+   "views": 1990
   },
   {
    "path": "/standings/boys",
-   "views": 490
-  },
-  {
-   "path": "/school/beacon/boys",
-   "views": 330
+   "views": 500
   },
   {
    "path": "/girls",
    "views": 330
   },
   {
+   "path": "/school/beacon/boys",
+   "views": 330
+  },
+  {
    "path": "/teams/boys",
-   "views": 310
+   "views": 300
   },
   {
    "path": "/standings/girls",
@@ -187,7 +187,7 @@
   },
   {
    "path": "/players/boys",
-   "views": 210
+   "views": 200
   },
   {
    "path": "/school/bard-manhattan/boys",
@@ -202,11 +202,11 @@
    "views": 150
   },
   {
-   "path": "/scores/2026-10-15/boys",
+   "path": "/scores/2026-10-02/boys",
    "views": 140
   },
   {
-   "path": "/scores/2026-10-02/boys",
+   "path": "/scores/2026-10-15/boys",
    "views": 140
   },
   {
@@ -214,15 +214,11 @@
    "views": 130
   },
   {
-   "path": "/school/murrow/girls",
-   "views": 120
-  },
-  {
    "path": "/scores/2026-10-06/boys",
    "views": 120
   },
   {
-   "path": "/school/martin-l-king/boys",
+   "path": "/school/murrow/girls",
    "views": 120
   },
   {
@@ -230,15 +226,19 @@
    "views": 110
   },
   {
-   "path": "/school/east-side-community/boys",
-   "views": 100
+   "path": "/school/hunter-college/boys",
+   "views": 110
+  },
+  {
+   "path": "/school/martin-l-king/boys",
+   "views": 110
   },
   {
    "path": "/school/midwood/boys",
    "views": 100
   },
   {
-   "path": "/school/hunter-college/boys",
+   "path": "/school/east-side-community/boys",
    "views": 100
   }
  ]
