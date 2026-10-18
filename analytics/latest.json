@@ -1,18 +1,13 @@
 {
- "generated": "2026-10-17T22:20:19Z",
+ "generated": "2026-10-18T05:06:15Z",
  "days": 30,
- "visits": 1760,
- "pageviews": 10560,
+ "visits": 1650,
+ "pageviews": 10160,
  "byDay": [
   {
-   "date": "2026-09-17",
-   "visits": 70,
-   "views": 140
-  },
-  {
    "date": "2026-09-18",
-   "visits": 220,
-   "views": 960
+   "visits": 120,
+   "views": 520
   },
   {
    "date": "2026-09-19",
@@ -156,22 +151,27 @@
   },
   {
    "date": "2026-10-17",
-   "visits": 20,
+   "visits": 30,
+   "views": 180
+  },
+  {
+   "date": "2026-10-18",
+   "visits": 50,
    "views": 170
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1990
+   "views": 1790
   },
   {
    "path": "/standings/boys",
-   "views": 500
+   "views": 490
   },
   {
    "path": "/girls",
-   "views": 330
+   "views": 340
   },
   {
    "path": "/school/beacon/boys",
@@ -179,15 +179,11 @@
   },
   {
    "path": "/teams/boys",
-   "views": 300
+   "views": 280
   },
   {
    "path": "/standings/girls",
-   "views": 260
-  },
-  {
-   "path": "/players/boys",
-   "views": 200
+   "views": 270
   },
   {
    "path": "/school/bard-manhattan/boys",
@@ -198,31 +194,31 @@
    "views": 190
   },
   {
-   "path": "/history/boys",
-   "views": 150
+   "path": "/players/boys",
+   "views": 180
   },
   {
-   "path": "/scores/2026-10-02/boys",
-   "views": 140
+   "path": "/history/boys",
+   "views": 150
   },
   {
    "path": "/scores/2026-10-15/boys",
    "views": 140
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
-   "views": 130
-  },
-  {
-   "path": "/scores/2026-10-06/boys",
-   "views": 120
+   "path": "/scores/2026-10-02/boys",
+   "views": 140
   },
   {
    "path": "/school/murrow/girls",
    "views": 120
   },
   {
-   "path": "/school/stuyvesant/boys",
+   "path": "/scores/2026-10-06/boys",
+   "views": 120
+  },
+  {
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
    "views": 110
   },
   {
@@ -230,16 +226,20 @@
    "views": 110
   },
   {
-   "path": "/school/martin-l-king/boys",
+   "path": "/school/stuyvesant/boys",
    "views": 110
+  },
+  {
+   "path": "/school/east-side-community/boys",
+   "views": 100
   },
   {
    "path": "/school/midwood/boys",
    "views": 100
   },
   {
-   "path": "/school/east-side-community/boys",
-   "views": 100
+   "path": "/game/502607/boys",
+   "views": 90
   }
  ]
 }
