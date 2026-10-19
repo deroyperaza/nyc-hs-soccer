@@ -1,163 +1,23 @@
 {
- "generated": "2026-10-19T05:16:08Z",
+ "generated": "2026-10-19T18:48:33Z",
  "days": 30,
- "visits": 1550,
- "pageviews": 9800,
+ "visits": 0,
+ "pageviews": 4000,
  "byDay": [
   {
-   "date": "2026-09-19",
-   "visits": 20,
-   "views": 460
-  },
-  {
-   "date": "2026-09-20",
-   "visits": 60,
-   "views": 340
-  },
-  {
-   "date": "2026-09-21",
-   "visits": 70,
-   "views": 490
-  },
-  {
-   "date": "2026-09-22",
-   "visits": 90,
-   "views": 540
-  },
-  {
-   "date": "2026-09-23",
-   "visits": 100,
-   "views": 620
-  },
-  {
-   "date": "2026-09-24",
-   "visits": 40,
-   "views": 160
-  },
-  {
-   "date": "2026-09-25",
-   "visits": 20,
-   "views": 260
-  },
-  {
    "date": "2026-09-26",
-   "visits": 100,
-   "views": 550
-  },
-  {
-   "date": "2026-09-27",
    "visits": 0,
-   "views": 70
-  },
-  {
-   "date": "2026-09-28",
-   "visits": 50,
-   "views": 400
-  },
-  {
-   "date": "2026-09-29",
-   "visits": 30,
-   "views": 230
-  },
-  {
-   "date": "2026-09-30",
-   "visits": 40,
-   "views": 120
-  },
-  {
-   "date": "2026-10-01",
-   "visits": 60,
-   "views": 350
+   "views": 1000
   },
   {
    "date": "2026-10-02",
-   "visits": 40,
-   "views": 220
-  },
-  {
-   "date": "2026-10-03",
-   "visits": 60,
-   "views": 410
-  },
-  {
-   "date": "2026-10-04",
-   "visits": 30,
-   "views": 370
-  },
-  {
-   "date": "2026-10-05",
-   "visits": 90,
-   "views": 260
-  },
-  {
-   "date": "2026-10-06",
-   "visits": 80,
-   "views": 380
-  },
-  {
-   "date": "2026-10-07",
-   "visits": 30,
-   "views": 300
-  },
-  {
-   "date": "2026-10-08",
-   "visits": 50,
-   "views": 430
-  },
-  {
-   "date": "2026-10-09",
-   "visits": 70,
-   "views": 220
-  },
-  {
-   "date": "2026-10-10",
-   "visits": 60,
-   "views": 420
+   "visits": 0,
+   "views": 1000
   },
   {
    "date": "2026-10-11",
-   "visits": 10,
-   "views": 150
-  },
-  {
-   "date": "2026-10-12",
-   "visits": 20,
-   "views": 260
-  },
-  {
-   "date": "2026-10-13",
-   "visits": 20,
-   "views": 260
-  },
-  {
-   "date": "2026-10-14",
-   "visits": 90,
-   "views": 430
-  },
-  {
-   "date": "2026-10-15",
-   "visits": 40,
-   "views": 230
-  },
-  {
-   "date": "2026-10-16",
-   "visits": 50,
-   "views": 290
-  },
-  {
-   "date": "2026-10-17",
-   "visits": 30,
-   "views": 180
-  },
-  {
-   "date": "2026-10-18",
-   "visits": 90,
-   "views": 310
-  },
-  {
-   "date": "2026-10-19",
-   "visits": 10,
-   "views": 90
+   "visits": 0,
+   "views": 2000
   }
  ],
  "topPaths": [
@@ -190,15 +50,11 @@
    "views": 300
   },
   {
-   "path": "/school/east-side-community/boys",
+   "path": "/school/beacon/2023/boys",
    "views": 300
   },
   {
    "path": "/scores/2026-10-02/boys",
-   "views": 300
-  },
-  {
-   "path": "/school/beacon/2023/boys",
    "views": 300
   },
   {
@@ -218,19 +74,7 @@
    "views": 200
   },
   {
-   "path": "/scores/2026-09-25/boys",
-   "views": 200
-  },
-  {
-   "path": "/girls",
-   "views": 200
-  },
-  {
    "path": "/teams/boys",
-   "views": 200
-  },
-  {
-   "path": "/scores/2026-09-18/boys",
    "views": 200
   },
   {
@@ -238,8 +82,24 @@
    "views": 200
   },
   {
+   "path": "/girls",
+   "views": 200
+  },
+  {
+   "path": "/teams/2004/boys",
+   "views": 200
+  },
+  {
    "path": "/school/murrow/girls",
    "views": 200
+  },
+  {
+   "path": "/teams/2024/boys",
+   "views": 100
+  },
+  {
+   "path": "/scores/2026-09-29/boys",
+   "views": 100
   }
  ]
 }
