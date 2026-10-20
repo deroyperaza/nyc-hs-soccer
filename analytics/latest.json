@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-20T17:11:55Z",
+ "generated": "2026-10-20T23:13:38Z",
  "days": 30,
- "visits": 1570,
- "pageviews": 9610,
+ "visits": 1560,
+ "pageviews": 9630,
  "byDay": [
   {
    "date": "2026-09-20",
-   "visits": 10,
-   "views": 110
+   "visits": 0,
+   "views": 10
   },
   {
    "date": "2026-09-21",
@@ -157,17 +157,17 @@
   {
    "date": "2026-10-20",
    "visits": 50,
-   "views": 310
+   "views": 430
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1620
+   "views": 1580
   },
   {
    "path": "/standings/boys",
-   "views": 500
+   "views": 480
   },
   {
    "path": "/girls",
@@ -179,34 +179,38 @@
   },
   {
    "path": "/school/beacon/boys",
-   "views": 270
+   "views": 250
   },
   {
    "path": "/teams/boys",
-   "views": 260
+   "views": 240
   },
   {
    "path": "/school/bard-manhattan/boys",
-   "views": 200
+   "views": 210
   },
   {
    "path": "/scores/2026-09-30/boys",
    "views": 190
   },
   {
-   "path": "/history/boys",
-   "views": 150
-  },
-  {
    "path": "/school/murrow/girls",
    "views": 150
   },
   {
-   "path": "/scores/2026-10-02/boys",
-   "views": 140
+   "path": "/history/boys",
+   "views": 150
   },
   {
    "path": "/scores/2026-10-15/boys",
+   "views": 140
+  },
+  {
+   "path": "/playoffs/boys",
+   "views": 140
+  },
+  {
+   "path": "/scores/2026-10-02/boys",
    "views": 140
   },
   {
@@ -214,23 +218,19 @@
    "views": 120
   },
   {
-   "path": "/players/boys",
-   "views": 110
-  },
-  {
    "path": "/school/hunter-college/boys",
    "views": 110
   },
   {
-   "path": "/playoffs/boys",
-   "views": 100
+   "path": "/players/boys",
+   "views": 110
   },
   {
    "path": "/school/midwood/boys",
    "views": 100
   },
   {
-   "path": "/school/martin-l-king/2023/boys",
+   "path": "/school/martin-l-king/boys",
    "views": 90
   },
   {
@@ -238,7 +238,7 @@
    "views": 90
   },
   {
-   "path": "/school/martin-l-king/boys",
+   "path": "/school/martin-l-king/2023/boys",
    "views": 90
   }
  ]
