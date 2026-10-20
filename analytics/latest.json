@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-20T02:15:28Z",
+ "generated": "2026-10-20T17:11:55Z",
  "days": 30,
- "visits": 1580,
+ "visits": 1570,
  "pageviews": 9610,
  "byDay": [
   {
    "date": "2026-09-20",
-   "visits": 50,
-   "views": 290
+   "visits": 10,
+   "views": 110
   },
   {
    "date": "2026-09-21",
@@ -156,14 +156,14 @@
   },
   {
    "date": "2026-10-20",
-   "visits": 20,
-   "views": 130
+   "visits": 50,
+   "views": 310
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1640
+   "views": 1620
   },
   {
    "path": "/standings/boys",
@@ -171,7 +171,7 @@
   },
   {
    "path": "/girls",
-   "views": 370
+   "views": 390
   },
   {
    "path": "/standings/girls",
@@ -179,11 +179,11 @@
   },
   {
    "path": "/school/beacon/boys",
-   "views": 290
+   "views": 270
   },
   {
    "path": "/teams/boys",
-   "views": 250
+   "views": 260
   },
   {
    "path": "/school/bard-manhattan/boys",
@@ -214,24 +214,20 @@
    "views": 120
   },
   {
-   "path": "/school/hunter-college/boys",
-   "views": 110
-  },
-  {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
-   "views": 110
-  },
-  {
    "path": "/players/boys",
    "views": 110
   },
   {
-   "path": "/school/midwood/boys",
+   "path": "/school/hunter-college/boys",
+   "views": 110
+  },
+  {
+   "path": "/playoffs/boys",
    "views": 100
   },
   {
-   "path": "/school/martin-l-king/boys",
-   "views": 90
+   "path": "/school/midwood/boys",
+   "views": 100
   },
   {
    "path": "/school/martin-l-king/2023/boys",
@@ -239,6 +235,10 @@
   },
   {
    "path": "/history/leaders/boys",
+   "views": 90
+  },
+  {
+   "path": "/school/martin-l-king/boys",
    "views": 90
   }
  ]
