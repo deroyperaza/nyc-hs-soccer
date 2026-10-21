@@ -1,18 +1,13 @@
 {
- "generated": "2026-10-20T23:13:38Z",
+ "generated": "2026-10-21T06:42:26Z",
  "days": 30,
- "visits": 1560,
- "pageviews": 9630,
+ "visits": 1550,
+ "pageviews": 9520,
  "byDay": [
   {
-   "date": "2026-09-20",
-   "visits": 0,
-   "views": 10
-  },
-  {
    "date": "2026-09-21",
-   "visits": 70,
-   "views": 490
+   "visits": 50,
+   "views": 290
   },
   {
    "date": "2026-09-22",
@@ -156,14 +151,19 @@
   },
   {
    "date": "2026-10-20",
-   "visits": 50,
-   "views": 430
+   "visits": 60,
+   "views": 450
+  },
+  {
+   "date": "2026-10-21",
+   "visits": 0,
+   "views": 80
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1580
+   "views": 1520
   },
   {
    "path": "/standings/boys",
@@ -194,19 +194,19 @@
    "views": 190
   },
   {
+   "path": "/playoffs/boys",
+   "views": 170
+  },
+  {
+   "path": "/history/boys",
+   "views": 160
+  },
+  {
    "path": "/school/murrow/girls",
    "views": 150
   },
   {
-   "path": "/history/boys",
-   "views": 150
-  },
-  {
    "path": "/scores/2026-10-15/boys",
-   "views": 140
-  },
-  {
-   "path": "/playoffs/boys",
    "views": 140
   },
   {
@@ -230,16 +230,16 @@
    "views": 100
   },
   {
-   "path": "/school/martin-l-king/boys",
-   "views": 90
-  },
-  {
    "path": "/history/leaders/boys",
    "views": 90
   },
   {
-   "path": "/school/martin-l-king/2023/boys",
+   "path": "/game/502591/boys",
    "views": 90
+  },
+  {
+   "path": "/school/washington-irving/boys",
+   "views": 80
   }
  ]
 }
