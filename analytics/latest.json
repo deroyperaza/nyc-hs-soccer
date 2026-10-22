@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-22T06:43:59Z",
+ "generated": "2026-10-22T13:51:06Z",
  "days": 30,
- "visits": 1530,
- "pageviews": 9350,
+ "visits": 1520,
+ "pageviews": 9370,
  "byDay": [
   {
    "date": "2026-09-22",
-   "visits": 70,
-   "views": 480
+   "visits": 60,
+   "views": 440
   },
   {
    "date": "2026-09-23",
@@ -157,89 +157,89 @@
   {
    "date": "2026-10-22",
    "visits": 20,
-   "views": 100
+   "views": 160
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1460
-  },
-  {
-   "path": "/standings/boys",
-   "views": 490
-  },
-  {
-   "path": "/girls",
-   "views": 400
-  },
-  {
-   "path": "/standings/girls",
-   "views": 350
-  },
-  {
-   "path": "/teams/boys",
-   "views": 250
-  },
-  {
-   "path": "/school/beacon/boys",
-   "views": 250
-  },
-  {
-   "path": "/school/bard-manhattan/boys",
-   "views": 210
-  },
-  {
-   "path": "/scores/2026-09-30/boys",
-   "views": 190
-  },
-  {
-   "path": "/playoffs/boys",
-   "views": 170
-  },
-  {
-   "path": "/history/boys",
-   "views": 160
-  },
-  {
-   "path": "/school/murrow/girls",
-   "views": 150
-  },
-  {
-   "path": "/scores/2026-10-02/boys",
-   "views": 140
-  },
-  {
-   "path": "/school/stuyvesant/boys",
-   "views": 130
-  },
-  {
-   "path": "/scores/2026-10-15/boys",
-   "views": 120
+   "views": 1700
   },
   {
    "path": "/players/boys",
-   "views": 110
+   "views": 600
+  },
+  {
+   "path": "/standings/boys",
+   "views": 600
   },
   {
    "path": "/school/hunter-college/boys",
-   "views": 110
+   "views": 400
   },
   {
-   "path": "/history/leaders/boys",
+   "path": "/scores/2026-10-02/boys",
+   "views": 300
+  },
+  {
+   "path": "/standings/girls",
+   "views": 300
+  },
+  {
+   "path": "/school/beacon/2023/boys",
+   "views": 300
+  },
+  {
+   "path": "/teams/boys",
+   "views": 300
+  },
+  {
+   "path": "/scores/2026-09-30/boys",
+   "views": 200
+  },
+  {
+   "path": "/school/hs-for-leadership/boys",
+   "views": 200
+  },
+  {
+   "path": "/game/502749/boys",
+   "views": 200
+  },
+  {
+   "path": "/history/girls",
+   "views": 200
+  },
+  {
+   "path": "/game/502591/boys",
+   "views": 200
+  },
+  {
+   "path": "/girls",
+   "views": 200
+  },
+  {
+   "path": "/playoffs/boys",
+   "views": 200
+  },
+  {
+   "path": "/school/murrow/girls",
+   "views": 200
+  },
+  {
+   "path": "/teams/2004/boys",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-10-17/girls",
    "views": 100
-  },
-  {
-   "path": "/school/midwood/boys",
-   "views": 100
-  },
-  {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
-   "views": 80
   },
   {
    "path": "/school/washington-irving/boys",
-   "views": 80
+   "views": 100
+  },
+  {
+   "path": "/player/dillon-shukla-beacon/boys",
+   "views": 100
   }
  ]
 }
