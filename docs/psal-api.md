@@ -122,3 +122,23 @@ decide this on its own.
 
 Navigating to a `.svc` URL directly gets you the login page; the endpoints only
 answer from inside a page that has the cookies.
+
+## Playoff brackets
+
+The endpoints behind `psal.org/sports/PlayoffBrackets.aspx`. Unlike the
+schedule, which only lists a playoff game once both teams are known, these carry
+the whole draw from the day it is published: seeds, byes and every slot.
+
+- `GetSportPlayOffBrackets?spid='012'&season=2027&order=1` — one row per
+  bracket (`playcode`, `name` like "2027 3A Competitive Level", `teams` = 16,
+  32 or 64). The list includes past seasons; filter on `season`.
+- `Get_Playoffbracketdetail?playoffcode=3909` — `plflvl` ("3A"), needed below.
+- `Get_PlayoffbracketsTeams?spcode='012'&seasone=2027&division='3A'&playoffcode=3909`
+  — `schcode`, `ranking` (the seed). Note the misspelt `seasone`.
+- `Get_Playoffbracketgames?...same params...` — one row per slot: `round`
+  (`round0` = round of 64 … `round4` = semifinals, `final`), `lbl_tp` like
+  `R2H3` (round 2, slot 3), `cid` (the game id, same as the schedule's
+  `eventid`), `schid_tp` / `schid_btm`, `cwinner`. Slot *m* of a round is fed by
+  slots 2*m*-1 and 2*m* of the round before. A first-round slot with one team is
+  a bye. Scores read `"0"` before a game is played, so do not trust them.
+

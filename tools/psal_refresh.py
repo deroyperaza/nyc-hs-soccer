@@ -230,7 +230,44 @@ def fetch_sport(spc, season):
             detail[str(gid)] = d
 
     return {"games": games, "detail": detail,
-            "leagues": leagues, "standings": standings}, flags
+            "leagues": leagues, "standings": standings,
+            "brackets": fetch_brackets(spc, season)}, flags
+
+
+def fetch_brackets(spc, season):
+    """PSAL's own playoff brackets: seeds and every slot, byes included.
+
+    The schedule only lists games once both teams are known, so a bracket
+    inferred from it is a handful of loose games until the semifinals. These
+    are the endpoints behind psal.org/sports/PlayoffBrackets.aspx; each slot
+    carries its round and its position (R2H3 = round 2, game 3), which is the
+    whole tree. A failure here costs the bracket view, never the refresh."""
+    out = []
+    try:
+        lst = call("GetSportPlayOffBrackets", spid="'%s'" % spc, season=season, order=1) or []
+        for b in lst:
+            if str(b.get("season")) != str(season):
+                continue
+            pc = b.get("playcode")
+            det = (call("Get_Playoffbracketdetail", playoffcode=pc) or [{}])[0] or {}
+            lvl = (det.get("plflvl") or "").strip()
+            q = dict(spcode="'%s'" % spc, seasone=season, division="'%s'" % lvl, playoffcode=pc)
+            teams = call("Get_PlayoffbracketsTeams", **q) or []
+            games = call("Get_Playoffbracketgames", **q) or []
+            out.append({
+                "code": pc, "name": b.get("name") or "", "teams": b.get("teams"), "lvl": lvl,
+                "seeds": {str(t.get("schcode") or "").strip(): t.get("ranking") for t in teams
+                          if t.get("schcode")},
+                "games": [[g.get("round") or "", (g.get("lbl_tp") or "").strip(), g.get("cid"),
+                           (g.get("schid_tp") or "").strip(), (g.get("schid_btm") or "").strip(),
+                           (g.get("score_tp") or "").strip(), (g.get("score_btm") or "").strip(),
+                           (g.get("cwinner") or "").strip(), g.get("gamedate") or ""]
+                          for g in games],
+            })
+        print("  [%s] %d playoff brackets" % (spc, len(out)), flush=True)
+    except Exception as e:
+        print("  [%s] brackets skipped: %s: %s" % (spc, type(e).__name__, e), flush=True)
+    return out
 
 
 def fetch(season, rawdir):

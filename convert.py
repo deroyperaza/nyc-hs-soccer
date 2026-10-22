@@ -55,6 +55,55 @@ def flags_for(season):
             except Exception: pass
     return None
 
+# PSAL's bracket service names rounds by how many games are left to play, so
+# "round0" is the round of 64, "round1" the round of 32 ... and "final" is the
+# final. Those line up with the app's round labels one for one.
+ROUND_OF = {'round0': 0, 'round1': 1, 'round2': 2, 'round3': 3, 'round4': 4, 'final': 5}
+
+def apply_official(official, games, BR, BK, new_scheme):
+    """Turn PSAL's bracket service into BR entries plus a full slot map.
+
+    BK[bi] = {n: bracket size, s: {school: seed}, g: [[round, slot, gameid,
+    top, bottom, winner]]} -- every slot PSAL has drawn, byes included (a slot
+    with one team is a bye). The app fills the rounds PSAL has not drawn yet
+    by walking winners forward. Games found here are tagged with their real
+    round and bracket and skipped by the inference below. Returns the set of
+    (sport, gameid) it claimed."""
+    byid = {(g[0], g[1]): g for g in games}
+    claimed = set()
+    for sp, b in official:
+        slots = []
+        for row in b.get('games') or []:
+            rnd, lbl, cid, top, btm = row[0], row[1], row[2], row[3], row[4]
+            win = row[7] if len(row) > 7 else ''
+            ri = ROUND_OF.get(str(rnd).strip().lower())
+            m = re.match(r'R\w*?[HA](\d+)', lbl or '')
+            if ri is None or not m:
+                continue
+            top = code(top) if top and top.strip().isdigit() else ''
+            btm = code(btm) if btm and btm.strip().isdigit() else ''
+            win = code(win) if win and str(win).strip().isdigit() else ''
+            slots.append([ri, int(m.group(1)), cid if isinstance(cid, int) else -1, top, btm, win])
+        if not slots:
+            continue
+        lvl = (b.get('lvl') or '').strip() or (re.search(r'\b(\d[A-D])\b', b.get('name') or '') or [None, ''])[1]
+        bi = len(BR)
+        BR.append([lvl, tier_of(lvl, new_scheme)])
+        BK[str(bi)] = {'n': b.get('teams') or 0, 'sp': sp,
+                       's': {code(k): v for k, v in (b.get('seeds') or {}).items() if k},
+                       'g': slots}
+        for ri, pos, cid, top, btm, win in slots:
+            g = byid.get((sp, cid))
+            if g is None or not (top and btm):
+                continue
+            g[10] = 1
+            g[11] = ri
+            while len(g) < 13:
+                g.append(-1)
+            g[12] = bi
+            claimed.add((sp, cid))
+    return claimed
+
 def convert(season):
     raw = json.load(open(src_for(season)))
     FL = flags_for(season)
@@ -75,9 +124,12 @@ def convert(season):
     games = []
     det = {}
 
+    official = []       # (sp, bracket) from PSAL's bracket service, when the pull has it
     for spc, sp in SPORTS.items():
         blk = raw['sports'].get(spc)
         if not blk: continue
+        for b in (blk.get('brackets') or []):
+            official.append((sp, b))
         # standings + division membership
         for s in blk['standings']:
             di = ix(D, Di, s['name'])
@@ -167,14 +219,15 @@ def convert(season):
         ra, rb = find(a), find(b)
         if ra != rb:
             parent[ra] = rb
-    po_games = [g for g in games if g[10] == 1]
+    BR, BK = [], {}
+    in_official = apply_official(official, games, BR, BK, new_scheme)
+    po_games = [g for g in games if g[10] == 1 and (g[0], g[1]) not in in_official]
     for g in po_games:
         union((g[0], g[4]), (g[0], g[5]))
     comps = {}
     for g in po_games:
         comps.setdefault(find((g[0], g[4])), []).append(g)
 
-    BR = []
     for root, gs in comps.items():
         if len(gs) < 3:
             # a stray one-off (usually a cancelled crossover) is not a bracket
@@ -234,7 +287,7 @@ def convert(season):
     yr = int(season) - 1
     out = {
         'id': season, 'label': 'Fall %d' % yr, 'scheme': 'new' if new_scheme else 'old',
-        'T': T, 'D': D, 'TI': TI, 'BR': BR, 'S': stand, 'L': L, 'RS': RS,
+        'T': T, 'D': D, 'TI': TI, 'BR': BR, 'BK': BK, 'S': stand, 'L': L, 'RS': RS,
         'P': P, 'R': R, 'AD': AD, 'RD': RD,
         'G': games, 'X': det,
     }

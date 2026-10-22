@@ -215,6 +215,10 @@
   .bmatch .bt.won{color:var(--text); font-weight:700}
   .bmatch .bt.fav .nm{color:var(--fav-line)}
   .bmatch.champ{border-color:var(--tie)}
+  .bmatch.tbd{box-shadow:none; background:transparent; border-style:dashed}
+  .bmatch .bt.open .nm{color:var(--muted); font-style:italic; font-weight:400}
+  .bmatch .bt .sd{flex:none; width:15px; font-size:9.5px; font-weight:700; color:var(--muted);
+                  font-variant-numeric:tabular-nums; text-align:right}
   .bnote{font-size:12px; color:var(--muted); padding:0 2px 8px}
   .polegend{font-size:12px; color:var(--muted); padding:0 2px 10px; line-height:1.5}
   .polegend b{color:var(--text-2); font-weight:700}
@@ -1610,6 +1614,113 @@
       lines.join("") + '</svg>' + heads.join("") + boxes.join("") + '</div></div>';
   }
 
+  /* ---------- PSAL's own bracket ----------
+     When the pull carries PSAL's bracket service (BK), the tree is known up
+     front: slot m of round r is fed by slots 2m-1 and 2m of round r-1. So the
+     whole bracket is drawn from the first day -- rounds nobody has reached yet
+     are dashed boxes that fill in as winners move forward. A first-round slot
+     with one team is a bye: it gets no box, and its team simply appears in the
+     next round. Same geometry as the inferred bracket above. */
+  function officialBracketHTML(bk){
+    var sp = bk.sp, slot = {}, first = 5;
+    (bk.g || []).forEach(function(r){ slot[r[0] + ":" + r[1]] = r; if(r[0] < first) first = r[0]; });
+    var byId = {};
+    S.season.raw.G.forEach(function(g){ if(g[0] === sp) byId[g[1]] = g; });
+    function gameOf(r, m){ var s = slot[r + ":" + m]; return s && s[2] > 0 ? byId[s[2]] || null : null; }
+    function decided(r, m){
+      var s = slot[r + ":" + m], g = gameOf(r, m);
+      if(s && s[5]) return s[5];
+      if(g && hasScore(g) && g[6] !== g[7]){
+        var home = g[6] > g[7] ? g[4] : g[5];
+        return home;
+      }
+      return "";
+    }
+    var memo = {};
+    function sides(r, m){
+      var k = r + ":" + m;
+      if(memo[k]) return memo[k];
+      var s = slot[k], t = s ? s[3] : "", b = s ? s[4] : "";
+      if(r > first){
+        if(!t) t = winner(r - 1, 2 * m - 1);
+        if(!b) b = winner(r - 1, 2 * m);
+      }
+      return (memo[k] = [t, b]);
+    }
+    function isBye(r, m){ var x = sides(r, m); return r === first && !!(x[0] || x[1]) && !(x[0] && x[1]); }
+    function winner(r, m){
+      var x = sides(r, m);
+      if(isBye(r, m)) return x[0] || x[1];
+      return decided(r, m);
+    }
+    function drawn(r, m){ return r > first || (r === first && !!slot[r + ":" + m] && !isBye(r, m)); }
+    var nodes = [];
+    function build(r, m){
+      var n = {ri: r, m: m, kids: [null, null]};
+      if(r > first){
+        if(drawn(r - 1, 2 * m - 1)) n.kids[0] = build(r - 1, 2 * m - 1);
+        if(drawn(r - 1, 2 * m)) n.kids[1] = build(r - 1, 2 * m);
+      }
+      nodes.push(n);
+      return n;
+    }
+    var root = build(5, 1);
+    function measure(n){
+      var a = n.kids[0] ? measure(n.kids[0]) : 1, b = n.kids[1] ? measure(n.kids[1]) : 1;
+      return (n.h = a + b);
+    }
+    function place(n, top){
+      var a = n.kids[0], b = n.kids[1], ah = a ? a.h : 1;
+      var ca = a ? (place(a, top), a.c) : top + 0.5;
+      var cb = b ? (place(b, top + ah), b.c) : top + ah + 0.5;
+      n.c = (ca + cb) / 2;
+    }
+    measure(root); place(root, 0);
+    var minR = 5;
+    nodes.forEach(function(n){ if(n.ri < minR) minR = n.ri; });
+    var cols = 5 - minR + 1;
+    var W = cols * BR_COL + (cols - 1) * BR_GAP, H = root.h * BR_ROW + BR_TOP + 8;
+    var x = function(ri){ return (ri - minR) * (BR_COL + BR_GAP); };
+    var cy = function(n){ return BR_TOP + n.c * BR_ROW; };
+    var lines = [];
+    nodes.forEach(function(n){
+      n.kids.forEach(function(k){
+        if(!k) return;
+        var x1 = x(k.ri) + BR_COL, x2 = x(n.ri), mid = x1 + (x2 - x1) / 2;
+        lines.push('<path d="M' + x1 + ' ' + cy(k) + 'H' + mid + 'V' + cy(n) + 'H' + x2 + '"/>');
+      });
+    });
+    var heads = [];
+    for(var ri = minR; ri <= 5; ri++){
+      heads.push('<div class="brd" style="left:' + x(ri) + 'px;top:0;width:' + BR_COL + 'px">' +
+        esc(ROUNDS[ri] || "Playoffs") + '</div>');
+    }
+    var seeds = bk.s || {};
+    var boxes = nodes.map(function(n){
+      var x2 = sides(n.ri, n.m), g = gameOf(n.ri, n.m), w = decided(n.ri, n.m);
+      var done = !!(g && hasScore(g) && w);
+      var open = !x2[0] && !x2[1];
+      function side(code, sc){
+        var won = !!w && code === w;
+        if(!code) return '<span class="bt open"><span class="sd"></span><span class="nm">TBD</span><span class="sc"></span></span>';
+        var tm = teamOf(sp, code);
+        return '<span class="bt' + (won ? " won" : "") + (S.favs.has(sp + ":" + code) ? " fav" : "") + '">' +
+          '<span class="sd">' + (seeds[code] != null ? seeds[code] : "") + '</span>' +
+          '<span class="nm">' + esc(tm.short || tm.name || code) + '</span>' +
+          '<span class="sc">' + (done ? sc : "") + '</span></span>';
+      }
+      var hs = g ? (g[4] === x2[0] ? g[6] : g[7]) : null, as = g ? (g[4] === x2[0] ? g[7] : g[6]) : null;
+      var cls = "bmatch" + (n.ri === 5 && done ? " champ" : "") + (!g || open ? " tbd" : "");
+      var style = 'style="left:' + x(n.ri) + 'px;top:' + (cy(n) - BR_BOX / 2) + 'px;width:' + BR_COL + 'px;height:' + BR_BOX + 'px"';
+      var inner = side(x2[0], hs) + side(x2[1], as);
+      return g ? '<button class="' + cls + '" data-game="' + esc(gkey(g)) + '" ' + style + '>' + inner + '</button>'
+               : '<div class="' + cls + '" ' + style + '>' + inner + '</div>';
+    });
+    return '<div class="bwrap"><div class="bcanvas" style="width:' + W + 'px;height:' + H + 'px">' +
+      '<svg viewBox="0 0 ' + W + ' ' + H + '" fill="none" stroke="var(--line)" stroke-width="1.5">' +
+      lines.join("") + '</svg>' + heads.join("") + boxes.join("") + '</div></div>';
+  }
+
   /* ---------- view: playoffs ---------- */
   function renderPlayoffs(){
     var v = el("view-playoffs"), ps = S.season;
@@ -1642,11 +1753,12 @@
         var label = c.split("#")[0];
         /* one bracket per division per season, folded away until asked for:
            it is the widest thing in the app and most visits want a score */
-        var bkey = ps.id + "|" + S.sp + "|" + c, open = !!S.brOpen[bkey];
+        var bkey = ps.id + "|" + S.sp + "|" + c, open = S.brOpen[bkey] !== false;
+        var bk = (ps.raw.BK || {})[c.split("#")[1]];
         return '<div class="group"><div class="grouphead"><h3>' + esc(label) + '</h3><div class="rule"></div>' +
           '<button class="brtoggle" data-br="' + esc(bkey) + '" aria-pressed="' + open + '">' +
           (open ? "Hide bracket" : "Bracket") + '</button></div>' +
-          (open ? bracketHTML(gs) + '<div class="bnote">Drag sideways to follow the rounds. Tap a game for the box score.</div>' : "") +
+          (open ? (bk ? officialBracketHTML(bk) : bracketHTML(gs)) + '<div class="bnote">Drag sideways to follow the rounds. Tap a game for the box score.</div>' : "") +
           keys.map(function(ri){
             var label = ri >= 0 && ri < ROUNDS.length ? ROUNDS[ri] : "Playoffs";
             return '<div class="sectionhead" style="padding:8px 2px 4px"><span class="eyebrow">' + esc(label) + '</span>' +
@@ -3440,7 +3552,7 @@
     if(b.dataset.div != null && b.hasAttribute("data-div")){ S.div = b.dataset.div; render(); return; }
     if(b.dataset.ry){ S.rankYear = b.dataset.ry; render(); return; }
     if(b.dataset.rs){ S.rankSort = b.dataset.rs; render(); return; }
-    if(b.dataset.br){ S.brOpen[b.dataset.br] = !S.brOpen[b.dataset.br]; renderPlayoffs(); return; }
+    if(b.dataset.br){ S.brOpen[b.dataset.br] = (S.brOpen[b.dataset.br] === false); renderPlayoffs(); return; }
     if(b.dataset.tyr){
       var bits = b.dataset.tyr.split(":"), yid = bits[0], ykey = bits[1] + ":" + bits[2];
       if(yid === S.seasonId){ return; }
