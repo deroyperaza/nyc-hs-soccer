@@ -1,14 +1,9 @@
 {
- "generated": "2026-10-22T13:51:06Z",
+ "generated": "2026-10-22T23:25:46Z",
  "days": 30,
- "visits": 1520,
- "pageviews": 9370,
+ "visits": 1490,
+ "pageviews": 9400,
  "byDay": [
-  {
-   "date": "2026-09-22",
-   "visits": 60,
-   "views": 440
-  },
   {
    "date": "2026-09-23",
    "visits": 100,
@@ -156,90 +151,90 @@
   },
   {
    "date": "2026-10-22",
-   "visits": 20,
-   "views": 160
+   "visits": 50,
+   "views": 630
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1700
-  },
-  {
-   "path": "/players/boys",
-   "views": 600
+   "views": 1370
   },
   {
    "path": "/standings/boys",
-   "views": 600
-  },
-  {
-   "path": "/school/hunter-college/boys",
-   "views": 400
-  },
-  {
-   "path": "/scores/2026-10-02/boys",
-   "views": 300
+   "views": 480
   },
   {
    "path": "/standings/girls",
-   "views": 300
-  },
-  {
-   "path": "/school/beacon/2023/boys",
-   "views": 300
-  },
-  {
-   "path": "/teams/boys",
-   "views": 300
-  },
-  {
-   "path": "/scores/2026-09-30/boys",
-   "views": 200
-  },
-  {
-   "path": "/school/hs-for-leadership/boys",
-   "views": 200
-  },
-  {
-   "path": "/game/502749/boys",
-   "views": 200
-  },
-  {
-   "path": "/history/girls",
-   "views": 200
-  },
-  {
-   "path": "/game/502591/boys",
-   "views": 200
+   "views": 370
   },
   {
    "path": "/girls",
-   "views": 200
+   "views": 370
+  },
+  {
+   "path": "/teams/boys",
+   "views": 270
+  },
+  {
+   "path": "/school/beacon/boys",
+   "views": 250
+  },
+  {
+   "path": "/school/bard-manhattan/boys",
+   "views": 210
+  },
+  {
+   "path": "/scores/2026-09-30/boys",
+   "views": 190
+  },
+  {
+   "path": "/history/boys",
+   "views": 190
   },
   {
    "path": "/playoffs/boys",
-   "views": 200
+   "views": 170
   },
   {
    "path": "/school/murrow/girls",
-   "views": 200
+   "views": 170
   },
   {
-   "path": "/teams/2004/boys",
-   "views": 200
+   "path": "/scores/2026-10-02/boys",
+   "views": 140
   },
   {
-   "path": "/scores/2026-10-17/girls",
+   "path": "/school/hunter-college/boys",
+   "views": 140
+  },
+  {
+   "path": "/history/leaders/boys",
+   "views": 130
+  },
+  {
+   "path": "/school/stuyvesant/boys",
+   "views": 130
+  },
+  {
+   "path": "/scores/2026-10-15/boys",
+   "views": 120
+  },
+  {
+   "path": "/school/midwood/boys",
    "views": 100
   },
   {
-   "path": "/school/washington-irving/boys",
-   "views": 100
+   "path": "/players/boys",
+   "views": 80
   },
   {
-   "path": "/player/dillon-shukla-beacon/boys",
-   "views": 100
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "views": 80
+  },
+  {
+   "path": "/school/stuyvesant/2004/boys",
+   "views": 70
   }
  ]
 }
