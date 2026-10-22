@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-21T23:20:39Z",
+ "generated": "2026-10-22T06:43:59Z",
  "days": 30,
  "visits": 1530,
- "pageviews": 9310,
+ "pageviews": 9350,
  "byDay": [
   {
    "date": "2026-09-22",
-   "visits": 90,
-   "views": 540
+   "visits": 70,
+   "views": 480
   },
   {
    "date": "2026-09-23",
@@ -153,6 +153,11 @@
    "date": "2026-10-21",
    "visits": 30,
    "views": 160
+  },
+  {
+   "date": "2026-10-22",
+   "visits": 20,
+   "views": 100
   }
  ],
  "topPaths": [
@@ -162,15 +167,15 @@
   },
   {
    "path": "/standings/boys",
-   "views": 480
+   "views": 490
   },
   {
    "path": "/girls",
-   "views": 390
+   "views": 400
   },
   {
    "path": "/standings/girls",
-   "views": 340
+   "views": 350
   },
   {
    "path": "/teams/boys",
@@ -205,11 +210,11 @@
    "views": 140
   },
   {
-   "path": "/scores/2026-10-15/boys",
-   "views": 120
+   "path": "/school/stuyvesant/boys",
+   "views": 130
   },
   {
-   "path": "/school/stuyvesant/boys",
+   "path": "/scores/2026-10-15/boys",
    "views": 120
   },
   {
@@ -229,11 +234,11 @@
    "views": 100
   },
   {
-   "path": "/school/washington-irving/boys",
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
    "views": 80
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "path": "/school/washington-irving/boys",
    "views": 80
   }
  ]

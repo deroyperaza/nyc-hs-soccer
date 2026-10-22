@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-21T23:20:39Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-22T06:43:59Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 30 | 160 | 
-| yesterday | 60 | 450 |
-| 30 days | 1530 | 9310 |
+| today | 20 | 100 | 
+| yesterday | 30 | 160 |
+| 30 days | 1530 | 9350 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,7 +18,6 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-09-22 | 90 | 540 |
 | 2026-09-23 | 100 | 620 |
 | 2026-09-24 | 40 | 160 |
 | 2026-09-25 | 20 | 260 |
@@ -48,15 +47,16 @@ that is the number that means something.
 | 2026-10-19 | 50 | 280 |
 | 2026-10-20 | 60 | 450 |
 | 2026-10-21 | 30 | 160 |
+| 2026-10-22 | 20 | 100 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
 | / | 1460 | 16% |
-| /standings/boys | 480 | 5% |
-| /girls | 390 | 4% |
-| /standings/girls | 340 | 4% |
+| /standings/boys | 490 | 5% |
+| /girls | 400 | 4% |
+| /standings/girls | 350 | 4% |
 | /teams/boys | 250 | 3% |
 | /school/beacon/boys | 250 | 3% |
 | /school/bard-manhattan/boys | 210 | 2% |
@@ -64,21 +64,21 @@ that is the number that means something.
 | /playoffs/boys | 170 | 2% |
 | /history/boys | 160 | 2% |
 | /school/murrow/girls | 150 | 2% |
-| /scores/2026-10-02/boys | 140 | 2% |
+| /scores/2026-10-02/boys | 140 | 1% |
+| /school/stuyvesant/boys | 130 | 1% |
 | /scores/2026-10-15/boys | 120 | 1% |
-| /school/stuyvesant/boys | 120 | 1% |
 | /players/boys | 110 | 1% |
 | /school/hunter-college/boys | 110 | 1% |
 | /history/leaders/boys | 100 | 1% |
 | /school/midwood/boys | 100 | 1% |
-| /school/washington-irving/boys | 80 | 1% |
 | /player/cyrus-vossoughian-bard-manhattan/boys | 80 | 1% |
+| /school/washington-irving/boys | 80 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 7780 | 84% |
+| nychssoccer.com | 7820 | 84% |
 | (direct) | 1500 | 16% |
 | facebook.com | 10 | 0% |
 | www.google.com | 10 | 0% |
@@ -88,7 +88,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 9110 | 98% |
+| US | 9150 | 98% |
 | CA | 80 | 1% |
 | NL | 80 | 1% |
 | GB | 20 | 0% |
@@ -99,6 +99,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 6860 | 74% |
-| desktop | 2450 | 26% |
+| mobile | 6920 | 74% |
+| desktop | 2430 | 26% |
 
