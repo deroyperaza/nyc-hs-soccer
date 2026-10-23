@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-22T23:25:46Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-23T06:40:15Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 50 | 630 | 
-| yesterday | 30 | 160 |
-| 30 days | 1490 | 9400 |
+| today | 0 | 0 | 
+| yesterday | 50 | 630 |
+| 30 days | 1460 | 9220 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,7 +18,7 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-09-23 | 100 | 620 |
+| 2026-09-23 | 70 | 440 |
 | 2026-09-24 | 40 | 160 |
 | 2026-09-25 | 20 | 260 |
 | 2026-09-26 | 100 | 550 |
@@ -53,33 +53,33 @@ that is the number that means something.
 
 | path | views | share |
 |---|---:|---:|
-| / | 1370 | 15% |
-| /standings/boys | 480 | 5% |
+| / | 1350 | 15% |
+| /standings/boys | 470 | 5% |
 | /standings/girls | 370 | 4% |
-| /girls | 370 | 4% |
-| /teams/boys | 270 | 3% |
+| /girls | 350 | 4% |
 | /school/beacon/boys | 250 | 3% |
+| /teams/boys | 230 | 2% |
 | /school/bard-manhattan/boys | 210 | 2% |
 | /scores/2026-09-30/boys | 190 | 2% |
-| /history/boys | 190 | 2% |
+| /history/boys | 180 | 2% |
 | /playoffs/boys | 170 | 2% |
 | /school/murrow/girls | 170 | 2% |
-| /scores/2026-10-02/boys | 140 | 1% |
-| /school/hunter-college/boys | 140 | 1% |
+| /scores/2026-10-02/boys | 140 | 2% |
+| /school/hunter-college/boys | 140 | 2% |
 | /history/leaders/boys | 130 | 1% |
 | /school/stuyvesant/boys | 130 | 1% |
 | /scores/2026-10-15/boys | 120 | 1% |
-| /school/midwood/boys | 100 | 1% |
-| /players/boys | 80 | 1% |
+| /school/midwood/boys | 90 | 1% |
 | /player/cyrus-vossoughian-bard-manhattan/boys | 80 | 1% |
+| /players/boys | 80 | 1% |
 | /school/stuyvesant/2004/boys | 70 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 7910 | 84% |
-| (direct) | 1460 | 16% |
+| nychssoccer.com | 7760 | 84% |
+| (direct) | 1430 | 16% |
 | facebook.com | 10 | 0% |
 | www.google.com | 10 | 0% |
 | www.facebook.com | 10 | 0% |
@@ -88,7 +88,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 9200 | 98% |
+| US | 9020 | 98% |
 | CA | 80 | 1% |
 | NL | 80 | 1% |
 | GB | 20 | 0% |
@@ -99,6 +99,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 6830 | 73% |
-| desktop | 2570 | 27% |
+| mobile | 6650 | 72% |
+| desktop | 2570 | 28% |
 

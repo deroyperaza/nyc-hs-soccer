@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-22T23:25:46Z",
+ "generated": "2026-10-23T06:40:15Z",
  "days": 30,
- "visits": 1490,
- "pageviews": 9400,
+ "visits": 1460,
+ "pageviews": 9220,
  "byDay": [
   {
    "date": "2026-09-23",
-   "visits": 100,
-   "views": 620
+   "visits": 70,
+   "views": 440
   },
   {
    "date": "2026-09-24",
@@ -158,11 +158,11 @@
  "topPaths": [
   {
    "path": "/",
-   "views": 1370
+   "views": 1350
   },
   {
    "path": "/standings/boys",
-   "views": 480
+   "views": 470
   },
   {
    "path": "/standings/girls",
@@ -170,15 +170,15 @@
   },
   {
    "path": "/girls",
-   "views": 370
-  },
-  {
-   "path": "/teams/boys",
-   "views": 270
+   "views": 350
   },
   {
    "path": "/school/beacon/boys",
    "views": 250
+  },
+  {
+   "path": "/teams/boys",
+   "views": 230
   },
   {
    "path": "/school/bard-manhattan/boys",
@@ -190,7 +190,7 @@
   },
   {
    "path": "/history/boys",
-   "views": 190
+   "views": 180
   },
   {
    "path": "/playoffs/boys",
@@ -222,14 +222,14 @@
   },
   {
    "path": "/school/midwood/boys",
-   "views": 100
-  },
-  {
-   "path": "/players/boys",
-   "views": 80
+   "views": 90
   },
   {
    "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "views": 80
+  },
+  {
+   "path": "/players/boys",
    "views": 80
   },
   {
