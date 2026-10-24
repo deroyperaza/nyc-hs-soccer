@@ -1,14 +1,9 @@
 {
- "generated": "2026-10-24T12:39:20Z",
+ "generated": "2026-10-24T22:31:47Z",
  "days": 30,
- "visits": 1420,
- "pageviews": 9440,
+ "visits": 1440,
+ "pageviews": 9720,
  "byDay": [
-  {
-   "date": "2026-09-24",
-   "visits": 20,
-   "views": 120
-  },
   {
    "date": "2026-09-25",
    "visits": 20,
@@ -156,18 +151,18 @@
   },
   {
    "date": "2026-10-24",
-   "visits": 50,
-   "views": 580
+   "visits": 90,
+   "views": 980
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1350
+   "views": 1370
   },
   {
    "path": "/standings/boys",
-   "views": 480
+   "views": 490
   },
   {
    "path": "/standings/girls",
@@ -175,11 +170,15 @@
   },
   {
    "path": "/girls",
-   "views": 320
+   "views": 310
+  },
+  {
+   "path": "/playoffs/boys",
+   "views": 230
   },
   {
    "path": "/school/beacon/boys",
-   "views": 250
+   "views": 230
   },
   {
    "path": "/teams/boys",
@@ -190,16 +189,12 @@
    "views": 210
   },
   {
-   "path": "/playoffs/boys",
-   "views": 200
-  },
-  {
    "path": "/scores/2026-09-30/boys",
    "views": 190
   },
   {
    "path": "/history/boys",
-   "views": 180
+   "views": 190
   },
   {
    "path": "/school/murrow/girls",
@@ -214,11 +209,11 @@
    "views": 140
   },
   {
-   "path": "/school/stuyvesant/boys",
+   "path": "/history/leaders/boys",
    "views": 130
   },
   {
-   "path": "/history/leaders/boys",
+   "path": "/school/stuyvesant/boys",
    "views": 130
   },
   {
@@ -227,14 +222,14 @@
   },
   {
    "path": "/school/south-bronx/boys",
+   "views": 110
+  },
+  {
+   "path": "/school/midwood/boys",
    "views": 90
   },
   {
    "path": "/players/boys",
-   "views": 90
-  },
-  {
-   "path": "/school/midwood/boys",
    "views": 90
   },
   {
