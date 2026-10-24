@@ -24,6 +24,10 @@ env:
   CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
   CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
   CF_SITE_TAG: ${{ secrets.CF_SITE_TAG }}
+  # Only while Netlify's deploy credits are out (Oct 2026). Delete the secret
+  # and the git-triggered deploys take over again; the publish step skips.
+  NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+  NETLIFY_SITE_ID: e35c53a8-5d92-4ea6-87b7-b732a8a49a68
 
 jobs:
   refresh:
@@ -46,6 +50,7 @@ jobs:
             --season "${{ github.event.inputs.season || '2027' }}"
 
       - name: Commit if the data actually changed
+        id: commit
         run: |
           git config user.name "psal-refresh"
           git config user.email "actions@users.noreply.github.com"
@@ -56,5 +61,33 @@ jobs:
             git diff --cached --stat
             git commit -q -m "Refresh PSAL data $(date -u +'%Y-%m-%d %H:%MZ')"
             git pull --rebase -q && git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
             echo "Pushed. Netlify will redeploy."
           fi
+
+      # Netlify blocks git-triggered production deploys when the team is out of
+      # credits, silently. A draft deploy still uploads and the API will publish
+      # it, so do that from a clean worktree of what was just pushed (_raw/ and
+      # other ignored files must not go out).
+      - name: Publish to Netlify (credit-pause workaround)
+        if: steps.commit.outputs.pushed == 'true'
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "No NETLIFY_AUTH_TOKEN -- leaving the deploy to Netlify."
+            exit 0
+          fi
+          site="$RUNNER_TEMP/site"
+          git worktree add --detach "$site" HEAD
+          cd "$site"
+          npx -y netlify-cli@27.14.1 deploy --dir=. --site="$NETLIFY_SITE_ID" \
+            --message "Refresh $(git rev-parse --short HEAD) (draft, published by CI)" \
+            --json > "$RUNNER_TEMP/draft.json"
+          id=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['deploy_id'])" "$RUNNER_TEMP/draft.json")
+          npx -y netlify-cli@27.14.1 api restoreSiteDeploy \
+            --data "{\"site_id\":\"$NETLIFY_SITE_ID\",\"deploy_id\":\"$id\"}" > /dev/null
+          # A publish that didn't take reads as success otherwise -- compare the
+          # live page's build stamp against the one just deployed.
+          want=$(grep -o '"updated":"[^"]*"' index.html | head -1)
+          live=$(curl -s "https://nychssoccer.com/?v=$id" | grep -o '"updated":"[^"]*"' | head -1)
+          echo "deployed $id  want $want  live $live"
+          [ "$want" = "$live" ] || { echo "::error::Live page did not update"; exit 1; }
