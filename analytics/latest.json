@@ -1,14 +1,9 @@
 {
- "generated": "2026-10-25T16:25:56Z",
+ "generated": "2026-10-25T22:35:59Z",
  "days": 30,
- "visits": 1450,
- "pageviews": 9710,
+ "visits": 1460,
+ "pageviews": 9650,
  "byDay": [
-  {
-   "date": "2026-09-25",
-   "visits": 0,
-   "views": 110
-  },
   {
    "date": "2026-09-26",
    "visits": 100,
@@ -156,14 +151,14 @@
   },
   {
    "date": "2026-10-25",
-   "visits": 30,
-   "views": 130
+   "visits": 40,
+   "views": 180
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1380
+   "views": 1350
   },
   {
    "path": "/standings/boys",
@@ -179,7 +174,7 @@
   },
   {
    "path": "/playoffs/boys",
-   "views": 230
+   "views": 240
   },
   {
    "path": "/school/beacon/boys",

@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-25T16:25:56Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-25T22:35:59Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 30 | 130 | 
+| today | 40 | 180 | 
 | yesterday | 90 | 990 |
-| 30 days | 1450 | 9710 |
+| 30 days | 1460 | 9650 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -47,17 +47,17 @@ that is the number that means something.
 | 2026-10-22 | 50 | 630 |
 | 2026-10-23 | 0 | 120 |
 | 2026-10-24 | 90 | 990 |
-| 2026-10-25 | 30 | 130 |
+| 2026-10-25 | 40 | 180 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1380 | 14% |
+| / | 1350 | 14% |
 | /standings/boys | 490 | 5% |
 | /standings/girls | 340 | 4% |
 | /girls | 310 | 3% |
-| /playoffs/boys | 230 | 2% |
+| /playoffs/boys | 240 | 2% |
 | /school/beacon/boys | 230 | 2% |
 | /teams/boys | 220 | 2% |
 | /school/bard-manhattan/boys | 210 | 2% |
@@ -78,8 +78,8 @@ that is the number that means something.
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 8260 | 85% |
-| (direct) | 1370 | 14% |
+| nychssoccer.com | 8190 | 85% |
+| (direct) | 1380 | 14% |
 | instagram.com | 20 | 0% |
 | www.facebook.com | 20 | 0% |
 | l.instagram.com | 10 | 0% |
@@ -91,7 +91,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 9530 | 98% |
+| US | 9470 | 98% |
 | NL | 80 | 1% |
 | CA | 60 | 1% |
 | GB | 20 | 0% |
@@ -102,6 +102,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 7050 | 73% |
-| desktop | 2660 | 27% |
+| mobile | 7020 | 73% |
+| desktop | 2630 | 27% |
 
