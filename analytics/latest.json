@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-24T22:31:47Z",
+ "generated": "2026-10-25T05:13:49Z",
  "days": 30,
- "visits": 1440,
+ "visits": 1460,
  "pageviews": 9720,
  "byDay": [
   {
    "date": "2026-09-25",
    "visits": 20,
-   "views": 260
+   "views": 190
   },
   {
    "date": "2026-09-26",
@@ -152,13 +152,18 @@
   {
    "date": "2026-10-24",
    "visits": 90,
-   "views": 980
+   "views": 990
+  },
+  {
+   "date": "2026-10-25",
+   "visits": 20,
+   "views": 60
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1370
+   "views": 1380
   },
   {
    "path": "/standings/boys",
@@ -189,11 +194,11 @@
    "views": 210
   },
   {
-   "path": "/scores/2026-09-30/boys",
+   "path": "/history/boys",
    "views": 190
   },
   {
-   "path": "/history/boys",
+   "path": "/scores/2026-09-30/boys",
    "views": 190
   },
   {
@@ -209,10 +214,6 @@
    "views": 140
   },
   {
-   "path": "/history/leaders/boys",
-   "views": 130
-  },
-  {
    "path": "/school/stuyvesant/boys",
    "views": 130
   },
@@ -221,16 +222,20 @@
    "views": 120
   },
   {
+   "path": "/history/leaders/boys",
+   "views": 120
+  },
+  {
    "path": "/school/south-bronx/boys",
    "views": 110
   },
   {
-   "path": "/school/midwood/boys",
+   "path": "/players/boys",
    "views": 90
   },
   {
-   "path": "/players/boys",
-   "views": 90
+   "path": "/school/midwood/boys",
+   "views": 80
   },
   {
    "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
