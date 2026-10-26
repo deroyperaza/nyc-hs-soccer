@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-25T22:35:59Z",
+ "generated": "2026-10-26T05:32:47Z",
  "days": 30,
- "visits": 1460,
- "pageviews": 9650,
+ "visits": 1440,
+ "pageviews": 9680,
  "byDay": [
   {
    "date": "2026-09-26",
-   "visits": 100,
-   "views": 550
+   "visits": 50,
+   "views": 400
   },
   {
    "date": "2026-09-27",
@@ -152,7 +152,12 @@
   {
    "date": "2026-10-25",
    "visits": 40,
-   "views": 180
+   "views": 250
+  },
+  {
+   "date": "2026-10-26",
+   "visits": 30,
+   "views": 110
   }
  ],
  "topPaths": [
@@ -174,26 +179,26 @@
   },
   {
    "path": "/playoffs/boys",
-   "views": 240
+   "views": 260
+  },
+  {
+   "path": "/teams/boys",
+   "views": 230
   },
   {
    "path": "/school/beacon/boys",
    "views": 230
   },
   {
-   "path": "/teams/boys",
-   "views": 220
-  },
-  {
    "path": "/school/bard-manhattan/boys",
    "views": 210
   },
   {
-   "path": "/history/boys",
+   "path": "/scores/2026-09-30/boys",
    "views": 190
   },
   {
-   "path": "/scores/2026-09-30/boys",
+   "path": "/history/boys",
    "views": 190
   },
   {
@@ -201,16 +206,16 @@
    "views": 180
   },
   {
-   "path": "/school/hunter-college/boys",
-   "views": 140
-  },
-  {
    "path": "/scores/2026-10-02/boys",
    "views": 140
   },
   {
+   "path": "/school/hunter-college/boys",
+   "views": 140
+  },
+  {
    "path": "/scores/2026-10-15/boys",
-   "views": 120
+   "views": 140
   },
   {
    "path": "/school/stuyvesant/boys",
