@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-28T09:06:00Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-28T18:26:34Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 0 | 60 | 
+| today | 0 | 100 | 
 | yesterday | 60 | 270 |
-| 30 days | 1500 | 9660 |
+| 30 days | 1470 | 9620 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -47,27 +47,27 @@ that is the number that means something.
 | 2026-10-25 | 40 | 250 |
 | 2026-10-26 | 80 | 250 |
 | 2026-10-27 | 60 | 270 |
-| 2026-10-28 | 0 | 60 |
+| 2026-10-28 | 0 | 100 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1450 | 15% |
+| / | 1440 | 15% |
 | /standings/boys | 510 | 5% |
 | /standings/girls | 340 | 4% |
 | /girls | 300 | 3% |
-| /playoffs/boys | 280 | 3% |
+| /playoffs/boys | 290 | 3% |
 | /school/beacon/boys | 230 | 2% |
 | /teams/boys | 210 | 2% |
 | /school/bard-manhattan/boys | 210 | 2% |
 | /history/boys | 190 | 2% |
-| /scores/2026-09-30/boys | 180 | 2% |
+| /scores/2026-09-30/boys | 170 | 2% |
 | /school/murrow/girls | 160 | 2% |
 | /school/hunter-college/boys | 140 | 1% |
 | /scores/2026-10-15/boys | 140 | 1% |
-| /scores/2026-10-02/boys | 130 | 1% |
 | /school/south-bronx/boys | 130 | 1% |
+| /scores/2026-10-02/boys | 130 | 1% |
 | /history/leaders/boys | 120 | 1% |
 | /school/stuyvesant/boys | 110 | 1% |
 | /playoffs/girls | 100 | 1% |
@@ -78,8 +78,8 @@ that is the number that means something.
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 8160 | 84% |
-| (direct) | 1390 | 14% |
+| nychssoccer.com | 8150 | 85% |
+| (direct) | 1360 | 14% |
 | www.google.com | 30 | 0% |
 | instagram.com | 20 | 0% |
 | www.bing.com | 20 | 0% |
@@ -91,7 +91,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 9480 | 98% |
+| US | 9440 | 98% |
 | NL | 80 | 1% |
 | CA | 60 | 1% |
 | GB | 20 | 0% |
@@ -102,6 +102,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 6810 | 70% |
-| desktop | 2850 | 30% |
+| mobile | 6800 | 71% |
+| desktop | 2820 | 29% |
 

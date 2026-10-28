@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-28T09:06:00Z",
+ "generated": "2026-10-28T18:26:34Z",
  "days": 30,
- "visits": 1500,
- "pageviews": 9660,
+ "visits": 1470,
+ "pageviews": 9620,
  "byDay": [
   {
    "date": "2026-09-28",
-   "visits": 50,
-   "views": 380
+   "visits": 20,
+   "views": 300
   },
   {
    "date": "2026-09-29",
@@ -157,13 +157,13 @@
   {
    "date": "2026-10-28",
    "visits": 0,
-   "views": 60
+   "views": 100
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1450
+   "views": 1440
   },
   {
    "path": "/standings/boys",
@@ -179,7 +179,7 @@
   },
   {
    "path": "/playoffs/boys",
-   "views": 280
+   "views": 290
   },
   {
    "path": "/school/beacon/boys",
@@ -199,7 +199,7 @@
   },
   {
    "path": "/scores/2026-09-30/boys",
-   "views": 180
+   "views": 170
   },
   {
    "path": "/school/murrow/girls",
@@ -214,11 +214,11 @@
    "views": 140
   },
   {
-   "path": "/scores/2026-10-02/boys",
+   "path": "/school/south-bronx/boys",
    "views": 130
   },
   {
-   "path": "/school/south-bronx/boys",
+   "path": "/scores/2026-10-02/boys",
    "views": 130
   },
   {
