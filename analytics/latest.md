@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-28T18:26:34Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-29T05:48:37Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 0 | 100 | 
-| yesterday | 60 | 270 |
-| 30 days | 1470 | 9620 |
+| today | 10 | 70 | 
+| yesterday | 20 | 170 |
+| 30 days | 1450 | 9430 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,7 +18,6 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-09-29 | 30 | 230 |
 | 2026-09-30 | 40 | 120 |
 | 2026-10-01 | 60 | 350 |
 | 2026-10-02 | 40 | 220 |
@@ -47,53 +46,55 @@ that is the number that means something.
 | 2026-10-25 | 40 | 250 |
 | 2026-10-26 | 80 | 250 |
 | 2026-10-27 | 60 | 270 |
-| 2026-10-28 | 0 | 100 |
+| 2026-10-28 | 20 | 170 |
+| 2026-10-29 | 10 | 70 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1440 | 15% |
-| /standings/boys | 510 | 5% |
+| / | 1400 | 15% |
+| /standings/boys | 520 | 6% |
 | /standings/girls | 340 | 4% |
-| /girls | 300 | 3% |
-| /playoffs/boys | 290 | 3% |
-| /school/beacon/boys | 230 | 2% |
-| /teams/boys | 210 | 2% |
-| /school/bard-manhattan/boys | 210 | 2% |
+| /girls | 310 | 3% |
+| /playoffs/boys | 300 | 3% |
+| /school/beacon/boys | 210 | 2% |
+| /school/bard-manhattan/boys | 190 | 2% |
 | /history/boys | 190 | 2% |
+| /teams/boys | 180 | 2% |
 | /scores/2026-09-30/boys | 170 | 2% |
 | /school/murrow/girls | 160 | 2% |
-| /school/hunter-college/boys | 140 | 1% |
 | /scores/2026-10-15/boys | 140 | 1% |
-| /school/south-bronx/boys | 130 | 1% |
+| /school/hunter-college/boys | 140 | 1% |
 | /scores/2026-10-02/boys | 130 | 1% |
+| /school/south-bronx/boys | 130 | 1% |
 | /history/leaders/boys | 120 | 1% |
-| /school/stuyvesant/boys | 110 | 1% |
+| /school/stuyvesant/boys | 120 | 1% |
 | /playoffs/girls | 100 | 1% |
-| /players/boys | 100 | 1% |
+| /players/boys | 90 | 1% |
 | /player/cyrus-vossoughian-bard-manhattan/boys | 80 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 8150 | 85% |
-| (direct) | 1360 | 14% |
+| nychssoccer.com | 7980 | 85% |
+| (direct) | 1330 | 14% |
 | www.google.com | 30 | 0% |
 | instagram.com | 20 | 0% |
 | www.bing.com | 20 | 0% |
 | www.facebook.com | 20 | 0% |
 | l.instagram.com | 10 | 0% |
 | com.google.android.googlequicksearchbox | 10 | 0% |
+| duckduckgo.com | 10 | 0% |
 
 ## Countries
 
 | country | views | share |
 |---|---:|---:|
-| US | 9440 | 98% |
+| US | 9270 | 98% |
 | NL | 80 | 1% |
-| CA | 60 | 1% |
+| CA | 40 | 0% |
 | GB | 20 | 0% |
 | DE | 10 | 0% |
 | SE | 10 | 0% |
@@ -102,6 +103,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 6800 | 71% |
-| desktop | 2820 | 29% |
+| mobile | 6630 | 70% |
+| desktop | 2800 | 30% |
 

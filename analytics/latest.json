@@ -1,18 +1,13 @@
 {
- "generated": "2026-10-28T18:26:34Z",
+ "generated": "2026-10-29T05:48:37Z",
  "days": 30,
- "visits": 1470,
- "pageviews": 9620,
+ "visits": 1450,
+ "pageviews": 9430,
  "byDay": [
   {
-   "date": "2026-09-28",
-   "visits": 20,
-   "views": 300
-  },
-  {
    "date": "2026-09-29",
-   "visits": 30,
-   "views": 230
+   "visits": 0,
+   "views": 200
   },
   {
    "date": "2026-09-30",
@@ -156,18 +151,23 @@
   },
   {
    "date": "2026-10-28",
-   "visits": 0,
-   "views": 100
+   "visits": 20,
+   "views": 170
+  },
+  {
+   "date": "2026-10-29",
+   "visits": 10,
+   "views": 70
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1440
+   "views": 1400
   },
   {
    "path": "/standings/boys",
-   "views": 510
+   "views": 520
   },
   {
    "path": "/standings/girls",
@@ -175,27 +175,27 @@
   },
   {
    "path": "/girls",
-   "views": 300
+   "views": 310
   },
   {
    "path": "/playoffs/boys",
-   "views": 290
+   "views": 300
   },
   {
    "path": "/school/beacon/boys",
-   "views": 230
-  },
-  {
-   "path": "/teams/boys",
    "views": 210
   },
   {
    "path": "/school/bard-manhattan/boys",
-   "views": 210
+   "views": 190
   },
   {
    "path": "/history/boys",
    "views": 190
+  },
+  {
+   "path": "/teams/boys",
+   "views": 180
   },
   {
    "path": "/scores/2026-09-30/boys",
@@ -206,19 +206,19 @@
    "views": 160
   },
   {
-   "path": "/school/hunter-college/boys",
-   "views": 140
-  },
-  {
    "path": "/scores/2026-10-15/boys",
    "views": 140
   },
   {
-   "path": "/school/south-bronx/boys",
-   "views": 130
+   "path": "/school/hunter-college/boys",
+   "views": 140
   },
   {
    "path": "/scores/2026-10-02/boys",
+   "views": 130
+  },
+  {
+   "path": "/school/south-bronx/boys",
    "views": 130
   },
   {
@@ -227,7 +227,7 @@
   },
   {
    "path": "/school/stuyvesant/boys",
-   "views": 110
+   "views": 120
   },
   {
    "path": "/playoffs/girls",
@@ -235,7 +235,7 @@
   },
   {
    "path": "/players/boys",
-   "views": 100
+   "views": 90
   },
   {
    "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
