@@ -1,18 +1,13 @@
 {
- "generated": "2026-10-29T18:32:48Z",
+ "generated": "2026-10-30T05:48:31Z",
  "days": 30,
- "visits": 1480,
- "pageviews": 9530,
+ "visits": 1490,
+ "pageviews": 9470,
  "byDay": [
   {
-   "date": "2026-09-29",
-   "visits": 0,
-   "views": 140
-  },
-  {
    "date": "2026-09-30",
-   "visits": 40,
-   "views": 120
+   "visits": 30,
+   "views": 100
   },
   {
    "date": "2026-10-01",
@@ -157,21 +152,26 @@
   {
    "date": "2026-10-29",
    "visits": 40,
-   "views": 230
+   "views": 270
+  },
+  {
+   "date": "2026-10-30",
+   "visits": 20,
+   "views": 60
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1410
+   "views": 1430
   },
   {
    "path": "/standings/boys",
-   "views": 510
+   "views": 480
   },
   {
    "path": "/standings/girls",
-   "views": 340
+   "views": 330
   },
   {
    "path": "/playoffs/boys",
@@ -186,12 +186,12 @@
    "views": 210
   },
   {
-   "path": "/history/boys",
+   "path": "/school/bard-manhattan/boys",
    "views": 190
   },
   {
-   "path": "/school/bard-manhattan/boys",
-   "views": 190
+   "path": "/history/boys",
+   "views": 180
   },
   {
    "path": "/teams/boys",
@@ -199,11 +199,11 @@
   },
   {
    "path": "/scores/2026-09-30/boys",
-   "views": 170
+   "views": 150
   },
   {
    "path": "/school/murrow/girls",
-   "views": 160
+   "views": 150
   },
   {
    "path": "/scores/2026-10-15/boys",
@@ -226,16 +226,16 @@
    "views": 130
   },
   {
-   "path": "/school/stuyvesant/boys",
-   "views": 120
-  },
-  {
    "path": "/playoffs/girls",
    "views": 110
   },
   {
    "path": "/players/boys",
-   "views": 100
+   "views": 90
+  },
+  {
+   "path": "/school/stuyvesant/boys",
+   "views": 90
   },
   {
    "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
