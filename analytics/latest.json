@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-30T05:48:31Z",
+ "generated": "2026-10-30T18:24:49Z",
  "days": 30,
- "visits": 1490,
+ "visits": 1480,
  "pageviews": 9470,
  "byDay": [
   {
    "date": "2026-09-30",
-   "visits": 30,
-   "views": 100
+   "visits": 20,
+   "views": 90
   },
   {
    "date": "2026-10-01",
@@ -157,7 +157,7 @@
   {
    "date": "2026-10-30",
    "visits": 20,
-   "views": 60
+   "views": 70
   }
  ],
  "topPaths": [
@@ -198,11 +198,11 @@
    "views": 170
   },
   {
-   "path": "/scores/2026-09-30/boys",
+   "path": "/school/murrow/girls",
    "views": 150
   },
   {
-   "path": "/school/murrow/girls",
+   "path": "/scores/2026-09-30/boys",
    "views": 150
   },
   {
