@@ -1,18 +1,13 @@
 {
- "generated": "2026-10-30T18:24:49Z",
+ "generated": "2026-10-31T09:18:27Z",
  "days": 30,
- "visits": 1480,
- "pageviews": 9470,
+ "visits": 1440,
+ "pageviews": 9340,
  "byDay": [
   {
-   "date": "2026-09-30",
-   "visits": 20,
-   "views": 90
-  },
-  {
    "date": "2026-10-01",
-   "visits": 60,
-   "views": 350
+   "visits": 30,
+   "views": 270
   },
   {
    "date": "2026-10-02",
@@ -157,24 +152,29 @@
   {
    "date": "2026-10-30",
    "visits": 20,
-   "views": 70
+   "views": 80
+  },
+  {
+   "date": "2026-10-31",
+   "visits": 10,
+   "views": 30
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1430
+   "views": 1350
   },
   {
    "path": "/standings/boys",
-   "views": 480
-  },
-  {
-   "path": "/standings/girls",
-   "views": 330
+   "views": 470
   },
   {
    "path": "/playoffs/boys",
+   "views": 350
+  },
+  {
+   "path": "/standings/girls",
    "views": 330
   },
   {
@@ -187,7 +187,7 @@
   },
   {
    "path": "/school/bard-manhattan/boys",
-   "views": 190
+   "views": 180
   },
   {
    "path": "/history/boys",
@@ -206,10 +206,6 @@
    "views": 150
   },
   {
-   "path": "/scores/2026-10-15/boys",
-   "views": 140
-  },
-  {
    "path": "/school/hunter-college/boys",
    "views": 140
   },
@@ -218,27 +214,31 @@
    "views": 140
   },
   {
-   "path": "/scores/2026-10-02/boys",
-   "views": 130
+   "path": "/scores/2026-10-15/boys",
+   "views": 140
   },
   {
    "path": "/school/south-bronx/boys",
    "views": 130
   },
   {
+   "path": "/scores/2026-10-02/boys",
+   "views": 130
+  },
+  {
    "path": "/playoffs/girls",
-   "views": 110
+   "views": 120
   },
   {
    "path": "/players/boys",
-   "views": 90
-  },
-  {
-   "path": "/school/stuyvesant/boys",
-   "views": 90
+   "views": 100
   },
   {
    "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "views": 80
+  },
+  {
+   "path": "/school/stuyvesant/boys",
    "views": 80
   }
  ]

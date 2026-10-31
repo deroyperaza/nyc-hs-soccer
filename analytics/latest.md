@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-30T18:24:49Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-31T09:18:27Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 20 | 70 | 
-| yesterday | 40 | 270 |
-| 30 days | 1480 | 9470 |
+| today | 10 | 30 | 
+| yesterday | 20 | 80 |
+| 30 days | 1440 | 9340 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,7 +18,6 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-10-01 | 60 | 350 |
 | 2026-10-02 | 40 | 220 |
 | 2026-10-03 | 60 | 410 |
 | 2026-10-04 | 30 | 370 |
@@ -47,39 +46,40 @@ that is the number that means something.
 | 2026-10-27 | 60 | 270 |
 | 2026-10-28 | 20 | 170 |
 | 2026-10-29 | 40 | 270 |
-| 2026-10-30 | 20 | 70 |
+| 2026-10-30 | 20 | 80 |
+| 2026-10-31 | 10 | 30 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1430 | 15% |
-| /standings/boys | 480 | 5% |
-| /standings/girls | 330 | 3% |
-| /playoffs/boys | 330 | 3% |
+| / | 1350 | 14% |
+| /standings/boys | 470 | 5% |
+| /playoffs/boys | 350 | 4% |
+| /standings/girls | 330 | 4% |
 | /girls | 320 | 3% |
 | /school/beacon/boys | 210 | 2% |
-| /school/bard-manhattan/boys | 190 | 2% |
+| /school/bard-manhattan/boys | 180 | 2% |
 | /history/boys | 180 | 2% |
 | /teams/boys | 170 | 2% |
 | /school/murrow/girls | 150 | 2% |
 | /scores/2026-09-30/boys | 150 | 2% |
-| /scores/2026-10-15/boys | 140 | 1% |
 | /school/hunter-college/boys | 140 | 1% |
 | /history/leaders/boys | 140 | 1% |
-| /scores/2026-10-02/boys | 130 | 1% |
+| /scores/2026-10-15/boys | 140 | 1% |
 | /school/south-bronx/boys | 130 | 1% |
-| /playoffs/girls | 110 | 1% |
-| /players/boys | 90 | 1% |
-| /school/stuyvesant/boys | 90 | 1% |
+| /scores/2026-10-02/boys | 130 | 1% |
+| /playoffs/girls | 120 | 1% |
+| /players/boys | 100 | 1% |
 | /player/cyrus-vossoughian-bard-manhattan/boys | 80 | 1% |
+| /school/stuyvesant/boys | 80 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 7990 | 84% |
-| (direct) | 1360 | 14% |
+| nychssoccer.com | 7900 | 85% |
+| (direct) | 1320 | 14% |
 | www.google.com | 30 | 0% |
 | instagram.com | 20 | 0% |
 | www.bing.com | 20 | 0% |
@@ -92,7 +92,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 9310 | 98% |
+| US | 9180 | 98% |
 | NL | 80 | 1% |
 | CA | 40 | 0% |
 | GB | 20 | 0% |
@@ -103,6 +103,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 6640 | 70% |
-| desktop | 2830 | 30% |
+| mobile | 6600 | 71% |
+| desktop | 2740 | 29% |
 
