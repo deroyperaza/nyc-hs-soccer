@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-31T17:18:45Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-31T23:26:15Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 20 | 70 | 
+| today | 40 | 180 | 
 | yesterday | 20 | 80 |
-| 30 days | 1430 | 9140 |
+| 30 days | 1450 | 9230 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -47,26 +47,26 @@ that is the number that means something.
 | 2026-10-28 | 20 | 170 |
 | 2026-10-29 | 40 | 270 |
 | 2026-10-30 | 20 | 80 |
-| 2026-10-31 | 20 | 70 |
+| 2026-10-31 | 40 | 180 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1330 | 15% |
+| / | 1350 | 15% |
 | /standings/boys | 470 | 5% |
-| /playoffs/boys | 360 | 4% |
+| /playoffs/boys | 380 | 4% |
 | /standings/girls | 330 | 4% |
-| /girls | 320 | 4% |
+| /girls | 300 | 3% |
 | /school/beacon/boys | 200 | 2% |
 | /history/boys | 180 | 2% |
 | /school/bard-manhattan/boys | 180 | 2% |
 | /teams/boys | 170 | 2% |
 | /school/murrow/girls | 150 | 2% |
 | /scores/2026-10-15/boys | 140 | 2% |
+| /school/south-bronx/boys | 140 | 2% |
 | /school/hunter-college/boys | 140 | 2% |
 | /history/leaders/boys | 140 | 2% |
-| /school/south-bronx/boys | 130 | 1% |
 | /scores/2026-10-02/boys | 130 | 1% |
 | /playoffs/girls | 120 | 1% |
 | /players/boys | 100 | 1% |
@@ -78,8 +78,8 @@ that is the number that means something.
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 7710 | 84% |
-| (direct) | 1310 | 14% |
+| nychssoccer.com | 7780 | 84% |
+| (direct) | 1330 | 14% |
 | www.google.com | 30 | 0% |
 | instagram.com | 20 | 0% |
 | www.bing.com | 20 | 0% |
@@ -92,7 +92,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 8980 | 98% |
+| US | 9070 | 98% |
 | NL | 80 | 1% |
 | CA | 40 | 0% |
 | GB | 20 | 0% |
@@ -103,6 +103,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 6520 | 71% |
-| desktop | 2620 | 29% |
+| mobile | 6600 | 72% |
+| desktop | 2630 | 28% |
 

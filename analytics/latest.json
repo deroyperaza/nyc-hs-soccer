@@ -1,13 +1,13 @@
 {
- "generated": "2026-10-31T17:18:45Z",
+ "generated": "2026-10-31T23:26:15Z",
  "days": 30,
- "visits": 1430,
- "pageviews": 9140,
+ "visits": 1450,
+ "pageviews": 9230,
  "byDay": [
   {
    "date": "2026-10-01",
    "visits": 10,
-   "views": 30
+   "views": 10
   },
   {
    "date": "2026-10-02",
@@ -156,14 +156,14 @@
   },
   {
    "date": "2026-10-31",
-   "visits": 20,
-   "views": 70
+   "visits": 40,
+   "views": 180
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1330
+   "views": 1350
   },
   {
    "path": "/standings/boys",
@@ -171,7 +171,7 @@
   },
   {
    "path": "/playoffs/boys",
-   "views": 360
+   "views": 380
   },
   {
    "path": "/standings/girls",
@@ -179,7 +179,7 @@
   },
   {
    "path": "/girls",
-   "views": 320
+   "views": 300
   },
   {
    "path": "/school/beacon/boys",
@@ -206,16 +206,16 @@
    "views": 140
   },
   {
+   "path": "/school/south-bronx/boys",
+   "views": 140
+  },
+  {
    "path": "/school/hunter-college/boys",
    "views": 140
   },
   {
    "path": "/history/leaders/boys",
    "views": 140
-  },
-  {
-   "path": "/school/south-bronx/boys",
-   "views": 130
   },
   {
    "path": "/scores/2026-10-02/boys",
