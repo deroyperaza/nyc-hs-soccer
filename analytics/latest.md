@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-10-31T09:18:27Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-10-31T17:18:45Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 10 | 30 | 
+| today | 20 | 70 | 
 | yesterday | 20 | 80 |
-| 30 days | 1440 | 9340 |
+| 30 days | 1430 | 9140 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -47,39 +47,39 @@ that is the number that means something.
 | 2026-10-28 | 20 | 170 |
 | 2026-10-29 | 40 | 270 |
 | 2026-10-30 | 20 | 80 |
-| 2026-10-31 | 10 | 30 |
+| 2026-10-31 | 20 | 70 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1350 | 14% |
+| / | 1330 | 15% |
 | /standings/boys | 470 | 5% |
-| /playoffs/boys | 350 | 4% |
+| /playoffs/boys | 360 | 4% |
 | /standings/girls | 330 | 4% |
-| /girls | 320 | 3% |
-| /school/beacon/boys | 210 | 2% |
-| /school/bard-manhattan/boys | 180 | 2% |
+| /girls | 320 | 4% |
+| /school/beacon/boys | 200 | 2% |
 | /history/boys | 180 | 2% |
+| /school/bard-manhattan/boys | 180 | 2% |
 | /teams/boys | 170 | 2% |
 | /school/murrow/girls | 150 | 2% |
-| /scores/2026-09-30/boys | 150 | 2% |
-| /school/hunter-college/boys | 140 | 1% |
-| /history/leaders/boys | 140 | 1% |
-| /scores/2026-10-15/boys | 140 | 1% |
+| /scores/2026-10-15/boys | 140 | 2% |
+| /school/hunter-college/boys | 140 | 2% |
+| /history/leaders/boys | 140 | 2% |
 | /school/south-bronx/boys | 130 | 1% |
 | /scores/2026-10-02/boys | 130 | 1% |
 | /playoffs/girls | 120 | 1% |
 | /players/boys | 100 | 1% |
-| /player/cyrus-vossoughian-bard-manhattan/boys | 80 | 1% |
+| /scores/2026-09-30/boys | 90 | 1% |
 | /school/stuyvesant/boys | 80 | 1% |
+| /player/cyrus-vossoughian-bard-manhattan/boys | 80 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 7900 | 85% |
-| (direct) | 1320 | 14% |
+| nychssoccer.com | 7710 | 84% |
+| (direct) | 1310 | 14% |
 | www.google.com | 30 | 0% |
 | instagram.com | 20 | 0% |
 | www.bing.com | 20 | 0% |
@@ -92,7 +92,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 9180 | 98% |
+| US | 8980 | 98% |
 | NL | 80 | 1% |
 | CA | 40 | 0% |
 | GB | 20 | 0% |
@@ -103,6 +103,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 6600 | 71% |
-| desktop | 2740 | 29% |
+| mobile | 6520 | 71% |
+| desktop | 2620 | 29% |
 
