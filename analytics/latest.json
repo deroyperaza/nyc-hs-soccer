@@ -1,245 +1,170 @@
 {
- "generated": "2026-11-01T09:41:55Z",
+ "generated": "2026-11-01T18:00:14Z",
  "days": 30,
- "visits": 1430,
- "pageviews": 9200,
+ "visits": 1100,
+ "pageviews": 10300,
  "byDay": [
   {
    "date": "2026-10-02",
-   "visits": 30,
-   "views": 170
+   "visits": 100,
+   "views": 400
   },
   {
    "date": "2026-10-03",
-   "visits": 60,
-   "views": 410
+   "visits": 0,
+   "views": 400
   },
   {
    "date": "2026-10-04",
-   "visits": 30,
-   "views": 370
+   "visits": 0,
+   "views": 400
   },
   {
    "date": "2026-10-05",
-   "visits": 90,
-   "views": 260
-  },
-  {
-   "date": "2026-10-06",
-   "visits": 80,
-   "views": 380
-  },
-  {
-   "date": "2026-10-07",
-   "visits": 30,
+   "visits": 100,
    "views": 300
   },
   {
+   "date": "2026-10-06",
+   "visits": 100,
+   "views": 200
+  },
+  {
+   "date": "2026-10-07",
+   "visits": 0,
+   "views": 200
+  },
+  {
    "date": "2026-10-08",
-   "visits": 50,
-   "views": 430
+   "visits": 0,
+   "views": 900
   },
   {
    "date": "2026-10-09",
-   "visits": 70,
-   "views": 220
+   "visits": 300,
+   "views": 500
   },
   {
    "date": "2026-10-10",
-   "visits": 60,
-   "views": 420
+   "visits": 100,
+   "views": 300
   },
   {
    "date": "2026-10-11",
-   "visits": 10,
-   "views": 150
+   "visits": 0,
+   "views": 500
   },
   {
    "date": "2026-10-12",
-   "visits": 20,
-   "views": 260
+   "visits": 0,
+   "views": 100
   },
   {
    "date": "2026-10-13",
-   "visits": 20,
-   "views": 260
+   "visits": 0,
+   "views": 100
   },
   {
    "date": "2026-10-14",
-   "visits": 90,
-   "views": 430
+   "visits": 100,
+   "views": 600
   },
   {
    "date": "2026-10-15",
-   "visits": 40,
-   "views": 230
+   "visits": 0,
+   "views": 200
   },
   {
    "date": "2026-10-16",
-   "visits": 50,
-   "views": 290
-  },
-  {
-   "date": "2026-10-17",
-   "visits": 30,
-   "views": 180
+   "visits": 0,
+   "views": 300
   },
   {
    "date": "2026-10-18",
-   "visits": 90,
-   "views": 310
+   "visits": 0,
+   "views": 200
   },
   {
    "date": "2026-10-19",
-   "visits": 50,
-   "views": 280
+   "visits": 0,
+   "views": 100
   },
   {
    "date": "2026-10-20",
-   "visits": 60,
-   "views": 450
+   "visits": 0,
+   "views": 500
   },
   {
    "date": "2026-10-21",
-   "visits": 30,
-   "views": 160
+   "visits": 0,
+   "views": 200
   },
   {
    "date": "2026-10-22",
-   "visits": 50,
-   "views": 630
+   "visits": 0,
+   "views": 700
   },
   {
    "date": "2026-10-23",
    "visits": 0,
-   "views": 120
+   "views": 100
   },
   {
    "date": "2026-10-24",
-   "visits": 90,
-   "views": 990
+   "visits": 0,
+   "views": 1200
   },
   {
    "date": "2026-10-25",
-   "visits": 40,
-   "views": 250
+   "visits": 0,
+   "views": 100
   },
   {
    "date": "2026-10-26",
-   "visits": 80,
-   "views": 250
+   "visits": 100,
+   "views": 300
   },
   {
    "date": "2026-10-27",
-   "visits": 60,
-   "views": 270
+   "visits": 100,
+   "views": 500
   },
   {
    "date": "2026-10-28",
-   "visits": 20,
-   "views": 170
+   "visits": 100,
+   "views": 500
   },
   {
    "date": "2026-10-29",
-   "visits": 40,
-   "views": 270
-  },
-  {
-   "date": "2026-10-30",
-   "visits": 20,
-   "views": 80
+   "visits": 0,
+   "views": 400
   },
   {
    "date": "2026-10-31",
-   "visits": 40,
-   "views": 180
-  },
-  {
-   "date": "2026-11-01",
    "visits": 0,
-   "views": 30
+   "views": 100
   }
  ],
  "topPaths": [
   {
-   "path": "/",
-   "views": 1800
-  },
-  {
-   "path": "/standings/girls",
-   "views": 400
-  },
-  {
-   "path": "/school/hunter-college/boys",
-   "views": 400
+   "path": "/teams/2004/boys",
+   "views": 2000
   },
   {
    "path": "/playoffs/boys",
-   "views": 400
-  },
-  {
-   "path": "/scores/2026-10-02/boys",
-   "views": 300
-  },
-  {
-   "path": "/scores/2026-10-15/boys",
-   "views": 200
-  },
-  {
-   "path": "/players/boys",
-   "views": 200
-  },
-  {
-   "path": "/scores/2026-09-30/boys",
-   "views": 200
-  },
-  {
-   "path": "/history/leaders/boys",
-   "views": 200
-  },
-  {
-   "path": "/school/hs-for-leadership/boys",
-   "views": 200
-  },
-  {
-   "path": "/game/502749/boys",
-   "views": 200
-  },
-  {
-   "path": "/history/girls",
-   "views": 200
-  },
-  {
-   "path": "/teams/boys",
-   "views": 200
+   "views": 1000
   },
   {
    "path": "/scores/2026-10-30/boys",
-   "views": 200
+   "views": 1000
   },
   {
-   "path": "/game/511375/boys",
-   "views": 200
+   "path": "/",
+   "views": 1000
   },
   {
-   "path": "/teams/2004/boys",
-   "views": 200
-  },
-  {
-   "path": "/standings/boys",
-   "views": 200
-  },
-  {
-   "path": "/players/girls",
-   "views": 100
-  },
-  {
-   "path": "/school/washington-irving/boys",
-   "views": 100
-  },
-  {
-   "path": "/school/lincoln/2007/girls",
-   "views": 100
+   "path": "/game/511471/girls",
+   "views": 1000
   }
  ]
 }
