@@ -1,18 +1,13 @@
 {
- "generated": "2026-10-31T23:26:15Z",
+ "generated": "2026-11-01T09:41:55Z",
  "days": 30,
- "visits": 1450,
- "pageviews": 9230,
+ "visits": 1430,
+ "pageviews": 9200,
  "byDay": [
   {
-   "date": "2026-10-01",
-   "visits": 10,
-   "views": 10
-  },
-  {
    "date": "2026-10-02",
-   "visits": 40,
-   "views": 220
+   "visits": 30,
+   "views": 170
   },
   {
    "date": "2026-10-03",
@@ -158,88 +153,93 @@
    "date": "2026-10-31",
    "visits": 40,
    "views": 180
+  },
+  {
+   "date": "2026-11-01",
+   "visits": 0,
+   "views": 30
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1350
-  },
-  {
-   "path": "/standings/boys",
-   "views": 470
-  },
-  {
-   "path": "/playoffs/boys",
-   "views": 380
+   "views": 1800
   },
   {
    "path": "/standings/girls",
-   "views": 330
-  },
-  {
-   "path": "/girls",
-   "views": 300
-  },
-  {
-   "path": "/school/beacon/boys",
-   "views": 200
-  },
-  {
-   "path": "/history/boys",
-   "views": 180
-  },
-  {
-   "path": "/school/bard-manhattan/boys",
-   "views": 180
-  },
-  {
-   "path": "/teams/boys",
-   "views": 170
-  },
-  {
-   "path": "/school/murrow/girls",
-   "views": 150
-  },
-  {
-   "path": "/scores/2026-10-15/boys",
-   "views": 140
-  },
-  {
-   "path": "/school/south-bronx/boys",
-   "views": 140
+   "views": 400
   },
   {
    "path": "/school/hunter-college/boys",
-   "views": 140
+   "views": 400
   },
   {
-   "path": "/history/leaders/boys",
-   "views": 140
+   "path": "/playoffs/boys",
+   "views": 400
   },
   {
    "path": "/scores/2026-10-02/boys",
-   "views": 130
+   "views": 300
   },
   {
-   "path": "/playoffs/girls",
-   "views": 120
+   "path": "/scores/2026-10-15/boys",
+   "views": 200
   },
   {
    "path": "/players/boys",
-   "views": 100
+   "views": 200
   },
   {
    "path": "/scores/2026-09-30/boys",
-   "views": 90
+   "views": 200
   },
   {
-   "path": "/school/stuyvesant/boys",
-   "views": 80
+   "path": "/history/leaders/boys",
+   "views": 200
   },
   {
-   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
-   "views": 80
+   "path": "/school/hs-for-leadership/boys",
+   "views": 200
+  },
+  {
+   "path": "/game/502749/boys",
+   "views": 200
+  },
+  {
+   "path": "/history/girls",
+   "views": 200
+  },
+  {
+   "path": "/teams/boys",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-10-30/boys",
+   "views": 200
+  },
+  {
+   "path": "/game/511375/boys",
+   "views": 200
+  },
+  {
+   "path": "/teams/2004/boys",
+   "views": 200
+  },
+  {
+   "path": "/standings/boys",
+   "views": 200
+  },
+  {
+   "path": "/players/girls",
+   "views": 100
+  },
+  {
+   "path": "/school/washington-irving/boys",
+   "views": 100
+  },
+  {
+   "path": "/school/lincoln/2007/girls",
+   "views": 100
   }
  ]
 }
