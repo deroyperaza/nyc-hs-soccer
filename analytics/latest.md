@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-11-02T02:52:40Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-11-02T10:10:05Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
 | today | 0 | 50 | 
 | yesterday | 10 | 130 |
-| 30 days | 1410 | 9160 |
+| 30 days | 1410 | 9110 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -53,12 +53,12 @@ that is the number that means something.
 
 | path | views | share |
 |---|---:|---:|
-| / | 1280 | 14% |
+| / | 1260 | 14% |
 | /standings/boys | 450 | 5% |
 | /playoffs/boys | 390 | 4% |
-| /standings/girls | 320 | 3% |
+| /standings/girls | 320 | 4% |
 | /girls | 310 | 3% |
-| /school/beacon/boys | 200 | 2% |
+| /school/beacon/boys | 190 | 2% |
 | /school/bard-manhattan/boys | 180 | 2% |
 | /teams/boys | 170 | 2% |
 | /history/boys | 170 | 2% |
@@ -70,15 +70,15 @@ that is the number that means something.
 | /scores/2026-10-02/boys | 130 | 1% |
 | /playoffs/girls | 120 | 1% |
 | /players/boys | 100 | 1% |
-| /scores/2026-09-30/boys | 90 | 1% |
 | /school/stuyvesant/boys | 90 | 1% |
-| /scores/2026-10-06/boys | 70 | 1% |
+| /scores/2026-09-30/boys | 90 | 1% |
+| /school/midwood/boys | 70 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 7750 | 85% |
+| nychssoccer.com | 7700 | 85% |
 | (direct) | 1290 | 14% |
 | www.google.com | 30 | 0% |
 | instagram.com | 20 | 0% |
@@ -92,7 +92,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 9000 | 98% |
+| US | 8950 | 98% |
 | NL | 80 | 1% |
 | CA | 40 | 0% |
 | GB | 20 | 0% |
@@ -103,6 +103,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 6500 | 71% |
+| mobile | 6450 | 71% |
 | desktop | 2660 | 29% |
 
