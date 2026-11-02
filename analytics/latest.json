@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-02T10:10:05Z",
+ "generated": "2026-11-02T21:46:34Z",
  "days": 30,
- "visits": 1410,
- "pageviews": 9110,
+ "visits": 1390,
+ "pageviews": 8950,
  "byDay": [
   {
    "date": "2026-10-03",
-   "visits": 60,
-   "views": 340
+   "visits": 30,
+   "views": 80
   },
   {
    "date": "2026-10-04",
@@ -156,90 +156,90 @@
   },
   {
    "date": "2026-11-02",
-   "visits": 0,
-   "views": 50
+   "visits": 10,
+   "views": 150
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1260
-  },
-  {
-   "path": "/standings/boys",
-   "views": 450
-  },
-  {
-   "path": "/playoffs/boys",
-   "views": 390
-  },
-  {
-   "path": "/standings/girls",
-   "views": 320
-  },
-  {
-   "path": "/girls",
-   "views": 310
-  },
-  {
-   "path": "/school/beacon/boys",
-   "views": 190
-  },
-  {
-   "path": "/school/bard-manhattan/boys",
-   "views": 180
-  },
-  {
-   "path": "/teams/boys",
-   "views": 170
-  },
-  {
-   "path": "/history/boys",
-   "views": 170
-  },
-  {
-   "path": "/school/murrow/girls",
-   "views": 150
-  },
-  {
-   "path": "/history/leaders/boys",
-   "views": 140
-  },
-  {
-   "path": "/school/south-bronx/boys",
-   "views": 140
+   "views": 1500
   },
   {
    "path": "/school/hunter-college/boys",
-   "views": 140
+   "views": 400
   },
   {
-   "path": "/scores/2026-10-15/boys",
-   "views": 140
+   "path": "/playoffs/boys",
+   "views": 400
   },
   {
    "path": "/scores/2026-10-02/boys",
-   "views": 130
+   "views": 300
   },
   {
-   "path": "/playoffs/girls",
-   "views": 120
+   "path": "/standings/girls",
+   "views": 300
+  },
+  {
+   "path": "/scores/2026-10-15/boys",
+   "views": 200
   },
   {
    "path": "/players/boys",
+   "views": 200
+  },
+  {
+   "path": "/history/leaders/boys",
+   "views": 200
+  },
+  {
+   "path": "/school/hs-for-leadership/boys",
+   "views": 200
+  },
+  {
+   "path": "/game/502749/boys",
+   "views": 200
+  },
+  {
+   "path": "/history/girls",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-10-31/boys",
+   "views": 200
+  },
+  {
+   "path": "/teams/boys",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-10-30/boys",
+   "views": 200
+  },
+  {
+   "path": "/teams/2004/boys",
+   "views": 200
+  },
+  {
+   "path": "/standings/boys",
+   "views": 200
+  },
+  {
+   "path": "/game/511375/boys",
+   "views": 200
+  },
+  {
+   "path": "/players/girls",
    "views": 100
   },
   {
-   "path": "/school/stuyvesant/boys",
-   "views": 90
+   "path": "/school/lincoln/2007/girls",
+   "views": 100
   },
   {
-   "path": "/scores/2026-09-30/boys",
-   "views": 90
-  },
-  {
-   "path": "/school/midwood/boys",
-   "views": 70
+   "path": "/teams/2024/boys",
+   "views": 100
   }
  ]
 }
