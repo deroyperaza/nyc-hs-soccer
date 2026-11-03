@@ -142,3 +142,15 @@ the whole draw from the day it is published: seeds, byes and every slot.
   slots 2*m*-1 and 2*m* of the round before. A first-round slot with one team is
   a bye. Scores read `"0"` before a game is played, so do not trust them.
 
+**`lbl_tp` changes shape after round 2.** The early rounds read `R1H3` and
+`R2H8`, but the quarterfinals, semifinals and final read `QH1`–`QH4`,
+`SH1`–`SH2` and `FH1`, with no leading `R` and no round number. The values also
+come padded with trailing spaces. Take the round from `round`, never from the
+label, and read the slot as the digits after the `H` (or `A`). `convert.py`
+matches `[A-Z]\w*?[HA](\d+)`. Until Nov 2 2026 it required a leading `R`, which
+quietly dropped every slot from the quarterfinals on. Those games then fell
+through to the inferred bracket, which split them into stray two-game
+"brackets" and labelled the quarterfinals as semifinals. If a bracket ever
+stops filling in past some round, check this first: dump `lbl_tp` for that
+round and make sure the pattern still matches.
+
