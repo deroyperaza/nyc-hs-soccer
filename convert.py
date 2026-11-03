@@ -77,7 +77,7 @@ def apply_official(official, games, BR, BK, new_scheme):
             rnd, lbl, cid, top, btm = row[0], row[1], row[2], row[3], row[4]
             win = row[7] if len(row) > 7 else ''
             ri = ROUND_OF.get(str(rnd).strip().lower())
-            m = re.match(r'R\w*?[HA](\d+)', lbl or '')
+            m = re.match(r'[A-Z]\w*?[HA](\d+)', lbl or '')
             if ri is None or not m:
                 continue
             top = code(top) if top and top.strip().isdigit() else ''
