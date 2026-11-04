@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-11-04T07:04:23Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-11-04T19:50:04Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 10 | 50 | 
+| today | 30 | 100 | 
 | yesterday | 50 | 150 |
-| 30 days | 1370 | 8600 |
+| 30 days | 1380 | 8570 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -47,39 +47,39 @@ that is the number that means something.
 | 2026-11-01 | 10 | 130 |
 | 2026-11-02 | 20 | 180 |
 | 2026-11-03 | 50 | 150 |
-| 2026-11-04 | 10 | 50 |
+| 2026-11-04 | 30 | 100 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1260 | 15% |
-| /standings/boys | 420 | 5% |
-| /playoffs/boys | 420 | 5% |
-| /standings/girls | 290 | 3% |
-| /girls | 290 | 3% |
-| /history/boys | 160 | 2% |
+| / | 1270 | 15% |
+| /playoffs/boys | 440 | 5% |
+| /standings/boys | 410 | 5% |
+| /standings/girls | 280 | 3% |
+| /girls | 280 | 3% |
 | /teams/boys | 160 | 2% |
+| /history/boys | 160 | 2% |
 | /playoffs/girls | 150 | 2% |
 | /school/bard-manhattan/boys | 150 | 2% |
-| /scores/2026-10-15/boys | 140 | 2% |
-| /school/south-bronx/boys | 140 | 2% |
 | /history/leaders/boys | 140 | 2% |
 | /school/hunter-college/boys | 140 | 2% |
+| /scores/2026-10-15/boys | 140 | 2% |
+| /school/south-bronx/boys | 140 | 2% |
 | /school/murrow/girls | 130 | 2% |
-| /school/beacon/boys | 110 | 1% |
+| /school/beacon/boys | 100 | 1% |
 | /players/boys | 100 | 1% |
 | /school/stuyvesant/boys | 90 | 1% |
-| /scores/2026-09-30/boys | 70 | 1% |
 | /scores/2026-10-06/boys | 70 | 1% |
 | /player/cyrus-vossoughian-bard-manhattan/boys | 70 | 1% |
+| /scores/2026-09-30/boys | 70 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 7230 | 84% |
-| (direct) | 1260 | 15% |
+| nychssoccer.com | 7190 | 84% |
+| (direct) | 1270 | 15% |
 | instagram.com | 20 | 0% |
 | www.bing.com | 20 | 0% |
 | www.google.com | 20 | 0% |
@@ -92,7 +92,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 8430 | 98% |
+| US | 8400 | 98% |
 | NL | 80 | 1% |
 | CA | 40 | 0% |
 | GB | 20 | 0% |
@@ -104,6 +104,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 6010 | 70% |
-| desktop | 2590 | 30% |
+| mobile | 5960 | 70% |
+| desktop | 2610 | 30% |
 

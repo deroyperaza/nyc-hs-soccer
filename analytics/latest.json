@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-04T07:04:23Z",
+ "generated": "2026-11-04T19:50:04Z",
  "days": 30,
- "visits": 1370,
- "pageviews": 8600,
+ "visits": 1380,
+ "pageviews": 8570,
  "byDay": [
   {
    "date": "2026-10-05",
-   "visits": 60,
-   "views": 130
+   "visits": 50,
+   "views": 50
   },
   {
    "date": "2026-10-06",
@@ -156,37 +156,37 @@
   },
   {
    "date": "2026-11-04",
-   "visits": 10,
-   "views": 50
+   "visits": 30,
+   "views": 100
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1260
-  },
-  {
-   "path": "/standings/boys",
-   "views": 420
+   "views": 1270
   },
   {
    "path": "/playoffs/boys",
-   "views": 420
+   "views": 440
+  },
+  {
+   "path": "/standings/boys",
+   "views": 410
   },
   {
    "path": "/standings/girls",
-   "views": 290
+   "views": 280
   },
   {
    "path": "/girls",
-   "views": 290
-  },
-  {
-   "path": "/history/boys",
-   "views": 160
+   "views": 280
   },
   {
    "path": "/teams/boys",
+   "views": 160
+  },
+  {
+   "path": "/history/boys",
    "views": 160
   },
   {
@@ -198,14 +198,6 @@
    "views": 150
   },
   {
-   "path": "/scores/2026-10-15/boys",
-   "views": 140
-  },
-  {
-   "path": "/school/south-bronx/boys",
-   "views": 140
-  },
-  {
    "path": "/history/leaders/boys",
    "views": 140
   },
@@ -214,12 +206,20 @@
    "views": 140
   },
   {
+   "path": "/scores/2026-10-15/boys",
+   "views": 140
+  },
+  {
+   "path": "/school/south-bronx/boys",
+   "views": 140
+  },
+  {
    "path": "/school/murrow/girls",
    "views": 130
   },
   {
    "path": "/school/beacon/boys",
-   "views": 110
+   "views": 100
   },
   {
    "path": "/players/boys",
@@ -230,15 +230,15 @@
    "views": 90
   },
   {
-   "path": "/scores/2026-09-30/boys",
-   "views": 70
-  },
-  {
    "path": "/scores/2026-10-06/boys",
    "views": 70
   },
   {
    "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
+   "views": 70
+  },
+  {
+   "path": "/scores/2026-09-30/boys",
    "views": 70
   }
  ]
