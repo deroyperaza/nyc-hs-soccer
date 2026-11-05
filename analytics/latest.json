@@ -1,18 +1,13 @@
 {
- "generated": "2026-11-04T19:50:04Z",
+ "generated": "2026-11-05T07:42:04Z",
  "days": 30,
- "visits": 1380,
- "pageviews": 8570,
+ "visits": 1360,
+ "pageviews": 8520,
  "byDay": [
   {
-   "date": "2026-10-05",
-   "visits": 50,
-   "views": 50
-  },
-  {
    "date": "2026-10-06",
-   "visits": 80,
-   "views": 380
+   "visits": 70,
+   "views": 240
   },
   {
    "date": "2026-10-07",
@@ -156,29 +151,34 @@
   },
   {
    "date": "2026-11-04",
-   "visits": 30,
-   "views": 100
+   "visits": 50,
+   "views": 160
+  },
+  {
+   "date": "2026-11-05",
+   "visits": 20,
+   "views": 80
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1270
+   "views": 1260
   },
   {
    "path": "/playoffs/boys",
-   "views": 440
+   "views": 450
   },
   {
    "path": "/standings/boys",
    "views": 410
   },
   {
-   "path": "/standings/girls",
-   "views": 280
+   "path": "/girls",
+   "views": 310
   },
   {
-   "path": "/girls",
+   "path": "/standings/girls",
    "views": 280
   },
   {
@@ -191,22 +191,14 @@
   },
   {
    "path": "/playoffs/girls",
-   "views": 150
+   "views": 160
   },
   {
    "path": "/school/bard-manhattan/boys",
    "views": 150
   },
   {
-   "path": "/history/leaders/boys",
-   "views": 140
-  },
-  {
    "path": "/school/hunter-college/boys",
-   "views": 140
-  },
-  {
-   "path": "/scores/2026-10-15/boys",
    "views": 140
   },
   {
@@ -214,8 +206,16 @@
    "views": 140
   },
   {
+   "path": "/history/leaders/boys",
+   "views": 140
+  },
+  {
+   "path": "/scores/2026-10-15/boys",
+   "views": 140
+  },
+  {
    "path": "/school/murrow/girls",
-   "views": 130
+   "views": 120
   },
   {
    "path": "/school/beacon/boys",
@@ -230,16 +230,16 @@
    "views": 90
   },
   {
-   "path": "/scores/2026-10-06/boys",
-   "views": 70
-  },
-  {
    "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
    "views": 70
   },
   {
-   "path": "/scores/2026-09-30/boys",
-   "views": 70
+   "path": "/scores/2026-10-18/boys",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-10-07/boys",
+   "views": 60
   }
  ]
 }
