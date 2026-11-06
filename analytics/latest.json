@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-06T07:58:59Z",
+ "generated": "2026-11-06T19:31:01Z",
  "days": 30,
- "visits": 1340,
- "pageviews": 8560,
+ "visits": 1330,
+ "pageviews": 8500,
  "byDay": [
   {
    "date": "2026-10-07",
-   "visits": 30,
-   "views": 260
+   "visits": 20,
+   "views": 190
   },
   {
    "date": "2026-10-08",
@@ -157,13 +157,13 @@
   {
    "date": "2026-11-06",
    "visits": 0,
-   "views": 100
+   "views": 110
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1260
+   "views": 1250
   },
   {
    "path": "/playoffs/boys",
@@ -171,11 +171,11 @@
   },
   {
    "path": "/standings/boys",
-   "views": 400
+   "views": 410
   },
   {
    "path": "/girls",
-   "views": 330
+   "views": 320
   },
   {
    "path": "/standings/girls",
@@ -202,11 +202,11 @@
    "views": 140
   },
   {
-   "path": "/school/hunter-college/boys",
+   "path": "/history/leaders/boys",
    "views": 140
   },
   {
-   "path": "/history/leaders/boys",
+   "path": "/school/hunter-college/boys",
    "views": 140
   },
   {
@@ -226,11 +226,11 @@
    "views": 90
   },
   {
-   "path": "/scores/2026-10-18/boys",
+   "path": "/scores/2026-10-26/boys",
    "views": 60
   },
   {
-   "path": "/scores/2026-10-06/boys",
+   "path": "/scores/2026-10-18/boys",
    "views": 60
   },
   {
@@ -238,7 +238,7 @@
    "views": 60
   },
   {
-   "path": "/scores/2026-10-26/boys",
+   "path": "/player/cyrus-vossoughian-bard-manhattan/boys",
    "views": 60
   }
  ]
