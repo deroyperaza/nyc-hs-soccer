@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-07T05:59:43Z",
+ "generated": "2026-11-07T17:48:58Z",
  "days": 30,
- "visits": 1310,
- "pageviews": 8240,
+ "visits": 1320,
+ "pageviews": 8190,
  "byDay": [
   {
    "date": "2026-10-08",
    "visits": 40,
-   "views": 320
+   "views": 250
   },
   {
    "date": "2026-10-09",
@@ -156,14 +156,14 @@
   },
   {
    "date": "2026-11-07",
-   "visits": 10,
-   "views": 10
+   "visits": 20,
+   "views": 30
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1230
+   "views": 1240
   },
   {
    "path": "/playoffs/boys",
@@ -171,7 +171,7 @@
   },
   {
    "path": "/standings/boys",
-   "views": 410
+   "views": 400
   },
   {
    "path": "/girls",
@@ -179,7 +179,7 @@
   },
   {
    "path": "/standings/girls",
-   "views": 220
+   "views": 200
   },
   {
    "path": "/playoffs/girls",
@@ -198,12 +198,16 @@
    "views": 140
   },
   {
+   "path": "/history/leaders/boys",
+   "views": 130
+  },
+  {
    "path": "/school/bard-manhattan/boys",
    "views": 130
   },
   {
-   "path": "/history/leaders/boys",
-   "views": 130
+   "path": "/scores/2026-10-15/boys",
+   "views": 120
   },
   {
    "path": "/school/murrow/girls",
@@ -211,10 +215,6 @@
   },
   {
    "path": "/school/hunter-college/boys",
-   "views": 120
-  },
-  {
-   "path": "/scores/2026-10-15/boys",
    "views": 120
   },
   {
@@ -238,7 +238,7 @@
    "views": 60
   },
   {
-   "path": "/school/laguardia/girls",
+   "path": "/scores/2026-10-17/boys",
    "views": 50
   }
  ]
