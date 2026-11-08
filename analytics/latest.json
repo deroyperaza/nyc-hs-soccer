@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-08T02:49:14Z",
+ "generated": "2026-11-08T09:39:50Z",
  "days": 30,
- "visits": 1290,
- "pageviews": 8040,
+ "visits": 1280,
+ "pageviews": 8060,
  "byDay": [
   {
    "date": "2026-10-09",
-   "visits": 60,
-   "views": 190
+   "visits": 50,
+   "views": 180
   },
   {
    "date": "2026-10-10",
@@ -153,12 +153,17 @@
    "date": "2026-11-07",
    "visits": 40,
    "views": 160
+  },
+  {
+   "date": "2026-11-08",
+   "visits": 0,
+   "views": 30
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1220
+   "views": 1210
   },
   {
    "path": "/playoffs/boys",
@@ -181,11 +186,11 @@
    "views": 190
   },
   {
-   "path": "/history/boys",
+   "path": "/teams/boys",
    "views": 140
   },
   {
-   "path": "/teams/boys",
+   "path": "/history/boys",
    "views": 140
   },
   {
@@ -221,11 +226,7 @@
    "views": 80
   },
   {
-   "path": "/scores/2026-10-18/boys",
-   "views": 60
-  },
-  {
-   "path": "/scores/2026-10-31/boys",
+   "path": "/school/stuyvesant/2004/boys",
    "views": 60
   },
   {
@@ -233,8 +234,12 @@
    "views": 60
   },
   {
-   "path": "/scores/2026-10-24/girls",
-   "views": 50
+   "path": "/scores/2026-10-31/boys",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-10-18/boys",
+   "views": 60
   }
  ]
 }
