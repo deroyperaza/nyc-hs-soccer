@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-11-09T03:08:12Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-11-09T11:31:06Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 10 | 80 | 
+| today | 10 | 190 | 
 | yesterday | 20 | 50 |
-| 30 days | 1220 | 7750 |
+| 30 days | 1220 | 7810 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -47,30 +47,30 @@ that is the number that means something.
 | 2026-11-06 | 0 | 140 |
 | 2026-11-07 | 40 | 160 |
 | 2026-11-08 | 20 | 50 |
-| 2026-11-09 | 10 | 80 |
+| 2026-11-09 | 10 | 190 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1170 | 15% |
+| / | 1210 | 15% |
 | /playoffs/boys | 460 | 6% |
-| /standings/boys | 380 | 5% |
+| /standings/boys | 390 | 5% |
 | /girls | 300 | 4% |
 | /standings/girls | 210 | 3% |
-| /playoffs/girls | 190 | 2% |
+| /playoffs/girls | 200 | 3% |
 | /school/south-bronx/boys | 140 | 2% |
 | /teams/boys | 130 | 2% |
 | /history/boys | 130 | 2% |
 | /history/leaders/boys | 130 | 2% |
 | /scores/2026-10-15/boys | 120 | 2% |
 | /school/murrow/girls | 100 | 1% |
-| /school/bard-manhattan/boys | 100 | 1% |
-| /school/stuyvesant/boys | 90 | 1% |
 | /school/hunter-college/boys | 90 | 1% |
+| /school/stuyvesant/boys | 90 | 1% |
+| /school/bard-manhattan/boys | 80 | 1% |
 | /players/boys | 80 | 1% |
-| /scores/2026-11-05/boys | 60 | 1% |
-| /scores/2026-10-31/boys | 60 | 1% |
+| /scores/2026-11-07/boys | 70 | 1% |
+| /scores/2026-10-31/boys | 70 | 1% |
 | /scores/2026-10-18/boys | 60 | 1% |
 | /scores/2026-10-26/boys | 60 | 1% |
 
@@ -78,7 +78,7 @@ that is the number that means something.
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 6530 | 84% |
+| nychssoccer.com | 6590 | 84% |
 | (direct) | 1090 | 14% |
 | www.google.com | 40 | 1% |
 | instagram.com | 20 | 0% |
@@ -92,7 +92,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 7560 | 98% |
+| US | 7620 | 98% |
 | NL | 80 | 1% |
 | CA | 60 | 1% |
 | GB | 20 | 0% |
@@ -104,6 +104,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 5570 | 72% |
-| desktop | 2180 | 28% |
+| mobile | 5680 | 73% |
+| desktop | 2130 | 27% |
 
