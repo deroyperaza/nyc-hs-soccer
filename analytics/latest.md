@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-11-08T17:59:56Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-11-09T03:08:12Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 10 | 40 | 
-| yesterday | 40 | 160 |
-| 30 days | 1270 | 8010 |
+| today | 10 | 80 | 
+| yesterday | 20 | 50 |
+| 30 days | 1220 | 7750 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,7 +18,6 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-10-10 | 60 | 420 |
 | 2026-10-11 | 10 | 150 |
 | 2026-10-12 | 20 | 260 |
 | 2026-10-13 | 20 | 260 |
@@ -47,40 +46,41 @@ that is the number that means something.
 | 2026-11-05 | 70 | 300 |
 | 2026-11-06 | 0 | 140 |
 | 2026-11-07 | 40 | 160 |
-| 2026-11-08 | 10 | 40 |
+| 2026-11-08 | 20 | 50 |
+| 2026-11-09 | 10 | 80 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 1200 | 15% |
-| /playoffs/boys | 450 | 6% |
-| /standings/boys | 400 | 5% |
-| /girls | 320 | 4% |
-| /standings/girls | 200 | 2% |
+| / | 1170 | 15% |
+| /playoffs/boys | 460 | 6% |
+| /standings/boys | 380 | 5% |
+| /girls | 300 | 4% |
+| /standings/girls | 210 | 3% |
 | /playoffs/girls | 190 | 2% |
-| /teams/boys | 140 | 2% |
 | /school/south-bronx/boys | 140 | 2% |
-| /school/bard-manhattan/boys | 130 | 2% |
+| /teams/boys | 130 | 2% |
 | /history/boys | 130 | 2% |
 | /history/leaders/boys | 130 | 2% |
-| /scores/2026-10-15/boys | 120 | 1% |
-| /school/murrow/girls | 120 | 1% |
-| /school/hunter-college/boys | 90 | 1% |
+| /scores/2026-10-15/boys | 120 | 2% |
+| /school/murrow/girls | 100 | 1% |
+| /school/bard-manhattan/boys | 100 | 1% |
 | /school/stuyvesant/boys | 90 | 1% |
+| /school/hunter-college/boys | 90 | 1% |
 | /players/boys | 80 | 1% |
-| /school/stuyvesant/2004/boys | 60 | 1% |
-| /scores/2026-10-26/boys | 60 | 1% |
+| /scores/2026-11-05/boys | 60 | 1% |
 | /scores/2026-10-31/boys | 60 | 1% |
 | /scores/2026-10-18/boys | 60 | 1% |
+| /scores/2026-10-26/boys | 60 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 6740 | 84% |
-| (direct) | 1150 | 14% |
-| www.google.com | 30 | 0% |
+| nychssoccer.com | 6530 | 84% |
+| (direct) | 1090 | 14% |
+| www.google.com | 40 | 1% |
 | instagram.com | 20 | 0% |
 | www.bing.com | 20 | 0% |
 | www.facebook.com | 20 | 0% |
@@ -92,7 +92,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 7820 | 98% |
+| US | 7560 | 98% |
 | NL | 80 | 1% |
 | CA | 60 | 1% |
 | GB | 20 | 0% |
@@ -104,6 +104,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 5720 | 71% |
-| desktop | 2290 | 29% |
+| mobile | 5570 | 72% |
+| desktop | 2180 | 28% |
 

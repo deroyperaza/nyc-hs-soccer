@@ -1,18 +1,13 @@
 {
- "generated": "2026-11-08T17:59:56Z",
+ "generated": "2026-11-09T03:08:12Z",
  "days": 30,
- "visits": 1270,
- "pageviews": 8010,
+ "visits": 1220,
+ "pageviews": 7750,
  "byDay": [
   {
-   "date": "2026-10-09",
-   "visits": 30,
-   "views": 120
-  },
-  {
    "date": "2026-10-10",
-   "visits": 60,
-   "views": 420
+   "visits": 20,
+   "views": 190
   },
   {
    "date": "2026-10-11",
@@ -156,45 +151,46 @@
   },
   {
    "date": "2026-11-08",
+   "visits": 20,
+   "views": 50
+  },
+  {
+   "date": "2026-11-09",
    "visits": 10,
-   "views": 40
+   "views": 80
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1200
+   "views": 1170
   },
   {
    "path": "/playoffs/boys",
-   "views": 450
+   "views": 460
   },
   {
    "path": "/standings/boys",
-   "views": 400
+   "views": 380
   },
   {
    "path": "/girls",
-   "views": 320
+   "views": 300
   },
   {
    "path": "/standings/girls",
-   "views": 200
+   "views": 210
   },
   {
    "path": "/playoffs/girls",
    "views": 190
   },
   {
-   "path": "/teams/boys",
-   "views": 140
-  },
-  {
    "path": "/school/south-bronx/boys",
    "views": 140
   },
   {
-   "path": "/school/bard-manhattan/boys",
+   "path": "/teams/boys",
    "views": 130
   },
   {
@@ -211,14 +207,18 @@
   },
   {
    "path": "/school/murrow/girls",
-   "views": 120
+   "views": 100
   },
   {
-   "path": "/school/hunter-college/boys",
-   "views": 90
+   "path": "/school/bard-manhattan/boys",
+   "views": 100
   },
   {
    "path": "/school/stuyvesant/boys",
+   "views": 90
+  },
+  {
+   "path": "/school/hunter-college/boys",
    "views": 90
   },
   {
@@ -226,11 +226,7 @@
    "views": 80
   },
   {
-   "path": "/school/stuyvesant/2004/boys",
-   "views": 60
-  },
-  {
-   "path": "/scores/2026-10-26/boys",
+   "path": "/scores/2026-11-05/boys",
    "views": 60
   },
   {
@@ -239,6 +235,10 @@
   },
   {
    "path": "/scores/2026-10-18/boys",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-10-26/boys",
    "views": 60
   }
  ]
