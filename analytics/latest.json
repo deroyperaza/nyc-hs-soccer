@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-09T11:31:06Z",
+ "generated": "2026-11-09T22:28:03Z",
  "days": 30,
- "visits": 1220,
- "pageviews": 7810,
+ "visits": 1230,
+ "pageviews": 7700,
  "byDay": [
   {
    "date": "2026-10-10",
-   "visits": 20,
-   "views": 140
+   "visits": 10,
+   "views": 10
   },
   {
    "date": "2026-10-11",
@@ -156,90 +156,90 @@
   },
   {
    "date": "2026-11-09",
-   "visits": 10,
-   "views": 190
+   "visits": 30,
+   "views": 210
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1210
+   "views": 1300
   },
   {
    "path": "/playoffs/boys",
-   "views": 460
+   "views": 400
   },
   {
-   "path": "/standings/boys",
-   "views": 390
+   "path": "/history/leaders/boys",
+   "views": 200
   },
   {
-   "path": "/girls",
-   "views": 300
+   "path": "/scores/2026-10-15/boys",
+   "views": 200
   },
   {
    "path": "/standings/girls",
-   "views": 210
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-10-31/boys",
+   "views": 200
+  },
+  {
+   "path": "/teams/2004/boys",
+   "views": 200
+  },
+  {
+   "path": "/game/511375/boys",
+   "views": 200
+  },
+  {
+   "path": "/scores/2026-11-09/boys",
+   "views": 200
   },
   {
    "path": "/playoffs/girls",
    "views": 200
   },
   {
-   "path": "/school/south-bronx/boys",
-   "views": 140
+   "path": "/school/hs-for-leadership/boys",
+   "views": 200
   },
   {
-   "path": "/teams/boys",
-   "views": 130
+   "path": "/scores/2026-10-30/boys",
+   "views": 200
   },
   {
-   "path": "/history/boys",
-   "views": 130
-  },
-  {
-   "path": "/history/leaders/boys",
-   "views": 130
-  },
-  {
-   "path": "/scores/2026-10-15/boys",
-   "views": 120
-  },
-  {
-   "path": "/school/murrow/girls",
+   "path": "/school/south-bronx/2025/boys",
    "views": 100
   },
   {
-   "path": "/school/hunter-college/boys",
-   "views": 90
+   "path": "/school/lincoln/2007/girls",
+   "views": 100
   },
   {
-   "path": "/school/stuyvesant/boys",
-   "views": 90
+   "path": "/school/south-bronx/2021/boys",
+   "views": 100
   },
   {
-   "path": "/school/bard-manhattan/boys",
-   "views": 80
+   "path": "/game/502508/boys",
+   "views": 100
   },
   {
-   "path": "/players/boys",
-   "views": 80
+   "path": "/school/east-side-community/boys",
+   "views": 100
   },
   {
-   "path": "/scores/2026-11-07/boys",
-   "views": 70
+   "path": "/scores/2026-10-20/boys",
+   "views": 100
   },
   {
-   "path": "/scores/2026-10-31/boys",
-   "views": 70
+   "path": "/game/511481/girls",
+   "views": 100
   },
   {
-   "path": "/scores/2026-10-18/boys",
-   "views": 60
-  },
-  {
-   "path": "/scores/2026-10-26/boys",
-   "views": 60
+   "path": "/playoffs/2026/boys",
+   "views": 100
   }
  ]
 }
