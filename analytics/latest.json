@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-10T10:35:04Z",
+ "generated": "2026-11-10T19:50:12Z",
  "days": 30,
- "visits": 1220,
- "pageviews": 7650,
+ "visits": 1210,
+ "pageviews": 7590,
  "byDay": [
   {
    "date": "2026-10-11",
-   "visits": 10,
-   "views": 110
+   "visits": 0,
+   "views": 50
   },
   {
    "date": "2026-10-12",
@@ -157,84 +157,24 @@
  ],
  "topPaths": [
   {
-   "path": "/",
-   "views": 1200
-  },
-  {
    "path": "/playoffs/boys",
-   "views": 460
-  },
-  {
-   "path": "/standings/boys",
-   "views": 380
-  },
-  {
-   "path": "/girls",
-   "views": 300
-  },
-  {
-   "path": "/standings/girls",
-   "views": 210
+   "views": 1000
   },
   {
    "path": "/playoffs/girls",
-   "views": 200
+   "views": 1000
   },
   {
-   "path": "/school/south-bronx/boys",
-   "views": 140
+   "path": "/scores/2026-10-30/boys",
+   "views": 1000
   },
   {
-   "path": "/teams/boys",
-   "views": 130
+   "path": "/scores/2026-11-05/girls",
+   "views": 1000
   },
   {
-   "path": "/history/leaders/boys",
-   "views": 120
-  },
-  {
-   "path": "/scores/2026-10-15/boys",
-   "views": 120
-  },
-  {
-   "path": "/history/boys",
-   "views": 110
-  },
-  {
-   "path": "/school/murrow/girls",
-   "views": 90
-  },
-  {
-   "path": "/school/stuyvesant/boys",
-   "views": 80
-  },
-  {
-   "path": "/players/boys",
-   "views": 80
-  },
-  {
-   "path": "/school/bard-manhattan/boys",
-   "views": 80
-  },
-  {
-   "path": "/school/hunter-college/boys",
-   "views": 80
-  },
-  {
-   "path": "/scores/2026-10-31/boys",
-   "views": 70
-  },
-  {
-   "path": "/scores/2026-11-07/boys",
-   "views": 70
-  },
-  {
-   "path": "/scores/2026-10-26/boys",
-   "views": 60
-  },
-  {
-   "path": "/scores/2026-10-18/boys",
-   "views": 60
+   "path": "/game/511471/girls",
+   "views": 1000
   }
  ]
 }

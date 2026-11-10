@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-11-10T10:35:04Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-11-10T19:50:12Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
 | today | 0 | 0 | 
 | yesterday | 30 | 210 |
-| 30 days | 1220 | 7650 |
+| 30 days | 1210 | 7590 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,7 +18,7 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-10-11 | 10 | 110 |
+| 2026-10-11 | 0 | 50 |
 | 2026-10-12 | 20 | 260 |
 | 2026-10-13 | 20 | 260 |
 | 2026-10-14 | 90 | 430 |
@@ -53,33 +53,18 @@ that is the number that means something.
 
 | path | views | share |
 |---|---:|---:|
-| / | 1200 | 16% |
-| /playoffs/boys | 460 | 6% |
-| /standings/boys | 380 | 5% |
-| /girls | 300 | 4% |
-| /standings/girls | 210 | 3% |
-| /playoffs/girls | 200 | 3% |
-| /school/south-bronx/boys | 140 | 2% |
-| /teams/boys | 130 | 2% |
-| /history/leaders/boys | 120 | 2% |
-| /scores/2026-10-15/boys | 120 | 2% |
-| /history/boys | 110 | 1% |
-| /school/murrow/girls | 90 | 1% |
-| /school/stuyvesant/boys | 80 | 1% |
-| /players/boys | 80 | 1% |
-| /school/bard-manhattan/boys | 80 | 1% |
-| /school/hunter-college/boys | 80 | 1% |
-| /scores/2026-10-31/boys | 70 | 1% |
-| /scores/2026-11-07/boys | 70 | 1% |
-| /scores/2026-10-26/boys | 60 | 1% |
-| /scores/2026-10-18/boys | 60 | 1% |
+| /playoffs/boys | 1000 | 13% |
+| /playoffs/girls | 1000 | 13% |
+| /scores/2026-10-30/boys | 1000 | 13% |
+| /scores/2026-11-05/girls | 1000 | 13% |
+| /game/511471/girls | 1000 | 13% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 6430 | 84% |
-| (direct) | 1090 | 14% |
+| nychssoccer.com | 6380 | 84% |
+| (direct) | 1080 | 14% |
 | www.google.com | 40 | 1% |
 | instagram.com | 20 | 0% |
 | www.bing.com | 20 | 0% |
@@ -92,7 +77,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 7480 | 98% |
+| US | 7420 | 98% |
 | CA | 60 | 1% |
 | NL | 60 | 1% |
 | GB | 20 | 0% |
@@ -104,6 +89,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 5580 | 73% |
-| desktop | 2070 | 27% |
+| mobile | 5530 | 73% |
+| desktop | 2060 | 27% |
 
