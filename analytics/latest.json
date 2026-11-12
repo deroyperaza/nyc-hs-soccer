@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-12T01:57:51Z",
+ "generated": "2026-11-12T09:52:10Z",
  "days": 30,
  "visits": 1230,
  "pageviews": 7370,
@@ -217,10 +217,6 @@
    "views": 70
   },
   {
-   "path": "/scores/2026-10-15/boys",
-   "views": 70
-  },
-  {
    "path": "/school/stuyvesant/boys",
    "views": 70
   },
@@ -229,11 +225,15 @@
    "views": 70
   },
   {
-   "path": "/scores/2026-10-26/boys",
-   "views": 60
+   "path": "/scores/2026-10-15/boys",
+   "views": 70
   },
   {
    "path": "/scores/2026-11-06/boys",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-10-18/boys",
    "views": 60
   }
  ]

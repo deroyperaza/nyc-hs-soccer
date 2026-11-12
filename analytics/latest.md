@@ -1,6 +1,6 @@
 # Traffic
 
-_2026-11-12T01:57:51Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-11-12T09:52:10Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
@@ -68,11 +68,11 @@ that is the number that means something.
 | /school/hunter-college/boys | 80 | 1% |
 | /school/bard-manhattan/boys | 70 | 1% |
 | /scores/2026-10-31/boys | 70 | 1% |
-| /scores/2026-10-15/boys | 70 | 1% |
 | /school/stuyvesant/boys | 70 | 1% |
 | /scores/2026-11-07/boys | 70 | 1% |
-| /scores/2026-10-26/boys | 60 | 1% |
+| /scores/2026-10-15/boys | 70 | 1% |
 | /scores/2026-11-06/boys | 60 | 1% |
+| /scores/2026-10-18/boys | 60 | 1% |
 
 ## Where people came from
 
