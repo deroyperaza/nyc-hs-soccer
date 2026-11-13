@@ -1,18 +1,13 @@
 {
- "generated": "2026-11-12T19:58:57Z",
+ "generated": "2026-11-13T07:59:06Z",
  "days": 30,
- "visits": 1210,
- "pageviews": 7210,
+ "visits": 1170,
+ "pageviews": 6950,
  "byDay": [
   {
-   "date": "2026-10-13",
-   "visits": 0,
-   "views": 80
-  },
-  {
    "date": "2026-10-14",
-   "visits": 90,
-   "views": 430
+   "visits": 50,
+   "views": 240
   },
   {
    "date": "2026-10-15",
@@ -153,12 +148,17 @@
    "date": "2026-11-11",
    "visits": 20,
    "views": 80
+  },
+  {
+   "date": "2026-11-13",
+   "visits": 0,
+   "views": 10
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1130
+   "views": 1100
   },
   {
    "path": "/playoffs/boys",
@@ -170,7 +170,7 @@
   },
   {
    "path": "/girls",
-   "views": 310
+   "views": 290
   },
   {
    "path": "/standings/girls",
@@ -186,35 +186,23 @@
   },
   {
    "path": "/teams/boys",
-   "views": 140
+   "views": 130
   },
   {
    "path": "/history/leaders/boys",
-   "views": 120
-  },
-  {
-   "path": "/players/boys",
-   "views": 90
+   "views": 110
   },
   {
    "path": "/history/boys",
    "views": 90
   },
   {
-   "path": "/school/murrow/girls",
+   "path": "/players/boys",
    "views": 90
   },
   {
-   "path": "/school/hunter-college/boys",
-   "views": 80
-  },
-  {
-   "path": "/school/stuyvesant/boys",
-   "views": 70
-  },
-  {
-   "path": "/scores/2026-11-07/boys",
-   "views": 70
+   "path": "/school/murrow/girls",
+   "views": 90
   },
   {
    "path": "/scores/2026-10-31/boys",
@@ -225,16 +213,28 @@
    "views": 70
   },
   {
-   "path": "/scores/2026-10-15/boys",
+   "path": "/scores/2026-11-07/boys",
    "views": 70
-  },
-  {
-   "path": "/scores/2026-10-18/boys",
-   "views": 60
   },
   {
    "path": "/scores/2026-11-06/boys",
    "views": 60
+  },
+  {
+   "path": "/scores/2026-11-05/boys",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-10-26/boys",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-10-17/boys",
+   "views": 50
+  },
+  {
+   "path": "/school/south-bronx/2026/boys",
+   "views": 50
   }
  ]
 }
