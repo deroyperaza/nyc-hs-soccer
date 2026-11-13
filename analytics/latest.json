@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-13T07:59:06Z",
+ "generated": "2026-11-13T19:48:28Z",
  "days": 30,
- "visits": 1170,
- "pageviews": 6950,
+ "visits": 1140,
+ "pageviews": 6800,
  "byDay": [
   {
    "date": "2026-10-14",
-   "visits": 50,
-   "views": 240
+   "visits": 20,
+   "views": 90
   },
   {
    "date": "2026-10-15",
@@ -158,7 +158,7 @@
  "topPaths": [
   {
    "path": "/",
-   "views": 1100
+   "views": 1060
   },
   {
    "path": "/playoffs/boys",
@@ -166,18 +166,18 @@
   },
   {
    "path": "/standings/boys",
-   "views": 330
+   "views": 310
   },
   {
    "path": "/girls",
    "views": 290
   },
   {
-   "path": "/standings/girls",
-   "views": 210
+   "path": "/playoffs/girls",
+   "views": 200
   },
   {
-   "path": "/playoffs/girls",
+   "path": "/standings/girls",
    "views": 200
   },
   {
@@ -193,23 +193,23 @@
    "views": 110
   },
   {
-   "path": "/history/boys",
-   "views": 90
-  },
-  {
    "path": "/players/boys",
    "views": 90
   },
   {
-   "path": "/school/murrow/girls",
-   "views": 90
+   "path": "/history/boys",
+   "views": 80
   },
   {
-   "path": "/scores/2026-10-31/boys",
-   "views": 70
+   "path": "/school/murrow/girls",
+   "views": 80
   },
   {
    "path": "/school/bard-manhattan/boys",
+   "views": 70
+  },
+  {
+   "path": "/scores/2026-10-31/boys",
    "views": 70
   },
   {
@@ -217,11 +217,11 @@
    "views": 70
   },
   {
-   "path": "/scores/2026-11-06/boys",
+   "path": "/scores/2026-11-05/boys",
    "views": 60
   },
   {
-   "path": "/scores/2026-11-05/boys",
+   "path": "/scores/2026-11-06/boys",
    "views": 60
   },
   {
