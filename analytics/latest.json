@@ -1,18 +1,13 @@
 {
- "generated": "2026-11-13T19:48:28Z",
+ "generated": "2026-11-14T07:21:01Z",
  "days": 30,
- "visits": 1140,
- "pageviews": 6800,
+ "visits": 1110,
+ "pageviews": 6890,
  "byDay": [
   {
-   "date": "2026-10-14",
-   "visits": 20,
-   "views": 90
-  },
-  {
    "date": "2026-10-15",
-   "visits": 40,
-   "views": 230
+   "visits": 20,
+   "views": 160
   },
   {
    "date": "2026-10-16",
@@ -151,14 +146,19 @@
   },
   {
    "date": "2026-11-13",
+   "visits": 10,
+   "views": 30
+  },
+  {
+   "date": "2026-11-14",
    "visits": 0,
-   "views": 10
+   "views": 230
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1060
+   "views": 1030
   },
   {
    "path": "/playoffs/boys",
@@ -166,18 +166,18 @@
   },
   {
    "path": "/standings/boys",
-   "views": 310
+   "views": 300
   },
   {
    "path": "/girls",
    "views": 290
   },
   {
-   "path": "/playoffs/girls",
+   "path": "/standings/girls",
    "views": 200
   },
   {
-   "path": "/standings/girls",
+   "path": "/playoffs/girls",
    "views": 200
   },
   {
@@ -197,6 +197,10 @@
    "views": 90
   },
   {
+   "path": "/scores/2026-11-07/boys",
+   "views": 90
+  },
+  {
    "path": "/history/boys",
    "views": 80
   },
@@ -205,16 +209,16 @@
    "views": 80
   },
   {
-   "path": "/school/bard-manhattan/boys",
-   "views": 70
-  },
-  {
    "path": "/scores/2026-10-31/boys",
    "views": 70
   },
   {
-   "path": "/scores/2026-11-07/boys",
+   "path": "/school/bard-manhattan/boys",
    "views": 70
+  },
+  {
+   "path": "/scores/2026-10-26/boys",
+   "views": 60
   },
   {
    "path": "/scores/2026-11-05/boys",
@@ -225,15 +229,11 @@
    "views": 60
   },
   {
-   "path": "/scores/2026-10-26/boys",
-   "views": 60
-  },
-  {
-   "path": "/scores/2026-10-17/boys",
+   "path": "/school/laguardia/girls",
    "views": 50
   },
   {
-   "path": "/school/south-bronx/2026/boys",
+   "path": "/scores/2026-10-24/girls",
    "views": 50
   }
  ]
