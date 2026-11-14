@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-14T07:21:01Z",
+ "generated": "2026-11-14T18:08:05Z",
  "days": 30,
  "visits": 1110,
- "pageviews": 6890,
+ "pageviews": 6800,
  "byDay": [
   {
    "date": "2026-10-15",
    "visits": 20,
-   "views": 160
+   "views": 30
   },
   {
    "date": "2026-10-16",
@@ -152,13 +152,13 @@
   {
    "date": "2026-11-14",
    "visits": 0,
-   "views": 230
+   "views": 270
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1030
+   "views": 1020
   },
   {
    "path": "/playoffs/boys",
@@ -166,11 +166,11 @@
   },
   {
    "path": "/standings/boys",
-   "views": 300
+   "views": 310
   },
   {
    "path": "/girls",
-   "views": 290
+   "views": 270
   },
   {
    "path": "/standings/girls",
@@ -213,15 +213,15 @@
    "views": 70
   },
   {
-   "path": "/school/bard-manhattan/boys",
-   "views": 70
-  },
-  {
    "path": "/scores/2026-10-26/boys",
    "views": 60
   },
   {
    "path": "/scores/2026-11-05/boys",
+   "views": 60
+  },
+  {
+   "path": "/school/bard-manhattan/boys",
    "views": 60
   },
   {
