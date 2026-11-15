@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-15T06:29:02Z",
+ "generated": "2026-11-15T18:55:51Z",
  "days": 30,
- "visits": 1070,
- "pageviews": 6680,
+ "visits": 1060,
+ "pageviews": 6570,
  "byDay": [
   {
    "date": "2026-10-16",
-   "visits": 30,
-   "views": 160
+   "visits": 10,
+   "views": 40
   },
   {
    "date": "2026-10-17",
@@ -151,14 +151,14 @@
   },
   {
    "date": "2026-11-15",
-   "visits": 0,
-   "views": 40
+   "visits": 10,
+   "views": 50
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1000
+   "views": 990
   },
   {
    "path": "/playoffs/boys",
@@ -166,11 +166,11 @@
   },
   {
    "path": "/standings/boys",
-   "views": 300
+   "views": 280
   },
   {
    "path": "/girls",
-   "views": 250
+   "views": 240
   },
   {
    "path": "/playoffs/girls",
@@ -178,7 +178,7 @@
   },
   {
    "path": "/standings/girls",
-   "views": 180
+   "views": 170
   },
   {
    "path": "/school/south-bronx/boys",
@@ -193,19 +193,19 @@
    "views": 100
   },
   {
-   "path": "/scores/2026-11-07/boys",
-   "views": 90
-  },
-  {
    "path": "/players/boys",
    "views": 90
   },
   {
-   "path": "/history/boys",
-   "views": 80
+   "path": "/scores/2026-11-07/boys",
+   "views": 90
   },
   {
    "path": "/school/murrow/girls",
+   "views": 80
+  },
+  {
+   "path": "/history/boys",
    "views": 80
   },
   {
@@ -217,23 +217,23 @@
    "views": 60
   },
   {
-   "path": "/scores/2026-10-26/boys",
-   "views": 60
-  },
-  {
    "path": "/scores/2026-11-05/boys",
    "views": 60
   },
   {
-   "path": "/scores/2026-11-09/boys",
-   "views": 50
+   "path": "/scores/2026-10-26/boys",
+   "views": 60
   },
   {
    "path": "/school/laguardia/girls",
    "views": 50
   },
   {
-   "path": "/scores/2026-10-24/girls",
+   "path": "/scores/2026-11-09/boys",
+   "views": 50
+  },
+  {
+   "path": "/school/south-bronx/2026/boys",
    "views": 50
   }
  ]
