@@ -1,18 +1,13 @@
 {
- "generated": "2026-11-15T18:55:51Z",
+ "generated": "2026-11-16T06:27:53Z",
  "days": 30,
  "visits": 1060,
- "pageviews": 6570,
+ "pageviews": 6490,
  "byDay": [
-  {
-   "date": "2026-10-16",
-   "visits": 10,
-   "views": 40
-  },
   {
    "date": "2026-10-17",
    "visits": 30,
-   "views": 180
+   "views": 110
   },
   {
    "date": "2026-10-18",
@@ -152,25 +147,30 @@
   {
    "date": "2026-11-15",
    "visits": 10,
-   "views": 50
+   "views": 70
+  },
+  {
+   "date": "2026-11-16",
+   "visits": 10,
+   "views": 10
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 990
+   "views": 1000
   },
   {
    "path": "/playoffs/boys",
-   "views": 450
+   "views": 460
   },
   {
    "path": "/standings/boys",
-   "views": 280
+   "views": 270
   },
   {
    "path": "/girls",
-   "views": 240
+   "views": 230
   },
   {
    "path": "/playoffs/girls",
@@ -178,7 +178,7 @@
   },
   {
    "path": "/standings/girls",
-   "views": 170
+   "views": 160
   },
   {
    "path": "/school/south-bronx/boys",
