@@ -1,18 +1,13 @@
 {
- "generated": "2026-11-16T22:08:15Z",
+ "generated": "2026-11-17T11:52:19Z",
  "days": 30,
- "visits": 1040,
- "pageviews": 6390,
+ "visits": 1000,
+ "pageviews": 6230,
  "byDay": [
   {
-   "date": "2026-10-17",
-   "visits": 10,
-   "views": 10
-  },
-  {
    "date": "2026-10-18",
-   "visits": 90,
-   "views": 310
+   "visits": 40,
+   "views": 140
   },
   {
    "date": "2026-10-19",
@@ -153,12 +148,17 @@
    "date": "2026-11-16",
    "visits": 10,
    "views": 10
+  },
+  {
+   "date": "2026-11-17",
+   "visits": 20,
+   "views": 20
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 980
+   "views": 970
   },
   {
    "path": "/playoffs/boys",
@@ -166,11 +166,11 @@
   },
   {
    "path": "/standings/boys",
-   "views": 260
+   "views": 250
   },
   {
    "path": "/girls",
-   "views": 230
+   "views": 220
   },
   {
    "path": "/playoffs/girls",
@@ -178,7 +178,7 @@
   },
   {
    "path": "/standings/girls",
-   "views": 150
+   "views": 140
   },
   {
    "path": "/school/south-bronx/boys",
@@ -187,10 +187,6 @@
   {
    "path": "/teams/boys",
    "views": 130
-  },
-  {
-   "path": "/history/leaders/boys",
-   "views": 100
   },
   {
    "path": "/scores/2026-11-07/boys",
@@ -205,19 +201,19 @@
    "views": 80
   },
   {
+   "path": "/history/leaders/boys",
+   "views": 80
+  },
+  {
    "path": "/scores/2026-10-31/boys",
    "views": 70
   },
   {
-   "path": "/scores/2026-11-06/boys",
-   "views": 60
-  },
-  {
-   "path": "/scores/2026-11-05/boys",
-   "views": 60
-  },
-  {
    "path": "/school/murrow/girls",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-11-06/boys",
    "views": 60
   },
   {
@@ -225,15 +221,19 @@
    "views": 60
   },
   {
-   "path": "/school/laguardia/girls",
+   "path": "/scores/2026-11-05/boys",
+   "views": 60
+  },
+  {
+   "path": "/scores/2026-10-24/girls",
+   "views": 50
+  },
+  {
+   "path": "/school/south-bronx/2026/boys",
    "views": 50
   },
   {
    "path": "/scores/2026-11-09/boys",
-   "views": 50
-  },
-  {
-   "path": "/scores/2026-10-24/girls",
    "views": 50
   }
  ]
