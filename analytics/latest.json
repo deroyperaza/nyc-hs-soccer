@@ -1,18 +1,13 @@
 {
- "generated": "2026-11-17T21:01:05Z",
+ "generated": "2026-11-18T10:42:05Z",
  "days": 30,
- "visits": 970,
- "pageviews": 6110,
+ "visits": 960,
+ "pageviews": 6010,
  "byDay": [
   {
-   "date": "2026-10-18",
-   "visits": 10,
-   "views": 20
-  },
-  {
    "date": "2026-10-19",
-   "visits": 50,
-   "views": 280
+   "visits": 40,
+   "views": 190
   },
   {
    "date": "2026-10-20",
@@ -151,90 +146,90 @@
   },
   {
    "date": "2026-11-17",
-   "visits": 20,
-   "views": 20
+   "visits": 30,
+   "views": 30
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 1100
+   "views": 970
   },
   {
    "path": "/playoffs/boys",
-   "views": 400
+   "views": 440
   },
   {
-   "path": "/history/leaders/boys",
-   "views": 200
-  },
-  {
-   "path": "/scores/2026-11-09/boys",
-   "views": 200
-  },
-  {
-   "path": "/scores/2026-10-30/boys",
-   "views": 200
+   "path": "/standings/boys",
+   "views": 220
   },
   {
    "path": "/playoffs/girls",
    "views": 200
   },
   {
-   "path": "/scores/2026-10-31/boys",
-   "views": 200
+   "path": "/girls",
+   "views": 190
   },
   {
-   "path": "/game/511375/boys",
-   "views": 200
+   "path": "/school/south-bronx/boys",
+   "views": 140
   },
   {
    "path": "/teams/boys",
-   "views": 200
+   "views": 130
   },
   {
-   "path": "/school/brooklyn-tech/2026/boys",
+   "path": "/standings/girls",
    "views": 100
   },
   {
-   "path": "/school/south-bronx/2025/boys",
-   "views": 100
+   "path": "/scores/2026-11-07/boys",
+   "views": 90
   },
   {
-   "path": "/game/511481/girls",
-   "views": 100
+   "path": "/players/boys",
+   "views": 90
   },
   {
-   "path": "/school/beacon/boys",
-   "views": 100
+   "path": "/history/boys",
+   "views": 80
   },
   {
-   "path": "/school/lincoln/2007/girls",
-   "views": 100
+   "path": "/history/leaders/boys",
+   "views": 80
   },
   {
-   "path": "/school/martin-l-king/2022/boys",
-   "views": 100
+   "path": "/scores/2026-10-31/boys",
+   "views": 70
   },
   {
-   "path": "/game/502674/boys",
-   "views": 100
+   "path": "/scores/2026-10-26/boys",
+   "views": 60
   },
   {
-   "path": "/player/dillon-shukla-beacon/boys",
-   "views": 100
+   "path": "/scores/2026-11-05/boys",
+   "views": 60
   },
   {
-   "path": "/scores/2026-11-04/boys",
-   "views": 100
+   "path": "/scores/2026-11-06/boys",
+   "views": 60
   },
   {
-   "path": "/school/h-e-r-o-high/boys",
-   "views": 100
+   "path": "/school/south-bronx/2026/boys",
+   "views": 50
   },
   {
-   "path": "/school/south-bronx/2021/boys",
-   "views": 100
+   "path": "/school/laguardia/girls",
+   "views": 50
+  },
+  {
+   "path": "/scores/2026-11-09/boys",
+   "views": 50
+  },
+  {
+   "path": "/scores/2026-10-24/girls",
+   "views": 50
   }
  ]
 }
