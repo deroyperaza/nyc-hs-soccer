@@ -1,18 +1,13 @@
 {
- "generated": "2026-11-18T20:37:11Z",
+ "generated": "2026-11-19T09:45:39Z",
  "days": 30,
- "visits": 940,
- "pageviews": 5910,
+ "visits": 900,
+ "pageviews": 5740,
  "byDay": [
   {
-   "date": "2026-10-19",
-   "visits": 10,
-   "views": 50
-  },
-  {
    "date": "2026-10-20",
-   "visits": 60,
-   "views": 450
+   "visits": 30,
+   "views": 280
   },
   {
    "date": "2026-10-21",
@@ -153,28 +148,33 @@
    "date": "2026-11-18",
    "visits": 10,
    "views": 40
+  },
+  {
+   "date": "2026-11-19",
+   "visits": 0,
+   "views": 50
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 940
+   "views": 910
   },
   {
    "path": "/playoffs/boys",
-   "views": 440
+   "views": 450
   },
   {
    "path": "/playoffs/girls",
    "views": 200
   },
   {
-   "path": "/girls",
+   "path": "/standings/boys",
    "views": 190
   },
   {
-   "path": "/standings/boys",
-   "views": 190
+   "path": "/girls",
+   "views": 170
   },
   {
    "path": "/school/south-bronx/boys",
@@ -182,7 +182,7 @@
   },
   {
    "path": "/teams/boys",
-   "views": 130
+   "views": 120
   },
   {
    "path": "/scores/2026-11-07/boys",
@@ -193,14 +193,6 @@
    "views": 90
   },
   {
-   "path": "/history/leaders/boys",
-   "views": 80
-  },
-  {
-   "path": "/standings/girls",
-   "views": 80
-  },
-  {
    "path": "/history/boys",
    "views": 80
   },
@@ -209,11 +201,11 @@
    "views": 70
   },
   {
-   "path": "/scores/2026-10-26/boys",
+   "path": "/school/south-bronx/2026/boys",
    "views": 60
   },
   {
-   "path": "/scores/2026-11-06/boys",
+   "path": "/scores/2026-10-26/boys",
    "views": 60
   },
   {
@@ -221,15 +213,23 @@
    "views": 60
   },
   {
-   "path": "/school/south-bronx/2026/boys",
-   "views": 50
+   "path": "/history/leaders/boys",
+   "views": 60
   },
   {
-   "path": "/scores/2026-10-24/girls",
+   "path": "/scores/2026-11-06/boys",
+   "views": 60
+  },
+  {
+   "path": "/standings/girls",
    "views": 50
   },
   {
    "path": "/school/laguardia/girls",
+   "views": 50
+  },
+  {
+   "path": "/scores/2026-10-24/girls",
    "views": 50
   },
   {
