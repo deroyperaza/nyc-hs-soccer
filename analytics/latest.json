@@ -1,14 +1,9 @@
 {
- "generated": "2026-11-20T09:18:44Z",
+ "generated": "2026-11-20T20:41:25Z",
  "days": 30,
- "visits": 870,
- "pageviews": 5380,
+ "visits": 850,
+ "pageviews": 5310,
  "byDay": [
-  {
-   "date": "2026-10-21",
-   "visits": 30,
-   "views": 80
-  },
   {
    "date": "2026-10-22",
    "visits": 50,
@@ -148,23 +143,28 @@
    "date": "2026-11-19",
    "visits": 0,
    "views": 50
+  },
+  {
+   "date": "2026-11-20",
+   "visits": 10,
+   "views": 10
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 890
+   "views": 880
   },
   {
    "path": "/playoffs/boys",
    "views": 350
   },
   {
-   "path": "/playoffs/girls",
-   "views": 200
+   "path": "/standings/boys",
+   "views": 190
   },
   {
-   "path": "/standings/boys",
+   "path": "/playoffs/girls",
    "views": 190
   },
   {
@@ -176,10 +176,6 @@
    "views": 150
   },
   {
-   "path": "/teams/boys",
-   "views": 100
-  },
-  {
    "path": "/players/boys",
    "views": 90
   },
@@ -188,11 +184,15 @@
    "views": 90
   },
   {
-   "path": "/scores/2026-10-31/boys",
-   "views": 70
+   "path": "/teams/boys",
+   "views": 90
   },
   {
    "path": "/history/boys",
+   "views": 70
+  },
+  {
+   "path": "/scores/2026-10-31/boys",
    "views": 70
   },
   {
@@ -204,19 +204,15 @@
    "views": 60
   },
   {
-   "path": "/scores/2026-11-05/boys",
-   "views": 60
-  },
-  {
-   "path": "/history/leaders/boys",
-   "views": 60
-  },
-  {
    "path": "/scores/2026-11-06/boys",
    "views": 60
   },
   {
-   "path": "/scores/2026-11-09/boys",
+   "path": "/scores/2026-11-05/boys",
+   "views": 60
+  },
+  {
+   "path": "/school/laguardia/girls",
    "views": 50
   },
   {
@@ -224,11 +220,15 @@
    "views": 50
   },
   {
-   "path": "/school/laguardia/girls",
+   "path": "/history/leaders/boys",
    "views": 50
   },
   {
-   "path": "/scores/2026-10-24/girls",
+   "path": "/scores/2026-11-09/boys",
+   "views": 50
+  },
+  {
+   "path": "/school/tottenville/girls",
    "views": 40
   }
  ]
