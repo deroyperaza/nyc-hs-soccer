@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-11-20T20:41:25Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-11-21T08:46:05Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
-| today | 10 | 10 | 
-| yesterday | 0 | 50 |
-| 30 days | 850 | 5310 |
+| today | 0 | 20 | 
+| yesterday | 0 | 0 |
+| 30 days | 870 | 4630 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,89 +18,84 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-10-22 | 50 | 630 |
-| 2026-10-23 | 0 | 120 |
-| 2026-10-24 | 90 | 990 |
-| 2026-10-25 | 40 | 250 |
-| 2026-10-26 | 80 | 250 |
-| 2026-10-27 | 60 | 270 |
-| 2026-10-28 | 20 | 170 |
-| 2026-10-29 | 40 | 270 |
-| 2026-10-30 | 20 | 80 |
-| 2026-10-31 | 40 | 180 |
-| 2026-11-01 | 10 | 130 |
-| 2026-11-02 | 20 | 180 |
-| 2026-11-03 | 50 | 150 |
-| 2026-11-04 | 50 | 160 |
-| 2026-11-05 | 70 | 300 |
-| 2026-11-06 | 0 | 140 |
-| 2026-11-07 | 40 | 160 |
-| 2026-11-08 | 20 | 50 |
-| 2026-11-09 | 30 | 210 |
-| 2026-11-10 | 20 | 30 |
-| 2026-11-11 | 20 | 80 |
-| 2026-11-13 | 10 | 30 |
-| 2026-11-14 | 0 | 270 |
-| 2026-11-15 | 10 | 70 |
-| 2026-11-16 | 10 | 10 |
-| 2026-11-17 | 30 | 30 |
-| 2026-11-18 | 10 | 40 |
-| 2026-11-19 | 0 | 50 |
-| 2026-11-20 | 10 | 10 |
+| 2026-10-22 | 30 | 450 |
+| 2026-10-23 | 60 | 250 |
+| 2026-10-24 | 130 | 940 |
+| 2026-10-25 | 40 | 200 |
+| 2026-10-26 | 30 | 220 |
+| 2026-10-27 | 20 | 130 |
+| 2026-10-28 | 60 | 240 |
+| 2026-10-29 | 70 | 330 |
+| 2026-10-30 | 50 | 140 |
+| 2026-10-31 | 20 | 120 |
+| 2026-11-01 | 30 | 120 |
+| 2026-11-02 | 40 | 140 |
+| 2026-11-03 | 10 | 90 |
+| 2026-11-04 | 20 | 150 |
+| 2026-11-05 | 30 | 190 |
+| 2026-11-06 | 20 | 130 |
+| 2026-11-07 | 70 | 180 |
+| 2026-11-08 | 20 | 70 |
+| 2026-11-09 | 10 | 60 |
+| 2026-11-10 | 10 | 10 |
+| 2026-11-11 | 20 | 70 |
+| 2026-11-13 | 20 | 50 |
+| 2026-11-14 | 20 | 180 |
+| 2026-11-15 | 20 | 100 |
+| 2026-11-17 | 10 | 30 |
+| 2026-11-18 | 10 | 10 |
+| 2026-11-19 | 0 | 10 |
+| 2026-11-21 | 0 | 20 |
 
 ## Most-read pages
 
 | path | views | share |
 |---|---:|---:|
-| / | 880 | 17% |
-| /playoffs/boys | 350 | 7% |
-| /standings/boys | 190 | 4% |
-| /playoffs/girls | 190 | 4% |
-| /girls | 170 | 3% |
-| /school/south-bronx/boys | 150 | 3% |
-| /players/boys | 90 | 2% |
-| /scores/2026-11-07/boys | 90 | 2% |
-| /teams/boys | 90 | 2% |
-| /history/boys | 70 | 1% |
-| /scores/2026-10-31/boys | 70 | 1% |
-| /school/south-bronx/2026/boys | 60 | 1% |
-| /scores/2026-10-26/boys | 60 | 1% |
-| /scores/2026-11-06/boys | 60 | 1% |
+| / | 720 | 16% |
+| /playoffs/boys | 240 | 5% |
+| /playoffs/girls | 200 | 4% |
+| /school/south-bronx/boys | 180 | 4% |
+| /girls | 160 | 3% |
+| /school/south-bronx/2026/boys | 80 | 2% |
+| /scores/2026-10-31/boys | 70 | 2% |
+| /scores/2026-11-07/boys | 70 | 2% |
+| /players/boys | 70 | 2% |
+| /teams/boys | 70 | 2% |
+| /scores/2026-10-28/girls | 60 | 1% |
 | /scores/2026-11-05/boys | 60 | 1% |
 | /school/laguardia/girls | 50 | 1% |
-| /standings/girls | 50 | 1% |
-| /history/leaders/boys | 50 | 1% |
-| /scores/2026-11-09/boys | 50 | 1% |
-| /school/tottenville/girls | 40 | 1% |
+| /standings/boys | 50 | 1% |
+| /scores/2026-10-23/boys | 50 | 1% |
+| /history/boys | 50 | 1% |
+| /standings/girls | 40 | 1% |
+| /history/rankings/boys | 40 | 1% |
+| /school/south-bronx/2025/boys | 40 | 1% |
+| /scores/2026-11-07/girls | 40 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 4460 | 84% |
-| (direct) | 720 | 14% |
-| www.google.com | 50 | 1% |
-| instagram.com | 20 | 0% |
-| www.bing.com | 20 | 0% |
-| l.instagram.com | 10 | 0% |
+| nychssoccer.com | 3760 | 81% |
+| (direct) | 760 | 16% |
+| instagram.com | 30 | 1% |
+| l.instagram.com | 20 | 0% |
+| www.google.com | 20 | 0% |
+| www.facebook.com | 20 | 0% |
 | com.google.android.googlequicksearchbox | 10 | 0% |
-| www.facebook.com | 10 | 0% |
-| duckduckgo.com | 10 | 0% |
+| search.yahoo.com | 10 | 0% |
 
 ## Countries
 
 | country | views | share |
 |---|---:|---:|
-| US | 5240 | 99% |
-| CA | 40 | 1% |
-| DE | 10 | 0% |
-| FI | 10 | 0% |
-| SE | 10 | 0% |
+| US | 4600 | 99% |
+| CA | 30 | 1% |
 
 ## Devices
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 3780 | 71% |
-| desktop | 1530 | 29% |
+| mobile | 3370 | 73% |
+| desktop | 1260 | 27% |
 

@@ -1,210 +1,193 @@
 {
- "generated": "2026-11-20T20:41:25Z",
+ "generated": "2026-11-21T08:46:05Z",
  "days": 30,
- "visits": 850,
- "pageviews": 5310,
+ "visits": 870,
+ "pageviews": 4630,
  "byDay": [
   {
    "date": "2026-10-22",
-   "visits": 50,
-   "views": 630
+   "visits": 30,
+   "views": 450
   },
   {
    "date": "2026-10-23",
-   "visits": 0,
-   "views": 120
+   "visits": 60,
+   "views": 250
   },
   {
    "date": "2026-10-24",
-   "visits": 90,
-   "views": 990
+   "visits": 130,
+   "views": 940
   },
   {
    "date": "2026-10-25",
    "visits": 40,
-   "views": 250
+   "views": 200
   },
   {
    "date": "2026-10-26",
-   "visits": 80,
-   "views": 250
+   "visits": 30,
+   "views": 220
   },
   {
    "date": "2026-10-27",
-   "visits": 60,
-   "views": 270
-  },
-  {
-   "date": "2026-10-28",
    "visits": 20,
-   "views": 170
-  },
-  {
-   "date": "2026-10-29",
-   "visits": 40,
-   "views": 270
-  },
-  {
-   "date": "2026-10-30",
-   "visits": 20,
-   "views": 80
-  },
-  {
-   "date": "2026-10-31",
-   "visits": 40,
-   "views": 180
-  },
-  {
-   "date": "2026-11-01",
-   "visits": 10,
    "views": 130
   },
   {
-   "date": "2026-11-02",
-   "visits": 20,
-   "views": 180
+   "date": "2026-10-28",
+   "visits": 60,
+   "views": 240
   },
   {
-   "date": "2026-11-03",
-   "visits": 50,
-   "views": 150
-  },
-  {
-   "date": "2026-11-04",
-   "visits": 50,
-   "views": 160
-  },
-  {
-   "date": "2026-11-05",
+   "date": "2026-10-29",
    "visits": 70,
-   "views": 300
+   "views": 330
   },
   {
-   "date": "2026-11-06",
-   "visits": 0,
+   "date": "2026-10-30",
+   "visits": 50,
    "views": 140
   },
   {
-   "date": "2026-11-07",
+   "date": "2026-10-31",
+   "visits": 20,
+   "views": 120
+  },
+  {
+   "date": "2026-11-01",
+   "visits": 30,
+   "views": 120
+  },
+  {
+   "date": "2026-11-02",
    "visits": 40,
-   "views": 160
+   "views": 140
+  },
+  {
+   "date": "2026-11-03",
+   "visits": 10,
+   "views": 90
+  },
+  {
+   "date": "2026-11-04",
+   "visits": 20,
+   "views": 150
+  },
+  {
+   "date": "2026-11-05",
+   "visits": 30,
+   "views": 190
+  },
+  {
+   "date": "2026-11-06",
+   "visits": 20,
+   "views": 130
+  },
+  {
+   "date": "2026-11-07",
+   "visits": 70,
+   "views": 180
   },
   {
    "date": "2026-11-08",
    "visits": 20,
-   "views": 50
-  },
-  {
-   "date": "2026-11-09",
-   "visits": 30,
-   "views": 210
-  },
-  {
-   "date": "2026-11-10",
-   "visits": 20,
-   "views": 30
-  },
-  {
-   "date": "2026-11-11",
-   "visits": 20,
-   "views": 80
-  },
-  {
-   "date": "2026-11-13",
-   "visits": 10,
-   "views": 30
-  },
-  {
-   "date": "2026-11-14",
-   "visits": 0,
-   "views": 270
-  },
-  {
-   "date": "2026-11-15",
-   "visits": 10,
    "views": 70
   },
   {
-   "date": "2026-11-16",
+   "date": "2026-11-09",
+   "visits": 10,
+   "views": 60
+  },
+  {
+   "date": "2026-11-10",
    "visits": 10,
    "views": 10
   },
   {
+   "date": "2026-11-11",
+   "visits": 20,
+   "views": 70
+  },
+  {
+   "date": "2026-11-13",
+   "visits": 20,
+   "views": 50
+  },
+  {
+   "date": "2026-11-14",
+   "visits": 20,
+   "views": 180
+  },
+  {
+   "date": "2026-11-15",
+   "visits": 20,
+   "views": 100
+  },
+  {
    "date": "2026-11-17",
-   "visits": 30,
+   "visits": 10,
    "views": 30
   },
   {
    "date": "2026-11-18",
    "visits": 10,
-   "views": 40
+   "views": 10
   },
   {
    "date": "2026-11-19",
    "visits": 0,
-   "views": 50
+   "views": 10
   },
   {
-   "date": "2026-11-20",
-   "visits": 10,
-   "views": 10
+   "date": "2026-11-21",
+   "visits": 0,
+   "views": 20
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 880
+   "views": 720
   },
   {
    "path": "/playoffs/boys",
-   "views": 350
-  },
-  {
-   "path": "/standings/boys",
-   "views": 190
+   "views": 240
   },
   {
    "path": "/playoffs/girls",
-   "views": 190
-  },
-  {
-   "path": "/girls",
-   "views": 170
+   "views": 200
   },
   {
    "path": "/school/south-bronx/boys",
-   "views": 150
+   "views": 180
   },
   {
-   "path": "/players/boys",
-   "views": 90
+   "path": "/girls",
+   "views": 160
   },
   {
-   "path": "/scores/2026-11-07/boys",
-   "views": 90
-  },
-  {
-   "path": "/teams/boys",
-   "views": 90
-  },
-  {
-   "path": "/history/boys",
-   "views": 70
+   "path": "/school/south-bronx/2026/boys",
+   "views": 80
   },
   {
    "path": "/scores/2026-10-31/boys",
    "views": 70
   },
   {
-   "path": "/school/south-bronx/2026/boys",
-   "views": 60
+   "path": "/scores/2026-11-07/boys",
+   "views": 70
   },
   {
-   "path": "/scores/2026-10-26/boys",
-   "views": 60
+   "path": "/players/boys",
+   "views": 70
   },
   {
-   "path": "/scores/2026-11-06/boys",
+   "path": "/teams/boys",
+   "views": 70
+  },
+  {
+   "path": "/scores/2026-10-28/girls",
    "views": 60
   },
   {
@@ -216,19 +199,31 @@
    "views": 50
   },
   {
+   "path": "/standings/boys",
+   "views": 50
+  },
+  {
+   "path": "/scores/2026-10-23/boys",
+   "views": 50
+  },
+  {
+   "path": "/history/boys",
+   "views": 50
+  },
+  {
    "path": "/standings/girls",
-   "views": 50
+   "views": 40
   },
   {
-   "path": "/history/leaders/boys",
-   "views": 50
+   "path": "/history/rankings/boys",
+   "views": 40
   },
   {
-   "path": "/scores/2026-11-09/boys",
-   "views": 50
+   "path": "/school/south-bronx/2025/boys",
+   "views": 40
   },
   {
-   "path": "/school/tottenville/girls",
+   "path": "/scores/2026-11-07/girls",
    "views": 40
   }
  ]
