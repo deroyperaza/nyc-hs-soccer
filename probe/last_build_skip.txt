@@ -1,4 +1,4 @@
-2026-11-22T00:23:20.856000 UTC
+2026-11-22T07:24:26.357999 UTC
 
 roster pull: SystemExit: REFUSING to write r2027.json: not one of 203 games returned a roster. That is a broken session, not a season without sheets.
 

@@ -1,14 +1,9 @@
 {
- "generated": "2026-11-21T19:20:09Z",
+ "generated": "2026-11-22T07:24:26Z",
  "days": 30,
- "visits": 810,
- "pageviews": 4960,
+ "visits": 800,
+ "pageviews": 4680,
  "byDay": [
-  {
-   "date": "2026-10-22",
-   "visits": 10,
-   "views": 280
-  },
   {
    "date": "2026-10-23",
    "visits": 0,
@@ -153,7 +148,7 @@
  "topPaths": [
   {
    "path": "/",
-   "views": 850
+   "views": 840
   },
   {
    "path": "/playoffs/boys",
@@ -176,23 +171,19 @@
    "views": 150
   },
   {
-   "path": "/players/boys",
-   "views": 90
-  },
-  {
    "path": "/scores/2026-11-07/boys",
    "views": 90
-  },
-  {
-   "path": "/teams/boys",
-   "views": 80
   },
   {
    "path": "/scores/2026-10-31/boys",
    "views": 70
   },
   {
-   "path": "/scores/2026-11-06/boys",
+   "path": "/players/boys",
+   "views": 70
+  },
+  {
+   "path": "/scores/2026-10-26/boys",
    "views": 60
   },
   {
@@ -200,11 +191,11 @@
    "views": 60
   },
   {
-   "path": "/scores/2026-11-05/boys",
+   "path": "/scores/2026-11-06/boys",
    "views": 60
   },
   {
-   "path": "/scores/2026-10-26/boys",
+   "path": "/scores/2026-11-05/boys",
    "views": 60
   },
   {
@@ -216,19 +207,23 @@
    "views": 50
   },
   {
-   "path": "/history/boys",
-   "views": 50
+   "path": "/scores/2026-11-06/girls",
+   "views": 40
+  },
+  {
+   "path": "/scores/2026-10-28/girls",
+   "views": 40
+  },
+  {
+   "path": "/school/south-bronx/2025/boys",
+   "views": 40
   },
   {
    "path": "/scores/2026-10-30/boys",
    "views": 40
   },
   {
-   "path": "/scores/2026-10-23/boys",
-   "views": 40
-  },
-  {
-   "path": "/school/south-bronx/2025/boys",
+   "path": "/school/tottenville/girls",
    "views": 40
   }
  ]
