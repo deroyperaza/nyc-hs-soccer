@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-11-22T07:24:26Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-11-22T19:45:06Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
 | today | 0 | 0 | 
 | yesterday | 0 | 0 |
-| 30 days | 800 | 4680 |
+| 30 days | 800 | 4580 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,7 +18,7 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-10-23 | 0 | 120 |
+| 2026-10-23 | 0 | 20 |
 | 2026-10-24 | 90 | 990 |
 | 2026-10-25 | 40 | 250 |
 | 2026-10-26 | 80 | 250 |
@@ -52,17 +52,17 @@ that is the number that means something.
 | path | views | share |
 |---|---:|---:|
 | / | 840 | 18% |
-| /playoffs/boys | 350 | 7% |
+| /playoffs/boys | 330 | 7% |
 | /playoffs/girls | 190 | 4% |
-| /standings/boys | 170 | 4% |
 | /girls | 160 | 3% |
+| /standings/boys | 160 | 3% |
 | /school/south-bronx/boys | 150 | 3% |
 | /scores/2026-11-07/boys | 90 | 2% |
-| /scores/2026-10-31/boys | 70 | 1% |
-| /players/boys | 70 | 1% |
+| /scores/2026-10-31/boys | 70 | 2% |
 | /scores/2026-10-26/boys | 60 | 1% |
 | /school/south-bronx/2026/boys | 60 | 1% |
 | /scores/2026-11-06/boys | 60 | 1% |
+| /players/boys | 60 | 1% |
 | /scores/2026-11-05/boys | 60 | 1% |
 | /school/laguardia/girls | 50 | 1% |
 | /scores/2026-11-09/boys | 50 | 1% |
@@ -76,8 +76,8 @@ that is the number that means something.
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 3880 | 83% |
-| (direct) | 670 | 14% |
+| nychssoccer.com | 3780 | 83% |
+| (direct) | 670 | 15% |
 | www.google.com | 50 | 1% |
 | instagram.com | 20 | 0% |
 | www.bing.com | 20 | 0% |
@@ -90,7 +90,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 4610 | 99% |
+| US | 4510 | 98% |
 | CA | 40 | 1% |
 | DE | 10 | 0% |
 | FI | 10 | 0% |
@@ -100,6 +100,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 3310 | 71% |
-| desktop | 1370 | 29% |
+| mobile | 3300 | 72% |
+| desktop | 1280 | 28% |
 
