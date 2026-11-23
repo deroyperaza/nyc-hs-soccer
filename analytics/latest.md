@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-11-23T08:24:49Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-11-23T23:59:06Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
 | today | 0 | 0 | 
 | yesterday | 0 | 0 |
-| 30 days | 750 | 3980 |
+| 30 days | 710 | 3570 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,7 +18,6 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-10-24 | 40 | 410 |
 | 2026-10-25 | 40 | 250 |
 | 2026-10-26 | 80 | 250 |
 | 2026-10-27 | 60 | 270 |
@@ -50,43 +49,42 @@ that is the number that means something.
 
 | path | views | share |
 |---|---:|---:|
-| / | 770 | 19% |
-| /playoffs/boys | 310 | 8% |
-| /playoffs/girls | 180 | 5% |
-| /girls | 160 | 4% |
-| /standings/boys | 130 | 3% |
-| /scores/2026-11-07/boys | 90 | 2% |
+| / | 730 | 20% |
+| /playoffs/boys | 280 | 8% |
+| /playoffs/girls | 170 | 5% |
+| /girls | 150 | 4% |
+| /standings/boys | 110 | 3% |
+| /scores/2026-11-07/boys | 90 | 3% |
 | /scores/2026-10-31/boys | 70 | 2% |
-| /scores/2026-11-06/boys | 60 | 2% |
-| /school/south-bronx/boys | 60 | 2% |
 | /scores/2026-11-05/boys | 60 | 2% |
+| /scores/2026-11-06/boys | 60 | 2% |
+| /players/boys | 50 | 1% |
 | /school/laguardia/girls | 50 | 1% |
 | /scores/2026-11-09/boys | 50 | 1% |
-| /players/boys | 50 | 1% |
+| /school/south-bronx/boys | 40 | 1% |
 | /scores/2026-10-30/boys | 40 | 1% |
 | /scores/2026-10-28/girls | 40 | 1% |
-| /school/tottenville/girls | 40 | 1% |
 | /scores/2026-11-06/girls | 40 | 1% |
+| /school/south-bronx/2026/boys | 30 | 1% |
 | /school/francis-lewis/boys | 30 | 1% |
-| /scores/2026-10-23/boys | 30 | 1% |
-| /teams/girls | 30 | 1% |
+| /scores/2026-10-31/girls | 30 | 1% |
+| /scores/2026-11-04/boys | 30 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 3230 | 81% |
-| (direct) | 660 | 17% |
+| nychssoccer.com | 2860 | 80% |
+| (direct) | 630 | 18% |
 | www.google.com | 50 | 1% |
 | www.bing.com | 20 | 1% |
-| instagram.com | 10 | 0% |
 | duckduckgo.com | 10 | 0% |
 
 ## Countries
 
 | country | views | share |
 |---|---:|---:|
-| US | 3920 | 98% |
+| US | 3510 | 98% |
 | CA | 40 | 1% |
 | DE | 10 | 0% |
 | FI | 10 | 0% |
@@ -95,6 +93,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 2760 | 69% |
-| desktop | 1220 | 31% |
+| mobile | 2460 | 69% |
+| desktop | 1110 | 31% |
 

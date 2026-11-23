@@ -1,6 +1,6 @@
-2026-11-23T08:24:49.255910 UTC
+2026-11-23T23:59:06.022010 UTC
 
-roster pull: SystemExit: REFUSING to write r2027.json: not one of 203 games returned a roster. That is a broken session, not a season without sheets.
+roster pull: SystemExit: REFUSING to write r2027.json: not one of 204 games returned a roster. That is a broken session, not a season without sheets.
 
 Traceback (most recent call last):
   File "/home/runner/work/nyc-hs-soccer/nyc-hs-soccer/tools/psal_refresh.py", line 430, in main
@@ -10,4 +10,4 @@ Traceback (most recent call last):
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/runner/work/nyc-hs-soccer/nyc-hs-soccer/tools/psal_rosters.py", line 155, in pull_season
     raise SystemExit(
-SystemExit: REFUSING to write r2027.json: not one of 203 games returned a roster. That is a broken session, not a season without sheets.
+SystemExit: REFUSING to write r2027.json: not one of 204 games returned a roster. That is a broken session, not a season without sheets.
