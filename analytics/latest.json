@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-23T23:59:06Z",
+ "generated": "2026-11-24T22:30:53Z",
  "days": 30,
- "visits": 710,
- "pageviews": 3570,
+ "visits": 670,
+ "pageviews": 3390,
  "byDay": [
   {
    "date": "2026-10-25",
-   "visits": 40,
-   "views": 250
+   "visits": 0,
+   "views": 70
   },
   {
    "date": "2026-10-26",
@@ -138,19 +138,19 @@
  "topPaths": [
   {
    "path": "/",
-   "views": 730
+   "views": 710
   },
   {
    "path": "/playoffs/boys",
-   "views": 280
+   "views": 270
   },
   {
    "path": "/playoffs/girls",
-   "views": 170
+   "views": 150
   },
   {
    "path": "/girls",
-   "views": 150
+   "views": 140
   },
   {
    "path": "/standings/boys",
@@ -165,35 +165,27 @@
    "views": 70
   },
   {
-   "path": "/scores/2026-11-05/boys",
-   "views": 60
-  },
-  {
    "path": "/scores/2026-11-06/boys",
    "views": 60
   },
   {
-   "path": "/players/boys",
-   "views": 50
-  },
-  {
-   "path": "/school/laguardia/girls",
-   "views": 50
+   "path": "/scores/2026-11-05/boys",
+   "views": 60
   },
   {
    "path": "/scores/2026-11-09/boys",
    "views": 50
   },
   {
-   "path": "/school/south-bronx/boys",
-   "views": 40
+   "path": "/players/boys",
+   "views": 50
   },
   {
    "path": "/scores/2026-10-30/boys",
    "views": 40
   },
   {
-   "path": "/scores/2026-10-28/girls",
+   "path": "/school/laguardia/girls",
    "views": 40
   },
   {
@@ -201,11 +193,19 @@
    "views": 40
   },
   {
-   "path": "/school/south-bronx/2026/boys",
-   "views": 30
+   "path": "/school/south-bronx/boys",
+   "views": 40
   },
   {
    "path": "/school/francis-lewis/boys",
+   "views": 30
+  },
+  {
+   "path": "/scores/2026-11-05/girls",
+   "views": 30
+  },
+  {
+   "path": "/school/south-bronx/2026/boys",
    "views": 30
   },
   {
