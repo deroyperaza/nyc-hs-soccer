@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-25T13:30:08Z",
+ "generated": "2026-11-25T21:46:55Z",
  "days": 30,
- "visits": 630,
- "pageviews": 3190,
+ "visits": 590,
+ "pageviews": 3110,
  "byDay": [
   {
    "date": "2026-10-26",
-   "visits": 40,
-   "views": 120
+   "visits": 0,
+   "views": 30
   },
   {
    "date": "2026-10-27",
@@ -128,24 +128,29 @@
    "date": "2026-11-20",
    "visits": 10,
    "views": 10
+  },
+  {
+   "date": "2026-11-25",
+   "visits": 0,
+   "views": 10
   }
  ],
  "topPaths": [
   {
    "path": "/",
-   "views": 680
+   "views": 650
   },
   {
    "path": "/playoffs/boys",
    "views": 240
   },
   {
-   "path": "/playoffs/girls",
-   "views": 140
-  },
-  {
    "path": "/girls",
    "views": 130
+  },
+  {
+   "path": "/playoffs/girls",
+   "views": 110
   },
   {
    "path": "/standings/boys",
@@ -157,30 +162,26 @@
   },
   {
    "path": "/scores/2026-10-31/boys",
-   "views": 70
-  },
-  {
-   "path": "/scores/2026-11-05/boys",
-   "views": 60
+   "views": 80
   },
   {
    "path": "/scores/2026-11-06/boys",
    "views": 60
   },
   {
-   "path": "/players/boys",
-   "views": 50
+   "path": "/scores/2026-11-05/boys",
+   "views": 60
   },
   {
    "path": "/scores/2026-11-09/boys",
    "views": 50
   },
   {
-   "path": "/school/laguardia/girls",
-   "views": 40
+   "path": "/players/boys",
+   "views": 50
   },
   {
-   "path": "/scores/2026-11-06/girls",
+   "path": "/school/south-bronx/boys",
    "views": 40
   },
   {
@@ -188,19 +189,15 @@
    "views": 40
   },
   {
-   "path": "/school/south-bronx/boys",
+   "path": "/scores/2026-11-06/girls",
    "views": 40
   },
   {
-   "path": "/scores/2026-10-31/girls",
-   "views": 30
+   "path": "/school/laguardia/girls",
+   "views": 40
   },
   {
-   "path": "/school/francis-lewis/boys",
-   "views": 30
-  },
-  {
-   "path": "/scores/2026-11-05/girls",
+   "path": "/scores/2026-11-04/boys",
    "views": 30
   },
   {
@@ -208,7 +205,15 @@
    "views": 30
   },
   {
-   "path": "/game/511701/boys",
+   "path": "/scores/2026-11-03/boys",
+   "views": 30
+  },
+  {
+   "path": "/scores/2026-10-31/girls",
+   "views": 30
+  },
+  {
+   "path": "/scores/2026-11-05/girls",
    "views": 30
   }
  ]
