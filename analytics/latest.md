@@ -1,12 +1,12 @@
 # Traffic
 
-_2026-11-26T11:38:58Z, last 30 days. Cloudflare Web Analytics, cookieless._
+_2026-11-26T21:36:28Z, last 30 days. Cloudflare Web Analytics, cookieless._
 
 | | visits | pageviews |
 |---|---:|---:|
 | today | 0 | 0 | 
 | yesterday | 0 | 10 |
-| 30 days | 580 | 2910 |
+| 30 days | 550 | 2830 |
 
 Pageviews run roughly double: the app rewrites its own URL as you move
 around, and each rewrite is a beacon. Visits counts one per arrival, so
@@ -18,7 +18,7 @@ that is the number that means something.
 
 | date | visits | pageviews |
 |---|---:|---:|
-| 2026-10-27 | 50 | 100 |
+| 2026-10-27 | 20 | 20 |
 | 2026-10-28 | 20 | 170 |
 | 2026-10-29 | 40 | 270 |
 | 2026-10-30 | 20 | 80 |
@@ -48,11 +48,11 @@ that is the number that means something.
 
 | path | views | share |
 |---|---:|---:|
-| / | 640 | 22% |
-| /playoffs/boys | 230 | 8% |
-| /girls | 130 | 4% |
-| /standings/boys | 100 | 3% |
-| /playoffs/girls | 100 | 3% |
+| / | 590 | 21% |
+| /playoffs/boys | 220 | 8% |
+| /girls | 130 | 5% |
+| /standings/boys | 100 | 4% |
+| /playoffs/girls | 100 | 4% |
 | /scores/2026-11-07/boys | 90 | 3% |
 | /scores/2026-10-31/boys | 80 | 3% |
 | /scores/2026-11-06/boys | 60 | 2% |
@@ -61,20 +61,20 @@ that is the number that means something.
 | /school/laguardia/girls | 40 | 1% |
 | /scores/2026-10-30/boys | 40 | 1% |
 | /scores/2026-11-06/girls | 40 | 1% |
-| /players/boys | 30 | 1% |
 | /school/francis-lewis/boys | 30 | 1% |
-| /scores/2026-11-03/boys | 30 | 1% |
-| /scores/2026-11-05/girls | 30 | 1% |
 | /scores/2026-10-31/girls | 30 | 1% |
-| /scores/2026-11-04/boys | 30 | 1% |
+| /scores/2026-11-05/girls | 30 | 1% |
+| /game/511701/boys | 30 | 1% |
+| /players/boys | 30 | 1% |
 | /school/south-bronx/2026/boys | 30 | 1% |
+| /scores/2026-11-03/boys | 30 | 1% |
 
 ## Where people came from
 
 | referrer | views | share |
 |---|---:|---:|
-| nychssoccer.com | 2330 | 80% |
-| (direct) | 540 | 19% |
+| nychssoccer.com | 2280 | 81% |
+| (direct) | 510 | 18% |
 | www.google.com | 30 | 1% |
 | duckduckgo.com | 10 | 0% |
 
@@ -82,7 +82,7 @@ that is the number that means something.
 
 | country | views | share |
 |---|---:|---:|
-| US | 2850 | 98% |
+| US | 2770 | 98% |
 | CA | 40 | 1% |
 | DE | 10 | 0% |
 | FI | 10 | 0% |
@@ -91,6 +91,6 @@ that is the number that means something.
 
 | device | views | share |
 |---|---:|---:|
-| mobile | 2160 | 74% |
-| desktop | 750 | 26% |
+| mobile | 2080 | 73% |
+| desktop | 750 | 27% |
 

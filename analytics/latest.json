@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-26T11:38:58Z",
+ "generated": "2026-11-26T21:36:28Z",
  "days": 30,
- "visits": 580,
- "pageviews": 2910,
+ "visits": 550,
+ "pageviews": 2830,
  "byDay": [
   {
    "date": "2026-10-27",
-   "visits": 50,
-   "views": 100
+   "visits": 20,
+   "views": 20
   },
   {
    "date": "2026-10-28",
@@ -133,11 +133,11 @@
  "topPaths": [
   {
    "path": "/",
-   "views": 640
+   "views": 590
   },
   {
    "path": "/playoffs/boys",
-   "views": 230
+   "views": 220
   },
   {
    "path": "/girls",
@@ -184,19 +184,7 @@
    "views": 40
   },
   {
-   "path": "/players/boys",
-   "views": 30
-  },
-  {
    "path": "/school/francis-lewis/boys",
-   "views": 30
-  },
-  {
-   "path": "/scores/2026-11-03/boys",
-   "views": 30
-  },
-  {
-   "path": "/scores/2026-11-05/girls",
    "views": 30
   },
   {
@@ -204,11 +192,23 @@
    "views": 30
   },
   {
-   "path": "/scores/2026-11-04/boys",
+   "path": "/scores/2026-11-05/girls",
+   "views": 30
+  },
+  {
+   "path": "/game/511701/boys",
+   "views": 30
+  },
+  {
+   "path": "/players/boys",
    "views": 30
   },
   {
    "path": "/school/south-bronx/2026/boys",
+   "views": 30
+  },
+  {
+   "path": "/scores/2026-11-03/boys",
    "views": 30
   }
  ]
