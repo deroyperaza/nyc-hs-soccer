@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-27T11:34:17Z",
+ "generated": "2026-11-27T21:22:43Z",
  "days": 30,
  "visits": 530,
- "pageviews": 2720,
+ "pageviews": 2660,
  "byDay": [
   {
    "date": "2026-10-28",
    "visits": 20,
-   "views": 80
+   "views": 20
   },
   {
    "date": "2026-10-29",
@@ -132,7 +132,7 @@
   },
   {
    "path": "/playoffs/boys",
-   "views": 210
+   "views": 200
   },
   {
    "path": "/girls",
@@ -147,15 +147,11 @@
    "views": 90
   },
   {
-   "path": "/scores/2026-10-31/boys",
-   "views": 80
-  },
-  {
    "path": "/standings/boys",
    "views": 70
   },
   {
-   "path": "/scores/2026-11-05/boys",
+   "path": "/scores/2026-10-31/boys",
    "views": 60
   },
   {
@@ -163,12 +159,12 @@
    "views": 60
   },
   {
-   "path": "/scores/2026-11-09/boys",
-   "views": 50
+   "path": "/scores/2026-11-05/boys",
+   "views": 60
   },
   {
-   "path": "/scores/2026-10-30/boys",
-   "views": 40
+   "path": "/scores/2026-11-09/boys",
+   "views": 50
   },
   {
    "path": "/scores/2026-11-06/girls",
@@ -179,23 +175,15 @@
    "views": 40
   },
   {
-   "path": "/scores/2026-11-04/boys",
-   "views": 30
-  },
-  {
-   "path": "/game/511701/boys",
-   "views": 30
-  },
-  {
-   "path": "/scores/2026-11-05/girls",
-   "views": 30
-  },
-  {
    "path": "/scores/2026-11-03/boys",
    "views": 30
   },
   {
-   "path": "/players/boys",
+   "path": "/scores/2026-11-04/boys",
+   "views": 30
+  },
+  {
+   "path": "/scores/2026-10-30/boys",
    "views": 30
   },
   {
@@ -203,7 +191,19 @@
    "views": 30
   },
   {
+   "path": "/scores/2026-11-05/girls",
+   "views": 30
+  },
+  {
+   "path": "/game/511701/boys",
+   "views": 30
+  },
+  {
    "path": "/school/south-bronx/2026/boys",
+   "views": 30
+  },
+  {
+   "path": "/players/boys",
    "views": 30
   }
  ]
